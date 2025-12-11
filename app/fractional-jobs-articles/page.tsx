@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
-import { Card } from '@/components/Card'
-import { Badge } from '@/components/Badge'
+import { ArticleCard } from '@/components/ArticleCard'
 
 export const revalidate = 14400 // Revalidate every 4 hours
 
@@ -91,38 +90,15 @@ export default async function ArticlesPage({ searchParams }: ArticlesPageProps) 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                   {articles.map((article: any) => (
                     <Link key={article.id} href={`/${article.slug}`}>
-                      <Card hoverable className="h-full flex flex-col">
-                        {article.hero_asset_url && (
-                          <img
-                            src={article.hero_asset_url}
-                            alt={article.hero_asset_alt || article.title}
-                            className="w-full h-48 object-cover rounded-lg mb-4"
-                          />
-                        )}
-
-                        <div className="flex-1">
-                          <h2 className="text-xl font-bold text-gray-900 mb-2 line-clamp-2">
-                            {article.title}
-                          </h2>
-
-                          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                            {article.excerpt || article.meta_description}
-                          </p>
-                        </div>
-
-                        <div className="flex items-center justify-between text-sm text-gray-500">
-                          <span>
-                            {article.published_at
-                              ? new Date(article.published_at).toLocaleDateString('en-GB', {
-                                  year: 'numeric',
-                                  month: 'short',
-                                  day: 'numeric',
-                                })
-                              : ''}
-                          </span>
-                          {article.word_count && <span>{article.word_count} words</span>}
-                        </div>
-                      </Card>
+                      <ArticleCard
+                        title={article.title}
+                        excerpt={article.excerpt}
+                        description={article.meta_description}
+                        imageUrl={article.hero_asset_url}
+                        imageAlt={article.hero_asset_alt}
+                        publishedDate={article.published_at}
+                        wordCount={article.word_count}
+                      />
                     </Link>
                   ))}
                 </div>

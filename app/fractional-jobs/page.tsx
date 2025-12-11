@@ -1,8 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
-import { Card } from '@/components/Card'
-import { Badge } from '@/components/Badge'
+import { JobCard } from '@/components/JobCard'
 
 // Revalidate every 15 minutes for jobs
 export const revalidate = 900
@@ -119,37 +118,28 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
               </div>
             ) : (
               <>
-                <div className="space-y-4 mb-12">
-                  {jobs.map((job: any) => (
-                    <Link key={job.id} href={`/fractional-job/${job.slug}`}>
-                      <Card hoverable>
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">{job.title}</h3>
-                            <p className="text-gray-600 mb-2">{job.company_name}</p>
-                            <p className="text-sm text-gray-500 mb-3">
-                              {job.location} {job.is_remote ? '• Remote' : ''} • {job.compensation || (job.day_rate ? `£${job.day_rate}/day` : 'TBD')}
-                            </p>
-                            {job.skills_required && job.skills_required.length > 0 && (
-                              <div className="flex flex-wrap gap-2">
-                                {job.skills_required.slice(0, 5).map((skill: string) => (
-                                  <Badge key={skill} variant="gray">
-                                    {skill}
-                                  </Badge>
-                                ))}
-                                {job.skills_required.length > 5 && (
-                                  <Badge variant="gray">+{job.skills_required.length - 5}</Badge>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                          <button className="ml-4 px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 font-semibold whitespace-nowrap">
-                            View
-                          </button>
-                        </div>
-                      </Card>
-                    </Link>
-                  ))}
+                <div className="grid grid-cols-1 gap-4 mb-12">
+                  {jobs.map((job: any) => {
+                    const postedDate = job.posted_date ? new Date(job.posted_date) : null
+                    const postedDaysAgo = postedDate
+                      ? Math.floor((Date.now() - postedDate.getTime()) / (1000 * 60 * 60 * 24))
+                      : undefined
+
+                    return (
+                      <Link key={job.id} href={`/fractional-job/${job.slug}`}>
+                        <JobCard
+                          title={job.title}
+                          company={job.company_name}
+                          location={job.location}
+                          isRemote={job.is_remote}
+                          compensation={job.compensation}
+                          dayRate={job.day_rate}
+                          skills={job.skills_required || []}
+                          postedDaysAgo={postedDaysAgo}
+                        />
+                      </Link>
+                    )
+                  })}
                 </div>
 
                 {/* Pagination */}
