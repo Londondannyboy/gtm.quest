@@ -110,7 +110,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
             {jobs.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-lg text-gray-600">No jobs found for this page.</p>
-                <Link href="/fractionaljobsuk">
+                <Link href="/fractional-jobs">
                   <button className="mt-4 px-6 py-2.5 bg-purple-700 text-white rounded-lg hover:bg-purple-800">
                     Back to First Page
                   </button>
@@ -120,7 +120,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
               <>
                 <div className="space-y-4 mb-12">
                   {jobs.map((job: any) => (
-                    <Link key={job.id} href={`/job/${job.id}`}>
+                    <Link key={job.id} href={`/fractional-job/${job.id}`}>
                       <Card hoverable>
                         <div className="flex justify-between items-start">
                           <div className="flex-1">
@@ -155,7 +155,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                 {totalPages > 1 && (
                   <div className="flex justify-center items-center gap-2">
                     {page > 1 && (
-                      <Link href={`/fractionaljobsuk?page=${page - 1}`}>
+                      <Link href={`/fractional-jobs?page=${page - 1}`}>
                         <button className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50">
                           ← Previous
                         </button>
@@ -168,7 +168,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                         if (pageNum > totalPages) return null
 
                         return (
-                          <Link key={pageNum} href={`/fractionaljobsuk?page=${pageNum}`}>
+                          <Link key={pageNum} href={`/fractional-jobs?page=${pageNum}`}>
                             <button
                               className={`px-3 py-2 rounded-lg ${
                                 pageNum === page
@@ -184,7 +184,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                     </div>
 
                     {page < totalPages && (
-                      <Link href={`/fractionaljobsuk?page=${page + 1}`}>
+                      <Link href={`/fractional-jobs?page=${page + 1}`}>
                         <button className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50">
                           Next →
                         </button>

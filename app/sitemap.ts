@@ -15,13 +15,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
-      url: `${baseUrl}/fractionaljobsuk`,
+      url: `${baseUrl}/fractional-jobs`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/articles`,
+      url: `${baseUrl}/fractional-jobs-articles`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.8,
@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     `
 
     const jobUrls: MetadataRoute.Sitemap = jobs.map((job: any) => ({
-      url: `${baseUrl}/job/${job.id}`,
+      url: `${baseUrl}/fractional-job/${job.id}`,
       lastModified: job.updated_date ? new Date(job.updated_date) : new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
@@ -79,7 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     `
 
     const articleUrls: MetadataRoute.Sitemap = articles.map((article: any) => ({
-      url: `${baseUrl}/articles/${article.slug}`,
+      url: `${baseUrl}/${article.slug}`,
       lastModified: article.published_at ? new Date(article.published_at) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.6,
