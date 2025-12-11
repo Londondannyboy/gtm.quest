@@ -1,0 +1,16 @@
+# Target modern browsers only - no legacy polyfills needed
+# Saves ~14KB by not including Array.prototype.at, flat, flatMap,
+# Object.fromEntries, Object.hasOwn, String.prototype.trim* polyfills
+
+# Production: Modern browsers with ES2022 support
+[production]
+chrome >= 92
+firefox >= 90
+safari >= 15.4
+edge >= 92
+
+# Development: Latest versions only
+[development]
+last 1 chrome version
+last 1 firefox version
+last 1 safari version
