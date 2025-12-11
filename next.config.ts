@@ -50,6 +50,8 @@ const nextConfig: NextConfig = {
   // Optimize CSS and package imports for modern browsers
   experimental: {
     optimizePackageImports: ["@tailwindcss/typography", "react-markdown"],
+    // Inline critical CSS to eliminate render-blocking requests
+    optimizeCss: true,
   },
 };
 
