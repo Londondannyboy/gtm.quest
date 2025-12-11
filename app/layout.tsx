@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "@/stack/server";
@@ -38,7 +39,9 @@ export default function RootLayout({
       >
         <StackProvider app={stackServerApp}>
           <StackTheme>
-            <Navigation />
+            <Suspense fallback={<div className="h-16 bg-white border-b border-gray-200" />}>
+              <Navigation />
+            </Suspense>
             <main className="min-h-screen">
               {children}
             </main>
