@@ -116,7 +116,7 @@ export default async function StartupJobsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/fractional-jobs"
+              href="/fractional-jobs?industry=Startups"
               className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-orange-700 hover:bg-orange-50 transition-all duration-200"
             >
               Browse Startup Jobs
@@ -267,7 +267,7 @@ export default async function StartupJobsPage() {
             </div>
             <div className="text-center">
               <Link
-                href="/fractional-jobs"
+                href="/fractional-jobs?industry=Startups"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all"
               >
                 View All Startup Jobs →

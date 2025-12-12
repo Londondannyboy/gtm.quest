@@ -12,20 +12,24 @@ interface JobFiltersProps {
   currentRole?: string
   currentRemote?: string
   currentLocation?: string
+  currentIndustry?: string
   totalJobs: number
   roleOptions: FilterOption[]
   locationOptions: FilterOption[]
   workTypeOptions: FilterOption[]
+  industryOptions: FilterOption[]
 }
 
 export function JobFilters({
   currentRole = '',
   currentRemote = '',
   currentLocation = '',
+  currentIndustry = '',
   totalJobs,
   roleOptions,
   locationOptions,
-  workTypeOptions
+  workTypeOptions,
+  industryOptions
 }: JobFiltersProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -50,13 +54,14 @@ export function JobFilters({
     router.push(`/fractional-jobs${queryString ? `?${queryString}` : ''}`)
   }
 
-  const activeFilters = [currentRole, currentRemote, currentLocation].filter(Boolean).length
+  const activeFilters = [currentRole, currentRemote, currentLocation, currentIndustry].filter(Boolean).length
 
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-      <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+      {/* First Row - Role, Industry */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         {/* Role Filter */}
-        <div className="flex-1">
+        <div>
           <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
             Role Type
           </label>
@@ -74,18 +79,18 @@ export function JobFilters({
           </select>
         </div>
 
-        {/* Work Type Filter */}
-        <div className="flex-1">
-          <label htmlFor="workType" className="block text-sm font-medium text-gray-700 mb-1">
-            Work Type
+        {/* Industry Filter */}
+        <div>
+          <label htmlFor="industry" className="block text-sm font-medium text-gray-700 mb-1">
+            Industry
           </label>
           <select
-            id="workType"
-            value={currentRemote}
-            onChange={(e) => handleFilterChange('remote', e.target.value)}
+            id="industry"
+            value={currentIndustry}
+            onChange={(e) => handleFilterChange('industry', e.target.value)}
             className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
           >
-            {workTypeOptions.map((option) => (
+            {industryOptions.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -94,7 +99,7 @@ export function JobFilters({
         </div>
 
         {/* Location Filter */}
-        <div className="flex-1">
+        <div>
           <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
             Location
           </label>
@@ -112,21 +117,40 @@ export function JobFilters({
           </select>
         </div>
 
-        {/* Results Count & Clear */}
-        <div className="flex-shrink-0 flex items-end gap-3">
-          <div className="text-center lg:text-left">
-            <span className="block text-2xl font-bold text-purple-700">{totalJobs}</span>
-            <span className="text-sm text-gray-500">jobs found</span>
-          </div>
-          {activeFilters > 0 && (
-            <button
-              onClick={() => router.push('/fractional-jobs')}
-              className="px-4 py-2.5 text-sm font-medium text-purple-700 hover:text-purple-900 hover:bg-purple-50 rounded-lg transition-colors"
-            >
-              Clear All
-            </button>
-          )}
+        {/* Work Type Filter */}
+        <div>
+          <label htmlFor="workType" className="block text-sm font-medium text-gray-700 mb-1">
+            Work Type
+          </label>
+          <select
+            id="workType"
+            value={currentRemote}
+            onChange={(e) => handleFilterChange('remote', e.target.value)}
+            className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-colors"
+          >
+            {workTypeOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
+      </div>
+
+      {/* Results Count & Clear */}
+      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl font-bold text-purple-700">{totalJobs}</span>
+          <span className="text-gray-500">jobs found</span>
+        </div>
+        {activeFilters > 0 && (
+          <button
+            onClick={() => router.push('/fractional-jobs')}
+            className="px-4 py-2 text-sm font-medium text-purple-700 hover:text-purple-900 hover:bg-purple-50 rounded-lg transition-colors"
+          >
+            Clear All Filters
+          </button>
+        )}
       </div>
 
       {/* Active Filter Tags */}
@@ -144,12 +168,12 @@ export function JobFilters({
               </button>
             </span>
           )}
-          {currentRemote && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">
-              {workTypeOptions.find(r => r.value === currentRemote)?.label || currentRemote}
+          {currentIndustry && (
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">
+              {industryOptions.find(i => i.value === currentIndustry)?.label || currentIndustry}
               <button
-                onClick={() => handleFilterChange('remote', '')}
-                className="hover:text-emerald-900"
+                onClick={() => handleFilterChange('industry', '')}
+                className="hover:text-orange-900"
               >
                 ×
               </button>
@@ -161,6 +185,17 @@ export function JobFilters({
               <button
                 onClick={() => handleFilterChange('location', '')}
                 className="hover:text-blue-900"
+              >
+                ×
+              </button>
+            </span>
+          )}
+          {currentRemote && (
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-emerald-100 text-emerald-800 text-sm rounded-full">
+              {workTypeOptions.find(r => r.value === currentRemote)?.label || currentRemote}
+              <button
+                onClick={() => handleFilterChange('remote', '')}
+                className="hover:text-emerald-900"
               >
                 ×
               </button>

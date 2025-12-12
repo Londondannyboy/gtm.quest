@@ -113,7 +113,7 @@ export default async function TechJobsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/fractional-jobs?role=CTO"
+              href="/fractional-jobs?industry=Technology"
               className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-all duration-200"
             >
               Browse Tech Jobs
@@ -263,7 +263,7 @@ export default async function TechJobsPage() {
             </div>
             <div className="text-center">
               <Link
-                href="/fractional-jobs?role=CTO"
+                href="/fractional-jobs?industry=Technology"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-blue-700 text-white hover:bg-blue-800 transition-all"
               >
                 View All Tech Jobs →

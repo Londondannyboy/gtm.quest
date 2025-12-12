@@ -2,13 +2,17 @@
 
 import { useUser } from '@stackframe/stack'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { HumeWidget } from '@/components/HumeWidget'
+import { ExtractionPanel } from '@/components/ExtractionPanel'
+import { RepoDisplay } from '@/components/RepoDisplay'
+import { ExtractionResult } from '@/lib/extraction-types'
 
 export default function DashboardPage() {
   const user = useUser({ or: 'redirect' })
   const [sidebarOpen, setSidebarOpen] = useState(true)
   const [activeView, setActiveView] = useState<'home' | 'voice' | 'jobs' | 'articles'>('home')
+  const [repoRefresh, setRepoRefresh] = useState(0)
 
   if (!user) return null
 
@@ -114,8 +118,21 @@ export default function DashboardPage() {
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
-        {activeView === 'home' && <HomeView firstName={firstName} onSpeakClick={() => setActiveView('voice')} />}
-        {activeView === 'voice' && <VoiceView userName={user.displayName || undefined} />}
+        {activeView === 'home' && (
+          <HomeView
+            firstName={firstName}
+            userId={user.id}
+            onSpeakClick={() => setActiveView('voice')}
+            refreshTrigger={repoRefresh}
+          />
+        )}
+        {activeView === 'voice' && (
+          <VoiceView
+            userName={user.displayName || undefined}
+            userId={user.id}
+            onRepoUpdate={() => setRepoRefresh(r => r + 1)}
+          />
+        )}
         {activeView === 'jobs' && <JobsView />}
         {activeView === 'articles' && <ArticlesView />}
       </main>
@@ -123,7 +140,12 @@ export default function DashboardPage() {
   )
 }
 
-function HomeView({ firstName, onSpeakClick }: { firstName: string; onSpeakClick: () => void }) {
+function HomeView({ firstName, userId, onSpeakClick, refreshTrigger }: {
+  firstName: string
+  userId: string
+  onSpeakClick: () => void
+  refreshTrigger: number
+}) {
   return (
     <div className="p-8 max-w-5xl mx-auto">
       {/* Welcome Header */}
@@ -132,7 +154,7 @@ function HomeView({ firstName, onSpeakClick }: { firstName: string; onSpeakClick
           Welcome back, {firstName}
         </h1>
         <p className="text-gray-600">
-          Ready to find your next fractional role?
+          Your professional Repo - build it by talking to Quest
         </p>
       </div>
 
@@ -140,16 +162,16 @@ function HomeView({ firstName, onSpeakClick }: { firstName: string; onSpeakClick
       <div className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 mb-8 text-white">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold mb-2">Talk to our AI Assistant</h2>
+            <h2 className="text-2xl font-bold mb-2">Build Your Repo</h2>
             <p className="text-purple-100 mb-4">
-              Get personalized job recommendations and career advice through a natural conversation.
+              Talk to Quest about your experience. We'll extract your skills, build your professional identity, and match you with perfect roles.
             </p>
             <button
               onClick={onSpeakClick}
               className="bg-white text-purple-700 px-6 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-colors inline-flex items-center gap-2"
             >
               <PhoneIcon />
-              Speak with Fractional
+              Speak with Quest
             </button>
           </div>
           <div className="hidden md:block">
@@ -160,89 +182,62 @@ function HomeView({ firstName, onSpeakClick }: { firstName: string; onSpeakClick
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <StatCard
-          label="Active Jobs"
-          value="500+"
-          subtitle="UK market"
-          icon={<BriefcaseIcon />}
-        />
-        <StatCard
-          label="London Roles"
-          value="85+"
-          subtitle="Top market"
-          icon={<LocationIcon />}
-        />
-        <StatCard
-          label="Avg Day Rate"
-          value="£950"
-          subtitle="2025 rates"
-          icon={<CurrencyIcon />}
-        />
-      </div>
-
-      {/* Quick Links */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <QuickLink
-          href="/fractionaljobsuk"
-          title="Browse All Jobs"
-          description="Search 500+ fractional executive positions"
-          icon={<SearchIcon />}
-        />
-        <QuickLink
-          href="/fractional-jobs-articles"
-          title="Career Guides"
-          description="Expert advice on fractional careers"
-          icon={<ArticleIcon />}
-        />
-        <QuickLink
-          href="/fractional-cfo-jobs-uk"
-          title="CFO Roles"
-          description="120+ fractional CFO opportunities"
-          icon={<BriefcaseIcon />}
-        />
-        <QuickLink
-          href="/fractional-jobs-london"
-          title="London Jobs"
-          description="Roles in the UK's top market"
-          icon={<LocationIcon />}
-        />
-      </div>
+      {/* Repo Display */}
+      <RepoDisplay userId={userId} refreshTrigger={refreshTrigger} />
     </div>
   )
 }
 
-function VoiceView({ userName }: { userName?: string }) {
+function VoiceView({ userName, userId, onRepoUpdate }: {
+  userName?: string
+  userId: string
+  onRepoUpdate: () => void
+}) {
+  const [isExtracting, setIsExtracting] = useState(false)
+  const [liveExtraction, setLiveExtraction] = useState<ExtractionResult | null>(null)
+
   return (
-    <div className="h-full flex flex-col items-center justify-center p-8 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-xl w-full text-center">
-        <div className="mb-8">
-          <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <MicIcon className="w-10 h-10 text-purple-600" />
+    <div className="h-full flex">
+      {/* Main Voice Area */}
+      <div className="flex-1 flex flex-col items-center justify-center p-8 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-xl w-full text-center">
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <MicIcon className="w-10 h-10 text-purple-600" />
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-3">
+              Build Your Repo
+            </h1>
+            <p className="text-gray-600 text-lg">
+              Tell Quest about your experience. We'll extract skills, companies, and build your professional identity.
+            </p>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-3">
-            Speak with Fractional
-          </h1>
-          <p className="text-gray-600 text-lg">
-            Have a natural conversation about fractional jobs, day rates, and career transitions.
+
+          {/* Hume Voice Widget */}
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
+            <HumeWidget variant="hero" userName={userName} isAuthenticated={true} darkMode={false} />
+          </div>
+
+          <p className="text-gray-500 text-sm">
+            Watch the panel on the right as we extract and confirm your professional data.
           </p>
-        </div>
 
-        {/* Hume Voice Widget */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
-          <HumeWidget variant="hero" userName={userName} isAuthenticated={true} darkMode={false} />
+          <div className="mt-6">
+            <Link href="/chat" className="text-purple-600 hover:text-purple-700 font-medium">
+              Prefer text? Try our chat →
+            </Link>
+          </div>
         </div>
+      </div>
 
-        <p className="text-gray-500 text-sm">
-          As a signed-in user, you have unlimited access to our AI assistant.
-        </p>
-
-        <div className="mt-6">
-          <Link href="/chat" className="text-purple-600 hover:text-purple-700 font-medium">
-            Prefer text? Try our chat →
-          </Link>
-        </div>
+      {/* Extraction Panel */}
+      <div className="w-96 border-l border-gray-200 bg-white">
+        <ExtractionPanel
+          userId={userId}
+          liveExtraction={liveExtraction}
+          isExtracting={isExtracting}
+          onRefresh={onRepoUpdate}
+        />
       </div>
     </div>
   )

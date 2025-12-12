@@ -113,7 +113,7 @@ export default async function FinanceJobsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              href="/fractional-jobs?role=CFO"
+              href="/fractional-jobs?industry=Financial Services"
               className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-green-900 hover:bg-green-50 transition-all duration-200"
             >
               Browse Finance Jobs
@@ -263,7 +263,7 @@ export default async function FinanceJobsPage() {
             </div>
             <div className="text-center">
               <Link
-                href="/fractional-jobs?role=CFO"
+                href="/fractional-jobs?industry=Financial Services"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-green-700 text-white hover:bg-green-800 transition-all"
               >
                 View All Finance Jobs →

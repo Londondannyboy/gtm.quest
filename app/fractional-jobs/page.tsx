@@ -24,6 +24,7 @@ interface JobsPageProps {
     role?: string
     remote?: string
     location?: string
+    industry?: string
   }
 }
 
@@ -80,43 +81,56 @@ async function getFilterOptions(sql: any) {
     LIMIT 15
   `
 
-  // Extract main location names
-  const locationSet = new Set<string>()
-  locationResults.forEach((l: any) => {
-    const loc = l.location as string
-    if (loc.toLowerCase().includes('london')) locationSet.add('London')
-    else if (loc.toLowerCase().includes('manchester')) locationSet.add('Manchester')
-    else if (loc.toLowerCase().includes('remote')) locationSet.add('Remote')
-    else if (loc.toLowerCase().includes('birmingham')) locationSet.add('Birmingham')
-    else if (loc.toLowerCase().includes('edinburgh')) locationSet.add('Edinburgh')
-    else if (loc.toLowerCase().includes('leeds')) locationSet.add('Leeds')
-    else if (loc.toLowerCase().includes('bristol')) locationSet.add('Bristol')
-  })
+  // Static list of UK locations - comprehensive coverage
+  const ukLocations = [
+    'London', 'Manchester', 'Birmingham', 'Leeds', 'Bristol',
+    'Edinburgh', 'Glasgow', 'Liverpool', 'Newcastle', 'Sheffield',
+    'Nottingham', 'Cardiff', 'Belfast', 'Cambridge', 'Oxford',
+    'Reading', 'Brighton', 'Southampton', 'Leicester', 'Coventry',
+    'Remote'
+  ]
 
   const locationOptions: FilterOption[] = [
     { value: '', label: 'All Locations' },
-    ...Array.from(locationSet).sort().map(loc => ({ value: loc, label: loc }))
+    ...ukLocations.map(loc => ({ value: loc, label: loc }))
   ]
 
-  return { roleOptions, workTypeOptions, locationOptions }
+  // Static list of industries
+  const industries = [
+    'Technology', 'FinTech', 'SaaS', 'Healthcare', 'E-commerce',
+    'Professional Services', 'Financial Services', 'Manufacturing',
+    'Retail', 'Media & Entertainment', 'Real Estate', 'Education',
+    'Energy', 'Startups', 'Private Equity'
+  ]
+
+  const industryOptions: FilterOption[] = [
+    { value: '', label: 'All Industries' },
+    ...industries.map(ind => ({ value: ind, label: ind }))
+  ]
+
+  return { roleOptions, workTypeOptions, locationOptions, industryOptions }
 }
 
 function JobFiltersWrapper({
   currentRole,
   currentRemote,
   currentLocation,
+  currentIndustry,
   totalJobs,
   roleOptions,
   locationOptions,
-  workTypeOptions
+  workTypeOptions,
+  industryOptions
 }: {
   currentRole: string
   currentRemote: string
   currentLocation: string
+  currentIndustry: string
   totalJobs: number
   roleOptions: FilterOption[]
   locationOptions: FilterOption[]
   workTypeOptions: FilterOption[]
+  industryOptions: FilterOption[]
 }) {
   return (
     <Suspense fallback={<div className="h-24 bg-gray-100 rounded-xl animate-pulse" />}>
@@ -124,10 +138,12 @@ function JobFiltersWrapper({
         currentRole={currentRole}
         currentRemote={currentRemote}
         currentLocation={currentLocation}
+        currentIndustry={currentIndustry}
         totalJobs={totalJobs}
         roleOptions={roleOptions}
         locationOptions={locationOptions}
         workTypeOptions={workTypeOptions}
+        industryOptions={industryOptions}
       />
     </Suspense>
   )
@@ -142,12 +158,13 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const roleFilter = searchParams.role || ''
   const remoteFilter = searchParams.remote || ''
   const locationFilter = searchParams.location || ''
+  const industryFilter = searchParams.industry || ''
 
   try {
     const sql = createDbQuery()
 
     // Get filter options from database
-    const { roleOptions, workTypeOptions, locationOptions } = await getFilterOptions(sql)
+    const { roleOptions, workTypeOptions, locationOptions, industryOptions } = await getFilterOptions(sql)
 
     // Build dynamic WHERE clause
     let whereConditions = ['is_active = true']
@@ -166,6 +183,15 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
     if (locationFilter) {
       whereConditions.push(`location ILIKE '%${locationFilter}%'`)
+    }
+
+    if (industryFilter) {
+      // Match industry in company description, title, or skills
+      whereConditions.push(`(
+        description ILIKE '%${industryFilter}%' OR
+        title ILIKE '%${industryFilter}%' OR
+        company_name ILIKE '%${industryFilter}%'
+      )`)
     }
 
     const whereClause = whereConditions.join(' AND ')
@@ -208,6 +234,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
       if (roleFilter) params.set('role', roleFilter)
       if (remoteFilter) params.set('remote', remoteFilter)
       if (locationFilter) params.set('location', locationFilter)
+      if (industryFilter) params.set('industry', industryFilter)
       return `/fractional-jobs?${params.toString()}`
     }
 
@@ -250,10 +277,12 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
               currentRole={roleFilter}
               currentRemote={remoteFilter}
               currentLocation={locationFilter}
+              currentIndustry={industryFilter}
               totalJobs={total}
               roleOptions={roleOptions}
               locationOptions={locationOptions}
               workTypeOptions={workTypeOptions}
+              industryOptions={industryOptions}
             />
           </div>
         </section>
