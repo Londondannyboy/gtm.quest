@@ -20,9 +20,9 @@ export function VideoHeroBackground({
     if (!fallbackGradient) return null
     return (
       <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900" />
-        {/* Animated pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
+        {/* Subtle animated pattern overlay */}
+        <div className="absolute inset-0 opacity-5">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <pattern id="heroGrid" width="10" height="10" patternUnits="userSpaceOnUse">
@@ -53,11 +53,11 @@ export function VideoHeroBackground({
 
       {/* Loading state - gradient while video loads */}
       {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
       )}
 
-      {/* Subtle dark overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Very subtle gradient at bottom for content area */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
     </div>
   )
 }

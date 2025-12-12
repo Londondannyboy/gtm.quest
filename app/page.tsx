@@ -257,85 +257,73 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
       />
     <div className="flex flex-col">
-      {/* Hero Section with Optional Video Background */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Video or Gradient Background */}
+      {/* Hero Section with Video Background - Modern Cinematic Design */}
+      <section className="relative min-h-screen flex items-end overflow-hidden">
+        {/* Video Background */}
         <VideoHeroBackground
           playbackId={HERO_VIDEO_PLAYBACK_ID}
           fallbackGradient={true}
         />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-32">
-          <div className="flex flex-col items-center text-center">
-            <div className="inline-block mb-6">
-              <span className="bg-amber-500/90 backdrop-blur text-white px-5 py-2.5 rounded-full text-sm font-medium border border-amber-400/50 animate-pulse">
-                🚀 Launching December 2025 — Join the Waitlist
-              </span>
-            </div>
+        {/* Bottom-aligned content with glass panel */}
+        <div className="relative z-10 w-full pb-12 md:pb-20">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-8">
+              {/* Left: Main content */}
+              <div className="max-w-2xl">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 md:p-10 border border-white/10">
+                  <span className="inline-block bg-white/10 backdrop-blur text-white/90 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-wider mb-6">
+                    Beta Launch — December 2025
+                  </span>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-              Fractional <span className="text-purple-300">Executives</span>
-              <br />& Specialized Talent
-            </h1>
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1]">
+                    Fractional Executives
+                  </h1>
 
-            <p className="max-w-2xl text-xl text-purple-100 mb-10 leading-relaxed">
-              Connect with experienced fractional CFOs, CMOs, CTOs, and specialized experts.
-              Build your dream team without long-term commitments.
-            </p>
+                  <p className="text-lg text-white/70 mb-8 leading-relaxed">
+                    Connect with experienced CFOs, CMOs, CTOs, and specialized experts.
+                  </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Link
-                href="/fractional-jobs"
-                className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-purple-900 hover:bg-purple-50 transition-all duration-200 min-h-14"
-              >
-                {totalJobs > 0 ? `Browse ${totalJobs} Jobs →` : 'Explore Platform →'}
-              </Link>
-              <Link
-                href="/handler/sign-up"
-                className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white/10 transition-all duration-200 min-h-14"
-              >
-                Join Beta
-              </Link>
-            </div>
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      href="/fractional-jobs"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white text-black hover:bg-white/90 transition-all duration-200"
+                    >
+                      {totalJobs > 0 ? `Browse ${totalJobs} Jobs` : 'Explore Jobs'} →
+                    </Link>
+                    <Link
+                      href="/handler/sign-up"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
+                    >
+                      Join Beta
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
-            {/* Voice Assistant */}
-            <div className="mb-8">
-              <p className="text-purple-200 text-sm mb-4">or ask our AI assistant</p>
-              <AuthAwareHumeWidget variant="hero" />
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-6 text-purple-200 text-sm">
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                UK-focused roles
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                AI-powered job matching
-              </span>
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                Free for executives
-              </span>
-            </div>
-
-            {/* Animated Stats */}
-            <div className="mt-16 w-full max-w-4xl">
-              <AnimatedStats
-                variant="cards"
-                stats={[
-                  { value: 600, prefix: '£', label: 'Avg Day Rate' },
-                  { value: totalJobs || 2, label: 'Live Roles' },
-                  { value: 58, label: 'Articles', suffix: '+' },
-                  { value: 272, label: 'Pages Indexed' }
-                ]}
-              />
+              {/* Right: Stats panel */}
+              <div className="w-full lg:w-auto">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">£600</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Avg Day Rate</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">{totalJobs || 2}</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Live Roles</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">58+</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Articles</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">272</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Pages</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
