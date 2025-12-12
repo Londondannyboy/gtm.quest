@@ -19,7 +19,7 @@ export function Navigation() {
   }, [])
 
   const navLinks = [
-    { href: '/profile', label: 'Repo' },
+    { href: '/voice-test', label: 'Repo' },
     { href: '/fractional-jobs', label: 'Fractional Jobs' },
     { href: '/fractional-jobs-articles', label: 'Knowledge Base' }
   ]
