@@ -81,7 +81,7 @@ function VoiceInterface({ accessToken }: { accessToken: string }) {
             ? 'Connection error. Try again.'
             : 'Click to start talking'}
         </p>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-600 mt-1">
           {isConnected ? 'Ask about fractional jobs, day rates, or career advice' : 'Voice-powered job search assistant'}
         </p>
       </div>
@@ -89,7 +89,7 @@ function VoiceInterface({ accessToken }: { accessToken: string }) {
       {/* Conversation Display */}
       {messages.length > 0 && (
         <div className="w-full max-w-2xl bg-gray-50 rounded-xl p-6 max-h-96 overflow-y-auto">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Conversation</h3>
+          <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-4">Conversation</h3>
           <div className="space-y-4">
             {messages.map((msg, index) => (
               <div
@@ -116,7 +116,7 @@ function VoiceInterface({ accessToken }: { accessToken: string }) {
 
       {/* Example Questions */}
       <div className="w-full max-w-2xl">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Try asking</h3>
+        <h3 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">Try asking</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {[
             "What is a fractional CFO?",

@@ -153,9 +153,9 @@ function VoiceChat({
       {/* Debug Panel */}
       <div className="mt-4 w-full max-w-md p-3 bg-black/60 rounded text-xs font-mono text-green-400">
         <div className="text-yellow-400 mb-2">Debug (user: {userName || 'none'}, auth: {isAuthenticated ? 'yes' : 'no'})</div>
-        <div className="text-gray-400 mb-2">Status: {status.value} | Config: {CONFIG_ID.slice(0,8)}...</div>
+        <div className="text-gray-600 mb-2">Status: {status.value} | Config: {CONFIG_ID.slice(0,8)}...</div>
         <div className="space-y-1 max-h-32 overflow-auto">
-          {logs.length === 0 && <div className="text-gray-500">Tap mic to start...</div>}
+          {logs.length === 0 && <div className="text-gray-600">Tap mic to start...</div>}
           {logs.map((l, i) => <div key={i}>{l}</div>)}
         </div>
       </div>

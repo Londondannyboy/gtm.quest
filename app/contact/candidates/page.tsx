@@ -81,7 +81,7 @@ export default function CandidateContactPage() {
                 Send Message
               </Button>
 
-              <p className="text-xs text-gray-500 text-center">
+              <p className="text-xs text-gray-600 text-center">
                 We'll get back to you within 24 hours. Privacy policy applies.
               </p>
             </form>

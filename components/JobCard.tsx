@@ -117,7 +117,7 @@ export function JobCard({
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <span className="text-xs text-gray-500">
+        <span className="text-xs text-gray-600">
           {formatPostedDate(postedDaysAgo)}
         </span>
         <span className="flex items-center gap-1 text-sm font-semibold text-purple-700 group-hover:text-purple-900 transition-colors">

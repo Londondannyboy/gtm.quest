@@ -69,7 +69,7 @@ export function JobsPanel({ searchQuery, roleFilter, locationFilter, onJobSelect
       {/* Header */}
       <div className="p-4 border-b border-gray-200">
         <h2 className="text-lg font-semibold text-gray-900">Fractional Jobs</h2>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-600 mt-1">
           {jobs.length > 0 ? `${jobs.length} roles available` : 'Browse opportunities'}
         </p>
       </div>
@@ -103,16 +103,16 @@ export function JobsPanel({ searchQuery, roleFilter, locationFilter, onJobSelect
         {loading ? (
           <div className="p-8 text-center">
             <div className="w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-sm text-gray-500">Finding jobs...</p>
+            <p className="text-sm text-gray-600">Finding jobs...</p>
           </div>
         ) : jobs.length === 0 ? (
           <div className="p-8 text-center">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-8 h-8 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 text-sm">
               No jobs found matching your criteria.<br />
               Try a different filter.
             </p>
@@ -165,7 +165,7 @@ function JobCard({ job, onClick }: { job: Job; onClick?: () => void }) {
         )}
       </div>
 
-      <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
+      <div className="flex items-center gap-3 mt-2 text-xs text-gray-600">
         <span className="flex items-center gap-1">
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -187,7 +187,7 @@ function JobCard({ job, onClick }: { job: Job; onClick?: () => void }) {
       )}
 
       {job.snippet && (
-        <p className="mt-2 text-xs text-gray-500 line-clamp-2">
+        <p className="mt-2 text-xs text-gray-600 line-clamp-2">
           {job.snippet}
         </p>
       )}

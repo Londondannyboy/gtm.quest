@@ -197,7 +197,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
   if (!repo) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500">Unable to load your Repo</p>
+        <p className="text-gray-600">Unable to load your Repo</p>
       </div>
     )
   }
@@ -224,7 +224,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
             style={{ width: `${repo.stats.completeness}%` }}
           />
         </div>
-        <div className="flex justify-between mt-3 text-sm text-gray-500">
+        <div className="flex justify-between mt-3 text-sm text-gray-600">
           <span>{repo.stats.confirmedSkills} skills</span>
           <span>{repo.stats.totalExperiences} roles</span>
           <span>{repo.qualifications.length} qualifications</span>
@@ -240,7 +240,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
             className={`px-4 py-2 text-sm font-medium capitalize transition-colors ${
               activeTab === tab
                 ? 'text-purple-600 border-b-2 border-purple-600'
-                : 'text-gray-500 hover:text-gray-700'
+                : 'text-gray-600 hover:text-gray-700'
             }`}
           >
             {tab}
@@ -351,14 +351,14 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
                 <span className="text-2xl">🎯</span>
               </div>
               <p className="text-gray-600 font-medium">No skills confirmed yet</p>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-gray-600 text-sm mt-1">
                 Click "Add Skill" above or talk to Quest to build your profile
               </p>
             </div>
           ) : (
             Object.entries(skillsByCategory).map(([category, skills]) => (
               <div key={category}>
-                <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-3 capitalize">
+                <h4 className="text-sm font-medium text-gray-600 uppercase tracking-wide mb-3 capitalize">
                   {category} Skills
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -414,7 +414,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
                 <span className="text-2xl">🏢</span>
               </div>
               <p className="text-gray-600 font-medium">No experience added yet</p>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-gray-600 text-sm mt-1">
                 Tell Quest about your career history
               </p>
             </div>
@@ -430,7 +430,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
                     {exp.logo_url ? (
                       <img src={exp.logo_url} alt="" className="w-8 h-8 object-contain" />
                     ) : (
-                      <span className="text-gray-400 font-bold text-lg">
+                      <span className="text-gray-600 font-bold text-lg">
                         {exp.company_name?.charAt(0) || '?'}
                       </span>
                     )}
@@ -455,7 +455,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 mt-2 text-sm text-gray-500">
+                    <div className="flex items-center gap-2 mt-2 text-sm text-gray-600">
                       {exp.start_year && (
                         <span>
                           {exp.start_year} - {exp.is_current ? 'Present' : exp.end_year || '?'}
@@ -496,7 +496,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
                 <span className="text-2xl">⚙️</span>
               </div>
               <p className="text-gray-600 font-medium">No preferences set</p>
-              <p className="text-gray-400 text-sm mt-1">
+              <p className="text-gray-600 text-sm mt-1">
                 Tell Quest what you're looking for
               </p>
             </div>

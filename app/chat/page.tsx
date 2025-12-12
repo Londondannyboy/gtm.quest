@@ -195,7 +195,7 @@ export default function ChatPage() {
                 {/* Source Articles */}
                 {message.sources && message.sources.length > 0 && (
                   <div className="mt-3 pt-3 border-t border-gray-200">
-                    <p className="text-xs text-gray-500 font-medium mb-2">Related Articles:</p>
+                    <p className="text-xs text-gray-600 font-medium mb-2">Related Articles:</p>
                     <div className="space-y-1">
                       {message.sources.map((source, idx) => (
                         <Link
@@ -231,7 +231,7 @@ export default function ChatPage() {
         {/* Suggested Questions */}
         {messages.length <= 1 && (
           <div className="mb-4">
-            <p className="text-xs text-gray-500 font-medium mb-2">Try asking:</p>
+            <p className="text-xs text-gray-600 font-medium mb-2">Try asking:</p>
             <div className="flex flex-wrap gap-2">
               {suggestedQuestions.map((question, index) => (
                 <button
@@ -288,7 +288,7 @@ export default function ChatPage() {
               Unlimited messages
             </p>
           )}
-          <p className="text-xs text-gray-400">
+          <p className="text-xs text-gray-600">
             Powered by AI. For job listings, visit our{' '}
             <Link href="/fractionaljobsuk" className="text-purple-600 hover:underline">
               jobs page

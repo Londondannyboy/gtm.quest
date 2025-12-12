@@ -49,7 +49,7 @@ export function ToggleGroup<T extends string | number>({
             </button>
           ))}
         </div>
-        {helpText && <p className="text-xs text-gray-500">{helpText}</p>}
+        {helpText && <p className="text-xs text-gray-600">{helpText}</p>}
       </div>
     )
   }
@@ -76,7 +76,7 @@ export function ToggleGroup<T extends string | number>({
             </button>
           ))}
         </div>
-        {helpText && <p className="text-xs text-gray-500 mt-2">{helpText}</p>}
+        {helpText && <p className="text-xs text-gray-600 mt-2">{helpText}</p>}
       </div>
     )
   }
@@ -95,7 +95,7 @@ export function ToggleGroup<T extends string | number>({
               px-4 py-2 rounded-lg text-sm font-medium transition-all
               ${value === option.value
                 ? 'bg-white text-purple-800 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
+                : 'text-gray-600 hover:text-gray-700'
               }
             `}
           >
@@ -103,7 +103,7 @@ export function ToggleGroup<T extends string | number>({
           </button>
         ))}
       </div>
-      {helpText && <p className="text-xs text-gray-500 mt-2">{helpText}</p>}
+      {helpText && <p className="text-xs text-gray-600 mt-2">{helpText}</p>}
     </fieldset>
   )
 }

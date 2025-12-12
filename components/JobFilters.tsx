@@ -141,7 +141,7 @@ export function JobFilters({
       <div className="flex items-center justify-between pt-4 border-t border-gray-100">
         <div className="flex items-center gap-2">
           <span className="text-2xl font-bold text-purple-700">{totalJobs}</span>
-          <span className="text-gray-500">jobs found</span>
+          <span className="text-gray-600">jobs found</span>
         </div>
         {activeFilters > 0 && (
           <button
@@ -156,7 +156,7 @@ export function JobFilters({
       {/* Active Filter Tags */}
       {activeFilters > 0 && (
         <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
-          <span className="text-sm text-gray-500">Active filters:</span>
+          <span className="text-sm text-gray-600">Active filters:</span>
           {currentRole && (
             <span className="inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">
               {roleOptions.find(r => r.value === currentRole)?.label || currentRole}

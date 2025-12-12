@@ -298,7 +298,7 @@ export default function CompanySavingsCalculator() {
       {/* Disclaimer */}
       <section className="py-8 bg-gray-100">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-600">
             These calculations are estimates for illustrative purposes only. Actual costs may vary based on
             specific circumstances, location, and contractual arrangements. Employer NI is calculated at 13.8%
             above the threshold. Consult with a financial advisor for precise figures.

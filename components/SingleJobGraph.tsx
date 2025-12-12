@@ -99,7 +99,7 @@ export function SingleJobGraph({ jobId, jobTitle, company, skills, location }: S
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">Job Knowledge Graph</h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-600">
             Skills and relationships for this role
           </p>
         </div>
@@ -128,7 +128,7 @@ export function SingleJobGraph({ jobId, jobTitle, company, skills, location }: S
         }}
       />
 
-      <p className="mt-3 text-xs text-gray-400 text-center">
+      <p className="mt-3 text-xs text-gray-600 text-center">
         Visual representation of job requirements and relationships
       </p>
     </div>

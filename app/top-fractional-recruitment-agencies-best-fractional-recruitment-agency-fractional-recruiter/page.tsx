@@ -399,7 +399,7 @@ function FeaturedAgencySection({ agency }: { agency: Agency }) {
                   Find Fractional Executives
                 </button>
               </form>
-              <p className="text-xs text-gray-500 text-center mt-4">
+              <p className="text-xs text-gray-600 text-center mt-4">
                 No upfront fees. Pay only on successful placement.
               </p>
             </div>
@@ -420,7 +420,7 @@ function AgencyCard({ agency }: { agency: Agency }) {
         <h3 className="text-xl font-bold text-gray-900">
           {agency.name}
         </h3>
-        <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+        <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
           Fee: {fee}
         </span>
       </div>
@@ -434,7 +434,7 @@ function AgencyCard({ agency }: { agency: Agency }) {
           ))}
         </div>
       )}
-      <div className="flex justify-between items-center text-sm text-gray-500">
+      <div className="flex justify-between items-center text-sm text-gray-600">
         <span>{agency.headquarters}</span>
         {website && (
           <a

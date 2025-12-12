@@ -228,7 +228,7 @@ export default async function LondonPage() {
                   </h3>
                   <p className="text-purple-700 font-semibold mb-2">{area.jobs} jobs</p>
                   <p className="text-gray-600 text-sm mb-1">{area.description}</p>
-                  <p className="text-gray-500 text-sm">{area.rateRange}</p>
+                  <p className="text-gray-600 text-sm">{area.rateRange}</p>
                 </div>
               </Link>
             ))}
@@ -266,7 +266,7 @@ export default async function LondonPage() {
                       {item.title}
                     </h3>
                     <p className="text-purple-700 font-semibold mb-1">{roleCount} jobs</p>
-                    <p className="text-gray-500 text-sm">{item.rate}</p>
+                    <p className="text-gray-600 text-sm">{item.rate}</p>
                   </div>
                 </Link>
               )

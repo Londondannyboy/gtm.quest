@@ -154,7 +154,7 @@ export function StatCounter({
       <span className="font-data font-bold">
         {prefix}{count.toLocaleString()}{suffix}
       </span>
-      {label && <span className="text-sm text-gray-500 ml-1">{label}</span>}
+      {label && <span className="text-sm text-gray-600 ml-1">{label}</span>}
     </div>
   )
 }

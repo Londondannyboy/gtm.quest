@@ -72,7 +72,7 @@ export function VideoPlayer({
       {/* Video Info */}
       <div className="p-4 bg-gray-900 text-white">
         <h4 className="font-semibold mb-1">{title}</h4>
-        {duration && <p className="text-sm text-gray-400">{duration} minute video</p>}
+        {duration && <p className="text-sm text-gray-600">{duration} minute video</p>}
       </div>
     </div>
   )

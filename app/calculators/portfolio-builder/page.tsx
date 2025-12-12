@@ -200,7 +200,7 @@ export default function PortfolioBuilderCalculator() {
                       <div
                         key={i}
                         className={`flex-1 h-16 rounded-lg flex items-center justify-center text-xs font-medium ${
-                          !isWorking ? 'bg-gray-100 text-gray-400' :
+                          !isWorking ? 'bg-gray-100 text-gray-600' :
                           isNeeded ? 'bg-purple-600 text-white' : 'bg-purple-100 text-purple-600'
                         }`}
                       >
@@ -231,25 +231,25 @@ export default function PortfolioBuilderCalculator() {
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Key Metrics</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 bg-gray-50 rounded-xl">
-                    <p className="text-sm text-gray-500">Utilization Rate</p>
+                    <p className="text-sm text-gray-600">Utilization Rate</p>
                     <p className="text-2xl font-data font-bold text-gray-900">
                       {calculations.utilizationRate}%
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-xl">
-                    <p className="text-sm text-gray-500">Biz Dev Days/Year</p>
+                    <p className="text-sm text-gray-600">Biz Dev Days/Year</p>
                     <p className="text-2xl font-data font-bold text-gray-900">
                       {calculations.bizDevDays}
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-xl">
-                    <p className="text-sm text-gray-500">Max Potential</p>
+                    <p className="text-sm text-gray-600">Max Potential</p>
                     <p className="text-2xl font-data font-bold text-gray-900">
                       £{calculations.maxPotentialIncome.toLocaleString()}
                     </p>
                   </div>
                   <div className="p-4 bg-gray-50 rounded-xl">
-                    <p className="text-sm text-gray-500">Billable Days/Year</p>
+                    <p className="text-sm text-gray-600">Billable Days/Year</p>
                     <p className="text-2xl font-data font-bold text-gray-900">
                       {calculations.daysNeededForTarget}
                     </p>

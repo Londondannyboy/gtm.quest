@@ -267,7 +267,7 @@ function VoiceTest() {
             {logs.map((log, i) => (
               <div key={i} className="text-green-400 whitespace-pre-wrap break-all">{log}</div>
             ))}
-            {logs.length === 0 && <div className="text-gray-500">No logs yet...</div>}
+            {logs.length === 0 && <div className="text-gray-600">No logs yet...</div>}
           </div>
         </div>
 
@@ -283,7 +283,7 @@ function VoiceTest() {
                 )}
               </div>
             ))}
-            {messages.length === 0 && <div className="text-gray-500">No messages yet...</div>}
+            {messages.length === 0 && <div className="text-gray-600">No messages yet...</div>}
           </div>
         </div>
       </div>

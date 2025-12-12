@@ -53,7 +53,7 @@ export function FractionalCalculator() {
             aria-valuenow={dayRate}
             className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-700"
           />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <div className="flex justify-between text-xs text-gray-600 mt-1">
             <span>£400</span>
             <span>£2,000</span>
           </div>
@@ -81,7 +81,7 @@ export function FractionalCalculator() {
             aria-valuenow={daysPerWeek}
             className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-700"
           />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <div className="flex justify-between text-xs text-gray-600 mt-1">
             <span>1 day</span>
             <span>5 days</span>
           </div>
@@ -109,7 +109,7 @@ export function FractionalCalculator() {
             aria-valuenow={clients}
             className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-700"
           />
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <div className="flex justify-between text-xs text-gray-600 mt-1">
             <span>1</span>
             <span>4</span>
           </div>
@@ -138,7 +138,7 @@ export function FractionalCalculator() {
         </div>
       </div>
 
-      <p className="text-xs text-gray-500 text-center mt-4">
+      <p className="text-xs text-gray-600 text-center mt-4">
         Based on {daysPerWeek} days/week × {clients} clients × 48 working weeks. Actual earnings may vary.
       </p>
     </div>

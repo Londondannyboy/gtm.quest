@@ -30,14 +30,14 @@ export function Input({
           bg-white text-gray-900 placeholder-gray-500
           border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200
           transition-colors duration-200
-          disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
+          disabled:bg-gray-50 disabled:text-gray-600 disabled:cursor-not-allowed
           ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : ''}
           ${className}
         `}
         {...props}
       />
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-      {helperText && !error && <p className="mt-1 text-sm text-gray-500">{helperText}</p>}
+      {helperText && !error && <p className="mt-1 text-sm text-gray-600">{helperText}</p>}
     </div>
   )
 }
@@ -72,14 +72,14 @@ export function Textarea({
           bg-white text-gray-900 placeholder-gray-500
           border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200
           transition-colors duration-200 resize-none
-          disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed
+          disabled:bg-gray-50 disabled:text-gray-600 disabled:cursor-not-allowed
           ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-200' : ''}
           ${className}
         `}
         {...props}
       />
       {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-      {helperText && !error && <p className="mt-1 text-sm text-gray-500">{helperText}</p>}
+      {helperText && !error && <p className="mt-1 text-sm text-gray-600">{helperText}</p>}
     </div>
   )
 }

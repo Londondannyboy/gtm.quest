@@ -41,7 +41,7 @@ export function JobBrief({
                     <div className="flex-1">
                       <div className="flex justify-between mb-1">
                         <span className="text-sm font-medium text-gray-700">{skill}</span>
-                        <span className="text-xs text-gray-500">High Priority</span>
+                        <span className="text-xs text-gray-600">High Priority</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
@@ -103,7 +103,7 @@ export function JobBrief({
               {relatedRoles.map((role) => (
                 <div key={role} className="p-3 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors cursor-pointer">
                   <p className="text-sm font-medium text-gray-900">{role}</p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-600 mt-1">
                     {Math.floor(Math.random() * 50 + 50)}% skill overlap
                   </p>
                 </div>
@@ -123,7 +123,7 @@ export function JobBrief({
               {similarJobs.map((job) => (
                 <div key={job.id} className="p-3 bg-gray-50 rounded-lg hover:bg-purple-50 transition-colors cursor-pointer">
                   <p className="text-sm font-medium text-gray-900">{job.title}</p>
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-600 mt-1">
                     {Math.floor(Math.random() * 50 + 40)}% skill overlap
                   </p>
                 </div>

@@ -109,7 +109,7 @@ export default function FractionalCfoSalaryPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-gray-500 text-sm mt-4">*Annual estimates based on 160 billable days per year</p>
+            <p className="text-gray-600 text-sm mt-4">*Annual estimates based on 160 billable days per year</p>
           </div>
 
           {/* By Location */}

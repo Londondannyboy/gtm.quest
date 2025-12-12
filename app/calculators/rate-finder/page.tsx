@@ -227,7 +227,7 @@ export default function RateFinderCalculator() {
 
                 {/* Rate scale visualization */}
                 <div className="mt-4">
-                  <div className="flex justify-between text-xs text-gray-500 mb-1">
+                  <div className="flex justify-between text-xs text-gray-600 mb-1">
                     <span>£500</span>
                     <span>£1,000</span>
                     <span>£1,500</span>
@@ -247,18 +247,18 @@ export default function RateFinderCalculator() {
                 <h3 className="text-lg font-bold text-gray-900 mb-4">Annual Potential</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-500">Working {daysPerWeek} days/week</p>
+                    <p className="text-sm text-gray-600">Working {daysPerWeek} days/week</p>
                     <p className="text-3xl font-data font-bold text-gray-900">
                       £{calculations.annualPotential.toLocaleString()}
                     </p>
-                    <p className="text-sm text-gray-500">per year</p>
+                    <p className="text-sm text-gray-600">per year</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Typical client portfolio</p>
+                    <p className="text-sm text-gray-600">Typical client portfolio</p>
                     <p className="text-3xl font-data font-bold text-purple-800">
                       {calculations.clientsNeeded}
                     </p>
-                    <p className="text-sm text-gray-500">clients</p>
+                    <p className="text-sm text-gray-600">clients</p>
                   </div>
                 </div>
               </div>

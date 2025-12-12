@@ -98,12 +98,12 @@ export function ExtractionPanel({ userId, liveExtraction, isExtracting, onRefres
           <h2 className="text-lg font-semibold text-gray-900">Building Your Repo</h2>
           <button
             onClick={() => setShowDebug(!showDebug)}
-            className="text-xs text-gray-400 hover:text-gray-600"
+            className="text-xs text-gray-600 hover:text-gray-600"
           >
             {showDebug ? 'Hide' : 'Debug'}
           </button>
         </div>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-600 mt-1">
           Confirm the information we've extracted
         </p>
       </div>
@@ -146,17 +146,17 @@ export function ExtractionPanel({ userId, liveExtraction, isExtracting, onRefres
         {pendingItems.length === 0 ? (
           <div className="p-8 text-center">
             <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-8 h-8 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </div>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-600 text-sm">
               Start talking and we'll extract skills,<br />experience, and preferences
             </p>
           </div>
         ) : (
           <div className="p-4 space-y-3">
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-wide">
+            <p className="text-xs font-medium text-gray-600 uppercase tracking-wide">
               {pendingItems.length} item{pendingItems.length !== 1 ? 's' : ''} to confirm
             </p>
 
@@ -172,12 +172,12 @@ export function ExtractionPanel({ userId, liveExtraction, isExtracting, onRefres
                       {getItemTitle(item)}
                     </p>
                     {getItemSubtitle(item) && (
-                      <p className="text-sm text-gray-500 truncate">
+                      <p className="text-sm text-gray-600 truncate">
                         {getItemSubtitle(item)}
                       </p>
                     )}
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs text-gray-400 capitalize">
+                      <span className="text-xs text-gray-600 capitalize">
                         {item.item_type}
                       </span>
                       <span className="text-xs text-gray-300">•</span>
@@ -217,7 +217,7 @@ export function ExtractionPanel({ userId, liveExtraction, isExtracting, onRefres
       {/* Debug Panel */}
       {showDebug && liveExtraction && (
         <div className="border-t border-gray-200 p-4 bg-gray-50 max-h-48 overflow-y-auto">
-          <p className="text-xs font-mono text-gray-500 mb-2">Debug: Raw Extraction</p>
+          <p className="text-xs font-mono text-gray-600 mb-2">Debug: Raw Extraction</p>
           <pre className="text-xs font-mono text-gray-600 whitespace-pre-wrap">
             {JSON.stringify(liveExtraction, null, 2)}
           </pre>
@@ -226,7 +226,7 @@ export function ExtractionPanel({ userId, liveExtraction, isExtracting, onRefres
 
       {/* Footer Stats */}
       <div className="p-4 border-t border-gray-200 bg-gray-50">
-        <div className="flex items-center justify-between text-xs text-gray-500">
+        <div className="flex items-center justify-between text-xs text-gray-600">
           <span>Powered by AI extraction</span>
           <button
             onClick={fetchPending}

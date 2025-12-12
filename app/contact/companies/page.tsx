@@ -81,7 +81,7 @@ export default function CompanyContactPage() {
                 Post Job
               </Button>
 
-              <p className="text-xs text-gray-500 text-center">
+              <p className="text-xs text-gray-600 text-center">
                 Premium job listings start at £299. We'll reach out with pricing options.
               </p>
             </form>

@@ -86,7 +86,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
     return (
       <div className="bg-white rounded-xl border border-gray-200 p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Jobs Knowledge Graph</h3>
-        <div className="flex items-center justify-center h-64 text-gray-500">
+        <div className="flex items-center justify-center h-64 text-gray-600">
           {error || 'No jobs data available'}
         </div>
       </div>
@@ -98,7 +98,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="text-lg font-semibold text-gray-900">Jobs Knowledge Graph</h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-600">
             Relationships between jobs, skills, and companies
           </p>
         </div>
@@ -106,15 +106,15 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
           <div className="flex gap-4 text-sm">
             <div className="text-center">
               <span className="font-semibold text-green-600">{stats.totalJobs}</span>
-              <p className="text-gray-500 text-xs">Jobs</p>
+              <p className="text-gray-600 text-xs">Jobs</p>
             </div>
             <div className="text-center">
               <span className="font-semibold text-blue-600">{stats.uniqueSkills}</span>
-              <p className="text-gray-500 text-xs">Skills</p>
+              <p className="text-gray-600 text-xs">Skills</p>
             </div>
             <div className="text-center">
               <span className="font-semibold text-amber-600">{stats.uniqueCompanies}</span>
-              <p className="text-gray-500 text-xs">Companies</p>
+              <p className="text-gray-600 text-xs">Companies</p>
             </div>
           </div>
         )}
@@ -148,7 +148,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
                       }}
                     />
                     <span className="text-sm text-gray-600 truncate flex-1">{skill}</span>
-                    <span className="text-xs text-gray-400">{count}</span>
+                    <span className="text-xs text-gray-600">{count}</span>
                   </div>
                 ))}
               </div>
@@ -170,7 +170,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
                       }}
                     />
                     <span className="text-sm text-gray-600 truncate flex-1">{company}</span>
-                    <span className="text-xs text-gray-400">{count}</span>
+                    <span className="text-xs text-gray-600">{count}</span>
                   </div>
                 ))}
               </div>
@@ -179,7 +179,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
         </div>
       )}
 
-      <div className="mt-4 text-xs text-gray-400 text-center">
+      <div className="mt-4 text-xs text-gray-600 text-center">
         Click on nodes to see details • Jobs are green, skills are blue, companies are amber
       </div>
     </div>

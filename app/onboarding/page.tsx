@@ -92,7 +92,7 @@ export default function OnboardingPage() {
         {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-500">Step {step} of 3</span>
+            <span className="text-sm text-gray-600">Step {step} of 3</span>
             <Link href="/dashboard" className="text-sm text-purple-600 hover:text-purple-700">
               Skip for now
             </Link>

@@ -192,7 +192,7 @@ export function KnowledgeGraph({
 
   if (!data.nodes.length) {
     return (
-      <div className="flex items-center justify-center h-64 text-gray-500">
+      <div className="flex items-center justify-center h-64 text-gray-600">
         No graph data available
       </div>
     )
@@ -361,7 +361,7 @@ export function KnowledgeGraph({
                   {key}: <span className="font-medium">{String(value)}</span>
                 </p>
               ))}
-            <p className="text-xs text-gray-400 mt-2">
+            <p className="text-xs text-gray-600 mt-2">
               {data.edges.filter(
                 e => e.source === selectedNode.id || e.target === selectedNode.id
               ).length}{' '}

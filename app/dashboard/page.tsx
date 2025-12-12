@@ -98,11 +98,11 @@ export default function DashboardPage() {
                 <p className="text-gray-900 text-sm font-medium truncate">
                   {user.displayName || 'User'}
                 </p>
-                <p className="text-gray-500 text-xs truncate">{user.primaryEmail}</p>
+                <p className="text-gray-600 text-xs truncate">{user.primaryEmail}</p>
               </div>
             )}
             {sidebarOpen && (
-              <Link href="/handler/account-settings" className="text-gray-400 hover:text-gray-600">
+              <Link href="/handler/account-settings" className="text-gray-600 hover:text-gray-600">
                 <SettingsIcon />
               </Link>
             )}
@@ -112,7 +112,7 @@ export default function DashboardPage() {
         {/* Collapse Toggle */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="p-4 border-t border-gray-100 text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
+          className="p-4 border-t border-gray-100 text-gray-600 hover:text-gray-600 hover:bg-gray-50 transition-colors"
         >
           {sidebarOpen ? <ChevronLeftIcon /> : <ChevronRightIcon />}
         </button>
@@ -334,7 +334,7 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
             />
           </div>
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-600 text-sm">
             Watch the panel on the right as we extract and confirm your professional data.
           </p>
 
@@ -355,7 +355,7 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
             className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
               rightPanelTab === 'extraction'
                 ? 'text-purple-700 border-b-2 border-purple-700 bg-purple-50'
-                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                : 'text-gray-600 hover:text-gray-700 hover:bg-gray-50'
             }`}
           >
             Build Repo
@@ -365,7 +365,7 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
             className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
               rightPanelTab === 'jobs'
                 ? 'text-purple-700 border-b-2 border-purple-700 bg-purple-50'
-                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+                : 'text-gray-600 hover:text-gray-700 hover:bg-gray-50'
             }`}
           >
             Jobs
@@ -419,7 +419,7 @@ function JobsView() {
                 <h3 className="text-lg font-semibold text-gray-900 group-hover:text-purple-700 transition-colors">
                   {role.title}
                 </h3>
-                <p className="text-gray-500 text-sm mt-1">{role.count} jobs available</p>
+                <p className="text-gray-600 text-sm mt-1">{role.count} jobs available</p>
               </div>
               <span className="text-purple-600 font-medium text-sm bg-purple-50 px-3 py-1 rounded-full">
                 {role.rate}
@@ -510,10 +510,10 @@ function StatCard({ label, value, subtitle, icon }: {
         <div className="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
           {icon}
         </div>
-        <span className="text-gray-500 text-sm">{label}</span>
+        <span className="text-gray-600 text-sm">{label}</span>
       </div>
       <p className="text-2xl font-bold text-gray-900">{value}</p>
-      <p className="text-gray-500 text-sm">{subtitle}</p>
+      <p className="text-gray-600 text-sm">{subtitle}</p>
     </div>
   )
 }
@@ -534,7 +534,7 @@ function QuickLink({ href, title, description, icon }: {
       </div>
       <div>
         <h3 className="font-semibold text-gray-900 group-hover:text-purple-700 transition-colors">{title}</h3>
-        <p className="text-gray-500 text-sm mt-1">{description}</p>
+        <p className="text-gray-600 text-sm mt-1">{description}</p>
       </div>
     </Link>
   )

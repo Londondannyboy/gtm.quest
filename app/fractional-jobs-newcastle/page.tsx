@@ -164,7 +164,7 @@ export default async function NewcastlePage() {
                   </h3>
                   <p className="text-slate-700 font-semibold mb-2">{Math.max(3, Math.round(stats.totalNewcastle * (0.25 - i * 0.03)))} jobs</p>
                   <p className="text-gray-600 text-sm mb-1">{area.description}</p>
-                  <p className="text-gray-500 text-sm">{area.rateRange}</p>
+                  <p className="text-gray-600 text-sm">{area.rateRange}</p>
                 </div>
               </Link>
             ))}

@@ -77,7 +77,7 @@ export function ComparisonChart({
               <div className="mt-3 pl-4 border-l-2 border-gray-200 space-y-1">
                 {item.details.map((detail, j) => (
                   <div key={j} className="flex justify-between text-sm">
-                    <span className="text-gray-500">{detail.label}</span>
+                    <span className="text-gray-600">{detail.label}</span>
                     <span className="text-gray-700">{detail.value}</span>
                   </div>
                 ))}

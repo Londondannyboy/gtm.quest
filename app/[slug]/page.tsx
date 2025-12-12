@@ -183,7 +183,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           </Link>
           <a
             href="#top"
-            className="text-gray-500 hover:text-gray-700 flex items-center gap-2"
+            className="text-gray-600 hover:text-gray-700 flex items-center gap-2"
           >
             Back to top
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

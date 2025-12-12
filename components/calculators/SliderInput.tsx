@@ -72,13 +72,13 @@ export function SliderInput({
         />
       </div>
 
-      <div className="flex justify-between text-xs text-gray-400">
+      <div className="flex justify-between text-xs text-gray-600">
         <span>{prefix}{min.toLocaleString()}{suffix}</span>
         <span>{prefix}{max.toLocaleString()}{suffix}</span>
       </div>
 
       {helpText && (
-        <p className="text-xs text-gray-500 mt-1">{helpText}</p>
+        <p className="text-xs text-gray-600 mt-1">{helpText}</p>
       )}
     </div>
   )

@@ -179,7 +179,7 @@ export default async function FinanceJobsPage() {
                 <span className="text-4xl mb-3 block">{sector.icon}</span>
                 <h3 className="font-bold text-gray-900 mb-1">{sector.name}</h3>
                 <p className="text-green-700 text-sm font-semibold mb-1">{sector.growth}</p>
-                <p className="text-gray-500 text-xs">{sector.description}</p>
+                <p className="text-gray-600 text-xs">{sector.description}</p>
               </div>
             ))}
           </div>

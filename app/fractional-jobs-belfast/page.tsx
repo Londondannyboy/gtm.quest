@@ -145,7 +145,7 @@ export default async function BelfastPage() {
                   </h3>
                   <p className="text-emerald-700 font-semibold mb-2">{Math.max(3, Math.round(stats.totalBelfast * (0.35 - i * 0.07)))} jobs</p>
                   <p className="text-gray-600 text-sm mb-1">{area.description}</p>
-                  <p className="text-gray-500 text-sm">{area.rateRange}</p>
+                  <p className="text-gray-600 text-sm">{area.rateRange}</p>
                 </div>
               </Link>
             ))}

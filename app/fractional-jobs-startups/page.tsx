@@ -162,7 +162,7 @@ export default async function StartupJobsPage() {
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{stage.name}</h3>
                 <p className="text-gray-600 text-sm mb-3">{stage.description}</p>
                 <p className="text-orange-600 font-semibold mb-1">{stage.rateRange}</p>
-                <p className="text-gray-500 text-sm">Equity: {stage.equity}</p>
+                <p className="text-gray-600 text-sm">Equity: {stage.equity}</p>
               </div>
             ))}
           </div>
@@ -181,7 +181,7 @@ export default async function StartupJobsPage() {
               <div key={role.name} className="bg-gray-50 rounded-xl p-6 text-center hover:bg-orange-50 transition-colors">
                 <span className="text-4xl mb-3 block">{role.icon}</span>
                 <h3 className="font-bold text-gray-900 mb-1 text-sm">{role.name}</h3>
-                <p className="text-gray-500 text-xs">{role.description}</p>
+                <p className="text-gray-600 text-xs">{role.description}</p>
               </div>
             ))}
           </div>

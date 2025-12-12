@@ -119,7 +119,7 @@ export default function ProfilePage() {
         {loading ? (
           <div className="text-center py-12">
             <div className="w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto" />
-            <p className="text-gray-500 mt-4">Loading profile...</p>
+            <p className="text-gray-600 mt-4">Loading profile...</p>
           </div>
         ) : error ? (
           <div className="text-center py-12">
@@ -132,15 +132,15 @@ export default function ProfilePage() {
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Stack Auth Account</h2>
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <span className="text-gray-500">User ID:</span>
+                  <span className="text-gray-600">User ID:</span>
                   <p className="font-mono text-gray-900 break-all">{user.id}</p>
                 </div>
                 <div>
-                  <span className="text-gray-500">Display Name:</span>
+                  <span className="text-gray-600">Display Name:</span>
                   <p className="text-gray-900">{user.displayName || 'Not set'}</p>
                 </div>
                 <div>
-                  <span className="text-gray-500">Email:</span>
+                  <span className="text-gray-600">Email:</span>
                   <p className="text-gray-900">{user.primaryEmail || 'Not set'}</p>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function ProfilePage() {
                   {editing ? (
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm text-gray-500 mb-1">First Name</label>
+                        <label className="block text-sm text-gray-600 mb-1">First Name</label>
                         <input
                           type="text"
                           value={formData.first_name}
@@ -172,7 +172,7 @@ export default function ProfilePage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm text-gray-500 mb-1">Current Country</label>
+                        <label className="block text-sm text-gray-600 mb-1">Current Country</label>
                         <input
                           type="text"
                           value={formData.current_country}
@@ -190,41 +190,41 @@ export default function ProfilePage() {
                   ) : (
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <span className="text-gray-500">DB ID:</span>
+                        <span className="text-gray-600">DB ID:</span>
                         <p className="font-mono text-gray-900 break-all">{data.profile.id}</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Neon Auth ID:</span>
+                        <span className="text-gray-600">Neon Auth ID:</span>
                         <p className="font-mono text-gray-900 break-all">{data.profile.neon_auth_id}</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">First Name:</span>
+                        <span className="text-gray-600">First Name:</span>
                         <p className={`${data.profile.first_name ? 'text-gray-900' : 'text-red-500'}`}>
                           {data.profile.first_name || 'NOT SET'}
                         </p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Email:</span>
+                        <span className="text-gray-600">Email:</span>
                         <p className="text-gray-900">{data.profile.email || 'Not set'}</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Current Country:</span>
+                        <span className="text-gray-600">Current Country:</span>
                         <p className="text-gray-900">{data.profile.current_country || 'Not set'}</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Destination Countries:</span>
+                        <span className="text-gray-600">Destination Countries:</span>
                         <p className="text-gray-900">{data.profile.destination_countries?.join(', ') || 'Not set'}</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Budget Monthly:</span>
+                        <span className="text-gray-600">Budget Monthly:</span>
                         <p className="text-gray-900">{data.profile.budget_monthly ? `$${data.profile.budget_monthly}` : 'Not set'}</p>
                       </div>
                       <div>
-                        <span className="text-gray-500">Timeline:</span>
+                        <span className="text-gray-600">Timeline:</span>
                         <p className="text-gray-900">{data.profile.timeline || 'Not set'}</p>
                       </div>
                       <div className="col-span-2">
-                        <span className="text-gray-500">Interests:</span>
+                        <span className="text-gray-600">Interests:</span>
                         <p className="text-gray-900">{data.profile.interests?.join(', ') || 'Not set'}</p>
                       </div>
                     </div>
@@ -251,7 +251,7 @@ export default function ProfilePage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-500">No skills extracted yet. Talk to Quest to add skills.</p>
+                <p className="text-gray-600">No skills extracted yet. Talk to Quest to add skills.</p>
               )}
             </div>
 
@@ -265,7 +265,7 @@ export default function ProfilePage() {
                       <p className="font-medium text-gray-900">{exp.role_title || 'Role'}</p>
                       <p className="text-gray-600">{exp.company_name}</p>
                       {(exp.start_date || exp.end_date) && (
-                        <p className="text-gray-500 text-sm">
+                        <p className="text-gray-600 text-sm">
                           {exp.start_date} - {exp.end_date || 'Present'}
                         </p>
                       )}
@@ -273,7 +273,7 @@ export default function ProfilePage() {
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-500">No experiences extracted yet. Talk to Quest to add experiences.</p>
+                <p className="text-gray-600">No experiences extracted yet. Talk to Quest to add experiences.</p>
               )}
             </div>
 
@@ -286,12 +286,12 @@ export default function ProfilePage() {
                     <div key={qual.id} className="border-l-2 border-green-300 pl-4">
                       <p className="font-medium text-gray-900">{qual.qualification_name}</p>
                       {qual.institution && <p className="text-gray-600">{qual.institution}</p>}
-                      {qual.year_obtained && <p className="text-gray-500 text-sm">{qual.year_obtained}</p>}
+                      {qual.year_obtained && <p className="text-gray-600 text-sm">{qual.year_obtained}</p>}
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-500">No qualifications extracted yet. Talk to Quest to add qualifications.</p>
+                <p className="text-gray-600">No qualifications extracted yet. Talk to Quest to add qualifications.</p>
               )}
             </div>
 

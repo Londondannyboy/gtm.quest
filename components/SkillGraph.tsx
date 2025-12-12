@@ -74,7 +74,7 @@ export function SkillGraph({ userId }: { userId?: string }) {
 
   if (!data || data.nodes.length === 0) {
     return (
-      <div className="text-center text-gray-500 py-8">
+      <div className="text-center text-gray-600 py-8">
         No skills data available yet
       </div>
     )

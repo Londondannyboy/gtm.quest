@@ -184,7 +184,7 @@ export default async function FractionalCfoJobsUkPage() {
                 >
                   <h3 className="font-bold text-gray-900 mb-2">{job.title}</h3>
                   <p className="text-gray-600 mb-2">{job.company_name}</p>
-                  <p className="text-gray-500 text-sm">{job.location}</p>
+                  <p className="text-gray-600 text-sm">{job.location}</p>
                   {job.compensation && <p className="text-emerald-700 font-semibold mt-2">{job.compensation}</p>}
                 </Link>
               ))}
