@@ -55,9 +55,17 @@ function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile, onTr
   const [isConnecting, setIsConnecting] = useState(false)
   const [hasConnectedOnce, setHasConnectedOnce] = useState(false)
   const [lastProcessedIndex, setLastProcessedIndex] = useState(0)
+  const [debugLogs, setDebugLogs] = useState<string[]>([])
+  const [connectError, setConnectError] = useState<string | null>(null)
+
+  const addLog = (msg: string) => {
+    console.log('[Hume]', msg)
+    setDebugLogs(prev => [...prev.slice(-9), `${new Date().toISOString().slice(11, 19)} ${msg}`])
+  }
 
   // Handle stop - disconnect from Hume
   const handleStop = useCallback(() => {
+    addLog('Disconnecting...')
     disconnect()
   }, [disconnect])
 
@@ -96,11 +104,12 @@ function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile, onTr
 
   const handleConnect = useCallback(async () => {
     setIsConnecting(true)
+    setConnectError(null)
+
     try {
       // Build variables for Hume config
       // These must match the {{variable_name}} placeholders in the Hume system prompt
       const variables: Record<string, string> = {
-        // Always pass auth status - critical for flow branching
         is_authenticated: isAuthenticated ? 'true' : 'false'
       }
 
@@ -117,22 +126,31 @@ function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile, onTr
         }
       }
 
-      // Debug: Log what we're sending to Hume
-      console.log('Connecting to Hume with variables:', variables)
-      console.log('Config ID:', HUME_CONFIG_ID)
-      console.log('Is authenticated:', isAuthenticated)
+      addLog(`Auth: ${isAuthenticated}, Name: ${variables.first_name || 'none'}`)
+      addLog(`Config: ${HUME_CONFIG_ID.slice(0, 8)}...`)
+      addLog(`Variables: ${JSON.stringify(variables)}`)
 
-      // Connect - try without sessionSettings first to test base connection
+      // Connect with sessionSettings to pass variables
+      // The type: "session_settings" is required by the Hume SDK
       await connect({
         auth: { type: 'accessToken', value: accessToken },
-        configId: HUME_CONFIG_ID
+        configId: HUME_CONFIG_ID,
+        sessionSettings: {
+          type: 'session_settings',
+          variables
+        }
       })
+
+      addLog('Connected successfully!')
 
       if (!hasConnectedOnce) {
         onUse()
         setHasConnectedOnce(true)
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMsg = error instanceof Error ? error.message : String(error)
+      addLog(`ERROR: ${errorMsg}`)
+      setConnectError(errorMsg)
       console.error('Failed to connect to Hume:', error)
     }
     setIsConnecting(false)
@@ -206,6 +224,24 @@ function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile, onTr
             )
           })()}
         </div>
+      )}
+
+      {/* Debug Panel - collapsible */}
+      {(debugLogs.length > 0 || connectError) && (
+        <details className="mt-4 w-full max-w-md">
+          <summary className={`text-xs cursor-pointer ${darkMode ? 'text-purple-300' : 'text-gray-400'}`}>
+            Debug {connectError ? '⚠️' : ''}
+          </summary>
+          <div className={`mt-2 p-2 rounded text-xs font-mono ${darkMode ? 'bg-black/50 text-green-400' : 'bg-gray-900 text-green-400'}`}>
+            {connectError && (
+              <div className="text-red-400 mb-2">Error: {connectError}</div>
+            )}
+            {debugLogs.map((log, i) => (
+              <div key={i} className="truncate">{log}</div>
+            ))}
+            <div className="text-gray-500 mt-1">Status: {status.value}</div>
+          </div>
+        </details>
       )}
     </div>
   )
