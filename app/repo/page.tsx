@@ -194,7 +194,8 @@ interface UserProfile {
   first_name: string | null
   current_country: string | null
   destination_countries: string[] | null
-  budget: string | null
+  budget_monthly: number | null  // DB field name
+  budget?: string | null         // For compatibility
   timeline: string | null
   interests: string[] | null
 }
@@ -211,6 +212,8 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
   const extractionTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const lastTranscriptRef = useRef<string>('')
 
+  const [profileLoading, setProfileLoading] = useState(true)
+
   // Fetch user profile for Hume variables
   useEffect(() => {
     async function fetchProfile() {
@@ -223,6 +226,8 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
         }
       } catch (error) {
         console.error('Error fetching profile:', error)
+      } finally {
+        setProfileLoading(false)
       }
     }
     fetchProfile()
@@ -324,14 +329,21 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
 
           {/* Hume Voice Widget with full profile */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
-            <HumeWidget
-              variant="hero"
-              userName={userProfile?.first_name || userName}
-              isAuthenticated={true}
-              darkMode={false}
-              userProfile={userProfile}
-              onTranscript={handleTranscript}
-            />
+            {profileLoading ? (
+              <div className="flex flex-col items-center gap-4 py-8">
+                <div className="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
+                <p className="text-gray-500">Loading your profile...</p>
+              </div>
+            ) : (
+              <HumeWidget
+                variant="hero"
+                userName={userProfile?.first_name || userName}
+                isAuthenticated={true}
+                darkMode={false}
+                userProfile={userProfile}
+                onTranscript={handleTranscript}
+              />
+            )}
           </div>
 
           <p className="text-gray-600 text-sm">

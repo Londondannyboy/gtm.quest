@@ -10,7 +10,8 @@ export interface UserProfile {
   first_name: string | null
   current_country: string | null
   destination_countries: string[] | null
-  budget: string | null
+  budget_monthly?: number | null  // DB returns this
+  budget?: string | null          // For compatibility
   timeline: string | null
   interests: string[] | null
 }
@@ -61,6 +62,11 @@ function VoiceChat({
     log('Connecting with variables...')
 
     // Build ALL 6 variables that the Quest prompt expects
+    // Handle budget_monthly (number from DB) or budget (string)
+    const budgetStr = userProfile?.budget_monthly
+      ? `£${userProfile.budget_monthly}/day`
+      : userProfile?.budget || ''
+
     const sessionSettings = {
       type: 'session_settings' as const,
       variables: {
@@ -69,9 +75,13 @@ function VoiceChat({
         current_country: userProfile?.current_country || '',
         interests: userProfile?.interests?.join(', ') || '',
         timeline: userProfile?.timeline || '',
-        budget: userProfile?.budget || ''
+        budget: budgetStr
       }
     }
+
+    // Debug log the variables being sent
+    console.log('[Hume] Connecting with profile:', { userName, isAuthenticated, userProfile })
+    console.log('[Hume] Session variables:', sessionSettings.variables)
 
     log(`Variables: first_name=${userName}, auth=${isAuthenticated}`)
 
