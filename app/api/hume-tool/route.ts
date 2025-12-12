@@ -252,22 +252,21 @@ async function saveUserPreference(params: {
   }
 
   try {
-    // Map field names to DB columns
-    const fieldMap: Record<string, string> = {
-      interests: 'relocation_motivation',
-      timeline: 'timeline',
-      budget_monthly: 'budget_monthly',
-      current_country: 'current_country'
+    // Update specific field based on whitelisted name
+    switch (params.field) {
+      case 'interests':
+        await sql`UPDATE users SET relocation_motivation = ${params.value} WHERE neon_auth_id = ${params.user_id}`
+        break
+      case 'timeline':
+        await sql`UPDATE users SET timeline = ${params.value} WHERE neon_auth_id = ${params.user_id}`
+        break
+      case 'budget_monthly':
+        await sql`UPDATE users SET budget_monthly = ${params.value} WHERE neon_auth_id = ${params.user_id}`
+        break
+      case 'current_country':
+        await sql`UPDATE users SET current_country = ${params.value} WHERE neon_auth_id = ${params.user_id}`
+        break
     }
-
-    const dbField = fieldMap[params.field] || params.field
-
-    // Dynamic update - only for whitelisted fields
-    await sql`
-      UPDATE users
-      SET ${sql(dbField)} = ${params.value}
-      WHERE neon_auth_id = ${params.user_id}
-    `
 
     return `Saved ${params.field}: ${params.value}`
   } catch (error) {
