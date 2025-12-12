@@ -3,8 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // Trinity Option B: No legacy redirects needed
-      // All traffic goes to /discover for Trinity conversation
+      // Redirect old /articles/[slug] to root-level /[slug] for SEO preservation
+      {
+        source: '/articles/:slug',
+        destination: '/:slug',
+        permanent: true, // 301 redirect for SEO
+      },
     ];
   },
 
