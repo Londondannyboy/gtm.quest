@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
 import { Badge } from '@/components/Badge'
 import { JobHeader } from '@/components/JobHeader'
+import { SingleJobGraph } from '@/components/SingleJobGraph'
 import ReactMarkdown from 'react-markdown'
 
 // Revalidate every hour for job details
@@ -174,6 +175,19 @@ export default async function JobDetailPage({ params }: PageProps) {
                   </Badge>
                 ))}
               </div>
+            </section>
+          )}
+
+          {/* Job Knowledge Graph */}
+          {job.skills_required && Array.isArray(job.skills_required) && job.skills_required.length > 0 && (
+            <section className="mb-12">
+              <SingleJobGraph
+                jobId={job.id}
+                jobTitle={job.title}
+                company={job.company_name}
+                skills={job.skills_required}
+                location={job.location}
+              />
             </section>
           )}
 

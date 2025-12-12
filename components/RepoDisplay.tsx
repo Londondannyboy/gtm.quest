@@ -251,6 +251,100 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
       {/* Skills Tab */}
       {activeTab === 'skills' && (
         <div className="space-y-6">
+          {/* Add Skill Button */}
+          <div className="flex justify-end">
+            <button
+              onClick={() => setShowAddSkill(true)}
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Add Skill
+            </button>
+          </div>
+
+          {/* Add Skill Modal */}
+          {showAddSkill && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-xl p-6 w-full max-w-md mx-4 shadow-xl">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Add New Skill</h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Skill Name *</label>
+                    <input
+                      type="text"
+                      value={newSkill.name}
+                      onChange={(e) => setNewSkill(prev => ({ ...prev, name: e.target.value }))}
+                      placeholder="e.g., Python, Leadership, Financial Modeling"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                    <select
+                      value={newSkill.category}
+                      onChange={(e) => setNewSkill(prev => ({ ...prev, category: e.target.value }))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                    >
+                      {SKILL_CATEGORIES.map(cat => (
+                        <option key={cat} value={cat} className="capitalize">{cat}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Years Experience</label>
+                      <input
+                        type="number"
+                        min="0"
+                        max="50"
+                        value={newSkill.yearsExperience}
+                        onChange={(e) => setNewSkill(prev => ({ ...prev, yearsExperience: e.target.value }))}
+                        placeholder="e.g., 5"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Proficiency</label>
+                      <select
+                        value={newSkill.proficiency}
+                        onChange={(e) => setNewSkill(prev => ({ ...prev, proficiency: e.target.value }))}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                      >
+                        {PROFICIENCY_LEVELS.map(level => (
+                          <option key={level} value={level} className="capitalize">{level}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 mt-6">
+                  <button
+                    onClick={() => {
+                      setShowAddSkill(false)
+                      setNewSkill({ name: '', category: 'technical', yearsExperience: '', proficiency: 'advanced' })
+                    }}
+                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleAddSkill}
+                    disabled={addingSkill || !newSkill.name.trim()}
+                    className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {addingSkill ? 'Adding...' : 'Add Skill'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           {Object.entries(skillsByCategory).length === 0 ? (
             <div className="text-center py-12 bg-gray-50 rounded-xl">
               <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -258,7 +352,7 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
               </div>
               <p className="text-gray-600 font-medium">No skills confirmed yet</p>
               <p className="text-gray-400 text-sm mt-1">
-                Talk to Quest about your experience to build your skill profile
+                Click "Add Skill" above or talk to Quest to build your profile
               </p>
             </div>
           ) : (
@@ -271,19 +365,34 @@ export function RepoDisplay({ userId, refreshTrigger }: RepoDisplayProps) {
                   {skills.map((skill) => (
                     <div
                       key={skill.id}
-                      className="px-3 py-2 bg-purple-50 border border-purple-200 rounded-lg"
+                      className="group px-3 py-2 bg-purple-50 border border-purple-200 rounded-lg flex items-center gap-2 hover:bg-purple-100 transition-colors"
                     >
                       <span className="font-medium text-purple-800">{skill.skill_name}</span>
                       {skill.years_experience && (
-                        <span className="text-purple-500 text-sm ml-2">
+                        <span className="text-purple-500 text-sm">
                           {skill.years_experience}y
                         </span>
                       )}
                       {skill.proficiency_level && (
-                        <span className="text-purple-400 text-xs ml-1 capitalize">
+                        <span className="text-purple-400 text-xs capitalize">
                           • {skill.proficiency_level}
                         </span>
                       )}
+                      {/* Remove button */}
+                      <button
+                        onClick={() => handleRemoveSkill(skill.id)}
+                        disabled={removingSkillId === skill.id}
+                        className="ml-1 opacity-0 group-hover:opacity-100 p-1 text-purple-400 hover:text-red-500 transition-all disabled:opacity-50"
+                        title="Remove skill"
+                      >
+                        {removingSkillId === skill.id ? (
+                          <div className="w-4 h-4 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        )}
+                      </button>
                     </div>
                   ))}
                 </div>
