@@ -4,6 +4,12 @@ import { createDbQuery } from "@/lib/db";
 import { FractionalCalculator } from "@/components/FractionalCalculator";
 import { JobCard } from "@/components/JobCard";
 import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
+import { VideoHeroBackground } from "@/components/VideoHeroBackground";
+import { AnimatedStats } from "@/components/AnimatedStats";
+
+// Optional: Set your Mux video playback ID here for the hero background
+// Leave as undefined to use gradient fallback
+const HERO_VIDEO_PLAYBACK_ID: string | undefined = undefined;
 
 export const metadata: Metadata = {
   title: "Fractional Jobs UK 2025 | Fractional CFO, CTO, CMO Roles | Fractional.Quest",
@@ -251,21 +257,16 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
       />
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
-        {/* Pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="heroGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#heroGrid)" />
-          </svg>
-        </div>
+      {/* Hero Section with Optional Video Background */}
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Video or Gradient Background */}
+        <VideoHeroBackground
+          playbackId={HERO_VIDEO_PLAYBACK_ID}
+          opacity={0.35}
+          fallbackGradient={true}
+        />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 md:py-32">
           <div className="flex flex-col items-center text-center">
             <div className="inline-block mb-6">
               <span className="bg-amber-500/90 backdrop-blur text-white px-5 py-2.5 rounded-full text-sm font-medium border border-amber-400/50 animate-pulse">
@@ -323,6 +324,19 @@ export default async function Home() {
                 </svg>
                 Free for executives
               </span>
+            </div>
+
+            {/* Animated Stats */}
+            <div className="mt-16 w-full max-w-4xl">
+              <AnimatedStats
+                variant="cards"
+                stats={[
+                  { value: detailedStats.avgDayRate, prefix: '£', label: 'Avg Day Rate' },
+                  { value: totalJobs || 2, label: 'Live Roles' },
+                  { value: 58, label: 'Articles', suffix: '+' },
+                  { value: 272, label: 'Pages Indexed' }
+                ]}
+              />
             </div>
           </div>
         </div>

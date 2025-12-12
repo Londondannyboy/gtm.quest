@@ -16,42 +16,66 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Fetch user's confirmed skills
+    // Fetch user's skills (with or without skill_id link)
     const skills = await sql`
       SELECT
-        s.id,
-        s.name,
-        s.category,
+        us.id,
+        COALESCE(s.name, us.skill_name_raw) as name,
+        COALESCE(s.category, 'other') as category,
         us.confidence
       FROM user_skills us
-      JOIN skills s ON us.skill_id = s.id
+      LEFT JOIN skills s ON us.skill_id = s.id
       WHERE us.user_id = ${userId}
-      ORDER BY us.confidence DESC
+      ORDER BY us.confidence DESC NULLS LAST
       LIMIT 20
     `
 
-    // Fetch user's companies from extraction_pending (confirmed items)
+    // Fetch user's companies from user_experiences
     const companies = await sql`
       SELECT DISTINCT
         id::text,
-        (extracted_data->>'name') as name,
-        (extracted_data->>'role') as role
-      FROM extraction_pending
+        company_name_raw as name,
+        role_title as role
+      FROM user_experiences
       WHERE user_id = ${userId}
-        AND item_type = 'company'
-        AND status = 'confirmed'
       LIMIT 10
     `
 
-    // Fetch user's preferences
-    const preferences = await sql`
+    // Fetch user's preferences and flatten into key-value pairs
+    const prefsResult = await sql`
       SELECT
-        preference_type as type,
-        preference_value as value
-      FROM user_preferences
+        role_types,
+        preferred_locations,
+        remote_preference,
+        industries_preferred
+      FROM user_job_preferences
       WHERE user_id = ${userId}
-      LIMIT 10
+      LIMIT 1
     `
+
+    // Flatten preferences into displayable items
+    const preferences: Array<{ type: string; value: string }> = []
+    if (prefsResult.length > 0) {
+      const p = prefsResult[0]
+      if (p.remote_preference) {
+        preferences.push({ type: 'Work Style', value: p.remote_preference })
+      }
+      if (p.role_types && Array.isArray(p.role_types)) {
+        p.role_types.slice(0, 3).forEach((r: string) => {
+          preferences.push({ type: 'Role', value: r })
+        })
+      }
+      if (p.preferred_locations && Array.isArray(p.preferred_locations)) {
+        p.preferred_locations.slice(0, 2).forEach((l: string) => {
+          preferences.push({ type: 'Location', value: l })
+        })
+      }
+      if (p.industries_preferred && Array.isArray(p.industries_preferred)) {
+        p.industries_preferred.slice(0, 2).forEach((i: string) => {
+          preferences.push({ type: 'Industry', value: i })
+        })
+      }
+    }
 
     // Fetch matched jobs (if any job matching exists)
     const matchedJobs = await sql`
@@ -61,7 +85,7 @@ export async function GET(request: NextRequest) {
         j.company_name as company,
         0.85 as match_score
       FROM jobs j
-      WHERE j.is_active = true AND j.is_fractional = true
+      WHERE j.is_active = true
       ORDER BY j.posted_date DESC NULLS LAST
       LIMIT 5
     `
@@ -71,19 +95,16 @@ export async function GET(request: NextRequest) {
       userId,
       skills.map(s => ({
         id: String(s.id),
-        name: s.name,
+        name: s.name || 'Unknown Skill',
         category: s.category || 'other',
         confidence: Number(s.confidence) || 0.8,
       })),
       companies.map(c => ({
         id: c.id,
-        name: c.name,
+        name: c.name || 'Unknown Company',
         role: c.role,
       })),
-      preferences.map(p => ({
-        type: p.type,
-        value: p.value,
-      })),
+      preferences, // Already in correct format
       matchedJobs.map(j => ({
         id: String(j.id),
         title: j.title,

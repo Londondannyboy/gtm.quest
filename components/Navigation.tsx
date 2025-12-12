@@ -19,8 +19,8 @@ export function Navigation() {
   }, [])
 
   const navLinks = [
+    { href: '/profile', label: 'Repo' },
     { href: '/fractional-jobs', label: 'Jobs' },
-    { href: '/calculators', label: 'Calculators' },
     { href: '/articles', label: 'Articles' },
     { href: '/guide', label: 'Guide' },
     { href: '/contact', label: 'Contact' }
