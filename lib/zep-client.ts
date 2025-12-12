@@ -1,42 +1,18 @@
 /**
  * Zep Integration for Knowledge Graph Memory
  *
- * Provides temporal knowledge graph for:
- * - User profiles and their relationships to skills/jobs
- * - Jobs and their relationships to skills/companies
- * - Semantic search and fact extraction
+ * Uses Zep Cloud Graph API for:
+ * - User graphs: Personal knowledge about each user (skills, experience, preferences)
+ * - Jobs graph: Shared graph containing all jobs and their relationships
+ * - Semantic search across both
  */
 
 import { ZepClient } from '@getzep/zep-cloud'
 
-// Types we define ourselves since SDK exports vary
-interface Session {
-  sessionId: string
-  metadata?: Record<string, unknown>
-}
-
-interface Memory {
-  messages?: Message[]
-  summary?: string
-  facts?: string[]
-}
-
-interface Message {
-  roleType: 'user' | 'assistant' | 'system'
-  content: string
-  metadata?: Record<string, unknown>
-}
-
-interface MemorySearchResult {
-  message?: Message
-  summary?: string
-  score?: number
-}
-
-// Graph node types
+// Graph node types for local visualization
 export interface GraphNode {
   id: string
-  type: 'user' | 'skill' | 'job' | 'company' | 'preference'
+  type: 'user' | 'skill' | 'job' | 'company' | 'preference' | 'fact'
   label: string
   data?: Record<string, unknown>
 }
@@ -54,16 +30,35 @@ export interface GraphData {
   edges: GraphEdge[]
 }
 
-// Singleton Zep client
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let zepClient: any = null
+// Zep entity types from the graph
+export interface ZepNode {
+  uuid: string
+  name: string
+  labels?: string[]
+  summary?: string
+  createdAt?: string
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getZepClient(): any {
+export interface ZepEdge {
+  uuid: string
+  fact: string
+  sourceNodeUuid: string
+  targetNodeUuid: string
+  validAt?: string
+  invalidAt?: string
+  createdAt?: string
+}
+
+// Singleton Zep client
+let zepClient: ZepClient | null = null
+
+const JOBS_GRAPH_ID = 'fractional-jobs-graph'
+
+export function getZepClient(): ZepClient | null {
   const apiKey = process.env.ZEP_API_KEY
 
   if (!apiKey) {
-    console.warn('ZEP_API_KEY not configured')
+    console.warn('ZEP_API_KEY not configured - Zep features disabled')
     return null
   }
 
@@ -74,106 +69,454 @@ export function getZepClient(): any {
   return zepClient
 }
 
+// ============================================
+// USER MANAGEMENT
+// ============================================
+
 /**
- * Create or get a session for a user
+ * Create or get a user in Zep
  */
-export async function getOrCreateSession(
+export async function ensureZepUser(
   userId: string,
-  metadata?: Record<string, unknown>
-): Promise<Session | null> {
+  metadata?: { email?: string; firstName?: string; lastName?: string }
+): Promise<boolean> {
   const client = getZepClient()
-  if (!client) return null
+  if (!client) return false
 
   try {
-    // Try to get existing session
-    const session = await client.memory.getSession(userId)
-    return session
+    // Try to get existing user
+    await client.user.get(userId)
+    return true
   } catch {
-    // Create new session if not exists
+    // Create new user if not exists
     try {
-      const session = await client.memory.addSession({
-        sessionId: userId,
+      await client.user.add({
+        userId,
+        email: metadata?.email,
+        firstName: metadata?.firstName,
+        lastName: metadata?.lastName,
         metadata: {
-          ...metadata,
           source: 'fractional-quest',
           createdAt: new Date().toISOString(),
         },
       })
-      return session
+      console.log(`Created Zep user: ${userId}`)
+      return true
     } catch (error) {
-      console.error('Error creating Zep session:', error)
-      return null
+      console.error('Error creating Zep user:', error)
+      return false
     }
   }
 }
 
+// ============================================
+// USER GRAPH OPERATIONS
+// ============================================
+
 /**
- * Add memory to a user's session
+ * Add data to a user's graph in Zep
+ * This creates entities and relationships that Zep extracts automatically
  */
-export async function addMemory(
+export async function addToUserGraph(
   userId: string,
-  messages: Array<{ role: 'user' | 'assistant'; content: string }>
-): Promise<void> {
-  const client = getZepClient()
-  if (!client) return
-
-  try {
-    await getOrCreateSession(userId)
-
-    const zepMessages: Message[] = messages.map(m => ({
-      roleType: m.role === 'user' ? 'user' : 'assistant',
-      content: m.content,
-    }))
-
-    await client.memory.add(userId, { messages: zepMessages })
-  } catch (error) {
-    console.error('Error adding memory to Zep:', error)
-  }
-}
-
-/**
- * Search memories for relevant context
- */
-export async function searchMemory(
-  userId: string,
-  query: string,
-  limit = 5
-): Promise<MemorySearchResult[]> {
-  const client = getZepClient()
-  if (!client) return []
-
-  try {
-    const results = await client.memory.searchSessions({
-      text: query,
-      userId,
-      limit,
-    })
-    return results || []
-  } catch (error) {
-    console.error('Error searching Zep memory:', error)
-    return []
-  }
-}
-
-/**
- * Get user's memory/facts
- */
-export async function getUserMemory(userId: string): Promise<Memory | null> {
+  data: Record<string, unknown>,
+  dataType: 'json' | 'text' = 'json'
+): Promise<string | null> {
   const client = getZepClient()
   if (!client) return null
 
   try {
-    const memory = await client.memory.get(userId)
-    return memory
+    await ensureZepUser(userId)
+
+    const episode = await client.graph.add({
+      userId,
+      type: dataType,
+      data: dataType === 'json' ? JSON.stringify(data) : String(data),
+    })
+
+    console.log(`Added data to user ${userId} graph`)
+    return episode?.uuid || null
   } catch (error) {
-    console.error('Error getting user memory:', error)
+    console.error('Error adding to user graph:', error)
     return null
   }
 }
 
 /**
- * Build a user graph showing their relationships to skills and jobs
- * This creates a visual representation of what we know about the user
+ * Sync user profile data to their Zep graph
+ */
+export async function syncUserProfileToZep(
+  userId: string,
+  profile: {
+    skills: Array<{ name: string; category: string; yearsExperience?: number; proficiency?: string }>
+    experiences: Array<{ company: string; role: string; startYear?: number; endYear?: number; isCurrent?: boolean }>
+    preferences: {
+      roleTypes?: string[]
+      locations?: string[]
+      remotePreference?: string
+      dayRateMin?: number
+      dayRateMax?: number
+      industries?: string[]
+    }
+  }
+): Promise<boolean> {
+  const client = getZepClient()
+  if (!client) return false
+
+  try {
+    await ensureZepUser(userId)
+
+    // Sync skills as structured data
+    if (profile.skills.length > 0) {
+      const skillsData = {
+        type: 'user_skills',
+        skills: profile.skills.map(s => ({
+          name: s.name,
+          category: s.category,
+          years_experience: s.yearsExperience,
+          proficiency: s.proficiency,
+        })),
+        user_context: `This person has ${profile.skills.length} professional skills`,
+      }
+      await client.graph.add({
+        userId,
+        type: 'json',
+        data: JSON.stringify(skillsData),
+      })
+    }
+
+    // Sync experiences
+    if (profile.experiences.length > 0) {
+      const experienceData = {
+        type: 'work_experience',
+        experiences: profile.experiences.map(e => ({
+          company_name: e.company,
+          role_title: e.role,
+          start_year: e.startYear,
+          end_year: e.endYear,
+          is_current: e.isCurrent,
+        })),
+        user_context: `This person has worked at ${profile.experiences.length} companies`,
+      }
+      await client.graph.add({
+        userId,
+        type: 'json',
+        data: JSON.stringify(experienceData),
+      })
+    }
+
+    // Sync preferences
+    if (profile.preferences) {
+      const prefsData = {
+        type: 'job_preferences',
+        ...profile.preferences,
+        user_context: 'These are the user\'s job search preferences',
+      }
+      await client.graph.add({
+        userId,
+        type: 'json',
+        data: JSON.stringify(prefsData),
+      })
+    }
+
+    console.log(`Synced profile for user ${userId} to Zep`)
+    return true
+  } catch (error) {
+    console.error('Error syncing user profile to Zep:', error)
+    return false
+  }
+}
+
+/**
+ * Get nodes from a user's graph
+ */
+export async function getUserGraphNodes(userId: string): Promise<ZepNode[]> {
+  const client = getZepClient()
+  if (!client) return []
+
+  try {
+    const response = await client.graph.node.getByUserId(userId, {})
+    return (response.nodes || []) as ZepNode[]
+  } catch (error) {
+    console.error('Error getting user graph nodes:', error)
+    return []
+  }
+}
+
+/**
+ * Get edges (facts/relationships) from a user's graph
+ */
+export async function getUserGraphEdges(userId: string): Promise<ZepEdge[]> {
+  const client = getZepClient()
+  if (!client) return []
+
+  try {
+    const response = await client.graph.edge.getByUserId(userId, {})
+    return (response.edges || []) as ZepEdge[]
+  } catch (error) {
+    console.error('Error getting user graph edges:', error)
+    return []
+  }
+}
+
+/**
+ * Search a user's graph for relevant information
+ */
+export async function searchUserGraph(
+  userId: string,
+  query: string,
+  options?: { limit?: number; scope?: 'nodes' | 'edges' | 'episodes' }
+): Promise<{ nodes: ZepNode[]; edges: ZepEdge[] }> {
+  const client = getZepClient()
+  if (!client) return { nodes: [], edges: [] }
+
+  try {
+    const [nodesResult, edgesResult] = await Promise.all([
+      client.graph.search({
+        userId,
+        query,
+        scope: 'nodes',
+        limit: options?.limit || 10,
+      }),
+      client.graph.search({
+        userId,
+        query,
+        scope: 'edges',
+        limit: options?.limit || 10,
+      }),
+    ])
+
+    return {
+      nodes: (nodesResult.nodes || []) as ZepNode[],
+      edges: (edgesResult.edges || []) as ZepEdge[],
+    }
+  } catch (error) {
+    console.error('Error searching user graph:', error)
+    return { nodes: [], edges: [] }
+  }
+}
+
+// ============================================
+// SHARED JOBS GRAPH OPERATIONS
+// ============================================
+
+/**
+ * Ensure the shared jobs graph exists
+ */
+export async function ensureJobsGraph(): Promise<boolean> {
+  const client = getZepClient()
+  if (!client) return false
+
+  try {
+    // Try to get existing graph
+    await client.graph.get(JOBS_GRAPH_ID)
+    return true
+  } catch {
+    // Create the graph if it doesn't exist
+    try {
+      await client.graph.create({
+        graphId: JOBS_GRAPH_ID,
+        name: 'Fractional Jobs Knowledge Graph',
+        description: 'Shared graph containing all fractional job opportunities, their required skills, and company relationships',
+      })
+      console.log(`Created jobs graph: ${JOBS_GRAPH_ID}`)
+      return true
+    } catch (error) {
+      console.error('Error creating jobs graph:', error)
+      return false
+    }
+  }
+}
+
+/**
+ * Sync a job to the shared jobs graph
+ */
+export async function syncJobToZep(job: {
+  id: string
+  title: string
+  company: string
+  location: string
+  skills: string[]
+  description?: string
+  dayRate?: { min?: number; max?: number }
+  roleCategory?: string
+}): Promise<boolean> {
+  const client = getZepClient()
+  if (!client) return false
+
+  try {
+    await ensureJobsGraph()
+
+    const jobData = {
+      type: 'fractional_job',
+      job_id: job.id,
+      title: job.title,
+      company_name: job.company,
+      location: job.location,
+      required_skills: job.skills,
+      description: job.description,
+      day_rate_min: job.dayRate?.min,
+      day_rate_max: job.dayRate?.max,
+      role_category: job.roleCategory,
+      context: `${job.title} role at ${job.company} in ${job.location} requiring skills: ${job.skills.join(', ')}`,
+    }
+
+    await client.graph.add({
+      graphId: JOBS_GRAPH_ID,
+      type: 'json',
+      data: JSON.stringify(jobData),
+    })
+
+    console.log(`Synced job ${job.id} to Zep jobs graph`)
+    return true
+  } catch (error) {
+    console.error('Error syncing job to Zep:', error)
+    return false
+  }
+}
+
+/**
+ * Bulk sync jobs to Zep
+ */
+export async function syncJobsToZep(jobs: Array<{
+  id: string
+  title: string
+  company: string
+  location: string
+  skills: string[]
+  description?: string
+  dayRate?: { min?: number; max?: number }
+  roleCategory?: string
+}>): Promise<{ success: number; failed: number }> {
+  let success = 0
+  let failed = 0
+
+  for (const job of jobs) {
+    const result = await syncJobToZep(job)
+    if (result) {
+      success++
+    } else {
+      failed++
+    }
+  }
+
+  return { success, failed }
+}
+
+/**
+ * Search the jobs graph
+ */
+export async function searchJobsGraph(
+  query: string,
+  options?: { limit?: number }
+): Promise<{ nodes: ZepNode[]; edges: ZepEdge[] }> {
+  const client = getZepClient()
+  if (!client) return { nodes: [], edges: [] }
+
+  try {
+    await ensureJobsGraph()
+
+    const [nodesResult, edgesResult] = await Promise.all([
+      client.graph.search({
+        graphId: JOBS_GRAPH_ID,
+        query,
+        scope: 'nodes',
+        limit: options?.limit || 20,
+      }),
+      client.graph.search({
+        graphId: JOBS_GRAPH_ID,
+        query,
+        scope: 'edges',
+        limit: options?.limit || 20,
+      }),
+    ])
+
+    return {
+      nodes: (nodesResult.nodes || []) as ZepNode[],
+      edges: (edgesResult.edges || []) as ZepEdge[],
+    }
+  } catch (error) {
+    console.error('Error searching jobs graph:', error)
+    return { nodes: [], edges: [] }
+  }
+}
+
+// ============================================
+// GRAPH VISUALIZATION HELPERS
+// ============================================
+
+/**
+ * Convert Zep graph data to visualization format
+ */
+export function convertZepToGraphData(
+  userId: string,
+  nodes: ZepNode[],
+  edges: ZepEdge[]
+): GraphData {
+  const graphNodes: GraphNode[] = []
+  const graphEdges: GraphEdge[] = []
+  const nodeMap = new Map<string, string>() // uuid -> our id
+
+  // Add user as central node
+  graphNodes.push({
+    id: `user-${userId}`,
+    type: 'user',
+    label: 'You',
+    data: { central: true },
+  })
+
+  // Convert Zep nodes
+  nodes.forEach((node, i) => {
+    const nodeId = `zep-node-${i}`
+    nodeMap.set(node.uuid, nodeId)
+
+    // Determine node type from labels
+    const labels = node.labels || []
+    let nodeType: GraphNode['type'] = 'fact'
+    if (labels.some(l => l.toLowerCase().includes('skill'))) nodeType = 'skill'
+    else if (labels.some(l => l.toLowerCase().includes('company') || l.toLowerCase().includes('organization'))) nodeType = 'company'
+    else if (labels.some(l => l.toLowerCase().includes('job') || l.toLowerCase().includes('role'))) nodeType = 'job'
+    else if (labels.some(l => l.toLowerCase().includes('preference'))) nodeType = 'preference'
+
+    graphNodes.push({
+      id: nodeId,
+      type: nodeType,
+      label: node.name,
+      data: {
+        uuid: node.uuid,
+        summary: node.summary,
+        labels: node.labels,
+      },
+    })
+
+    // Connect to user node for user graphs
+    graphEdges.push({
+      source: `user-${userId}`,
+      target: nodeId,
+      type: 'related_to',
+    })
+  })
+
+  // Convert Zep edges (facts)
+  edges.forEach((edge, i) => {
+    const sourceId = nodeMap.get(edge.sourceNodeUuid)
+    const targetId = nodeMap.get(edge.targetNodeUuid)
+
+    if (sourceId && targetId) {
+      graphEdges.push({
+        source: sourceId,
+        target: targetId,
+        type: 'fact',
+        label: edge.fact?.substring(0, 50) || undefined,
+      })
+    }
+  })
+
+  return { nodes: graphNodes, edges: graphEdges }
+}
+
+/**
+ * Build a user graph from local data (fallback when Zep unavailable)
  */
 export async function buildUserGraph(
   userId: string,
@@ -204,7 +547,6 @@ export async function buildUserGraph(
     }
     nodes.push(skillNode)
 
-    // Connect user to skill
     edges.push({
       source: userNode.id,
       target: skillNode.id,
@@ -224,7 +566,6 @@ export async function buildUserGraph(
     }
     nodes.push(companyNode)
 
-    // Connect user to company
     edges.push({
       source: userNode.id,
       target: companyNode.id,
@@ -243,7 +584,6 @@ export async function buildUserGraph(
     }
     nodes.push(prefNode)
 
-    // Connect user to preference
     edges.push({
       source: userNode.id,
       target: prefNode.id,
@@ -263,7 +603,6 @@ export async function buildUserGraph(
       }
       nodes.push(jobNode)
 
-      // Connect user to job via match
       edges.push({
         source: userNode.id,
         target: jobNode.id,
@@ -278,7 +617,7 @@ export async function buildUserGraph(
 }
 
 /**
- * Build a jobs graph showing relationships between jobs, skills, and companies
+ * Build a jobs graph from local data (fallback when Zep unavailable)
  */
 export async function buildJobsGraph(
   jobs: Array<{
@@ -292,14 +631,12 @@ export async function buildJobsGraph(
 ): Promise<GraphData> {
   const nodes: GraphNode[] = []
   const edges: GraphEdge[] = []
-  const skillsMap = new Map<string, string>() // skill name -> node id
-  const companiesMap = new Map<string, string>() // company name -> node id
+  const skillsMap = new Map<string, string>()
+  const companiesMap = new Map<string, string>()
 
-  // Process jobs (limited)
   const processedJobs = jobs.slice(0, limit)
 
   processedJobs.forEach(job => {
-    // Add job node
     const jobNode: GraphNode = {
       id: `job-${job.id}`,
       type: 'job',
@@ -319,7 +656,6 @@ export async function buildJobsGraph(
       })
     }
 
-    // Connect job to company
     edges.push({
       source: `job-${job.id}`,
       target: companiesMap.get(job.company)!,
@@ -338,7 +674,6 @@ export async function buildJobsGraph(
         })
       }
 
-      // Connect job to skill
       edges.push({
         source: `job-${job.id}`,
         target: skillsMap.get(skillName)!,
@@ -348,27 +683,4 @@ export async function buildJobsGraph(
   })
 
   return { nodes, edges }
-}
-
-/**
- * Store facts extracted from conversation
- */
-export async function storeFacts(
-  userId: string,
-  facts: Array<{ key: string; value: string; confidence: number }>
-): Promise<void> {
-  const client = getZepClient()
-  if (!client) return
-
-  try {
-    // Store facts as conversation that Zep will process
-    const factMessages: Message[] = facts.map(fact => ({
-      roleType: 'user',
-      content: `Fact: ${fact.key} = ${fact.value} (confidence: ${Math.round(fact.confidence * 100)}%)`,
-    }))
-
-    await client.memory.add(userId, { messages: factMessages })
-  } catch (error) {
-    console.error('Error storing facts in Zep:', error)
-  }
 }

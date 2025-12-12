@@ -120,17 +120,13 @@ function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile, onTr
       // Debug: Log what we're sending to Hume
       console.log('Connecting to Hume with variables:', variables)
       console.log('Config ID:', HUME_CONFIG_ID)
+      console.log('Is authenticated:', isAuthenticated)
 
-      // Connect with config ID and variables
-      // Note: Cast to any to bypass strict typing as Hume SDK types may be incomplete
+      // Connect - try without sessionSettings first to test base connection
       await connect({
         auth: { type: 'accessToken', value: accessToken },
-        configId: HUME_CONFIG_ID,
-        sessionSettings: {
-          type: 'session_settings',
-          variables
-        }
-      } as Parameters<typeof connect>[0])
+        configId: HUME_CONFIG_ID
+      })
 
       if (!hasConnectedOnce) {
         onUse()

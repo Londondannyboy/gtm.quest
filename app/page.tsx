@@ -262,7 +262,6 @@ export default async function Home() {
         {/* Video or Gradient Background */}
         <VideoHeroBackground
           playbackId={HERO_VIDEO_PLAYBACK_ID}
-          opacity={0.35}
           fallbackGradient={true}
         />
 
@@ -551,30 +550,6 @@ export default async function Home() {
           </div>
         </div>
       </section>
-
-      {/* Partner Agencies Section - From Neon */}
-      {agenciesSection && (
-        <section className="py-20 md:py-28 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">{agenciesSection.title}</h2>
-              <p className="text-xl text-gray-600">{agenciesSection.subtitle}</p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {(agenciesSection.content as Agency[]).map((agency, i) => (
-                <div key={i} className="bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-2xl font-bold text-purple-700">{agency.name.charAt(0)}</span>
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-1">{agency.name}</h3>
-                  <p className="text-sm text-gray-600">{agency.specialty}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Calculator Section */}
       <section className="py-20 md:py-28 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
