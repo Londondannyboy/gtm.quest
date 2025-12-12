@@ -38,10 +38,30 @@ function VoiceInterface({ token, profile }: { token: string; profile: any }) {
   const isConnected = status.value === 'connected'
   const isConnecting = status.value === 'connecting'
 
-  // Get recent messages
-  const recentMessages = messages
-    .filter((m: any) => m.message?.content)
-    .slice(-4)
+  // Combine message segments into complete messages
+  const combinedMessages: { type: string; content: string }[] = []
+  let currentAssistant = ''
+
+  messages.forEach((m: any) => {
+    if (m.type === 'user_message' && m.message?.content) {
+      // If we have accumulated assistant text, save it first
+      if (currentAssistant) {
+        combinedMessages.push({ type: 'assistant_message', content: currentAssistant })
+        currentAssistant = ''
+      }
+      combinedMessages.push({ type: 'user_message', content: m.message.content })
+    } else if (m.type === 'assistant_message' && m.message?.content) {
+      // Accumulate assistant message segments
+      currentAssistant += m.message.content + ' '
+    }
+  })
+
+  // Don't forget the last assistant message
+  if (currentAssistant) {
+    combinedMessages.push({ type: 'assistant_message', content: currentAssistant.trim() })
+  }
+
+  const recentMessages = combinedMessages.slice(-4)
 
   return (
     <div className="flex flex-col items-center">
@@ -102,7 +122,7 @@ function VoiceInterface({ token, profile }: { token: string; profile: any }) {
       {/* Conversation */}
       {recentMessages.length > 0 && (
         <div className="w-full max-w-lg space-y-3 mb-8">
-          {recentMessages.map((m: any, i: number) => (
+          {recentMessages.map((m, i) => (
             <div
               key={i}
               className={`p-4 rounded-2xl ${
@@ -114,7 +134,7 @@ function VoiceInterface({ token, profile }: { token: string; profile: any }) {
               <p className="text-sm font-medium mb-1 opacity-60">
                 {m.type === 'user_message' ? 'You' : 'Assistant'}
               </p>
-              <p>{m.message.content}</p>
+              <p>{m.content}</p>
             </div>
           ))}
         </div>
