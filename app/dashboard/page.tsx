@@ -2,8 +2,8 @@
 
 import { useUser } from '@stackframe/stack'
 import Link from 'next/link'
-import { useState, useCallback } from 'react'
-import { HumeWidget } from '@/components/HumeWidget'
+import { useState, useCallback, useRef, useEffect } from 'react'
+import { HumeWidget, HumeMessage } from '@/components/HumeWidget'
 import { ExtractionPanel } from '@/components/ExtractionPanel'
 import { RepoDisplay } from '@/components/RepoDisplay'
 import { ExtractionResult } from '@/lib/extraction-types'
@@ -188,6 +188,15 @@ function HomeView({ firstName, userId, onSpeakClick, refreshTrigger }: {
   )
 }
 
+interface UserProfile {
+  first_name: string | null
+  current_country: string | null
+  destination_countries: string[] | null
+  budget: string | null
+  timeline: string | null
+  interests: string[] | null
+}
+
 function VoiceView({ userName, userId, onRepoUpdate }: {
   userName?: string
   userId: string
@@ -195,6 +204,87 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
 }) {
   const [isExtracting, setIsExtracting] = useState(false)
   const [liveExtraction, setLiveExtraction] = useState<ExtractionResult | null>(null)
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
+  const extractionTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const lastTranscriptRef = useRef<string>('')
+
+  // Fetch user profile for Hume variables
+  useEffect(() => {
+    async function fetchProfile() {
+      try {
+        const response = await fetch('/api/user-profile')
+        if (response.ok) {
+          const profile = await response.json()
+          setUserProfile(profile)
+          console.log('Profile loaded for Hume:', profile)
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error)
+      }
+    }
+    fetchProfile()
+  }, [])
+
+  // Handle transcript from Hume - debounced extraction
+  const handleTranscript = useCallback(async (transcript: string, _allMessages: HumeMessage[]) => {
+    // Skip if transcript hasn't changed significantly
+    if (transcript === lastTranscriptRef.current) return
+    lastTranscriptRef.current = transcript
+
+    // Clear any pending extraction
+    if (extractionTimeoutRef.current) {
+      clearTimeout(extractionTimeoutRef.current)
+    }
+
+    // Debounce extraction - wait 2 seconds after last message
+    extractionTimeoutRef.current = setTimeout(async () => {
+      setIsExtracting(true)
+
+      try {
+        const response = await fetch('/api/extract', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            transcript,
+            userId,
+            incremental: !!liveExtraction,
+            existingData: liveExtraction
+          })
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          if (data.extraction) {
+            // Merge with existing extraction
+            setLiveExtraction(prev => {
+              if (!prev) return data.extraction
+              return {
+                skills: [...prev.skills, ...data.extraction.skills],
+                companies: [...prev.companies, ...data.extraction.companies],
+                qualifications: [...prev.qualifications, ...data.extraction.qualifications],
+                preferences: [...prev.preferences, ...data.extraction.preferences],
+                suggestedFollowUps: data.extraction.suggestedFollowUps || prev.suggestedFollowUps,
+                narrative: data.extraction.narrative || prev.narrative
+              }
+            })
+          }
+        }
+      } catch (error) {
+        console.error('Extraction error:', error)
+      } finally {
+        setIsExtracting(false)
+      }
+    }, 2000) // 2 second debounce
+  }, [userId, liveExtraction])
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (extractionTimeoutRef.current) {
+        clearTimeout(extractionTimeoutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <div className="h-full flex">
@@ -213,9 +303,16 @@ function VoiceView({ userName, userId, onRepoUpdate }: {
             </p>
           </div>
 
-          {/* Hume Voice Widget */}
+          {/* Hume Voice Widget with full profile */}
           <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
-            <HumeWidget variant="hero" userName={userName} isAuthenticated={true} darkMode={false} />
+            <HumeWidget
+              variant="hero"
+              userName={userProfile?.first_name || userName}
+              isAuthenticated={true}
+              darkMode={false}
+              userProfile={userProfile}
+              onTranscript={handleTranscript}
+            />
           </div>
 
           <p className="text-gray-500 text-sm">

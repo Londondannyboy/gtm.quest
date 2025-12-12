@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { extractFromTranscript, extractIncremental, validateCompany } from '@/lib/extract-profile'
-import { ExtractionResult } from '@/lib/extraction-types'
+import { extractFromTranscript, extractIncremental } from '@/lib/extract-profile'
+import { validateCompany } from '@/lib/company-validation'
+import { ExtractionResult, ExtractedCompany } from '@/lib/extraction-types'
 import { neon } from '@neondatabase/serverless'
 
 const sql = neon(process.env.DATABASE_URL!)
@@ -25,6 +26,11 @@ export async function POST(request: NextRequest) {
       result = await extractFromTranscript(transcript)
     }
 
+    // Enrich companies with validation data
+    const enrichedCompanies = await enrichCompaniesWithValidation(result.companies)
+    result.companies = enrichedCompanies.companies
+    const companyQuestions = enrichedCompanies.questions
+
     // If we have a userId, save pending items to database
     if (userId && result) {
       await savePendingExtractions(userId, sessionId, result)
@@ -37,7 +43,9 @@ export async function POST(request: NextRequest) {
         result.skills.length +
         result.companies.length +
         result.qualifications.length +
-        result.preferences.length
+        result.preferences.length,
+      // Include company validation questions for follow-up
+      companyQuestions
     })
   } catch (error) {
     console.error('Extraction API error:', error)
@@ -98,6 +106,45 @@ async function savePendingExtractions(
       console.error('Error updating session:', error)
     }
   }
+}
+
+// Enrich extracted companies with validation data
+async function enrichCompaniesWithValidation(companies: ExtractedCompany[]): Promise<{
+  companies: ExtractedCompany[]
+  questions: { companyName: string; question: string; suggestedUrl?: string }[]
+}> {
+  const enriched: ExtractedCompany[] = []
+  const questions: { companyName: string; question: string; suggestedUrl?: string }[] = []
+
+  for (const company of companies) {
+    try {
+      const validation = await validateCompany(company.name)
+
+      // Merge validation data into company
+      const enrichedCompany: ExtractedCompany = {
+        ...company,
+        normalizedName: validation.company?.normalizedName || company.normalizedName,
+        needsValidation: validation.needsConfirmation,
+        confidence: Math.max(company.confidence, validation.confidence)
+      }
+
+      enriched.push(enrichedCompany)
+
+      // If needs confirmation, add to questions
+      if (validation.needsConfirmation && validation.confirmationQuestion) {
+        questions.push({
+          companyName: company.name,
+          question: validation.confirmationQuestion,
+          suggestedUrl: validation.suggestedUrl
+        })
+      }
+    } catch (error) {
+      console.error(`Error validating company ${company.name}:`, error)
+      enriched.push(company)
+    }
+  }
+
+  return { companies: enriched, questions }
 }
 
 // GET /api/extract/pending - Get pending confirmations for user

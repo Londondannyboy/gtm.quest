@@ -35,12 +35,56 @@ interface VoiceInterfaceProps {
   onUse: () => void
   darkMode?: boolean
   userProfile?: UserProfile | null
+  onTranscript?: (transcript: string, allMessages: HumeMessage[]) => void
 }
 
-function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile }: VoiceInterfaceProps) {
+// Hume message type
+export interface HumeMessage {
+  type: 'user_message' | 'assistant_message'
+  message?: {
+    content?: string
+    role?: string
+  }
+}
+
+function VoiceInterface({ accessToken, onUse, darkMode = true, userProfile, onTranscript }: VoiceInterfaceProps) {
   const { connect, disconnect, status, messages } = useVoice()
   const [isConnecting, setIsConnecting] = useState(false)
   const [hasConnectedOnce, setHasConnectedOnce] = useState(false)
+  const [lastProcessedIndex, setLastProcessedIndex] = useState(0)
+
+  // Watch for new user messages and trigger extraction
+  useEffect(() => {
+    if (!onTranscript || messages.length === 0) return
+
+    // Only process new messages
+    if (messages.length <= lastProcessedIndex) return
+
+    // Get new messages since last check
+    const newMessages = messages.slice(lastProcessedIndex)
+
+    // Look for user messages
+    const userMessages = newMessages.filter((msg: unknown) => {
+      const typedMsg = msg as HumeMessage
+      return typedMsg.type === 'user_message' && typedMsg.message?.content
+    })
+
+    if (userMessages.length > 0) {
+      // Build transcript from all user messages so far
+      const allUserContent = messages
+        .filter((msg: unknown) => {
+          const typedMsg = msg as HumeMessage
+          return typedMsg.type === 'user_message' && typedMsg.message?.content
+        })
+        .map((msg: unknown) => (msg as HumeMessage).message?.content || '')
+        .join('\n')
+
+      // Call the extraction callback
+      onTranscript(allUserContent, messages as HumeMessage[])
+    }
+
+    setLastProcessedIndex(messages.length)
+  }, [messages, lastProcessedIndex, onTranscript])
 
   const handleConnect = useCallback(async () => {
     setIsConnecting(true)
@@ -177,9 +221,10 @@ export interface HumeWidgetProps {
   isAuthenticated?: boolean
   darkMode?: boolean
   userProfile?: UserProfile | null
+  onTranscript?: (transcript: string, allMessages: HumeMessage[]) => void
 }
 
-export function HumeWidget({ variant = 'hero', userName, isAuthenticated = false, darkMode = true, userProfile }: HumeWidgetProps) {
+export function HumeWidget({ variant = 'hero', userName, isAuthenticated = false, darkMode = true, userProfile, onTranscript }: HumeWidgetProps) {
   const [accessToken, setAccessToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [usageCount, setUsageCount] = useState(0)
@@ -278,6 +323,7 @@ export function HumeWidget({ variant = 'hero', userName, isAuthenticated = false
           onUse={handleUse}
           darkMode={darkMode}
           userProfile={mergedProfile}
+          onTranscript={onTranscript}
         />
       </VoiceProvider>
       {!isAuthenticated && (
