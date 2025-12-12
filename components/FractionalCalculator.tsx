@@ -33,19 +33,24 @@ export function FractionalCalculator() {
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         {/* Day Rate Slider */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="day-rate" className="block text-sm font-medium text-gray-700 mb-2">
             Day Rate
           </label>
-          <div className="text-3xl font-bold text-purple-700 mb-2">
+          <div className="text-3xl font-bold text-purple-700 mb-2" aria-live="polite">
             {formatCurrency(dayRate)}
           </div>
           <input
+            id="day-rate"
             type="range"
             min="400"
             max="2000"
             step="50"
             value={dayRate}
             onChange={(e) => setDayRate(Number(e.target.value))}
+            aria-label={`Day rate: ${formatCurrency(dayRate)}`}
+            aria-valuemin={400}
+            aria-valuemax={2000}
+            aria-valuenow={dayRate}
             className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-700"
           />
           <div className="flex justify-between text-xs text-gray-500 mt-1">
@@ -56,19 +61,24 @@ export function FractionalCalculator() {
 
         {/* Days Per Week */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="days-per-week" className="block text-sm font-medium text-gray-700 mb-2">
             Days per Client/Week
           </label>
-          <div className="text-3xl font-bold text-purple-700 mb-2">
+          <div className="text-3xl font-bold text-purple-700 mb-2" aria-live="polite">
             {daysPerWeek} days
           </div>
           <input
+            id="days-per-week"
             type="range"
             min="1"
             max="5"
             step="0.5"
             value={daysPerWeek}
             onChange={(e) => setDaysPerWeek(Number(e.target.value))}
+            aria-label={`Days per week: ${daysPerWeek}`}
+            aria-valuemin={1}
+            aria-valuemax={5}
+            aria-valuenow={daysPerWeek}
             className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-700"
           />
           <div className="flex justify-between text-xs text-gray-500 mt-1">
@@ -79,19 +89,24 @@ export function FractionalCalculator() {
 
         {/* Number of Clients */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="num-clients" className="block text-sm font-medium text-gray-700 mb-2">
             Number of Clients
           </label>
-          <div className="text-3xl font-bold text-purple-700 mb-2">
+          <div className="text-3xl font-bold text-purple-700 mb-2" aria-live="polite">
             {clients} clients
           </div>
           <input
+            id="num-clients"
             type="range"
             min="1"
             max="4"
             step="1"
             value={clients}
             onChange={(e) => setClients(Number(e.target.value))}
+            aria-label={`Number of clients: ${clients}`}
+            aria-valuemin={1}
+            aria-valuemax={4}
+            aria-valuenow={clients}
             className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-purple-700"
           />
           <div className="flex justify-between text-xs text-gray-500 mt-1">

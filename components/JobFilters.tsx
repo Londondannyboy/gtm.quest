@@ -163,6 +163,7 @@ export function JobFilters({
               <button
                 onClick={() => handleFilterChange('role', '')}
                 className="hover:text-purple-900"
+                aria-label={`Remove ${roleOptions.find(r => r.value === currentRole)?.label || currentRole} filter`}
               >
                 ×
               </button>
@@ -174,6 +175,7 @@ export function JobFilters({
               <button
                 onClick={() => handleFilterChange('industry', '')}
                 className="hover:text-orange-900"
+                aria-label={`Remove ${industryOptions.find(i => i.value === currentIndustry)?.label || currentIndustry} filter`}
               >
                 ×
               </button>
@@ -185,6 +187,7 @@ export function JobFilters({
               <button
                 onClick={() => handleFilterChange('location', '')}
                 className="hover:text-blue-900"
+                aria-label={`Remove ${locationOptions.find(l => l.value === currentLocation)?.label || currentLocation} filter`}
               >
                 ×
               </button>
@@ -196,6 +199,7 @@ export function JobFilters({
               <button
                 onClick={() => handleFilterChange('remote', '')}
                 className="hover:text-emerald-900"
+                aria-label={`Remove ${workTypeOptions.find(r => r.value === currentRemote)?.label || currentRemote} filter`}
               >
                 ×
               </button>
