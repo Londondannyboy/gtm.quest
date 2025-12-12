@@ -20,10 +20,8 @@ export function Navigation() {
 
   const navLinks = [
     { href: '/profile', label: 'Repo' },
-    { href: '/fractional-jobs', label: 'Jobs' },
-    { href: '/articles', label: 'Articles' },
-    { href: '/guide', label: 'Guide' },
-    { href: '/contact', label: 'Contact' }
+    { href: '/fractional-jobs', label: 'Fractional Jobs' },
+    { href: '/fractional-jobs-articles', label: 'Knowledge Base' }
   ]
 
   const isActive = (href: string) => {
