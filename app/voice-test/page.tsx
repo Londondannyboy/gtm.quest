@@ -43,7 +43,7 @@ function VoiceInterface({ token, profile, userId }: { token: string; profile: an
         isAudioError,
         isMicrophoneError,
         voiceErrorMessage: voiceError?.message || String(voiceError),
-        voiceErrorName: voiceError?.name
+        voiceErrorType: (voiceError as any)?.type
       }, null, 2))
     }
   }, [isError, isAudioError, isMicrophoneError, voiceError])
