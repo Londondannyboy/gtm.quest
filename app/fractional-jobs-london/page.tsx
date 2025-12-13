@@ -2,8 +2,12 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
 import { JobCard } from '@/components/JobCard'
+import { VideoHeroBackground } from '@/components/VideoHeroBackground'
 
 export const revalidate = 3600 // Revalidate every hour
+
+// Same video as homepage
+const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
 
 export const metadata: Metadata = {
   title: 'Fractional Jobs London - Executive Roles in the City, Shoreditch & Canary Wharf',
@@ -18,59 +22,33 @@ export const metadata: Metadata = {
 // London areas with their characteristics
 const londonAreas = [
   { name: 'City of London', description: 'Financial services & fintech', rateRange: '£1,000-£1,500/day' },
-  { name: 'Shoreditch/Tech City', description: 'Startups & scale-ups', rateRange: '£900-£1,400/day' },
+  { name: 'Shoreditch', description: 'Startups & scale-ups', rateRange: '£900-£1,400/day' },
   { name: 'Canary Wharf', description: 'Corporate & banking', rateRange: '£950-£1,300/day' },
   { name: 'Kings Cross', description: 'Tech & creative', rateRange: '£850-£1,200/day' },
   { name: 'Westminster', description: 'Government & policy', rateRange: '£900-£1,350/day' },
   { name: 'Camden', description: 'Creative & media', rateRange: '£800-£1,150/day' },
-  { name: 'Southwark', description: 'Tech & professional services', rateRange: '£850-£1,250/day' },
-  { name: 'Hammersmith', description: 'Corporate HQs', rateRange: '£800-£1,200/day' },
-]
-
-// London industries
-const londonIndustries = [
-  { name: 'FinTech', icon: '💳', growth: '+15% YoY' },
-  { name: 'SaaS/Cloud', icon: '☁️', growth: '+22% YoY' },
-  { name: 'HealthTech', icon: '🏥', growth: '+18% YoY' },
-  { name: 'E-commerce', icon: '🛒', growth: '+12% YoY' },
-  { name: 'PropTech', icon: '🏢', growth: '+20% YoY' },
-  { name: 'EdTech', icon: '📚', growth: '+16% YoY' },
 ]
 
 // Success stories
 const successStories = [
   {
-    quote: "Working with 3 fintech scale-ups in the City has been incredible. The diversity of challenges keeps me sharp, and the day rates in London are 25% higher than I earned as a full-time CFO.",
-    name: "Rachel Stevens",
+    quote: "Working with 3 fintech scale-ups in the City has been incredible. The diversity of challenges keeps me sharp.",
+    name: "Rachel S.",
     role: "Fractional CFO",
     area: "City of London",
-    clients: 3,
-    earnings: "£180k/year"
   },
   {
-    quote: "Shoreditch has become the epicenter for fractional tech leadership. I work with startups that can't afford a £200k full-time CTO but desperately need strategic tech guidance.",
-    name: "Michael Chen",
+    quote: "Shoreditch has become the epicenter for fractional tech leadership. I work with startups that need strategic guidance.",
+    name: "Michael C.",
     role: "Fractional CTO",
     area: "Shoreditch",
-    clients: 2,
-    earnings: "£165k/year"
   },
   {
-    quote: "The flexibility of fractional work combined with London's premium rates is unbeatable. I earn more working 3 days a week than I did in my previous full-time role.",
-    name: "Sophie Williams",
+    quote: "The flexibility of fractional work combined with London's premium rates is unbeatable.",
+    name: "Sophie W.",
     role: "Fractional CMO",
     area: "Canary Wharf",
-    clients: 4,
-    earnings: "£195k/year"
   },
-]
-
-// Related searches for SEO
-const relatedSearches = [
-  'Fractional CFO Jobs London', 'Fractional CMO Jobs London', 'Fractional CTO Jobs London',
-  'Part-Time CFO London', 'Interim Executive London', 'Portfolio Career London',
-  'Fractional Jobs Shoreditch', 'Fractional Jobs City of London', 'Fractional Jobs Canary Wharf',
-  'Fractional Executive Salary London', 'Fractional Recruitment Agencies London', 'Fractional HR Director London'
 ]
 
 async function getLondonStats() {
@@ -122,136 +100,165 @@ export default async function LondonPage() {
     getLondonJobs()
   ])
 
-  // Calculate area job estimates based on total
   const areaJobEstimates = londonAreas.map((area, i) => ({
     ...area,
-    jobs: Math.max(5, Math.round(stats.totalLondon * (0.3 - i * 0.03))) // Decreasing estimates
+    jobs: Math.max(5, Math.round(stats.totalLondon * (0.3 - i * 0.03)))
   }))
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="londonGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#londonGrid)" />
-          </svg>
-        </div>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+        <VideoHeroBackground
+          playbackId={HERO_VIDEO_PLAYBACK_ID}
+          fallbackGradient={true}
+        />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link href="/" className="inline-flex items-center text-purple-200 hover:text-white mb-6 transition-colors">
-            ← Back to Home
-          </Link>
-          <div className="inline-block mb-6">
-            <span className="bg-purple-700/50 backdrop-blur text-white px-5 py-2.5 rounded-full text-sm font-medium border border-purple-500/30">
-              {stats.totalLondon}+ Jobs in London This Month
-            </span>
-          </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-            Fractional Jobs London
-          </h1>
-          {/* SEO image with keyword alt text */}
-          <img
-            src="/images/fractional-jobs-london.svg"
-            alt="Fractional Jobs London - Executive recruitment opportunities in the City, Shoreditch and Canary Wharf"
-            className="hidden"
-            width={1}
-            height={1}
-          />
-          <p className="max-w-2xl text-xl text-purple-100 mb-10 leading-relaxed">
-            {stats.totalLondon}+ fractional executive opportunities across London. £800-£1,500 daily rates. Work with startups and scale-ups in the City, Shoreditch, Canary Wharf and beyond.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/fractional-jobs?location=London"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-purple-900 hover:bg-purple-50 transition-all duration-200"
-            >
-              Browse All London Jobs
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg border-2 border-white text-white hover:bg-white/10 transition-all duration-200"
-            >
-              Find Agencies
-            </Link>
+        {/* Bottom-aligned content with glass panel */}
+        <div className="relative z-10 w-full pb-16 md:pb-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-8">
+              {/* Left: Main content */}
+              <div className="max-w-2xl">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/10">
+                  <Link href="/" className="inline-flex items-center text-white/70 hover:text-white mb-6 transition-colors text-sm tracking-wide">
+                    <span className="mr-2">←</span> Back to Home
+                  </Link>
+
+                  <span className="inline-block bg-white/10 backdrop-blur text-white/90 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6">
+                    {stats.totalLondon}+ Live Opportunities
+                  </span>
+
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[0.95] tracking-tight">
+                    Fractional Jobs<br />
+                    <span className="text-white/90">London</span>
+                  </h1>
+
+                  <img
+                    src="/images/fractional-jobs-london.svg"
+                    alt="Fractional Jobs London - Executive recruitment opportunities in the City, Shoreditch and Canary Wharf"
+                    className="hidden"
+                    width={1}
+                    height={1}
+                  />
+
+                  <p className="text-lg text-white/70 mb-8 leading-relaxed max-w-lg">
+                    CFO, CMO, CTO roles across the City, Shoreditch, Canary Wharf. £800-£1,500 daily rates. Work with London's top startups and scale-ups.
+                  </p>
+
+                  <div className="flex flex-wrap gap-4">
+                    <Link
+                      href="/fractional-jobs?location=London"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white text-black hover:bg-white/90 transition-all duration-200"
+                    >
+                      Browse London Jobs →
+                    </Link>
+                    <Link
+                      href="/handler/sign-up"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
+                    >
+                      Get Notified
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Stats panel */}
+              <div className="w-full lg:w-auto">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">60%</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">UK Market Share</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">£{stats.avgDayRate}</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Avg Day Rate</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">2.5</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Avg Clients</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">18mo</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Avg Tenure</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* London Market Stats */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-black text-purple-700">60%</div>
-              <div className="text-gray-600 font-medium">of UK fractional roles</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-purple-700">£{stats.avgDayRate}</div>
-              <div className="text-gray-600 font-medium">average day rate</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-purple-700">2.5</div>
-              <div className="text-gray-600 font-medium">avg clients per exec</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-purple-700">18mo</div>
-              <div className="text-gray-600 font-medium">avg engagement length</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Jobs by London Area */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Editorial Introduction */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Fractional Jobs London by Area</h2>
-            <p className="text-xl text-gray-600">From the City to Shoreditch - find fractional jobs in London's top business districts</p>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">The Market</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight">
+              London dominates the UK<br />fractional executive market
+            </h2>
+          </div>
+          <div className="prose prose-xl prose-gray max-w-none">
+            <p className="text-xl text-gray-600 leading-relaxed text-center">
+              Accounting for 60% of all fractional opportunities nationwide, London offers unmatched access to startups, scale-ups, and established companies seeking flexible leadership. Day rates range from £800-£1,500, with professionals earning £150,000-£300,000+ annually across 2-4 clients.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* London Areas - Editorial Grid */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">By District</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">London's Business Districts</h2>
+            <p className="text-xl text-gray-500">Where fractional executives thrive</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {areaJobEstimates.map((area) => (
               <Link
                 key={area.name}
                 href={`/fractional-jobs?location=${encodeURIComponent(area.name.split('/')[0])}`}
                 className="group"
               >
-                <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-200 border border-transparent hover:border-purple-200">
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors mb-2">
-                    {area.name}
-                  </h3>
-                  <p className="text-purple-700 font-semibold mb-2">{area.jobs} jobs</p>
-                  <p className="text-gray-600 text-sm mb-1">{area.description}</p>
-                  <p className="text-gray-600 text-sm">{area.rateRange}</p>
-                </div>
+                <article className="bg-white rounded-xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors">
+                      {area.name}
+                    </h3>
+                    <span className="text-sm font-medium text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
+                      {area.jobs}+ jobs
+                    </span>
+                  </div>
+                  <p className="text-gray-600 mb-3">{area.description}</p>
+                  <p className="text-sm font-medium text-gray-500">{area.rateRange}</p>
+                </article>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Top London Roles */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Role Types - Elegant Cards */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Top Fractional Jobs London Roles</h2>
-            <p className="text-xl text-gray-600">Executive fractional jobs in the London market by function</p>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">By Function</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Executive Roles</h2>
+            <p className="text-xl text-gray-500">Fractional leadership positions in London</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: '💰', title: 'Fractional CFO London', rate: '£900-£1,400/day', role: 'CFO' },
-              { icon: '💻', title: 'Fractional CTO London', rate: '£950-£1,500/day', role: 'CTO' },
-              { icon: '📢', title: 'Fractional CMO London', rate: '£800-£1,200/day', role: 'CMO' },
-              { icon: '⚙️', title: 'Fractional COO London', rate: '£850-£1,300/day', role: 'COO' },
-              { icon: '👥', title: 'Fractional HR Director London', rate: '£750-£1,100/day', role: 'HR' },
-              { icon: '📈', title: 'Fractional Sales Director London', rate: '£800-£1,250/day', role: 'Sales' },
+              { icon: '💰', title: 'Fractional CFO', subtitle: 'Finance Leadership', rate: '£900-£1,400/day', role: 'CFO' },
+              { icon: '💻', title: 'Fractional CTO', subtitle: 'Technology Leadership', rate: '£950-£1,500/day', role: 'CTO' },
+              { icon: '📢', title: 'Fractional CMO', subtitle: 'Marketing Leadership', rate: '£800-£1,200/day', role: 'CMO' },
+              { icon: '⚙️', title: 'Fractional COO', subtitle: 'Operations Leadership', rate: '£850-£1,300/day', role: 'COO' },
+              { icon: '👥', title: 'Fractional HRD', subtitle: 'People Leadership', rate: '£750-£1,100/day', role: 'HR' },
+              { icon: '📈', title: 'Fractional Sales', subtitle: 'Revenue Leadership', rate: '£800-£1,250/day', role: 'Sales' },
             ].map((item) => {
               const roleCount = stats.roleStats.find(r => r.role_category === item.role)?.count || '0'
               return (
@@ -260,14 +267,17 @@ export default async function LondonPage() {
                   href={`/fractional-jobs?location=London&role=${item.role}`}
                   className="group"
                 >
-                  <div className="bg-gray-50 rounded-xl p-6 hover:bg-purple-50 hover:shadow-lg transition-all duration-200 border border-transparent hover:border-purple-200">
-                    <span className="text-4xl mb-4 block">{item.icon}</span>
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors mb-2">
+                  <article className="bg-gray-50 rounded-xl p-8 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-200">
+                    <span className="text-4xl mb-6 block">{item.icon}</span>
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-700 transition-colors mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-purple-700 font-semibold mb-1">{roleCount} jobs</p>
-                    <p className="text-gray-600 text-sm">{item.rate}</p>
-                  </div>
+                    <p className="text-gray-500 text-sm mb-4">{item.subtitle}</p>
+                    <div className="flex justify-between items-center pt-4 border-t border-gray-200">
+                      <span className="text-sm text-gray-500">{item.rate}</span>
+                      <span className="text-sm font-medium text-purple-600">{roleCount} roles</span>
+                    </div>
+                  </article>
                 </Link>
               )
             })}
@@ -275,93 +285,21 @@ export default async function LondonPage() {
         </div>
       </section>
 
-      {/* Why Choose London */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose London?</h2>
-            <p className="text-xl text-gray-600">The UK's premier market for fractional executive careers</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-3xl">🏙️</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Largest Market</h3>
-              <p className="text-gray-600">
-                London has the UK's largest concentration of fractional opportunities - 60% of all UK fractional roles are based here.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-3xl">💷</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Premium Rates</h3>
-              <p className="text-gray-600">
-                London fractional executives earn 15-25% more than national averages. Day rates range from £800-£1,500.
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-sm">
-              <div className="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
-                <span className="text-3xl">🚀</span>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Top Startups</h3>
-              <p className="text-gray-600">
-                Work with Europe's leading startups and scale-ups in fintech, healthtech, SaaS and more.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* London Industries */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">London Industries</h2>
-            <p className="text-xl text-gray-600">High-growth sectors hiring fractional executives in London</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {londonIndustries.map((industry) => (
-              <div key={industry.name} className="bg-gray-50 rounded-xl p-6 text-center hover:bg-purple-50 transition-colors">
-                <span className="text-4xl mb-3 block">{industry.icon}</span>
-                <h3 className="font-bold text-gray-900 mb-1">{industry.name}</h3>
-                <p className="text-purple-700 text-sm font-semibold">{industry.growth}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* London Market Overview */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">London Fractional Market Overview</h2>
-          <div className="prose prose-lg max-w-none text-gray-600">
-            <p className="mb-6">
-              London dominates the UK fractional executive market, accounting for 60% of all fractional opportunities nationwide. The concentration of startups, scale-ups, and established companies seeking flexible leadership has created a thriving ecosystem for fractional professionals.
-            </p>
-            <p className="mb-6">
-              According to recent market research, around 5% of UK employees are in temporary or fractional positions, equating to approximately 1.5-1.6 million people. In London specifically, the fractional market has grown by 35% year-over-year, driven by companies seeking cost-effective access to senior expertise.
-            </p>
-            <p>
-              Companies report 40-60% cost reductions when hiring fractional executives compared to full-time equivalents, while professionals cite flexibility and higher total earnings as primary motivations for fractional work.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured London Jobs */}
+      {/* Featured Jobs */}
       {(londonJobs as any[]).length > 0 && (
-        <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured London Opportunities</h2>
-              <p className="text-xl text-gray-600">Hand-picked fractional executive positions in London</p>
+        <section className="py-24 md:py-32 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex justify-between items-end mb-12">
+              <div>
+                <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Featured</span>
+                <h2 className="text-4xl font-bold text-gray-900">London Opportunities</h2>
+              </div>
+              <Link
+                href="/fractional-jobs?location=London"
+                className="hidden md:inline-flex items-center text-purple-700 font-semibold hover:text-purple-900 transition-colors"
+              >
+                View all →
+              </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
               {(londonJobs as any[]).map((job: any) => {
@@ -386,10 +324,10 @@ export default async function LondonPage() {
                 )
               })}
             </div>
-            <div className="text-center">
+            <div className="text-center md:hidden">
               <Link
                 href="/fractional-jobs?location=London"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-purple-700 text-white hover:bg-purple-800 transition-all duration-200"
+                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-purple-700 text-white hover:bg-purple-800 transition-all"
               >
                 View All London Jobs →
               </Link>
@@ -398,194 +336,132 @@ export default async function LondonPage() {
         </section>
       )}
 
-      {/* Success Stories */}
-      <section className="py-20 md:py-28 bg-purple-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Testimonials - Editorial Style */}
+      <section className="py-24 md:py-32 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">London Success Stories</h2>
-            <p className="text-xl text-purple-200">Real fractional professionals thriving in London</p>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-500 mb-4 block">Perspectives</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">From London's Fractional Leaders</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {successStories.map((story, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur rounded-xl p-8 border border-white/20">
-                <p className="text-white text-lg mb-6 italic">"{story.quote}"</p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-purple-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
+              <article key={i} className="bg-white/5 backdrop-blur rounded-xl p-8 border border-white/10">
+                <blockquote className="text-white/90 text-lg mb-8 leading-relaxed italic">
+                  "{story.quote}"
+                </blockquote>
+                <footer className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-white font-bold text-lg">
                     {story.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-bold text-white">{story.name}</p>
-                    <p className="text-purple-200 text-sm">{story.role}</p>
-                    <p className="text-purple-300 text-xs">{story.area} • {story.clients} Clients • {story.earnings}</p>
+                    <cite className="font-semibold text-white not-italic block">{story.name}</cite>
+                    <span className="text-white/60 text-sm">{story.role} • {story.area}</span>
                   </div>
-                </div>
-              </div>
+                </footer>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* FAQ Section - Clean */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600">Everything you need to know about fractional jobs in London</p>
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">FAQ</span>
+            <h2 className="text-4xl font-bold text-gray-900">Common Questions</h2>
           </div>
 
-          <div className="space-y-6">
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                What is a fractional job in London?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                A fractional job in London is a part-time executive role where you work with a London-based company for 1-3 days per week, providing strategic leadership without a full-time commitment. London has the UK's largest fractional market with 60% of all fractional opportunities.
-              </p>
-            </details>
-
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                How much do fractional executives earn in London?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                London fractional executives typically earn £800-£1,500 per day, which is 15-25% higher than national UK averages. Most professionals work with 2-4 clients simultaneously, earning £150,000-£300,000+ annually. City of London and Canary Wharf roles command the highest rates.
-              </p>
-            </details>
-
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                Which London areas have the most fractional jobs?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                The City of London has the most opportunities followed by Shoreditch/Tech City. Canary Wharf, Kings Cross, Westminster, and Southwark also have strong fractional markets. Shoreditch is particularly popular for tech and startup fractional roles.
-              </p>
-            </details>
-
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                Do I need to commute to London for fractional roles?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                Most London fractional roles are hybrid, requiring 1-2 days per week in the office. 65% of London fractional positions offer remote working for remaining days. Pure remote London fractional roles do exist but are less common than hybrid arrangements.
-              </p>
-            </details>
-
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                What industries hire fractional executives in London?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                FinTech, SaaS/Cloud, and HealthTech lead fractional hiring in London. E-commerce, PropTech, and EdTech are also growing rapidly. The City and Canary Wharf focus on financial services, while Shoreditch dominates tech startups.
-              </p>
-            </details>
-
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                How do I find fractional jobs in London?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                Use specialist fractional job boards like Fractional Quest, work with London-based fractional recruitment agencies (Bain & Gray, Cast UK, Marks Sattin), and network in London tech/business communities. LinkedIn and personal networks are also crucial for London fractional roles.
-              </p>
-            </details>
-
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                What's the difference between fractional and interim roles in London?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600 leading-relaxed">
-                Fractional roles are ongoing part-time positions (1-3 days/week) with multiple clients. Interim roles are full-time temporary positions (covering maternity leave, gaps, projects). London has both markets, but fractional roles offer more flexibility and often higher total earnings.
-              </p>
-            </details>
+          <div className="divide-y divide-gray-200">
+            {[
+              {
+                q: 'How much do fractional executives earn in London?',
+                a: 'London fractional executives typically earn £800-£1,500 per day, which is 15-25% higher than national UK averages. Most professionals work with 2-4 clients simultaneously, earning £150,000-£300,000+ annually.'
+              },
+              {
+                q: 'Which London areas have the most fractional jobs?',
+                a: 'The City of London has the most opportunities followed by Shoreditch/Tech City. Canary Wharf, Kings Cross, and Westminster also have strong fractional markets.'
+              },
+              {
+                q: 'Do I need to commute to London for fractional roles?',
+                a: 'Most London fractional roles are hybrid, requiring 1-2 days per week in the office. 65% of positions offer remote working for remaining days.'
+              },
+              {
+                q: 'What industries hire fractional executives in London?',
+                a: 'FinTech, SaaS/Cloud, and HealthTech lead fractional hiring in London. E-commerce, PropTech, and EdTech are also growing rapidly.'
+              },
+            ].map((faq, i) => (
+              <details key={i} className="group py-6">
+                <summary className="flex justify-between items-center cursor-pointer list-none">
+                  <span className="font-semibold text-lg text-gray-900 pr-8">{faq.q}</span>
+                  <span className="text-gray-400 group-open:rotate-45 transition-transform text-2xl">+</span>
+                </summary>
+                <p className="mt-4 text-gray-600 leading-relaxed pr-12">{faq.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Internal Links Section - SEO */}
-      <section className="py-16 bg-white border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">London Fractional Executive Resources</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* London Roles */}
+      {/* Internal Links */}
+      <section className="py-16 bg-gray-50 border-t border-gray-200">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-              <h3 className="font-bold text-gray-900 mb-4">London Roles by Function</h3>
-              <ul className="space-y-2 text-gray-600">
+              <h3 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">London Roles</h3>
+              <ul className="space-y-3 text-gray-600">
                 <li><Link href="/fractional-cfo-jobs-uk" className="hover:text-purple-700 transition-colors">Fractional CFO Jobs UK</Link></li>
                 <li><Link href="/fractional-cmo-jobs-uk" className="hover:text-purple-700 transition-colors">Fractional CMO Jobs UK</Link></li>
                 <li><Link href="/fractional-cto-jobs-uk" className="hover:text-purple-700 transition-colors">Fractional CTO Jobs UK</Link></li>
                 <li><Link href="/fractional-coo-jobs-uk" className="hover:text-purple-700 transition-colors">Fractional COO Jobs UK</Link></li>
-                <li><Link href="/fractional-hr-jobs-uk" className="hover:text-purple-700 transition-colors">Fractional HR Jobs UK</Link></li>
               </ul>
             </div>
-
-            {/* Other Locations */}
             <div>
-              <h3 className="font-bold text-gray-900 mb-4">Other UK Locations</h3>
-              <ul className="space-y-2 text-gray-600">
+              <h3 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">Other Locations</h3>
+              <ul className="space-y-3 text-gray-600">
                 <li><Link href="/fractional-jobs" className="hover:text-purple-700 transition-colors">All Fractional Jobs UK</Link></li>
                 <li><Link href="/fractional-jobs-manchester" className="hover:text-purple-700 transition-colors">Fractional Jobs Manchester</Link></li>
                 <li><Link href="/fractional-jobs-birmingham" className="hover:text-purple-700 transition-colors">Fractional Jobs Birmingham</Link></li>
                 <li><Link href="/fractional-jobs-edinburgh" className="hover:text-purple-700 transition-colors">Fractional Jobs Edinburgh</Link></li>
-                <li><Link href="/remote-fractional-jobs" className="hover:text-purple-700 transition-colors">Remote Fractional Jobs UK</Link></li>
               </ul>
             </div>
-
-            {/* Career Guides */}
             <div>
-              <h3 className="font-bold text-gray-900 mb-4">Fractional Career Guides</h3>
-              <ul className="space-y-2 text-gray-600">
-                <li><Link href="/how-to-become-a-fractional-executive" className="hover:text-purple-700 transition-colors">How to Become a Fractional Executive</Link></li>
-                <li><Link href="/fractional-executive-salary-uk" className="hover:text-purple-700 transition-colors">Fractional Executive Salary UK</Link></li>
-                <li><Link href="/fractional-vs-interim" className="hover:text-purple-700 transition-colors">Fractional vs Interim Roles</Link></li>
-                <li><Link href="/how-to-find-fractional-jobs" className="hover:text-purple-700 transition-colors">How to Find Fractional Jobs</Link></li>
-                <li><Link href="/fractional-jobs-articles" className="hover:text-purple-700 transition-colors">All Career Guides</Link></li>
+              <h3 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">Resources</h3>
+              <ul className="space-y-3 text-gray-600">
+                <li><Link href="/how-to-become-a-fractional-executive" className="hover:text-purple-700 transition-colors">How to Go Fractional</Link></li>
+                <li><Link href="/fractional-executive-salary-uk" className="hover:text-purple-700 transition-colors">Salary Guide</Link></li>
+                <li><Link href="/fractional-jobs-articles" className="hover:text-purple-700 transition-colors">All Articles</Link></li>
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Searches */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Searches</h2>
-          <div className="flex flex-wrap gap-3">
-            {relatedSearches.map((search) => (
-              <Link
-                key={search}
-                href={`/fractional-jobs?q=${encodeURIComponent(search)}`}
-                className="px-4 py-2 bg-white rounded-full text-gray-700 hover:bg-purple-100 hover:text-purple-700 transition-colors text-sm border border-gray-200"
-              >
-                {search}
-              </Link>
-            ))}
           </div>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Work in London?
+      <section className="py-24 md:py-32 bg-gray-900">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-500 mb-6 block">Get Started</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Ready to work in London?
           </h2>
-          <p className="text-xl text-purple-100 mb-10">
+          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
             {stats.totalLondon}+ fractional executive opportunities across London's top startups and scale-ups.
           </p>
-          <Link
-            href="/fractional-jobs?location=London"
-            className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-purple-900 hover:bg-purple-50 transition-all duration-200"
-          >
-            Browse London Jobs →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/fractional-jobs?location=London"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200"
+            >
+              Browse London Jobs
+            </Link>
+            <Link
+              href="/handler/sign-up"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg border border-white/20 text-white hover:bg-white/10 transition-all duration-200"
+            >
+              Join the Platform
+            </Link>
+          </div>
         </div>
       </section>
     </div>
