@@ -5,6 +5,9 @@ import { createDbQuery } from '@/lib/db'
 import { EmbeddedJobBoard } from '@/components/EmbeddedJobBoard'
 import { FAQ, CMO_FAQS } from '@/components/FAQ'
 import { VideoHeroBackground } from '@/components/VideoHeroBackground'
+import { RoleCalculator } from '@/components/RoleCalculator'
+import { RoleSkillsGraph } from '@/components/RoleSkillsGraph'
+import { IR35Calculator } from '@/components/IR35Calculator'
 
 export const revalidate = 3600
 
@@ -273,6 +276,51 @@ export default async function FractionalCmoJobsUkPage() {
               <li>Board-level communication skills</li>
             </ul>
           </article>
+        </div>
+      </section>
+
+      {/* CMO Skills Graph */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">Skills & Competencies</span>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900">
+              What Skills Do Fractional CMOs Need?
+            </h2>
+          </div>
+          <RoleSkillsGraph role="cmo" width={800} height={450} />
+        </div>
+      </section>
+
+      {/* Calculator Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">Calculator</span>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900">
+              Fractional CMO Earnings & Savings
+            </h2>
+            <p className="text-gray-600 mt-4">
+              Whether you're a CMO looking to go fractional, or a company considering hiring one
+            </p>
+          </div>
+          <RoleCalculator role="cmo" />
+        </div>
+      </section>
+
+      {/* IR35 Calculator Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">UK Tax</span>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900">
+              IR35: Inside vs Outside
+            </h2>
+            <p className="text-gray-600 mt-4">
+              As a fractional CMO, your IR35 status significantly impacts your take-home pay
+            </p>
+          </div>
+          <IR35Calculator defaultDayRate={950} />
         </div>
       </section>
 

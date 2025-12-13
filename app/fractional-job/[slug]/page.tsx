@@ -6,6 +6,7 @@ import { Badge } from '@/components/Badge'
 import { JobHeader } from '@/components/JobHeader'
 import { JobBody } from '@/components/JobBody'
 import { SimilarJobs } from '@/components/SimilarJobs'
+import { SingleJobGraph } from '@/components/SingleJobGraph'
 
 // Revalidate every hour for job details
 export const revalidate = 3600
@@ -341,6 +342,27 @@ export default async function JobDetailPage({ params }: PageProps) {
                   </Suspense>
                 </div>
 
+                {/* Mini Skills Graph in Sidebar */}
+                {job.skills_required && Array.isArray(job.skills_required) && job.skills_required.length > 2 && (
+                  <div className="bg-gray-50 p-4 border border-gray-200">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">
+                      Skills Map
+                    </h3>
+                    <div className="overflow-hidden rounded">
+                      <SingleJobGraph
+                        jobId={job.id}
+                        jobTitle={job.title}
+                        company={job.company_name}
+                        skills={job.skills_required.slice(0, 6)}
+                        location={job.location}
+                      />
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2 text-center">
+                      See full graph below
+                    </p>
+                  </div>
+                )}
+
                 {/* Share Card */}
                 <div className="bg-gray-50 p-6 border border-gray-200">
                   <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-4">
@@ -367,6 +389,28 @@ export default async function JobDetailPage({ params }: PageProps) {
               </div>
             </div>
           </div>
+
+          {/* Full Skills Knowledge Graph */}
+          {job.skills_required && Array.isArray(job.skills_required) && job.skills_required.length > 0 && (
+            <section className="mt-16 pt-12 border-t border-gray-200">
+              <div className="mb-8">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2">Knowledge Graph</span>
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900">
+                  Skills & Requirements Map
+                </h2>
+                <p className="text-gray-600 mt-2">
+                  Visual representation of this role's key skills and relationships
+                </p>
+              </div>
+              <SingleJobGraph
+                jobId={job.id}
+                jobTitle={job.title}
+                company={job.company_name}
+                skills={job.skills_required}
+                location={job.location}
+              />
+            </section>
+          )}
 
           {/* Bottom CTA */}
           <div className="mt-16 pt-12 border-t border-gray-200">

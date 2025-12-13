@@ -30,9 +30,10 @@ export function CompanyLogo({
   const [imageError, setImageError] = useState(false)
   const brandfetchClientId = process.env.NEXT_PUBLIC_BRANDFETCH_CLIENT_ID
 
+  // Brandfetch CDN format: https://cdn.brandfetch.io/{domain}?c={client_id}
   const showFallback = !companyDomain || imageError || !brandfetchClientId
   const logoUrl = companyDomain && brandfetchClientId
-    ? `https://cdn.brandfetch.io/${companyDomain}/w/400/h/400?c=${brandfetchClientId}`
+    ? `https://cdn.brandfetch.io/${companyDomain}?c=${brandfetchClientId}`
     : null
 
   return (
@@ -67,9 +68,10 @@ export function CompanyLogoLarge({
   const [imageError, setImageError] = useState(false)
   const brandfetchClientId = process.env.NEXT_PUBLIC_BRANDFETCH_CLIENT_ID
 
+  // Brandfetch CDN format: https://cdn.brandfetch.io/{domain}?c={client_id}
   const showFallback = !companyDomain || imageError || !brandfetchClientId
   const logoUrl = companyDomain && brandfetchClientId
-    ? `https://cdn.brandfetch.io/${companyDomain}/w/400/h/400?c=${brandfetchClientId}`
+    ? `https://cdn.brandfetch.io/${companyDomain}?c=${brandfetchClientId}`
     : null
 
   return (
