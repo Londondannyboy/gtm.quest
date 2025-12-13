@@ -53,8 +53,9 @@ app.add_middleware(
 )
 
 # Pydantic AI Agent for extraction
+# Using Google Gemini instead of Anthropic
 extraction_agent = Agent(
-    model="anthropic:claude-sonnet-4-20250514",
+    model="google-gla:gemini-2.0-flash",  # or gemini-1.5-pro for more complex tasks
     result_type=list[ExtractedPreference],
     system_prompt="""
 You are a career preference extraction agent for Fractional.Quest, a platform for fractional executive roles.
