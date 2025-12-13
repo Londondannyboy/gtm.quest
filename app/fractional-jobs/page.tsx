@@ -39,28 +39,31 @@ interface FilterOption {
   label: string
 }
 
+// Static fractional role categories
+const FRACTIONAL_ROLES: FilterOption[] = [
+  { value: '', label: 'All Roles' },
+  { value: 'CFO', label: 'Fractional CFO' },
+  { value: 'CMO', label: 'Fractional CMO' },
+  { value: 'CTO', label: 'Fractional CTO' },
+  { value: 'COO', label: 'Fractional COO' },
+  { value: 'Sales', label: 'Fractional Sales' },
+  { value: 'HR', label: 'Fractional HR' },
+]
+
+// Map database role_category values to fractional categories
+const ROLE_CATEGORY_MAPPING: Record<string, string[]> = {
+  'CFO': ['CFO', 'Finance Director', 'Finance Manager', 'Financial Controller', 'Head of Finance', 'Finance', 'Accounting/Auditing'],
+  'CMO': ['CMO', 'Marketing Director', 'Marketing Manager', 'Advertising', 'Advertising Strategist'],
+  'CTO': ['CTO', 'Head of AI', 'AI Director', 'Engineering and Information Technology', 'Software Engineering Coach'],
+  'COO': ['COO', 'Managing Director', 'Programme Manager', 'Project Manager', 'Chief of Staff'],
+  'Sales': ['Sales Director', 'Business Consultant', 'Client Success Manager'],
+  'HR': ['HR', 'HR Director', 'People Director'],
+}
+
 // Fetch filter options from database
 async function getFilterOptions(sql: any) {
-  // Get role categories
-  const roleResults = await sql`
-    SELECT DISTINCT role_category
-    FROM jobs
-    WHERE is_active = true AND role_category IS NOT NULL
-    ORDER BY role_category
-  `
-  const roleOptions: FilterOption[] = [
-    { value: '', label: 'All Roles' },
-    ...roleResults.map((r: any) => ({
-      value: r.role_category,
-      label: r.role_category === 'CFO' ? 'CFO - Finance' :
-             r.role_category === 'CMO' ? 'CMO - Marketing' :
-             r.role_category === 'CTO' ? 'CTO - Technology' :
-             r.role_category === 'COO' ? 'COO - Operations' :
-             r.role_category === 'HR' ? 'HR Director' :
-             r.role_category === 'Sales' ? 'Sales Director' :
-             r.role_category
-    }))
-  ]
+  // Use static fractional role categories
+  const roleOptions: FilterOption[] = FRACTIONAL_ROLES
 
   // Get workplace types
   const workTypeResults = await sql`
@@ -175,8 +178,11 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     // Build dynamic WHERE clause
     let whereConditions = ['is_active = true']
 
-    if (roleFilter) {
-      whereConditions.push(`role_category = '${roleFilter}'`)
+    if (roleFilter && ROLE_CATEGORY_MAPPING[roleFilter]) {
+      // Map the fractional role to all matching database categories
+      const mappedCategories = ROLE_CATEGORY_MAPPING[roleFilter]
+      const categoryConditions = mappedCategories.map(cat => `role_category = '${cat}'`).join(' OR ')
+      whereConditions.push(`(${categoryConditions})`)
     }
 
     if (remoteFilter === 'remote') {
