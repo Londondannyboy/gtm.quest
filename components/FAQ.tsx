@@ -168,3 +168,136 @@ export const COO_FAQS: FAQItem[] = [
     answer: 'Fractional COOs focus on operational strategy, process improvement, team structure optimization, implementing operational systems, managing key initiatives, and ensuring the business can scale efficiently. They often work closely with the CEO to execute on strategic priorities.',
   },
 ]
+
+// Location-based FAQs
+export const LONDON_FAQS: FAQItem[] = [
+  {
+    question: 'How much do fractional executives earn in London?',
+    answer: 'London fractional executives typically earn £800-£1,500 per day, which is 15-25% higher than national UK averages. Most professionals work with 2-4 clients simultaneously, earning £150,000-£300,000+ annually.',
+  },
+  {
+    question: 'Which London areas have the most fractional jobs?',
+    answer: 'The City of London has the most opportunities, followed by Shoreditch/Tech City. Canary Wharf, Kings Cross, and Westminster also have strong fractional markets. Each area tends to specialize: City for finance, Shoreditch for tech startups, Canary Wharf for corporate.',
+  },
+  {
+    question: 'Do I need to commute to London for fractional roles?',
+    answer: 'Most London fractional roles are hybrid, requiring 1-2 days per week in the office. Around 65% of positions offer remote working for the remaining days. Some roles are fully remote with occasional in-person meetings.',
+  },
+  {
+    question: 'What industries hire fractional executives in London?',
+    answer: 'FinTech, SaaS/Cloud, and HealthTech lead fractional hiring in London. E-commerce, PropTech, and EdTech are also growing rapidly. The City attracts finance-focused roles while Shoreditch dominates tech hiring.',
+  },
+  {
+    question: 'Is London competitive for fractional roles?',
+    answer: 'Yes, but the market is large enough for experienced executives. London accounts for around 60% of UK fractional opportunities. Building a niche specialism (industry or function) and strong network are key to standing out.',
+  },
+]
+
+export const MANCHESTER_FAQS: FAQItem[] = [
+  {
+    question: 'How much do fractional executives earn in Manchester?',
+    answer: 'Manchester fractional executives typically earn £650-£1,200 per day. While lower than London rates, the lower cost of living means comparable purchasing power. Many executives work with a mix of Manchester and remote London clients.',
+  },
+  {
+    question: 'What industries hire fractional executives in Manchester?',
+    answer: 'Manchester has strong demand in digital/ecommerce, media, and professional services. The growing tech scene in MediaCityUK and the Northern Quarter creates opportunities for fractional CTOs and CMOs.',
+  },
+  {
+    question: 'Is Manchester a good base for fractional work?',
+    answer: 'Yes. Manchester offers excellent transport links, lower living costs than London, and a growing business ecosystem. Many fractional executives are based in Manchester and work with clients across the North and remotely with London companies.',
+  },
+]
+
+export const BIRMINGHAM_FAQS: FAQItem[] = [
+  {
+    question: 'How much do fractional executives earn in Birmingham?',
+    answer: 'Birmingham fractional executives typically earn £600-£1,100 per day. The Midlands market is growing, with opportunities in manufacturing, automotive, and professional services sectors.',
+  },
+  {
+    question: 'What sectors hire fractional executives in Birmingham?',
+    answer: 'Birmingham has strong demand in manufacturing, automotive, logistics, and professional services. The city is also seeing growth in FinTech and tech startups, creating new opportunities for fractional leaders.',
+  },
+]
+
+// Industry-based FAQs
+export const TECH_FAQS: FAQItem[] = [
+  {
+    question: 'How much do Fractional CTOs earn in the UK?',
+    answer: 'Fractional CTOs in the UK typically earn £1,000-£1,500 per day. Those with expertise in AI/ML, cloud architecture, or cybersecurity command the highest rates. Working 2-3 days per week across 2-3 clients, annual earnings of £200,000-£350,000 are achievable.',
+  },
+  {
+    question: 'What experience do I need for fractional tech roles?',
+    answer: 'Most fractional tech leadership roles require 15+ years of experience with at least 5 years in senior positions (CTO, VP Engineering, Tech Director). Startup or scale-up experience is highly valued, as is experience with technical due diligence and team scaling.',
+  },
+  {
+    question: 'Are fractional tech roles mostly remote?',
+    answer: 'Yes - approximately 65% of fractional tech roles offer remote or hybrid working. Tech leadership is well-suited to remote work, though most clients prefer some in-person time for team building and strategic sessions.',
+  },
+  {
+    question: 'What tech skills are most in demand for fractional roles?',
+    answer: 'Cloud architecture (AWS/GCP/Azure), AI/ML implementation, DevOps, security/compliance, and team scaling are the most sought-after skills. Experience with technical due diligence for fundraising and M&A is also highly valued.',
+  },
+]
+
+export const SAAS_FAQS: FAQItem[] = [
+  {
+    question: 'Why do SaaS companies hire fractional executives?',
+    answer: 'SaaS companies often need specialized expertise at different growth stages. Fractional executives provide experienced leadership for challenges like scaling ARR, building teams, preparing for fundraising, or expanding into new markets - without full-time costs.',
+  },
+  {
+    question: 'What fractional roles are most common in SaaS?',
+    answer: 'Fractional CMOs and CTOs are most common, followed by CFOs. SaaS companies particularly value fractional executives with experience in product-led growth, demand generation, SaaS metrics, and preparing for venture funding.',
+  },
+  {
+    question: 'What SaaS experience do fractional roles require?',
+    answer: 'Most SaaS fractional roles require proven experience with SaaS metrics (ARR, MRR, churn, CAC/LTV), understanding of subscription business models, and track record of scaling SaaS companies through different growth stages.',
+  },
+]
+
+export const FINANCE_FAQS: FAQItem[] = [
+  {
+    question: 'What fractional roles are available in financial services?',
+    answer: 'Financial services companies hire fractional executives across finance, technology, compliance, and operations. Fractional CFOs, CTOs, and Chief Risk Officers are particularly common in FinTech and growing financial services firms.',
+  },
+  {
+    question: 'Do I need financial services experience for these roles?',
+    answer: 'Most roles in financial services require sector-specific experience, particularly around regulatory compliance (FCA), risk management, and financial product development. FinTech roles often value both traditional finance and tech backgrounds.',
+  },
+]
+
+export const HEALTHCARE_FAQS: FAQItem[] = [
+  {
+    question: 'What fractional opportunities exist in healthcare?',
+    answer: 'Healthcare and HealthTech companies hire fractional executives in technology, commercial, operations, and clinical leadership. Fractional CTOs, CMOs, and COOs are common, along with specialist roles like Chief Medical Officers.',
+  },
+  {
+    question: 'What qualifications are needed for healthcare fractional roles?',
+    answer: 'Healthcare fractional roles typically require sector experience, understanding of NHS/private healthcare landscapes, and knowledge of healthcare regulations. HealthTech roles often seek executives who can bridge clinical and commercial expertise.',
+  },
+]
+
+export const ECOMMERCE_FAQS: FAQItem[] = [
+  {
+    question: 'What fractional roles do ecommerce companies hire?',
+    answer: 'Ecommerce and DTC brands commonly hire fractional CMOs (for customer acquisition and retention), CTOs (for platform scaling), and CFOs (for unit economics and funding). Fractional COOs help with fulfilment and operations scaling.',
+  },
+  {
+    question: 'What skills are valued in ecommerce fractional roles?',
+    answer: 'Experience with performance marketing, marketplace management (Amazon, Shopify), conversion optimization, and unit economics are highly valued. Understanding seasonal planning, inventory management, and logistics is also important.',
+  },
+]
+
+export const STARTUPS_FAQS: FAQItem[] = [
+  {
+    question: 'When should a startup hire a fractional executive?',
+    answer: 'Startups typically hire fractional executives when they need senior expertise but cannot afford or justify full-time C-suite hires. Common triggers include preparing for fundraising, scaling after Series A, or addressing specific growth challenges.',
+  },
+  {
+    question: 'What do fractional executives cost vs full-time hires?',
+    answer: 'Fractional executives typically cost 30-50% less than equivalent full-time hires when factoring in salary, equity, benefits, and overhead. A fractional CFO at £1,000/day for 2 days/week costs around £100k/year vs £150-180k for a full-time CFO.',
+  },
+  {
+    question: 'How do startups structure fractional engagements?',
+    answer: 'Most startup fractional engagements are 1-2 days per week on retainer, with flexibility to scale up during critical periods (fundraising, launches). Typical engagement lengths are 6-12 months, though many become ongoing relationships.',
+  },
+]

@@ -1,8 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
-import { JobCard } from '@/components/JobCard'
 import { VideoHeroBackground } from '@/components/VideoHeroBackground'
+import { EmbeddedJobBoard } from '@/components/EmbeddedJobBoard'
+import { IR35Calculator } from '@/components/IR35Calculator'
+import { FAQ, LONDON_FAQS } from '@/components/FAQ'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -76,29 +78,9 @@ async function getLondonStats() {
   }
 }
 
-async function getLondonJobs() {
-  try {
-    const sql = createDbQuery()
-    const jobs = await sql`
-      SELECT
-        id, slug, title, company_name, location, is_remote, workplace_type,
-        compensation, role_category, skills_required, posted_date
-      FROM jobs
-      WHERE is_active = true AND location ILIKE '%london%'
-      ORDER BY posted_date DESC NULLS LAST
-      LIMIT 6
-    `
-    return jobs
-  } catch (error) {
-    return []
-  }
-}
 
 export default async function LondonPage() {
-  const [stats, londonJobs] = await Promise.all([
-    getLondonStats(),
-    getLondonJobs()
-  ])
+  const stats = await getLondonStats()
 
   const areaJobEstimates = londonAreas.map((area, i) => ({
     ...area,
@@ -285,56 +267,17 @@ export default async function LondonPage() {
         </div>
       </section>
 
-      {/* Featured Jobs */}
-      {(londonJobs as any[]).length > 0 && (
-        <section className="py-24 md:py-32 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex justify-between items-end mb-12">
-              <div>
-                <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Featured</span>
-                <h2 className="text-4xl font-bold text-gray-900">London Opportunities</h2>
-              </div>
-              <Link
-                href="/fractional-jobs?location=London"
-                className="hidden md:inline-flex items-center text-purple-700 font-semibold hover:text-purple-900 transition-colors"
-              >
-                View all →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {(londonJobs as any[]).map((job: any) => {
-                const postedDate = job.posted_date ? new Date(job.posted_date) : null
-                const postedDaysAgo = postedDate
-                  ? Math.floor((Date.now() - postedDate.getTime()) / (1000 * 60 * 60 * 24))
-                  : undefined
-
-                return (
-                  <Link key={job.id} href={`/fractional-job/${job.slug}`}>
-                    <JobCard
-                      title={job.title}
-                      company={job.company_name}
-                      location={job.location || 'London'}
-                      isRemote={job.is_remote || job.workplace_type === 'Remote'}
-                      compensation={job.compensation}
-                      roleCategory={job.role_category}
-                      skills={job.skills_required || []}
-                      postedDaysAgo={postedDaysAgo}
-                    />
-                  </Link>
-                )
-              })}
-            </div>
-            <div className="text-center md:hidden">
-              <Link
-                href="/fractional-jobs?location=London"
-                className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-purple-700 text-white hover:bg-purple-800 transition-all"
-              >
-                View All London Jobs →
-              </Link>
-            </div>
+      {/* Jobs Board */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Opportunities</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">London Fractional Jobs</h2>
+            <p className="text-xl text-gray-500">Browse {stats.totalLondon}+ live opportunities in London</p>
           </div>
-        </section>
-      )}
+          <EmbeddedJobBoard defaultLocation="London" />
+        </div>
+      </section>
 
       {/* Testimonials - Editorial Style */}
       <section className="py-24 md:py-32 bg-gray-900">
@@ -365,42 +308,27 @@ export default async function LondonPage() {
         </div>
       </section>
 
-      {/* FAQ Section - Clean */}
+      {/* IR35 Calculator */}
       <section className="py-24 md:py-32 bg-white">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">FAQ</span>
-            <h2 className="text-4xl font-bold text-gray-900">Common Questions</h2>
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Tax Planning</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">IR35 Calculator</h2>
+            <p className="text-xl text-gray-500">Understand your take-home as a fractional executive in London</p>
           </div>
+          <IR35Calculator defaultDayRate={950} />
+        </div>
+      </section>
 
-          <div className="divide-y divide-gray-200">
-            {[
-              {
-                q: 'How much do fractional executives earn in London?',
-                a: 'London fractional executives typically earn £800-£1,500 per day, which is 15-25% higher than national UK averages. Most professionals work with 2-4 clients simultaneously, earning £150,000-£300,000+ annually.'
-              },
-              {
-                q: 'Which London areas have the most fractional jobs?',
-                a: 'The City of London has the most opportunities followed by Shoreditch/Tech City. Canary Wharf, Kings Cross, and Westminster also have strong fractional markets.'
-              },
-              {
-                q: 'Do I need to commute to London for fractional roles?',
-                a: 'Most London fractional roles are hybrid, requiring 1-2 days per week in the office. 65% of positions offer remote working for remaining days.'
-              },
-              {
-                q: 'What industries hire fractional executives in London?',
-                a: 'FinTech, SaaS/Cloud, and HealthTech lead fractional hiring in London. E-commerce, PropTech, and EdTech are also growing rapidly.'
-              },
-            ].map((faq, i) => (
-              <details key={i} className="group py-6">
-                <summary className="flex justify-between items-center cursor-pointer list-none">
-                  <span className="font-semibold text-lg text-gray-900 pr-8">{faq.q}</span>
-                  <span className="text-gray-400 group-open:rotate-45 transition-transform text-2xl">+</span>
-                </summary>
-                <p className="mt-4 text-gray-600 leading-relaxed pr-12">{faq.a}</p>
-              </details>
-            ))}
+      {/* FAQ Section */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">FAQ</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Common Questions</h2>
+            <p className="text-xl text-gray-500">About fractional work in London</p>
           </div>
+          <FAQ items={LONDON_FAQS} title="" />
         </div>
       </section>
 

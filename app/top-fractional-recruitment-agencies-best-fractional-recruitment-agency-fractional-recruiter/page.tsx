@@ -49,9 +49,8 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                 </span>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[0.95] tracking-tight">
-                  Fractional Executive<br />
-                  <span className="text-amber-400">Recruitment</span><br />
-                  Done Differently
+                  Fractional Recruitment Agency<br />
+                  <span className="text-amber-400">Done Differently</span>
                 </h1>
 
                 <p className="text-xl text-white/80 leading-relaxed max-w-xl mb-8">
@@ -181,7 +180,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
           <div className="text-center mb-16">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">Our Approach</span>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900">
-              What We're Building
+              How Our Fractional Recruitment Agency Works
             </h2>
             <p className="text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
               A fractional recruitment agency that prioritises quality matching over volume, with transparent pricing.
@@ -213,7 +212,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
           <div className="text-center mb-12">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">Pricing</span>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
-              Transparent, Success-Based Fees
+              Fractional Recruitment Agency Fees
             </h2>
             <p className="text-xl text-gray-600">No retainers. No upfront costs. Pay only when you hire.</p>
           </div>
@@ -322,6 +321,19 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
             <div className="w-24 h-1 bg-amber-500"></div>
           </div>
 
+          {/* SEO Image */}
+          <figure className="mb-12 -mx-6 lg:-mx-16">
+            <img
+              src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200"
+              alt="Fractional recruitment agency - executive recruiters matching businesses with part-time CFO, CTO and CMO talent"
+              title="Fractional recruitment agency UK"
+              className="w-full h-64 md:h-80 object-cover"
+            />
+            <figcaption className="text-sm text-gray-500 mt-3 px-6 lg:px-16">
+              A specialist fractional recruitment agency connects businesses with experienced part-time executives
+            </figcaption>
+          </figure>
+
           <article className="prose prose-lg prose-gray max-w-none">
             <p className="text-xl text-gray-600 leading-relaxed mb-8 font-light">
               The <strong className="font-semibold text-gray-900">best fractional recruitment agency</strong> specialises in connecting businesses with experienced executives who work on a part-time, ongoing basis. Unlike traditional recruitment agencies that place full-time employees, top fractional recruiters understand the unique requirements of part-time executive engagements.
@@ -360,7 +372,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
           <div className="mb-12">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">FAQ</span>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900">
-              Common Questions About Fractional Recruitment
+              Fractional Recruitment Agency FAQ
             </h2>
           </div>
 

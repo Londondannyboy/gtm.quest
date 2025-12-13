@@ -6,6 +6,7 @@ import { JobHeader } from '@/components/JobHeader'
 import { JobBody } from '@/components/JobBody'
 import { SimilarJobs } from '@/components/SimilarJobs'
 import { SingleJobGraph } from '@/components/SingleJobGraph'
+import { ShareButtons } from '@/components/ShareButtons'
 
 // Revalidate every hour for job details
 export const revalidate = 3600
@@ -294,7 +295,7 @@ export default async function JobDetailPage({ params }: PageProps) {
                   <div className="flex flex-wrap gap-2">
                     {job.compensation && (
                       <span
-                        className="px-3 py-1 rounded-full text-sm font-bold"
+                        className="px-4 py-1.5 rounded-full text-sm font-bold"
                         style={{ backgroundColor: colors.accent, color: 'white' }}
                       >
                         {job.compensation}
@@ -302,11 +303,10 @@ export default async function JobDetailPage({ params }: PageProps) {
                     )}
                     {job.role_category && (
                       <span
-                        className="px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm"
+                        className="px-4 py-1.5 rounded-full text-sm font-bold"
                         style={{
-                          backgroundColor: `${colors.light}33`,
-                          color: colors.text,
-                          border: `1px solid ${colors.light}44`
+                          backgroundColor: `${colors.accent}CC`,
+                          color: 'white'
                         }}
                       >
                         {job.role_category}
@@ -314,11 +314,10 @@ export default async function JobDetailPage({ params }: PageProps) {
                     )}
                     {job.seniority_level && (
                       <span
-                        className="px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm"
+                        className="px-4 py-1.5 rounded-full text-sm font-bold"
                         style={{
-                          backgroundColor: `${colors.light}33`,
-                          color: colors.text,
-                          border: `1px solid ${colors.light}44`
+                          backgroundColor: `${colors.accent}99`,
+                          color: 'white'
                         }}
                       >
                         {job.seniority_level}
@@ -326,8 +325,12 @@ export default async function JobDetailPage({ params }: PageProps) {
                     )}
                     {job.posted_date && (
                       <span
-                        className="px-3 py-1 rounded-full text-sm font-medium"
-                        style={{ color: colors.text, opacity: 0.7 }}
+                        className="px-4 py-1.5 rounded-full text-sm font-medium backdrop-blur-sm"
+                        style={{
+                          backgroundColor: `${colors.light}33`,
+                          color: colors.text,
+                          border: `1px solid ${colors.light}44`
+                        }}
                       >
                         Posted {formatDate(job.posted_date)}
                       </span>
@@ -343,11 +346,22 @@ export default async function JobDetailPage({ params }: PageProps) {
         <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center justify-between">
-              <div className="hidden sm:block">
+              <div className="hidden sm:flex items-center gap-3">
+                {logo && (
+                  <div className="w-8 h-8 rounded bg-white border border-gray-200 p-1 flex items-center justify-center">
+                    <img src={logo} alt="" className="max-w-full max-h-full object-contain" />
+                  </div>
+                )}
                 <p className="text-sm text-gray-600">
                   <span className="font-semibold text-gray-900">{job.title}</span>
                   {' at '}
-                  <span className="font-medium">{job.company_name}</span>
+                  {job.company_domain ? (
+                    <Link href={`/company/${job.company_domain}`} className="font-medium hover:underline" style={{ color: colors.accent }}>
+                      {job.company_name}
+                    </Link>
+                  ) : (
+                    <span className="font-medium">{job.company_name}</span>
+                  )}
                 </p>
               </div>
               <div className="flex items-center gap-3 w-full sm:w-auto">
@@ -355,14 +369,20 @@ export default async function JobDetailPage({ params }: PageProps) {
                   href={job.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-8 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition-colors"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold transition-opacity hover:opacity-90 rounded-lg"
+                  style={{ backgroundColor: colors.accent, color: 'white' }}
+                  aria-label={`Apply for ${job.title} at ${job.company_name}`}
                 >
-                  Apply Now
+                  Apply for This Role
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </a>
-                <button className="p-3 border border-gray-200 hover:bg-gray-50 transition-colors" title="Save Job">
+                <button
+                  className="p-3 border border-gray-200 hover:bg-gray-50 transition-colors rounded-lg"
+                  title={`Save ${job.title} job to your favorites`}
+                  aria-label={`Save ${job.title} job to your favorites`}
+                >
                   <svg className="w-5 h-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                   </svg>
@@ -469,19 +489,68 @@ export default async function JobDetailPage({ params }: PageProps) {
             {/* Sidebar - Fixed Sticky */}
             <div className="lg:col-span-1 mt-12 lg:mt-0">
               <div className="lg:sticky lg:top-24 space-y-6">
+                {/* Company Card */}
+                {job.company_domain && (
+                  <div
+                    className="p-6 rounded-lg"
+                    style={{ backgroundColor: colors.primary }}
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      {logo ? (
+                        <div className="w-14 h-14 rounded-lg bg-white p-2 flex items-center justify-center flex-shrink-0">
+                          <img
+                            src={logo}
+                            alt={`${job.company_name} logo`}
+                            className="max-w-full max-h-full object-contain"
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          className="w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ backgroundColor: colors.accent }}
+                        >
+                          <span className="text-2xl font-black text-white">
+                            {job.company_name.charAt(0)}
+                          </span>
+                        </div>
+                      )}
+                      <div>
+                        <h3 className="font-bold text-lg" style={{ color: colors.text }}>
+                          {job.company_name}
+                        </h3>
+                        {brand?.description && (
+                          <p className="text-sm line-clamp-2" style={{ color: colors.text, opacity: 0.8 }}>
+                            {brand.description.slice(0, 80)}...
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <Link
+                      href={`/company/${job.company_domain}`}
+                      className="block w-full py-3 rounded-lg font-bold text-center transition-opacity hover:opacity-90"
+                      style={{ backgroundColor: colors.accent, color: 'white' }}
+                      aria-label={`View all jobs and information about ${job.company_name}`}
+                    >
+                      View {job.company_name} Company Page
+                    </Link>
+                  </div>
+                )}
+
                 {/* Quick Apply Card */}
-                <div className="bg-black text-white p-6">
-                  <h3 className="text-lg font-bold mb-2">Interested?</h3>
+                <div className="bg-gray-900 text-white p-6 rounded-lg">
+                  <h3 className="text-lg font-bold mb-2">Ready to Apply?</h3>
                   <p className="text-gray-300 text-sm mb-4">
-                    Apply now and take the next step in your fractional career.
+                    Apply for {job.title} at {job.company_name}
                   </p>
                   <a
                     href={job.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full py-3 bg-amber-500 text-black font-bold text-center hover:bg-amber-400 transition-colors"
+                    className="block w-full py-3 rounded-lg font-bold text-center transition-opacity hover:opacity-90"
+                    style={{ backgroundColor: colors.accent, color: 'white' }}
+                    aria-label={`Apply for ${job.title} position at ${job.company_name}`}
                   >
-                    Apply Now →
+                    Apply for This Role →
                   </a>
                 </div>
 
@@ -594,23 +663,11 @@ export default async function JobDetailPage({ params }: PageProps) {
                   <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-4">
                     Share This Job
                   </h3>
-                  <div className="flex gap-3">
-                    <button className="flex-1 p-3 bg-[#0077B5] text-white hover:opacity-90 transition-opacity" title="Share on LinkedIn">
-                      <svg className="w-5 h-5 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                    </button>
-                    <button className="flex-1 p-3 bg-black text-white hover:opacity-90 transition-opacity" title="Share on X">
-                      <svg className="w-5 h-5 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                      </svg>
-                    </button>
-                    <button className="flex-1 p-3 bg-gray-200 text-gray-700 hover:bg-gray-300 transition-colors" title="Copy Link">
-                      <svg className="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                  <ShareButtons
+                    title={job.title}
+                    company={job.company_name}
+                    slug={slug}
+                  />
                 </div>
               </div>
             </div>
@@ -640,29 +697,41 @@ export default async function JobDetailPage({ params }: PageProps) {
 
           {/* Bottom CTA */}
           <div className="mt-16 pt-12 border-t border-gray-200">
-            <div className="bg-black text-white p-8 md:p-12">
+            <div
+              className="p-8 md:p-12 rounded-xl"
+              style={{ backgroundColor: colors.primary }}
+            >
               <div className="max-w-2xl mx-auto text-center">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to apply?</h3>
-                <p className="text-gray-300 mb-8">
-                  Take the next step in your fractional executive career.
+                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: colors.text }}>
+                  Ready to apply for {job.title}?
+                </h3>
+                <p className="mb-8" style={{ color: colors.text, opacity: 0.8 }}>
+                  Join {job.company_name} and take the next step in your fractional executive career.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                   <a
                     href={job.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-amber-500 text-black font-bold hover:bg-amber-400 transition-colors"
+                    className="inline-flex items-center gap-2 px-8 py-4 font-bold transition-opacity hover:opacity-90 rounded-lg"
+                    style={{ backgroundColor: colors.accent, color: 'white' }}
+                    aria-label={`Apply for ${job.title} at ${job.company_name}`}
                   >
-                    Apply Now
+                    Apply for {job.title}
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </a>
                   <Link
                     href="/fractional-jobs"
-                    className="px-8 py-4 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-colors"
+                    className="px-8 py-4 border-2 font-bold transition-colors rounded-lg"
+                    style={{
+                      borderColor: colors.text,
+                      color: colors.text
+                    }}
+                    aria-label="Browse all fractional jobs on Fractional.Quest"
                   >
-                    ← Browse All Jobs
+                    ← Browse All Fractional Jobs
                   </Link>
                 </div>
               </div>

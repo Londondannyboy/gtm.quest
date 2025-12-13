@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
-import { JobCard } from '@/components/JobCard'
+import { VideoHeroBackground } from '@/components/VideoHeroBackground'
+import { EmbeddedJobBoard } from '@/components/EmbeddedJobBoard'
+import { IR35Calculator } from '@/components/IR35Calculator'
+import { FAQ, MANCHESTER_FAQS } from '@/components/FAQ'
 
 export const revalidate = 3600
 
@@ -55,89 +58,107 @@ async function getManchesterStats() {
   }
 }
 
-async function getManchesterJobs() {
-  try {
-    const sql = createDbQuery()
-    const jobs = await sql`
-      SELECT id, slug, title, company_name, location, is_remote, workplace_type,
-        compensation, role_category, skills_required, posted_date
-      FROM jobs
-      WHERE is_active = true AND (location ILIKE '%manchester%' OR location ILIKE '%north west%' OR location ILIKE '%liverpool%')
-      ORDER BY posted_date DESC NULLS LAST
-      LIMIT 6
-    `
-    return jobs
-  } catch (error) {
-    return []
-  }
-}
+// Same video as homepage
+const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
 
 export default async function ManchesterPage() {
-  const [stats, jobs] = await Promise.all([getManchesterStats(), getManchesterJobs()])
+  const stats = await getManchesterStats()
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="manchesterGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#manchesterGrid)" />
-          </svg>
-        </div>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+        <VideoHeroBackground
+          playbackId={HERO_VIDEO_PLAYBACK_ID}
+          fallbackGradient={true}
+        />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link href="/" className="inline-flex items-center text-purple-200 hover:text-white mb-6 transition-colors">
-            ← Back to Home
-          </Link>
-          <div className="inline-block mb-6">
-            <span className="bg-purple-700/50 backdrop-blur text-white px-5 py-2.5 rounded-full text-sm font-medium border border-purple-500/30">
-              {stats.total}+ Jobs in Manchester
-            </span>
-          </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-            Fractional Jobs Manchester
-          </h1>
-          <img src="/logo.svg" alt="Fractional Jobs Manchester - Executive roles in the North West" className="hidden" width={1} height={1} />
-          <p className="max-w-2xl text-xl text-purple-100 mb-10 leading-relaxed">
-            {stats.total}+ fractional executive opportunities across Manchester and the North West. £700-£1,200 daily rates. The UK's fastest-growing tech hub outside London.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/fractional-jobs?location=Manchester"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-purple-900 hover:bg-purple-50 transition-all duration-200"
-            >
-              Browse Manchester Jobs
-            </Link>
+        {/* Bottom-aligned content with glass panel */}
+        <div className="relative z-10 w-full pb-16 md:pb-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-8">
+              {/* Left: Main content */}
+              <div className="max-w-2xl">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/10">
+                  <Link href="/" className="inline-flex items-center text-white/70 hover:text-white mb-6 transition-colors text-sm tracking-wide">
+                    <span className="mr-2">←</span> Back to Home
+                  </Link>
+
+                  <span className="inline-block bg-white/10 backdrop-blur text-white/90 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6">
+                    {stats.total}+ Live Opportunities
+                  </span>
+
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[0.95] tracking-tight">
+                    Fractional Jobs<br />
+                    <span className="text-white/90">Manchester</span>
+                  </h1>
+
+                  <img
+                    src="/images/fractional-jobs-manchester.svg"
+                    alt="Fractional Jobs Manchester - Executive recruitment opportunities in the North West"
+                    className="hidden"
+                    width={1}
+                    height={1}
+                  />
+
+                  <p className="text-lg text-white/70 mb-8 leading-relaxed max-w-lg">
+                    CFO, CMO, CTO roles across Greater Manchester. £700-£1,200 daily rates. The UK's fastest-growing tech hub outside London.
+                  </p>
+
+                  <div className="flex flex-wrap gap-4">
+                    <Link
+                      href="/fractional-jobs?location=Manchester"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white text-black hover:bg-white/90 transition-all duration-200"
+                    >
+                      Browse Manchester Jobs →
+                    </Link>
+                    <Link
+                      href="/handler/sign-up"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
+                    >
+                      Get Notified
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Stats panel */}
+              <div className="w-full lg:w-auto">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">12%</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">UK Market Share</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">£{stats.avgDayRate}</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Avg Day Rate</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">3rd</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">UK Market</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">+25%</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">YoY Growth</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-black text-purple-700">12%</div>
-              <div className="text-gray-600 font-medium">of UK fractional roles</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-purple-700">£{stats.avgDayRate}</div>
-              <div className="text-gray-600 font-medium">average day rate</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-purple-700">3rd</div>
-              <div className="text-gray-600 font-medium">largest UK market</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-purple-700">+25%</div>
-              <div className="text-gray-600 font-medium">YoY market growth</div>
-            </div>
+      {/* Jobs Board - Moved up after hero */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Opportunities</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Manchester Fractional Jobs</h2>
+            <p className="text-xl text-gray-500">Browse {stats.total}+ live opportunities in Greater Manchester</p>
           </div>
+          <EmbeddedJobBoard defaultLocation="Manchester" />
         </div>
       </section>
 
@@ -217,71 +238,27 @@ export default async function ManchesterPage() {
         </div>
       </section>
 
-      {/* Jobs */}
-      {(jobs as any[]).length > 0 && (
-        <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Featured Manchester Jobs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {(jobs as any[]).map((job: any) => (
-                <Link key={job.id} href={`/fractional-job/${job.slug}`}>
-                  <JobCard
-                    title={job.title}
-                    company={job.company_name}
-                    location={job.location || 'Manchester'}
-                    isRemote={job.is_remote}
-                    compensation={job.compensation}
-                    roleCategory={job.role_category}
-                    skills={job.skills_required || []}
-                  />
-                </Link>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link
-                href="/fractional-jobs?location=Manchester"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-purple-700 text-white hover:bg-purple-800 transition-all"
-              >
-                View All Manchester Jobs →
-              </Link>
-            </div>
+      {/* IR35 Calculator */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Tax Planning</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">IR35 Calculator</h2>
+            <p className="text-xl text-gray-500">Understand your take-home as a fractional executive in Manchester</p>
           </div>
-        </section>
-      )}
+          <IR35Calculator defaultDayRate={900} />
+        </div>
+      </section>
 
-      {/* FAQ */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Manchester FAQs</h2>
-          <div className="space-y-6">
-            <details className="group bg-white rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                How much do fractional executives earn in Manchester?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600">
-                Manchester fractional executives typically earn £700-£1,200 per day. Tech and FinTech roles command the highest rates, often approaching London levels for specialist expertise.
-              </p>
-            </details>
-            <details className="group bg-white rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                Is Manchester the best city outside London for fractional work?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600">
-                Manchester is arguably the UK's best city for fractional work outside London. It has the largest tech ecosystem, fastest market growth (+25% YoY), and excellent rates. The combination of lower living costs and strong rates makes it highly attractive.
-              </p>
-            </details>
-            <details className="group bg-white rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                What about MediaCityUK for fractional roles?
-                <span className="text-purple-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600">
-                MediaCityUK in Salford is excellent for fractional CMOs, digital leaders, and creative executives. The BBC, ITV, and numerous production companies create strong demand for part-time marketing and tech leadership.
-              </p>
-            </details>
+      {/* FAQ Section */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">FAQ</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Common Questions</h2>
+            <p className="text-xl text-gray-500">About fractional work in Manchester</p>
           </div>
+          <FAQ items={MANCHESTER_FAQS} title="" />
         </div>
       </section>
 

@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
-import { JobCard } from '@/components/JobCard'
+import { VideoHeroBackground } from '@/components/VideoHeroBackground'
+import { EmbeddedJobBoard } from '@/components/EmbeddedJobBoard'
+import { IR35Calculator } from '@/components/IR35Calculator'
+import { FAQ, TECH_FAQS } from '@/components/FAQ'
 
 export const revalidate = 3600
 
@@ -45,6 +48,9 @@ const relatedSearches = [
   'SaaS Fractional CTO', 'FinTech Fractional CTO', 'Fractional Head of Engineering'
 ]
 
+// Same video as homepage
+const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
+
 async function getTechStats() {
   try {
     const sql = createDbQuery()
@@ -61,101 +67,110 @@ async function getTechStats() {
   }
 }
 
-async function getTechJobs() {
-  try {
-    const sql = createDbQuery()
-    const jobs = await sql`
-      SELECT id, slug, title, company_name, location, is_remote, workplace_type,
-        compensation, role_category, skills_required, posted_date
-      FROM jobs
-      WHERE is_active = true AND (role_category ILIKE '%tech%' OR role_category ILIKE '%CTO%' OR role_category ILIKE '%engineering%' OR title ILIKE '%CTO%' OR title ILIKE '%tech%')
-      ORDER BY posted_date DESC NULLS LAST
-      LIMIT 6
-    `
-    return jobs
-  } catch (error) {
-    return []
-  }
-}
-
 export default async function TechJobsPage() {
-  const [stats, jobs] = await Promise.all([getTechStats(), getTechJobs()])
+  const stats = await getTechStats()
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="techGrid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#techGrid)" />
-          </svg>
-        </div>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+        <VideoHeroBackground
+          playbackId={HERO_VIDEO_PLAYBACK_ID}
+          fallbackGradient={true}
+        />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link href="/" className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors">
-            ← Back to Home
-          </Link>
-          <div className="inline-block mb-6">
-            <span className="bg-blue-700/50 backdrop-blur text-white px-5 py-2.5 rounded-full text-sm font-medium border border-blue-500/30">
-              💻 {stats.total}+ Tech Leadership Roles
-            </span>
-          </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-            Fractional <span className="text-blue-300">Tech</span> Jobs UK
-          </h1>
-          <p className="max-w-2xl text-xl text-blue-100 mb-10 leading-relaxed">
-            {stats.total}+ fractional technology leadership roles. Fractional CTO, VP Engineering, Tech Director positions. £900-£1,500 daily rates across SaaS, FinTech, and HealthTech.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link
-              href="/fractional-jobs?industry=Technology"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-all duration-200"
-            >
-              Browse Tech Jobs
-            </Link>
+        {/* Bottom-aligned content with glass panel */}
+        <div className="relative z-10 w-full pb-16 md:pb-24">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-8">
+              {/* Left: Main content */}
+              <div className="max-w-2xl">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-8 md:p-12 border border-white/10">
+                  <Link href="/" className="inline-flex items-center text-white/70 hover:text-white mb-6 transition-colors text-sm tracking-wide">
+                    <span className="mr-2">←</span> Back to Home
+                  </Link>
+
+                  <span className="inline-block bg-blue-500/20 backdrop-blur text-blue-200 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6">
+                    {stats.total}+ Tech Leadership Roles
+                  </span>
+
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[0.95] tracking-tight">
+                    Fractional<br />
+                    <span className="text-blue-300">Tech</span> Jobs UK
+                  </h1>
+
+                  <p className="text-lg text-white/70 mb-8 leading-relaxed max-w-lg">
+                    Fractional CTO, VP Engineering, Tech Director positions. £900-£1,500 daily rates across SaaS, FinTech, and HealthTech.
+                  </p>
+
+                  <div className="flex flex-wrap gap-4">
+                    <Link
+                      href="/fractional-jobs?industry=Technology"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white text-black hover:bg-white/90 transition-all duration-200"
+                    >
+                      Browse Tech Jobs →
+                    </Link>
+                    <Link
+                      href="/handler/sign-up"
+                      className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-lg bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
+                    >
+                      Get Notified
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Stats panel */}
+              <div className="w-full lg:w-auto">
+                <div className="bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">25%</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">of All Roles</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">£{stats.avgDayRate}</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Avg Day Rate</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">+28%</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">YoY Growth</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl md:text-4xl font-bold text-white font-mono">65%</div>
+                      <div className="text-xs text-white/50 uppercase tracking-wider mt-1">Remote Work</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-black text-blue-700">25%</div>
-              <div className="text-gray-600 font-medium">of all fractional roles</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-blue-700">£{stats.avgDayRate}</div>
-              <div className="text-gray-600 font-medium">average day rate</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-blue-700">+28%</div>
-              <div className="text-gray-600 font-medium">YoY demand growth</div>
-            </div>
-            <div>
-              <div className="text-4xl font-black text-blue-700">65%</div>
-              <div className="text-gray-600 font-medium">offer remote work</div>
-            </div>
+      {/* Jobs Board - Moved up after hero */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Opportunities</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Fractional Tech Jobs</h2>
+            <p className="text-xl text-gray-500">Browse {stats.total}+ tech leadership opportunities</p>
           </div>
+          <EmbeddedJobBoard defaultDepartment="Engineering" />
         </div>
       </section>
 
       {/* Tech Roles */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">By Role</span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Fractional Tech Roles</h2>
-            <p className="text-xl text-gray-600">Technology leadership positions available</p>
+            <p className="text-xl text-gray-500">Technology leadership positions available</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {techRoles.map((role) => (
-              <div key={role.name} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all">
+              <div key={role.name} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{role.name}</h3>
                 <p className="text-gray-600 text-sm mb-2">{role.description}</p>
                 <p className="text-blue-700 font-semibold mb-1">{role.rateRange}</p>
@@ -167,15 +182,16 @@ export default async function TechJobsPage() {
       </section>
 
       {/* Tech Sectors */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">By Sector</span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Tech Sectors Hiring</h2>
-            <p className="text-xl text-gray-600">Industries with highest demand for fractional tech leaders</p>
+            <p className="text-xl text-gray-500">Industries with highest demand for fractional tech leaders</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {techSectors.map((sector) => (
-              <div key={sector.name} className="bg-gray-50 rounded-xl p-6 text-center hover:bg-blue-50 transition-colors">
+              <div key={sector.name} className="bg-white rounded-xl p-6 text-center hover:shadow-md transition-all">
                 <span className="text-4xl mb-3 block">{sector.icon}</span>
                 <h3 className="font-bold text-gray-900 mb-1">{sector.name}</h3>
                 <p className="text-blue-700 text-sm font-semibold mb-1">{sector.growth}</p>
@@ -187,15 +203,16 @@ export default async function TechJobsPage() {
       </section>
 
       {/* Key Skills */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Skills</span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">In-Demand Tech Skills</h2>
-            <p className="text-xl text-gray-600">Skills that command premium fractional rates</p>
+            <p className="text-xl text-gray-500">Skills that command premium fractional rates</p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
             {techSkills.map((skill) => (
-              <span key={skill} className="px-4 py-2 bg-white rounded-full text-gray-700 border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
+              <span key={skill} className="px-4 py-2 bg-gray-50 rounded-full text-gray-700 border border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-colors">
                 {skill}
               </span>
             ))}
@@ -204,13 +221,14 @@ export default async function TechJobsPage() {
       </section>
 
       {/* Why Tech */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">The Opportunity</span>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Fractional Tech Leadership?</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-2xl p-8">
+            <div className="bg-white rounded-2xl p-8">
               <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                 <span className="text-3xl">🚀</span>
               </div>
@@ -219,7 +237,7 @@ export default async function TechJobsPage() {
                 Startups and scale-ups can't always afford a £200k+ full-time CTO. Fractional tech leaders provide senior expertise at a fraction of the cost.
               </p>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-8">
+            <div className="bg-white rounded-2xl p-8">
               <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                 <span className="text-3xl">💰</span>
               </div>
@@ -228,7 +246,7 @@ export default async function TechJobsPage() {
                 Tech leadership commands the highest fractional rates. CTOs with cloud, AI, or security expertise can earn £1,200-£1,500/day.
               </p>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-8">
+            <div className="bg-white rounded-2xl p-8">
               <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                 <span className="text-3xl">🌍</span>
               </div>
@@ -241,84 +259,40 @@ export default async function TechJobsPage() {
         </div>
       </section>
 
-      {/* Jobs */}
-      {(jobs as any[]).length > 0 && (
-        <section className="py-20 md:py-28 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Featured Tech Jobs</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {(jobs as any[]).map((job: any) => (
-                <Link key={job.id} href={`/fractional-job/${job.slug}`}>
-                  <JobCard
-                    title={job.title}
-                    company={job.company_name}
-                    location={job.location || 'UK'}
-                    isRemote={job.is_remote}
-                    compensation={job.compensation}
-                    roleCategory={job.role_category}
-                    skills={job.skills_required || []}
-                  />
-                </Link>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link
-                href="/fractional-jobs?industry=Technology"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-lg bg-blue-700 text-white hover:bg-blue-800 transition-all"
-              >
-                View All Tech Jobs →
-              </Link>
-            </div>
+      {/* IR35 Calculator */}
+      <section className="py-24 md:py-32 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">Tax Planning</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">IR35 Calculator</h2>
+            <p className="text-xl text-gray-500">Understand your take-home as a fractional tech leader</p>
           </div>
-        </section>
-      )}
+          <IR35Calculator defaultDayRate={1100} />
+        </div>
+      </section>
 
-      {/* FAQ */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Tech Fractional FAQs</h2>
-          <div className="space-y-6">
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                How much do Fractional CTOs earn in the UK?
-                <span className="text-blue-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600">
-                Fractional CTOs in the UK typically earn £1,000-£1,500 per day. Those with expertise in AI/ML, cloud architecture, or cybersecurity command the highest rates. Working 2-3 days per week across 2-3 clients, annual earnings of £200,000-£350,000 are achievable.
-              </p>
-            </details>
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                What experience do I need for fractional tech roles?
-                <span className="text-blue-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600">
-                Most fractional tech leadership roles require 15+ years of experience with at least 5 years in senior positions (CTO, VP Engineering, Tech Director). Startup or scale-up experience is highly valued, as is experience with technical due diligence and team scaling.
-              </p>
-            </details>
-            <details className="group bg-gray-50 rounded-xl p-6 cursor-pointer">
-              <summary className="flex justify-between items-center font-bold text-lg text-gray-900 list-none">
-                Are fractional tech roles mostly remote?
-                <span className="text-blue-700 group-open:rotate-180 transition-transform">▼</span>
-              </summary>
-              <p className="mt-4 text-gray-600">
-                Yes - approximately 65% of fractional tech roles offer remote or hybrid working. Tech leadership is well-suited to remote work, though most clients prefer some in-person time for team building and strategic sessions.
-              </p>
-            </details>
+      {/* FAQ Section */}
+      <section className="py-24 md:py-32 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">FAQ</span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Tech Fractional FAQs</h2>
+            <p className="text-xl text-gray-500">Common questions about fractional tech roles</p>
           </div>
+          <FAQ items={TECH_FAQS} title="" />
         </div>
       </section>
 
       {/* Related Searches */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Searches</h2>
           <div className="flex flex-wrap gap-3">
             {relatedSearches.map((search) => (
               <Link
                 key={search}
                 href={`/fractional-jobs?q=${encodeURIComponent(search)}`}
-                className="px-4 py-2 bg-white rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-colors text-sm border border-gray-200"
+                className="px-4 py-2 bg-gray-50 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-colors text-sm border border-gray-200"
               >
                 {search}
               </Link>
@@ -328,20 +302,29 @@ export default async function TechJobsPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-24 md:py-32 bg-gray-900">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-500 mb-6 block">Get Started</span>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready for Fractional Tech Leadership?
           </h2>
-          <p className="text-xl text-blue-100 mb-10">
+          <p className="text-xl text-gray-400 mb-10">
             {stats.total}+ CTO, VP Engineering, and Tech Director opportunities
           </p>
-          <Link
-            href="/fractional-jobs?role=CTO"
-            className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-blue-900 hover:bg-blue-50 transition-all"
-          >
-            Browse Tech Jobs →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/fractional-jobs?role=CTO"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg bg-white text-gray-900 hover:bg-gray-100 transition-all"
+            >
+              Browse Tech Jobs
+            </Link>
+            <Link
+              href="/handler/sign-up"
+              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-lg border border-white/20 text-white hover:bg-white/10 transition-all"
+            >
+              Join the Platform
+            </Link>
+          </div>
         </div>
       </section>
     </div>

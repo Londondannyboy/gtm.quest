@@ -27,7 +27,7 @@ interface EmbeddedJobBoardProps {
   defaultDepartment?: string
   defaultLocation?: string
   defaultWorkType?: string
-  pageSlug: string // e.g., 'fractional-cmo-jobs-uk' - used to build proper URLs
+  pageSlug?: string // e.g., 'fractional-cmo-jobs-uk' - used to build proper URLs. Optional, defaults to 'fractional-jobs'
   jobsPerPage?: number
   showAllJobsLink?: boolean
   allJobsLinkText?: string
