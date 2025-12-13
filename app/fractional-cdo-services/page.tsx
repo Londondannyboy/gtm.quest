@@ -198,12 +198,12 @@ export default function FractionalCDOServicesPage() {
             {[
               {
                 scenario: 'Data Not Delivering Value',
-                description: 'You have lots of data but can't use it effectively. Reports are slow, insights are limited, and decisions are still based on gut feel.',
+                description: "You have lots of data but can't use it effectively. Reports are slow, insights are limited, and decisions are still based on gut feel.",
                 timing: 'Before competitors out-data you',
               },
               {
                 scenario: 'Preparing for AI',
-                description: 'Want to implement AI/ML but your data isn't ready. Need to build the foundations before AI can deliver value.',
+                description: "Want to implement AI/ML but your data isn't ready. Need to build the foundations before AI can deliver value.",
                 timing: '6-12 months before AI',
               },
               {
@@ -213,7 +213,7 @@ export default function FractionalCDOServicesPage() {
               },
               {
                 scenario: 'Data Quality Crisis',
-                description: 'Can't trust your data. Different sources give different answers, and no one knows what's accurate.',
+                description: "Can't trust your data. Different sources give different answers, and no one knows what's accurate.",
                 timing: 'ASAP',
               },
               {
