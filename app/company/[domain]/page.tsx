@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { createDbQuery } from '@/lib/db'
 import { JobCard } from '@/components/JobCard'
-import { CompanyLogoLarge } from '@/components/CompanyLogo'
 
 export const revalidate = 3600 // Revalidate every hour
 
@@ -20,11 +19,17 @@ interface BrandColor {
 interface BrandData {
   colors: BrandColor[]
   logos: Record<string, string>
+  banners: Record<string, string>
   description: string | null
   founded: number | null
   employees: number | null
+  city: string | null
+  country: string | null
+  company_kind: string | null
   industries: string[] | null
   quality_score: string | null
+  font_title: string | null
+  font_body: string | null
 }
 
 // Generate metadata for SEO
@@ -74,7 +79,9 @@ async function getCompanyData(domain: string) {
 
   // Get brand data if available
   const [brandData] = await sql`
-    SELECT colors, logos, description, founded, employees, industries, quality_score
+    SELECT colors, logos, banners, description, founded, employees,
+           city, country, company_kind, industries, quality_score,
+           font_title, font_body
     FROM company_brands
     WHERE domain = ${domain}
     LIMIT 1
@@ -98,30 +105,50 @@ async function getCompanyData(domain: string) {
   }
 }
 
-// Helper to get the best header color from brand colors
-function getHeaderColors(brand?: BrandData) {
+// Helper to get brand styling
+function getBrandStyling(brand?: BrandData) {
+  const defaultColors = {
+    primary: '#1f2937',
+    accent: '#a855f7',
+    light: '#f9fafb',
+    text: 'white'
+  }
+
   if (!brand?.colors || brand.colors.length === 0) {
     return {
-      backgroundColor: '#1f2937', // gray-800 fallback
-      textColor: 'white',
-      accentColor: '#a855f7' // purple-500
+      colors: defaultColors,
+      banner: null,
+      logo: null,
+      hasRichBranding: false
     }
   }
 
-  // Find the dark color for background (prefer type 'dark' or lowest brightness)
+  // Find colors by type
   const darkColor = brand.colors.find(c => c.type === 'dark')
     || brand.colors.reduce((darkest, c) => c.brightness < darkest.brightness ? c : darkest)
+  const accentColor = brand.colors.find(c => c.type === 'accent')
+  const lightColor = brand.colors.find(c => c.type === 'light')
 
-  // Find accent color
-  const accentColor = brand.colors.find(c => c.type === 'accent')?.hex || '#a855f7'
+  // Get banner image if available
+  const banner = brand.banners?.banner || brand.banners?.background || null
+
+  // Get logo - prefer light logo for dark backgrounds
+  const logo = brand.logos?.logo_light || brand.logos?.logo_dark
+    || brand.logos?.symbol_light || brand.logos?.symbol_dark || null
 
   // Determine text color based on background brightness
   const textColor = darkColor.brightness < 128 ? 'white' : '#1f2937'
 
   return {
-    backgroundColor: darkColor.hex,
-    textColor,
-    accentColor
+    colors: {
+      primary: darkColor.hex,
+      accent: accentColor?.hex || '#a855f7',
+      light: lightColor?.hex || '#f9fafb',
+      text: textColor
+    },
+    banner,
+    logo,
+    hasRichBranding: !!banner || (brand.colors.length >= 2 && !!logo)
   }
 }
 
@@ -133,136 +160,216 @@ export default async function CompanyPage({ params }: CompanyPageProps) {
     notFound()
   }
 
-  const { backgroundColor, textColor, accentColor } = getHeaderColors(company.brand)
-  const textOpacity = textColor === 'white' ? 'text-white/70' : 'text-gray-600'
+  const styling = getBrandStyling(company.brand)
+  const { colors, banner, logo } = styling
+
+  // Build location string
+  const locationParts = [company.brand?.city, company.brand?.country].filter(Boolean)
+  const locationString = locationParts.join(', ')
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Company Header - Uses brand colors */}
-      <section
-        style={{ backgroundColor }}
-        className="transition-colors"
-      >
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-          <Link
-            href="/fractional-jobs"
-            className={`inline-flex items-center ${textOpacity} hover:opacity-100 mb-8 transition-colors text-sm`}
-            style={{ color: textColor }}
-          >
-            <span className="mr-2">&larr;</span> Back to Jobs
-          </Link>
-
-          <div className="flex items-start gap-6">
-            {/* Company Logo */}
-            <CompanyLogoLarge
-              companyDomain={domain}
-              companyName={company.name}
+      {/* Epic Hero Section */}
+      <section className="relative min-h-[60vh] flex items-end overflow-hidden">
+        {/* Background - Banner image or gradient */}
+        {banner ? (
+          <>
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${banner})` }}
             />
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(to top, ${colors.primary} 0%, ${colors.primary}CC 30%, ${colors.primary}66 60%, transparent 100%)`
+              }}
+            />
+          </>
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.accent}44 50%, ${colors.primary} 100%)`
+            }}
+          />
+        )}
 
-            <div className="flex-1">
-              <h1
-                className="text-4xl md:text-5xl font-bold mb-2"
-                style={{ color: textColor }}
-              >
-                {company.name}
-              </h1>
+        {/* Decorative elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div
+            className="absolute -top-1/2 -right-1/4 w-full h-full rounded-full opacity-10"
+            style={{ backgroundColor: colors.accent }}
+          />
+          <div
+            className="absolute -bottom-1/2 -left-1/4 w-3/4 h-3/4 rounded-full opacity-5"
+            style={{ backgroundColor: colors.light }}
+          />
+        </div>
 
-              {/* Company description from brand data */}
-              {company.brand?.description && (
-                <p
-                  className="text-lg mb-3 max-w-2xl"
-                  style={{ color: textColor, opacity: 0.8 }}
-                >
-                  {company.brand.description}
-                </p>
-              )}
+        {/* Content */}
+        <div className="relative z-10 w-full pb-12 md:pb-20">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+            {/* Back link */}
+            <Link
+              href="/fractional-jobs"
+              className="inline-flex items-center mb-8 text-sm font-medium transition-colors hover:opacity-80"
+              style={{ color: colors.text, opacity: 0.7 }}
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Jobs
+            </Link>
 
-              <div className="flex flex-wrap items-center gap-4 mb-3">
-                <span style={{ color: textColor, opacity: 0.7 }}>
-                  {company.stats.totalJobs} open {company.stats.totalJobs === 1 ? 'position' : 'positions'}
-                </span>
-
-                {company.brand?.founded && (
-                  <span style={{ color: textColor, opacity: 0.7 }}>
-                    Founded {company.brand.founded}
-                  </span>
-                )}
-
-                {company.brand?.employees && (
-                  <span style={{ color: textColor, opacity: 0.7 }}>
-                    {company.brand.employees.toLocaleString()}+ employees
-                  </span>
+            <div className="flex flex-col md:flex-row md:items-end gap-8">
+              {/* Logo */}
+              <div className="flex-shrink-0">
+                {logo ? (
+                  <div className="w-32 h-32 md:w-40 md:h-40 rounded-2xl bg-white shadow-2xl p-4 flex items-center justify-center">
+                    <img
+                      src={logo}
+                      alt={`${company.name} logo`}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    className="w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-2xl flex items-center justify-center"
+                    style={{ backgroundColor: colors.accent }}
+                  >
+                    <span className="text-6xl font-black text-white">
+                      {company.name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
                 )}
               </div>
 
-              {/* Industry tags */}
-              {company.brand?.industries && company.brand.industries.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {company.brand.industries.slice(0, 3).map((industry: string) => (
-                    <span
-                      key={industry}
-                      className="px-3 py-1 rounded-full text-sm font-medium"
-                      style={{
-                        backgroundColor: accentColor,
-                        color: 'white'
-                      }}
-                    >
-                      {industry}
-                    </span>
-                  ))}
-                </div>
-              )}
+              {/* Company Info */}
+              <div className="flex-1">
+                <h1
+                  className="text-5xl md:text-6xl lg:text-7xl font-black mb-4 leading-none tracking-tight"
+                  style={{ color: colors.text }}
+                >
+                  {company.name}
+                </h1>
 
-              {company.domain && (
+                {/* Tagline/Description */}
+                {company.brand?.description && (
+                  <p
+                    className="text-xl md:text-2xl mb-6 max-w-2xl font-light"
+                    style={{ color: colors.text, opacity: 0.85 }}
+                  >
+                    {company.brand.description}
+                  </p>
+                )}
+
+                {/* Meta info row */}
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-6">
+                  {locationString && (
+                    <span className="flex items-center gap-2" style={{ color: colors.text, opacity: 0.8 }}>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      {locationString}
+                    </span>
+                  )}
+                  {company.brand?.founded && (
+                    <span className="flex items-center gap-2" style={{ color: colors.text, opacity: 0.8 }}>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      Founded {company.brand.founded}
+                    </span>
+                  )}
+                  {company.brand?.employees && (
+                    <span className="flex items-center gap-2" style={{ color: colors.text, opacity: 0.8 }}>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      {company.brand.employees.toLocaleString()}+ employees
+                    </span>
+                  )}
+                </div>
+
+                {/* Industry tags */}
+                {company.brand?.industries && company.brand.industries.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {company.brand.industries.map((industry: string) => (
+                      <span
+                        key={industry}
+                        className="px-4 py-2 rounded-full text-sm font-semibold backdrop-blur-sm"
+                        style={{
+                          backgroundColor: `${colors.accent}33`,
+                          color: colors.text,
+                          border: `1px solid ${colors.accent}66`
+                        }}
+                      >
+                        {industry}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {/* Website link */}
                 <a
                   href={`https://${company.domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm hover:opacity-80 transition-opacity"
-                  style={{ color: accentColor }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all hover:scale-105"
+                  style={{
+                    backgroundColor: colors.accent,
+                    color: 'white'
+                  }}
                 >
-                  {company.domain}
+                  Visit Website
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </a>
-              )}
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10">
-            <div
-              className="backdrop-blur rounded-lg p-4"
-              style={{ backgroundColor: `${textColor === 'white' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}` }}
-            >
-              <div className="text-3xl font-bold" style={{ color: textColor }}>{company.stats.totalJobs}</div>
-              <div style={{ color: textColor, opacity: 0.6 }} className="text-sm">Open Roles</div>
+      {/* Stats Bar */}
+      <section style={{ backgroundColor: colors.primary }} className="border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black" style={{ color: colors.text }}>
+                {company.stats.totalJobs}
+              </div>
+              <div style={{ color: colors.text, opacity: 0.6 }} className="text-sm font-medium uppercase tracking-wider mt-1">
+                Open Roles
+              </div>
             </div>
-            <div
-              className="backdrop-blur rounded-lg p-4"
-              style={{ backgroundColor: `${textColor === 'white' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}` }}
-            >
-              <div className="text-3xl font-bold" style={{ color: textColor }}>{company.stats.roleCategories.length}</div>
-              <div style={{ color: textColor, opacity: 0.6 }} className="text-sm">Departments</div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black" style={{ color: colors.text }}>
+                {company.stats.roleCategories.length}
+              </div>
+              <div style={{ color: colors.text, opacity: 0.6 }} className="text-sm font-medium uppercase tracking-wider mt-1">
+                Departments
+              </div>
             </div>
-            <div
-              className="backdrop-blur rounded-lg p-4"
-              style={{ backgroundColor: `${textColor === 'white' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}` }}
-            >
-              <div className="text-3xl font-bold" style={{ color: textColor }}>{company.stats.locations.length}</div>
-              <div style={{ color: textColor, opacity: 0.6 }} className="text-sm">Locations</div>
+            <div className="text-center">
+              <div className="text-4xl md:text-5xl font-black" style={{ color: colors.text }}>
+                {company.stats.locations.length}
+              </div>
+              <div style={{ color: colors.text, opacity: 0.6 }} className="text-sm font-medium uppercase tracking-wider mt-1">
+                Locations
+              </div>
             </div>
-            <div
-              className="backdrop-blur rounded-lg p-4"
-              style={{ backgroundColor: `${textColor === 'white' ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'}` }}
-            >
-              <div className="text-3xl font-bold flex items-center gap-1">
-                <svg className="w-6 h-6" style={{ color: accentColor }} fill="currentColor" viewBox="0 0 20 20">
+            <div className="text-center">
+              <div className="flex items-center justify-center">
+                <svg className="w-10 h-10 md:w-12 md:h-12" style={{ color: colors.accent }} fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
-              <div style={{ color: textColor, opacity: 0.6 }} className="text-sm">Verified Company</div>
+              <div style={{ color: colors.text, opacity: 0.6 }} className="text-sm font-medium uppercase tracking-wider mt-1">
+                Verified
+              </div>
             </div>
           </div>
         </div>

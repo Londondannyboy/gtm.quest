@@ -2,8 +2,6 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { createDbQuery } from '@/lib/db'
-import { Badge } from '@/components/Badge'
-import { JobHeader } from '@/components/JobHeader'
 import { JobBody } from '@/components/JobBody'
 import { SimilarJobs } from '@/components/SimilarJobs'
 import { SingleJobGraph } from '@/components/SingleJobGraph'
@@ -13,6 +11,66 @@ export const revalidate = 3600
 
 interface PageProps {
   params: Promise<{ slug: string }>
+}
+
+interface BrandColor {
+  hex: string
+  type: string
+  brightness: number
+}
+
+interface BrandData {
+  colors: BrandColor[]
+  logos: Record<string, string>
+  banners: Record<string, string>
+  description: string | null
+}
+
+// Helper to get brand styling
+function getBrandStyling(brand?: BrandData) {
+  const defaultColors = {
+    primary: '#1f2937',
+    accent: '#a855f7',
+    light: '#f9fafb',
+    text: 'white'
+  }
+
+  if (!brand?.colors || brand.colors.length === 0) {
+    return {
+      colors: defaultColors,
+      banner: null,
+      logo: null,
+      hasRichBranding: false
+    }
+  }
+
+  // Find colors by type
+  const darkColor = brand.colors.find(c => c.type === 'dark')
+    || brand.colors.reduce((darkest, c) => c.brightness < darkest.brightness ? c : darkest)
+  const accentColor = brand.colors.find(c => c.type === 'accent')
+  const lightColor = brand.colors.find(c => c.type === 'light')
+
+  // Get banner image if available
+  const banner = brand.banners?.banner || brand.banners?.background || null
+
+  // Get logo - prefer light logo for dark backgrounds
+  const logo = brand.logos?.logo_light || brand.logos?.logo_dark
+    || brand.logos?.symbol_light || brand.logos?.symbol_dark || null
+
+  // Determine text color based on background brightness
+  const textColor = darkColor.brightness < 128 ? 'white' : '#1f2937'
+
+  return {
+    colors: {
+      primary: darkColor.hex,
+      accent: accentColor?.hex || '#a855f7',
+      light: lightColor?.hex || '#f9fafb',
+      text: textColor
+    },
+    banner,
+    logo,
+    hasRichBranding: !!banner || (brand.colors.length >= 2 && !!logo)
+  }
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -48,28 +106,33 @@ export default async function JobDetailPage({ params }: PageProps) {
 
     const jobs = await sql`
       SELECT
-        id,
-        title,
-        company_name,
-        company_domain,
-        location,
-        is_remote,
-        compensation,
-        employment_type,
-        seniority_level,
-        role_category,
-        description_snippet,
-        full_description,
-        skills_required,
-        responsibilities,
-        requirements,
-        benefits,
-        about_company,
-        posted_date,
-        url
-      FROM jobs
-      WHERE slug = ${slug}
-        AND is_active = true
+        j.id,
+        j.title,
+        j.company_name,
+        j.company_domain,
+        j.location,
+        j.is_remote,
+        j.compensation,
+        j.employment_type,
+        j.seniority_level,
+        j.role_category,
+        j.description_snippet,
+        j.full_description,
+        j.skills_required,
+        j.responsibilities,
+        j.requirements,
+        j.benefits,
+        j.about_company,
+        j.posted_date,
+        j.url,
+        cb.colors as brand_colors,
+        cb.logos as brand_logos,
+        cb.banners as brand_banners,
+        cb.description as brand_description
+      FROM jobs j
+      LEFT JOIN company_brands cb ON j.company_domain = cb.domain
+      WHERE j.slug = ${slug}
+        AND j.is_active = true
       LIMIT 1
     `
 

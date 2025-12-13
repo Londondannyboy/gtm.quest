@@ -24,20 +24,33 @@ def get_db_connection():
     return psycopg2.connect(database_url)
 
 
-def get_companies_without_brands(conn, limit: int = 10) -> list[dict]:
+def get_companies_without_brands(conn, limit: int = 10, refresh: bool = False) -> list[dict]:
     """Get companies that have domains but no brand data fetched yet"""
     with conn.cursor(cursor_factory=RealDictCursor) as cur:
-        cur.execute("""
-            SELECT DISTINCT j.company_domain, j.company_name
-            FROM jobs j
-            LEFT JOIN company_brands cb ON j.company_domain = cb.domain
-            WHERE j.is_active = true
-              AND j.company_domain IS NOT NULL
-              AND j.company_domain != ''
-              AND cb.id IS NULL
-            ORDER BY j.company_name
-            LIMIT %s
-        """, (limit,))
+        if refresh:
+            # Get all companies with domains (for refreshing)
+            cur.execute("""
+                SELECT DISTINCT j.company_domain, j.company_name
+                FROM jobs j
+                WHERE j.is_active = true
+                  AND j.company_domain IS NOT NULL
+                  AND j.company_domain != ''
+                ORDER BY j.company_name
+                LIMIT %s
+            """, (limit,))
+        else:
+            # Get only companies without brand data
+            cur.execute("""
+                SELECT DISTINCT j.company_domain, j.company_name
+                FROM jobs j
+                LEFT JOIN company_brands cb ON j.company_domain = cb.domain
+                WHERE j.is_active = true
+                  AND j.company_domain IS NOT NULL
+                  AND j.company_domain != ''
+                  AND cb.id IS NULL
+                ORDER BY j.company_name
+                LIMIT %s
+            """, (limit,))
         return [dict(row) for row in cur.fetchall()]
 
 
@@ -102,18 +115,33 @@ def extract_brand_data(api_response: dict) -> dict:
             elif fmt.get('format') == 'png':
                 logos[key] = fmt.get('src')
 
+    # Extract banner/background images
+    banners = {}
+    for img in api_response.get('images', []):
+        img_type = img.get('type', 'image')
+        formats = img.get('formats', [])
+        for fmt in formats:
+            # Prefer largest JPEG/PNG
+            if fmt.get('format') in ['jpeg', 'png']:
+                banners[img_type] = fmt.get('src')
+                break
+
     # Extract company info
     company_info = api_response.get('company', {})
+    location_info = company_info.get('location', {})
 
     return {
         'colors': colors,
         'font_title': font_title,
         'font_body': font_body,
         'logos': logos,
+        'banners': banners,
         'description': api_response.get('description'),
         'founded': company_info.get('foundedYear'),
-        'employees': company_info.get('numberOfEmployees'),
-        'location': None,  # Would need to parse from company_info
+        'employees': company_info.get('employees') or company_info.get('numberOfEmployees'),
+        'city': location_info.get('city'),
+        'country': location_info.get('country'),
+        'company_kind': company_info.get('kind'),
         'industries': [ind.get('name') for ind in company_info.get('industries', [])],
         'quality_score': api_response.get('qualityScore')
     }
@@ -125,10 +153,10 @@ def save_brand_to_database(conn, domain: str, company_name: str, brand_data: dic
         cur.execute("""
             INSERT INTO company_brands (
                 domain, company_name, colors, font_title, font_body,
-                logos, description, founded, employees, location,
-                industries, quality_score, fetched_at
+                logos, banners, description, founded, employees,
+                city, country, company_kind, industries, quality_score, fetched_at
             ) VALUES (
-                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW()
+                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, NOW()
             )
             ON CONFLICT (domain) DO UPDATE SET
                 company_name = EXCLUDED.company_name,
@@ -136,10 +164,13 @@ def save_brand_to_database(conn, domain: str, company_name: str, brand_data: dic
                 font_title = EXCLUDED.font_title,
                 font_body = EXCLUDED.font_body,
                 logos = EXCLUDED.logos,
+                banners = EXCLUDED.banners,
                 description = EXCLUDED.description,
                 founded = EXCLUDED.founded,
                 employees = EXCLUDED.employees,
-                location = EXCLUDED.location,
+                city = EXCLUDED.city,
+                country = EXCLUDED.country,
+                company_kind = EXCLUDED.company_kind,
                 industries = EXCLUDED.industries,
                 quality_score = EXCLUDED.quality_score,
                 fetched_at = NOW()
@@ -150,17 +181,20 @@ def save_brand_to_database(conn, domain: str, company_name: str, brand_data: dic
             brand_data['font_title'],
             brand_data['font_body'],
             Json(brand_data['logos']),
+            Json(brand_data.get('banners', {})),
             brand_data['description'],
             brand_data['founded'],
             brand_data['employees'],
-            brand_data['location'],
+            brand_data.get('city'),
+            brand_data.get('country'),
+            brand_data.get('company_kind'),
             brand_data['industries'],
             brand_data['quality_score']
         ))
     conn.commit()
 
 
-async def main(limit: int = 10, dry_run: bool = False):
+async def main(limit: int = 10, dry_run: bool = False, refresh: bool = False):
     """Main processing function"""
     api_key = os.environ.get('BRANDFETCH_API_KEY')
     if not api_key:
@@ -171,7 +205,7 @@ async def main(limit: int = 10, dry_run: bool = False):
     conn = get_db_connection()
 
     try:
-        companies = get_companies_without_brands(conn, limit)
+        companies = get_companies_without_brands(conn, limit, refresh=refresh)
         print(f"\n{'='*60}")
         print(f"BRANDFETCH BRAND DATA FETCH")
         print(f"{'='*60}")
@@ -197,6 +231,9 @@ async def main(limit: int = 10, dry_run: bool = False):
                     print(f"    Colors: {len(brand_data['colors'])}")
                     print(f"    Fonts: {brand_data['font_title'] or 'N/A'} / {brand_data['font_body'] or 'N/A'}")
                     print(f"    Logos: {len(brand_data['logos'])}")
+                    print(f"    Banners: {len(brand_data.get('banners', {}))}")
+                    if brand_data.get('city'):
+                        print(f"    Location: {brand_data['city']}, {brand_data.get('country', '')}")
                     print(f"    Quality: {brand_data['quality_score']}")
 
                     if not dry_run:
@@ -228,10 +265,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Fetch brand data from Brandfetch API')
     parser.add_argument('--limit', type=int, default=10, help='Max companies to process')
     parser.add_argument('--dry-run', action='store_true', help='Don\'t actually save to database')
+    parser.add_argument('--refresh', action='store_true', help='Re-fetch all companies (not just new ones)')
 
     args = parser.parse_args()
 
     print(f"\nStarting Brand Data Fetch...")
-    print(f"Limit: {args.limit}, Dry run: {args.dry_run}")
+    print(f"Limit: {args.limit}, Dry run: {args.dry_run}, Refresh: {args.refresh}")
 
-    asyncio.run(main(limit=args.limit, dry_run=args.dry_run))
+    asyncio.run(main(limit=args.limit, dry_run=args.dry_run, refresh=args.refresh))
