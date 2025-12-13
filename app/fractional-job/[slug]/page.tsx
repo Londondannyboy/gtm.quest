@@ -5,7 +5,7 @@ import { createDbQuery } from '@/lib/db'
 import { JobHeader } from '@/components/JobHeader'
 import { JobBody } from '@/components/JobBody'
 import { SimilarJobs } from '@/components/SimilarJobs'
-import { SingleJobGraph } from '@/components/SingleJobGraph'
+import { JobsGraph3D } from '@/components/JobsGraph3D'
 import { ShareButtons } from '@/components/ShareButtons'
 
 // Revalidate every hour for job details
@@ -656,24 +656,21 @@ export default async function JobDetailPage({ params }: PageProps) {
                   </Suspense>
                 </div>
 
-                {/* Mini Skills Graph in Sidebar */}
+                {/* Skills Preview - Links to 3D graph below */}
                 {job.skills_required && Array.isArray(job.skills_required) && job.skills_required.length > 2 && (
-                  <div className="bg-gray-50 p-4 border border-gray-200">
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-3">
-                      Skills Map
+                  <div className="bg-gray-900 p-4 rounded-lg">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3">
+                      Related Jobs Network
                     </h3>
-                    <div className="overflow-hidden rounded">
-                      <SingleJobGraph
-                        jobId={job.id}
-                        jobTitle={job.title}
-                        company={job.company_name}
-                        skills={job.skills_required.slice(0, 6)}
-                        location={job.location}
-                      />
-                    </div>
-                    <p className="text-xs text-gray-500 mt-2 text-center">
-                      See full graph below
+                    <p className="text-gray-300 text-sm mb-3">
+                      Explore similar {job.role_category || 'fractional'} roles in 3D
                     </p>
+                    <a
+                      href="#jobs-graph"
+                      className="block w-full py-2 rounded text-center text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-500 transition-colors"
+                    >
+                      View 3D Network ↓
+                    </a>
                   </div>
                 )}
 
@@ -692,27 +689,23 @@ export default async function JobDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Full Skills Knowledge Graph */}
-          {job.skills_required && Array.isArray(job.skills_required) && job.skills_required.length > 0 && (
-            <section className="mt-16 pt-12 border-t border-gray-200">
-              <div className="mb-8">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2">Knowledge Graph</span>
-                <h2 className="text-2xl md:text-3xl font-black text-gray-900">
-                  Skills & Requirements Map
-                </h2>
-                <p className="text-gray-600 mt-2">
-                  Visual representation of this role's key skills and relationships
-                </p>
-              </div>
-              <SingleJobGraph
-                jobId={job.id}
-                jobTitle={job.title}
-                company={job.company_name}
-                skills={job.skills_required}
-                location={job.location}
-              />
-            </section>
-          )}
+          {/* 3D Jobs Knowledge Graph */}
+          <section id="jobs-graph" className="mt-16 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 py-16 bg-gray-950">
+            <div className="mb-8 text-center">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 block mb-2">Interactive Network</span>
+              <h2 className="text-2xl md:text-3xl font-black text-white">
+                {job.role_category ? `${job.role_category} Jobs Network` : 'Related Jobs Network'}
+              </h2>
+              <p className="text-gray-400 mt-2">
+                Explore similar roles, skills, and companies in 3D
+              </p>
+            </div>
+            <JobsGraph3D
+              roleFilter={job.role_category || ''}
+              limit={25}
+              height="500px"
+            />
+          </section>
 
           {/* Bottom CTA */}
           <div className="mt-16 pt-12 border-t border-gray-200">

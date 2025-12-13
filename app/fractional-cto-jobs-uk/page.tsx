@@ -6,7 +6,7 @@ import { EmbeddedJobBoard } from '@/components/EmbeddedJobBoard'
 import { FAQ, CTO_FAQS } from '@/components/FAQ'
 import { VideoHeroBackground } from '@/components/VideoHeroBackground'
 import { RoleCalculator } from '@/components/RoleCalculator'
-import { RoleSkillsGraph } from '@/components/RoleSkillsGraph'
+import { JobsGraph3D } from '@/components/JobsGraph3D'
 import { IR35Calculator } from '@/components/IR35Calculator'
 
 export const revalidate = 3600
@@ -135,14 +135,15 @@ export default async function FractionalCtoJobsUkPage() {
         </div>
       </section>
 
-      {/* Skills Graph */}
-      <section className="py-16 bg-gray-50">
+      {/* CTO Jobs Knowledge Graph - 3D Interactive */}
+      <section className="py-16 bg-gray-950">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">Skills & Competencies</span>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900">What Skills Do Fractional CTOs Need?</h2>
+          <div className="mb-10 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-2 block">Interactive Network</span>
+            <h2 className="text-3xl md:text-4xl font-black text-white">CTO Jobs Knowledge Graph</h2>
+            <p className="text-gray-400 mt-2">Explore CTO roles, skills, and companies in 3D</p>
           </div>
-          <RoleSkillsGraph role="cto" width={800} height={450} />
+          <JobsGraph3D roleFilter="CTO" limit={25} height="500px" />
         </div>
       </section>
 

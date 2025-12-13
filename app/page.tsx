@@ -7,6 +7,7 @@ import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
 import { VideoHeroBackground } from "@/components/VideoHeroBackground";
 import { AnimatedStats } from "@/components/AnimatedStats";
 import { LatestNews } from "@/components/RoleNews";
+import { JobsGraph3D } from "@/components/JobsGraph3D";
 
 // Mux video playback ID for the hero background
 // Woman walking - professional executive theme
@@ -621,6 +622,18 @@ export default async function Home() {
           </div>
         </section>
       )}
+
+      {/* 3D Jobs Knowledge Graph - Interactive Visual */}
+      <section className="py-20 md:py-28 bg-gray-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-2 block">Interactive Network</span>
+            <h2 className="text-4xl font-bold text-white mb-4">Fractional Jobs Knowledge Graph</h2>
+            <p className="text-xl text-gray-400">Explore roles, skills, and companies in 3D</p>
+          </div>
+          <JobsGraph3D limit={30} height="600px" />
+        </div>
+      </section>
 
       {/* Latest News Section - Auto-generated + Manual Articles */}
       <section className="py-20 md:py-28 bg-white">
