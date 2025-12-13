@@ -25,13 +25,13 @@ export const metadata: Metadata = {
 }
 
 interface JobsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string
     role?: string
     remote?: string
     location?: string
     industry?: string
-  }
+  }>
 }
 
 interface FilterOption {
@@ -161,15 +161,18 @@ function JobFiltersWrapper({
 }
 
 export default async function JobsPage({ searchParams }: JobsPageProps) {
+  // Await searchParams (required in Next.js 15+)
+  const params = await searchParams
+
   const limit = 20
-  const page = parseInt(searchParams.page || '1')
+  const page = parseInt(params.page || '1')
   const offset = (page - 1) * limit
 
   // Get filter values
-  const roleFilter = searchParams.role || ''
-  const remoteFilter = searchParams.remote || ''
-  const locationFilter = searchParams.location || ''
-  const industryFilter = searchParams.industry || ''
+  const roleFilter = params.role || ''
+  const remoteFilter = params.remote || ''
+  const locationFilter = params.location || ''
+  const industryFilter = params.industry || ''
 
   try {
     const sql = createDbQuery()
