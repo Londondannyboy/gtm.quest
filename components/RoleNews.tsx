@@ -198,19 +198,25 @@ export async function RoleNewsCompact({
  * Mixed news component for homepage (shows all categories)
  */
 export async function LatestNews({ limit = 6 }: { limit?: number }) {
-  const sql = createDbQuery()
+  let articles: NewsArticle[] = []
 
-  const articles = await sql`
-    SELECT id, slug, title, excerpt, category, article_type,
-           featured_asset_url, published_at
-    FROM articles
-    WHERE app = 'fractional'
-      AND status = 'published'
-    ORDER BY published_at DESC
-    LIMIT ${limit}
-  ` as NewsArticle[]
+  try {
+    const sql = createDbQuery()
+    articles = await sql`
+      SELECT id, slug, title, excerpt, category, article_type,
+             featured_asset_url, published_at
+      FROM articles
+      WHERE app = 'fractional'
+        AND status = 'published'
+      ORDER BY published_at DESC
+      LIMIT ${limit}
+    ` as NewsArticle[]
+  } catch (error) {
+    console.error('LatestNews: Failed to fetch articles', error)
+    // Continue with empty articles array to show Coming Soon
+  }
 
-  // Coming Soon fallback when no articles exist
+  // Coming Soon fallback when no articles exist or on error
   if (articles.length === 0) {
     return (
       <section className="py-12">
