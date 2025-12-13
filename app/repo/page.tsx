@@ -699,7 +699,8 @@ export default function RepoPage() {
               // Log ALL message types for debugging
               console.log('[Hume Raw Message]', msg.type, msg)
               // Specifically log tool-related messages
-              if (msg.type === 'tool_call' || msg.type === 'tool_response' || msg.type === 'tool_result') {
+              const msgType = (msg as any).type
+              if (msgType === 'tool_call' || msgType === 'tool_response' || msgType === 'tool_result') {
                 console.log('[Hume Tool Event]', JSON.stringify(msg, null, 2))
               }
             }}
