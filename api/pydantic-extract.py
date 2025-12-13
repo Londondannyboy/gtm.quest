@@ -132,6 +132,7 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(json.dumps({
             "status": "ok",
             "agent": "pydantic-ai",
+            "version": "v2-output-type",
             "model": model,
             "keys": {
                 "openai": has_openai,
