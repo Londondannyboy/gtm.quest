@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { createDbQuery } from '@/lib/db'
+import { JobHeader } from '@/components/JobHeader'
 import { JobBody } from '@/components/JobBody'
 import { SimilarJobs } from '@/components/SimilarJobs'
 import { SingleJobGraph } from '@/components/SingleJobGraph'
@@ -92,7 +93,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const job = jobs[0] as any
     return {
       title: `${job.title} at ${job.company_name} | Fractional.Quest`,
-      description: `Fractional ${job.title} position at ${job.company_name} in ${job.location}. Browse and apply on Fractional.Quest - the UK's leading fractional executive job board.`,
+      description: `Fractional ${job.title} position at ${job.company_name} in ${job.location}. Browse and apply on Fractional.Quest - a UK fractional executive job board.`,
     }
   } catch {
     return { title: 'Job | Fractional.Quest' }
@@ -161,20 +162,182 @@ export default async function JobDetailPage({ params }: PageProps) {
 
     const job = jobs[0] as any
 
+    // Get brand data
+    const brand: BrandData | undefined = job.brand_colors ? {
+      colors: job.brand_colors,
+      logos: job.brand_logos || {},
+      banners: job.brand_banners || {},
+      description: job.brand_description
+    } : undefined
+
+    const styling = getBrandStyling(brand)
+    const { colors, banner, logo } = styling
+
+    const formatDate = (dateString?: string) => {
+      if (!dateString) return null
+      const date = new Date(dateString)
+      return date.toLocaleDateString('en-GB', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      })
+    }
+
     return (
       <div className="min-h-screen bg-white">
-        {/* Header */}
-        <JobHeader
-          title={job.title}
-          company={job.company_name}
-          location={job.location}
-          isRemote={job.is_remote}
-          compensation={job.compensation}
-          seniority={job.seniority_level}
-          employmentType={job.employment_type}
-          roleCategory={job.role_category}
-          postedDate={job.posted_date}
-        />
+        {/* Branded Hero Header */}
+        <section className="relative min-h-[40vh] flex items-end overflow-hidden">
+          {/* Background - Banner image or gradient */}
+          {banner ? (
+            <>
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${banner})` }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: `linear-gradient(to top, ${colors.primary} 0%, ${colors.primary}DD 40%, ${colors.primary}88 70%, transparent 100%)`
+                }}
+              />
+            </>
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.accent}44 50%, ${colors.primary} 100%)`
+              }}
+            />
+          )}
+
+          {/* Decorative elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div
+              className="absolute -top-1/2 -right-1/4 w-full h-full rounded-full opacity-10"
+              style={{ backgroundColor: colors.accent }}
+            />
+          </div>
+
+          {/* Content */}
+          <div className="relative z-10 w-full pb-8 md:pb-12">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Breadcrumb */}
+              <Link
+                href="/fractional-jobs"
+                className="inline-flex items-center mb-6 text-sm font-medium transition-colors hover:opacity-80"
+                style={{ color: colors.text, opacity: 0.7 }}
+              >
+                <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Jobs
+              </Link>
+
+              <div className="flex flex-col md:flex-row md:items-end gap-6">
+                {/* Logo */}
+                <div className="flex-shrink-0">
+                  {logo ? (
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-xl bg-white shadow-xl p-3 flex items-center justify-center">
+                      <img
+                        src={logo}
+                        alt={`${job.company_name} logo`}
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="w-20 h-20 md:w-24 md:h-24 rounded-xl shadow-xl flex items-center justify-center"
+                      style={{ backgroundColor: colors.accent }}
+                    >
+                      <span className="text-3xl md:text-4xl font-black text-white">
+                        {job.company_name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Job Info */}
+                <div className="flex-1">
+                  <h1
+                    className="text-2xl md:text-3xl lg:text-4xl font-black mb-2 leading-tight tracking-tight"
+                    style={{ color: colors.text }}
+                  >
+                    {job.title}
+                  </h1>
+
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-4">
+                    {job.company_domain ? (
+                      <Link
+                        href={`/company/${job.company_domain}`}
+                        className="text-lg md:text-xl font-bold hover:opacity-80 transition-opacity"
+                        style={{ color: colors.text }}
+                      >
+                        {job.company_name}
+                      </Link>
+                    ) : (
+                      <span className="text-lg md:text-xl font-bold" style={{ color: colors.text }}>
+                        {job.company_name}
+                      </span>
+                    )}
+                    <span style={{ color: colors.text, opacity: 0.5 }}>•</span>
+                    <span className="flex items-center gap-1 text-sm" style={{ color: colors.text, opacity: 0.8 }}>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      {job.location}
+                      {job.is_remote && <span className="ml-1">(Remote)</span>}
+                    </span>
+                  </div>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {job.compensation && (
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-bold"
+                        style={{ backgroundColor: colors.accent, color: 'white' }}
+                      >
+                        {job.compensation}
+                      </span>
+                    )}
+                    {job.role_category && (
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm"
+                        style={{
+                          backgroundColor: `${colors.light}33`,
+                          color: colors.text,
+                          border: `1px solid ${colors.light}44`
+                        }}
+                      >
+                        {job.role_category}
+                      </span>
+                    )}
+                    {job.seniority_level && (
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-semibold backdrop-blur-sm"
+                        style={{
+                          backgroundColor: `${colors.light}33`,
+                          color: colors.text,
+                          border: `1px solid ${colors.light}44`
+                        }}
+                      >
+                        {job.seniority_level}
+                      </span>
+                    )}
+                    {job.posted_date && (
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-medium"
+                        style={{ color: colors.text, opacity: 0.7 }}
+                      >
+                        Posted {formatDate(job.posted_date)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Sticky Apply Bar */}
         <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200">
