@@ -274,14 +274,21 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           </div>
         </section>
 
-        {/* Jobs List */}
-        <section className="py-12 bg-white">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        {/* Jobs List - Dark section with video */}
+        <section className="py-12 relative overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <VideoHeroBackground
+              playbackId={HERO_VIDEO_PLAYBACK_ID}
+              fallbackGradient={true}
+            />
+            <div className="absolute inset-0 bg-gray-900/85" />
+          </div>
+          <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
             {jobs.length === 0 ? (
-              <div className="text-center py-16 bg-white rounded-xl border border-gray-200">
+              <div className="text-center py-16 bg-white/10 backdrop-blur rounded-xl border border-white/20">
                 <div className="text-6xl mb-4">🔍</div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">No jobs match your filters</h2>
-                <p className="text-gray-600 mb-6">Try adjusting your search criteria</p>
+                <h2 className="text-2xl font-bold text-white mb-2">No jobs match your filters</h2>
+                <p className="text-gray-300 mb-6">Try adjusting your search criteria</p>
                 <Link href="/fractional-jobs">
                   <button className="px-6 py-2.5 bg-gray-900 text-white rounded-lg hover:bg-black font-semibold transition-colors">
                     Clear All Filters
@@ -320,7 +327,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                   <div className="flex justify-center items-center gap-2">
                     {page > 1 && (
                       <Link href={buildPageUrl(page - 1)}>
-                        <button className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 font-medium transition-colors">
+                        <button className="px-4 py-2 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 font-medium transition-colors">
                           ← Previous
                         </button>
                       </Link>
@@ -336,8 +343,8 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                             <button
                               className={`px-4 py-2 rounded-lg font-medium transition-colors ${
                                 pageNum === page
-                                  ? 'bg-gray-900 text-white'
-                                  : 'bg-white border border-gray-200 hover:bg-gray-50'
+                                  ? 'bg-white text-gray-900'
+                                  : 'bg-white/10 border border-white/20 text-white hover:bg-white/20'
                               }`}
                             >
                               {pageNum}
@@ -349,7 +356,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
                     {page < totalPages && (
                       <Link href={buildPageUrl(page + 1)}>
-                        <button className="px-4 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 font-medium transition-colors">
+                        <button className="px-4 py-2 bg-white/10 border border-white/20 text-white rounded-lg hover:bg-white/20 font-medium transition-colors">
                           Next →
                         </button>
                       </Link>
@@ -381,52 +388,52 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           </div>
         </section>
 
-        {/* Browse by Role */}
-        <section className="py-20 md:py-28 bg-white">
+        {/* Browse by Role - Dark section */}
+        <section className="py-20 md:py-28 bg-gray-900">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
-              <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">By Function</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Browse by Role</h2>
-              <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-500 mb-4 block">By Function</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Browse by Role</h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
                 Fractional jobs offer experienced executives the opportunity to work with multiple companies on a part-time basis.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
               <Link href="/part-time-cfo" className="group">
-                <article className="p-6 bg-gray-50 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-200">
+                <article className="p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20">
                   <span className="text-3xl mb-4 block">💰</span>
-                  <h3 className="font-bold text-gray-900 group-hover:text-black transition-colors mb-1">Part-Time CFO</h3>
-                  <p className="text-gray-500 text-sm">Finance leadership roles</p>
+                  <h3 className="font-bold text-white group-hover:text-white transition-colors mb-1">Part-Time CFO</h3>
+                  <p className="text-gray-400 text-sm">Finance leadership roles</p>
                 </article>
               </Link>
               <Link href="/part-time-cmo" className="group">
-                <article className="p-6 bg-gray-50 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-200">
+                <article className="p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20">
                   <span className="text-3xl mb-4 block">📢</span>
-                  <h3 className="font-bold text-gray-900 group-hover:text-black transition-colors mb-1">Part-Time CMO</h3>
-                  <p className="text-gray-500 text-sm">Marketing leadership roles</p>
+                  <h3 className="font-bold text-white group-hover:text-white transition-colors mb-1">Part-Time CMO</h3>
+                  <p className="text-gray-400 text-sm">Marketing leadership roles</p>
                 </article>
               </Link>
               <Link href="/fractional-cfo-salary" className="group">
-                <article className="p-6 bg-gray-50 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-200">
+                <article className="p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20">
                   <span className="text-3xl mb-4 block">📊</span>
-                  <h3 className="font-bold text-gray-900 group-hover:text-black transition-colors mb-1">CFO Salary Guide</h3>
-                  <p className="text-gray-500 text-sm">Day rates & earnings</p>
+                  <h3 className="font-bold text-white group-hover:text-white transition-colors mb-1">CFO Salary Guide</h3>
+                  <p className="text-gray-400 text-sm">Day rates & earnings</p>
                 </article>
               </Link>
               <Link href="/fractional-cmo-salary" className="group">
-                <article className="p-6 bg-gray-50 rounded-xl hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-200">
+                <article className="p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20">
                   <span className="text-3xl mb-4 block">📈</span>
-                  <h3 className="font-bold text-gray-900 group-hover:text-black transition-colors mb-1">CMO Salary Guide</h3>
-                  <p className="text-gray-500 text-sm">Day rates & earnings</p>
+                  <h3 className="font-bold text-white group-hover:text-white transition-colors mb-1">CMO Salary Guide</h3>
+                  <p className="text-gray-400 text-sm">Day rates & earnings</p>
                 </article>
               </Link>
             </div>
 
             <div className="text-center mb-8">
-              <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 mb-4 block">By Location</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Browse by City</h2>
-              <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-500 mb-4 block">By Location</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Browse by City</h2>
+              <p className="text-lg text-gray-400 max-w-2xl mx-auto">
                 London dominates with 60% of roles, but Manchester, Birmingham, and Edinburgh have growing fractional communities.
               </p>
             </div>
@@ -443,7 +450,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                 <Link
                   key={loc.label}
                   href={loc.href}
-                  className="px-5 py-2.5 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-900 hover:text-white font-medium transition-all"
+                  className="px-5 py-2.5 bg-white/10 text-white rounded-full hover:bg-white hover:text-gray-900 font-medium transition-all"
                 >
                   {loc.label}
                 </Link>
