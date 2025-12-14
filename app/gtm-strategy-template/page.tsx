@@ -58,9 +58,33 @@ export default function GTMStrategyTemplatePage() {
     setLoading(false)
   }
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://gtm.quest"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "GTM Strategy Template",
+        item: "https://gtm.quest/gtm-strategy-template"
+      }
+    ]
+  }
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <div className="min-h-screen bg-white">
+        {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white py-20 md:py-32">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Link href="/" className="inline-flex items-center text-blue-200 hover:text-white mb-8 transition-colors text-sm"><span className="mr-2">←</span> Back to Home</Link>
@@ -318,5 +342,6 @@ export default function GTMStrategyTemplatePage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

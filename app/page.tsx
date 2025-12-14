@@ -392,6 +392,54 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Featured GTM Resources */}
+        <section className="py-20 md:py-28 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured GTM Agency Resources</h2>
+              <p className="text-xl text-gray-600">Expert guides and frameworks from our GTM agency specialists</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Link href="/go-to-market-consultant" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">GTM Agency Consultant</h3>
+                <p className="text-gray-600 text-sm mb-4">Work with experienced go-to-market consultants to plan and execute your product launch successfully.</p>
+                <span className="text-amber-600 font-semibold text-sm">Learn More →</span>
+              </Link>
+
+              <Link href="/b2b-gtm-strategy" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">B2B GTM Strategy</h3>
+                <p className="text-gray-600 text-sm mb-4">Specialized GTM strategies for B2B companies including account-based marketing and enterprise sales.</p>
+                <span className="text-amber-600 font-semibold text-sm">Explore Framework →</span>
+              </Link>
+
+              <Link href="/enterprise-gtm-strategy" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Enterprise GTM</h3>
+                <p className="text-gray-600 text-sm mb-4">Master complex enterprise sales cycles and build successful go-to-market strategies at scale.</p>
+                <span className="text-amber-600 font-semibold text-sm">View Strategy →</span>
+              </Link>
+
+              <Link href="/gtm-for-startups" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Startup GTM Guide</h3>
+                <p className="text-gray-600 text-sm mb-4">Lean GTM frameworks specifically designed for early-stage startups launching their first products.</p>
+                <span className="text-amber-600 font-semibold text-sm">Start Guide →</span>
+              </Link>
+
+              <Link href="/gtm-strategy-examples" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Case Studies</h3>
+                <p className="text-gray-600 text-sm mb-4">Real-world GTM case studies from Slack, Stripe, Salesforce, and other industry leaders.</p>
+                <span className="text-amber-600 font-semibold text-sm">Read Cases →</span>
+              </Link>
+
+              <Link href="/what-is-gtm" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">What is Go-to-Market?</h3>
+                <p className="text-gray-600 text-sm mb-4">Comprehensive guide to GTM strategy, frameworks, and best practices for product success.</p>
+                <span className="text-amber-600 font-semibold text-sm">Read Full Guide →</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ Section */}
         {faqSection && (
           <section className="py-20 md:py-28 bg-white">

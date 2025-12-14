@@ -17,6 +17,26 @@ export const metadata: Metadata = {
 }
 
 export default function GoToMarketConsultantPage() {
+  // Breadcrumb schema for search results
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://gtm.quest"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Go-to-Market Consultant",
+        item: "https://gtm.quest/go-to-market-consultant"
+      }
+    ]
+  }
+
   // Service schema for GTM consultant services
   const serviceSchema = {
     "@context": "https://schema.org",
@@ -41,6 +61,10 @@ export default function GoToMarketConsultantPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}

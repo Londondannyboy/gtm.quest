@@ -16,8 +16,32 @@ export const metadata: Metadata = {
 }
 
 export default function WhatIsGTMPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://gtm.quest"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "What is Go-to-Market?",
+        item: "https://gtm.quest/what-is-gtm"
+      }
+    ]
+  }
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <div className="min-h-screen bg-white">
       <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20 md:py-32">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Link href="/" className="inline-flex items-center text-blue-200 hover:text-white mb-8 transition-colors text-sm"><span className="mr-2">←</span> Back to Home</Link>
@@ -483,6 +507,7 @@ export default function WhatIsGTMPage() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }
