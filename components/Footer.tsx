@@ -9,21 +9,21 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center">
-                <span className="text-white font-black text-2xl">F</span>
+              <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
+                <span className="text-white font-black text-2xl">G</span>
               </div>
               <div>
-                <span className="font-bold text-white text-xl">Fractional</span>
+                <span className="font-bold text-white text-xl">GTM</span>
                 <span className="text-gray-400 font-bold text-xl">.Quest</span>
               </div>
             </Link>
             <p className="text-gray-400 leading-relaxed mb-6">
-              The UK's emerging platform connecting companies with fractional executives.
-              Find your next CFO, CTO, CMO, or COO on a part-time basis.
+              AI-powered GTM agency helping UK companies launch and scale.
+              Free strategy tools, expert consultants, and proven go-to-market frameworks.
             </p>
             <div className="flex gap-4">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/company/gtmquest"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors"
@@ -34,7 +34,7 @@ export function Footer() {
                 </svg>
               </a>
               <a
-                href="https://twitter.com"
+                href="https://twitter.com/gtmquest"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-gray-700 transition-colors"
@@ -50,103 +50,30 @@ export function Footer() {
           {/* Navigation Columns */}
           <div className="lg:col-span-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {/* For Executives */}
+              {/* GTM Services */}
               <div>
                 <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">
-                  For Executives
+                  GTM Services
                 </h4>
                 <ul className="space-y-3">
                   <li>
-                    <Link href="/fractional-jobs" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Browse Jobs
+                    <Link href="/agencies" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Browse Agencies
                     </Link>
                   </li>
                   <li>
-                    <Link href="/calculators/rate-finder" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Rate Calculator
+                    <Link href="/chat" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      AI Strategist
                     </Link>
                   </li>
                   <li>
-                    <Link href="/calculators/portfolio-builder" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Portfolio Planner
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/guide" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Getting Started Guide
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/handler/sign-up" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Join Beta
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* For Companies */}
-              <div>
-                <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">
-                  For Companies
-                </h4>
-                <ul className="space-y-3">
-                  <li>
-                    <Link href="/calculators/company-savings" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Savings Calculator
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cfo" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Fractional CFO
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cto" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Fractional CTO
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cmo" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Fractional CMO
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Templates & Guides
                     </Link>
                   </li>
                   <li>
                     <Link href="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">
                       Contact Us
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Locations */}
-              <div>
-                <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">
-                  Locations
-                </h4>
-                <ul className="space-y-3">
-                  <li>
-                    <Link href="/fractional-jobs-london" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      London
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/fractional-jobs-manchester" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Manchester
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/fractional-jobs-birmingham" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Birmingham
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/fractional-jobs-edinburgh" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Edinburgh
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/remote" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Remote Jobs
                     </Link>
                   </li>
                 </ul>
@@ -159,18 +86,71 @@ export function Footer() {
                 </h4>
                 <ul className="space-y-3">
                   <li>
-                    <Link href="/articles" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      Articles
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      GTM Playbooks
                     </Link>
                   </li>
                   <li>
-                    <Link href="/calculators" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      All Calculators
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Strategy Frameworks
                     </Link>
                   </li>
                   <li>
-                    <Link href="/voice" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      AI Assistant
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Case Studies
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Launch Checklists
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* GTM Topics */}
+              <div>
+                <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">
+                  GTM Topics
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      B2B SaaS GTM
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Product Launch
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Market Entry
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/resources" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Positioning Strategy
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Company */}
+              <div>
+                <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">
+                  Company
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <Link href="/" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      About GTM Quest
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">
+                      Contact
                     </Link>
                   </li>
                   <li>
@@ -195,12 +175,12 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} Fractional Quest. All rights reserved. Built in the UK.
+              © {new Date().getFullYear()} GTM Quest. All rights reserved. Built in the UK.
             </p>
             <div className="flex items-center gap-6">
               <span className="text-xs text-gray-400 flex items-center gap-2">
                 <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                Beta — Launching December 2025
+                AI-Powered GTM Agency
               </span>
             </div>
           </div>

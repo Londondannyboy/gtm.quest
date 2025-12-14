@@ -19,10 +19,9 @@ export function Navigation() {
   }, [])
 
   const navLinks = [
-    { href: '/voice-test', label: 'Repo' },
-    { href: '/fractional-services', label: 'Services' },
-    { href: '/fractional-jobs', label: 'Fractional Jobs' },
-    { href: '/fractional-jobs-articles', label: 'Knowledge Base' }
+    { href: '/agencies', label: 'GTM Agencies' },
+    { href: '/resources', label: 'Resources' },
+    { href: '/chat', label: 'AI Strategist' }
   ]
 
   const isActive = (href: string) => {
@@ -38,11 +37,11 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-gray-800 to-black rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <span className="text-white font-black text-xl">F</span>
+            <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+              <span className="text-white font-black text-xl">G</span>
             </div>
             <div className="hidden sm:block">
-              <span className="font-bold text-gray-900 text-lg">Fractional</span>
+              <span className="font-bold text-gray-900 text-lg">GTM</span>
               <span className="text-gray-600 font-bold text-lg">.Quest</span>
             </div>
           </Link>
@@ -62,24 +61,24 @@ export function Navigation() {
 
           {/* Right side */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Jobs link - always visible, prominent on mobile */}
+            {/* Chat link - always visible, prominent on mobile */}
             <Link
-              href="/fractional-jobs"
+              href="/chat"
               className={`md:hidden px-3 py-2 rounded-lg font-semibold text-sm transition-colors ${
-                isActive('/fractional-jobs')
-                  ? 'bg-gray-200 text-gray-900'
+                isActive('/chat')
+                  ? 'bg-amber-100 text-amber-900'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
-              Jobs
+              AI Chat
             </Link>
 
             <AuthButtons />
             <Link
-              href="/handler/sign-up"
-              className="hidden sm:inline-flex btn-gradient text-sm px-4 py-2"
+              href="/chat"
+              className="hidden sm:inline-flex bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2"
             >
-              Join Beta
+              🤖 Try AI Strategist
             </Link>
 
             {/* Mobile menu button */}
@@ -113,7 +112,7 @@ export function Navigation() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-lg font-medium transition-colors ${
                     isActive(link.href)
-                      ? 'bg-gray-100 text-gray-900'
+                      ? 'bg-amber-50 text-amber-900'
                       : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -121,11 +120,11 @@ export function Navigation() {
                 </Link>
               ))}
               <Link
-                href="/handler/sign-up"
+                href="/chat"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mx-4 mt-4 btn-gradient text-center"
+                className="mx-4 mt-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-lg py-3 text-center hover:from-amber-600 hover:to-orange-600 transition-all"
               >
-                Join Beta
+                🤖 Try AI Strategist
               </Link>
             </div>
           </div>
