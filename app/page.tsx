@@ -4,9 +4,9 @@ import { createDbQuery } from "@/lib/db";
 import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
 
 export const metadata: Metadata = {
-  title: "GTM Agency UK | AI-Powered Go-To-Market Strategy | GTM Quest",
-  description: "Top GTM agency in UK. Free AI-powered strategy tools, expert consultants, and go-to-market planning. Chat with our AI to create your custom GTM plan.",
-  keywords: "gtm agency, gtm agency uk, go-to-market strategy, gtm consultant, product launch, market entry strategy, b2b gtm, saas gtm",
+  title: "GTM Agency UK | Expert Go-To-Market Strategy Services | GTM Quest",
+  description: "Leading GTM agency providing expert go-to-market strategy, product launch support, and AI-powered planning tools. UK-based consultants helping B2B SaaS companies accelerate revenue growth.",
+  keywords: "GTM agency, GTM agency UK, go-to-market strategy, GTM consultant, GTM strategy, product launch, market entry strategy, B2B GTM, SaaS GTM, go-to-market agency",
   alternates: {
     canonical: "https://gtm.quest",
   },
@@ -88,9 +88,34 @@ export default async function Home() {
     })) || []
   } : null
 
+  // Organization JSON-LD for better SEO
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LocalBusiness"],
+    name: "GTM Quest",
+    alternateName: ["GTM Agency UK", "GTM Agency", "Go-To-Market Agency"],
+    description: "AI-powered GTM agency providing expert go-to-market strategy, product launch support, and consulting services.",
+    url: "https://gtm.quest",
+    logo: "https://gtm.quest/logo.svg",
+    foundingDate: "2025",
+    areaServed: {
+      "@type": "Country",
+      name: "United Kingdom"
+    },
+    serviceType: ["GTM Strategy", "Product Launch", "Go-To-Market Consulting"],
+    sameAs: [
+      "https://twitter.com/gtmquest",
+      "https://linkedin.com/company/gtmquest"
+    ]
+  }
+
   return (
     <>
       {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
       {faqJsonLd && (
         <script
           type="application/ld+json"
@@ -99,9 +124,6 @@ export default async function Home() {
       )}
 
       <div className="flex flex-col">
-        {/* SEO H1 - Always visible to crawlers */}
-        <h1 className="sr-only">UK GTM Agency | Go-To-Market Strategy & Product Launch Experts</h1>
-
         {/* Hero Section - AI-Powered GTM Agency */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
           {/* Animated background grid */}
@@ -116,16 +138,16 @@ export default async function Home() {
                   ⚡ AI-Powered GTM Agency
                 </span>
 
-                <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" role="heading" aria-level={2}>
-                  {heroSection?.title || "Get Your Product to Market 3x Faster"}
-                </div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent">GTM Agency</span>: Expert Go-To-Market Strategy & Product Launch Services
+                </h1>
 
                 <p className="text-xl md:text-2xl text-gray-300 mb-6 leading-relaxed">
                   Create a winning GTM strategy in 5 minutes with AI. No guesswork. No confusion. Just results.
                 </p>
 
                 <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-                  Join hundreds of companies using our free AI-powered GTM tools to launch smarter, grow faster, and win their market.
+                  Whether you're a fast-growing SaaS company, enterprise launching into new markets, or B2B startup looking to scale, GTM strategy separates winners from the rest. Our AI-powered platform and expert consultants help UK companies reduce launch risk, accelerate revenue growth, and achieve market leadership. From product positioning to sales execution, we handle every step of your go-to-market journey.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -220,6 +242,42 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Why GTM Strategy Matters */}
+        <section className="py-20 md:py-28 bg-white">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
+            <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+              Why Go-To-Market Strategy Matters for Product Success
+            </h2>
+
+            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+              <p>
+                A well-executed GTM strategy is the difference between successful product launches and missed market opportunities. Companies with structured go-to-market planning achieve 20-40% higher conversion rates and accelerate their sales cycles by 30-50% compared to those using unstructured approaches. GTM agencies provide the strategic framework and execution support that transforms product launches from uncertain gambles into predictable, revenue-generating successes.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border border-amber-200">
+                  <h3 className="font-bold text-gray-900 mb-2">Faster Time to Market</h3>
+                  <p className="text-gray-600">Proven frameworks reduce launch planning from months to weeks, enabling faster revenue generation and competitive advantage.</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border border-amber-200">
+                  <h3 className="font-bold text-gray-900 mb-2">Lower Customer Acquisition Cost</h3>
+                  <p className="text-gray-600">Optimized positioning, messaging, and channel strategy reduce CAC by focusing resources on your ideal customers and highest-probability channels.</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border border-amber-200">
+                  <h3 className="font-bold text-gray-900 mb-2">Revenue Growth & Scale</h3>
+                  <p className="text-gray-600">Comprehensive GTM strategy aligns sales and marketing, eliminates friction in your revenue operations, and creates sustainable growth foundations.</p>
+                </div>
+              </div>
+
+              <p className="mt-8">
+                Whether you're a B2B SaaS company launching new products, an enterprise entering adjacent markets, or a startup seeking to establish market presence, working with GTM consultants and agencies ensures you leverage best practices from thousands of successful launches across industries and company sizes.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* Introduction Section */}
         {introSection && (
           <section className="py-20 md:py-28 bg-white">
@@ -252,8 +310,16 @@ export default async function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {servicesSection.content.items?.map((service: any, i: number) => (
                   <div key={i} className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
+                    <p className="text-sm text-gray-500 italic">
+                      {i === 0 && "Identify market opportunities, competitive positioning, and ideal customer profiles."}
+                      {i === 1 && "Develop compelling value propositions and messaging that resonates with target audiences."}
+                      {i === 2 && "Create comprehensive go-to-market roadmaps with clear milestones and success metrics."}
+                      {i === 3 && "Align sales and marketing teams with SLAs and optimized lead handoff processes."}
+                      {i === 4 && "Execute coordinated product launches with marketing campaigns and sales enablement."}
+                      {i === 5 && "Monitor KPIs, optimize conversion funnels, and iterate based on market feedback."}
+                    </p>
                   </div>
                 ))}
               </div>
