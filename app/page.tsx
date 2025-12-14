@@ -95,6 +95,9 @@ export default async function Home() {
       )}
 
       <div className="flex flex-col">
+        {/* SEO H1 - Always visible to crawlers */}
+        <h1 className="sr-only">UK GTM Agency | Go-To-Market Strategy & Product Launch Experts</h1>
+
         {/* Hero Section - AI-Powered GTM Agency */}
         <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
           {/* Animated background grid */}
@@ -109,9 +112,9 @@ export default async function Home() {
                   AI-Powered GTM Agency
                 </span>
 
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                  {heroSection?.title || "UK GTM Agency for Product Launches"}
-                </h1>
+                <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" role="heading" aria-level="2">
+                  {heroSection?.title || "Launch Your Product to Market with AI-Powered GTM Agency"}
+                </div>
 
                 <p className="text-xl md:text-2xl text-gray-300 mb-4 leading-relaxed">
                   {heroSection?.subtitle || "Free GTM strategy tools, expert consultants, and AI-powered planning"}
