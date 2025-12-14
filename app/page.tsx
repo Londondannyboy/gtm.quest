@@ -5,7 +5,7 @@ import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
 
 export const metadata: Metadata = {
   title: "GTM Agency UK | AI-Powered Go-To-Market Strategy | GTM Quest",
-  description: "Free AI-powered GTM strategy tools and expert consultants. Chat with our AI to create your custom go-to-market plan. Top GTM agencies and resources.",
+  description: "Top GTM agency in UK. Free AI-powered strategy tools, expert consultants, and go-to-market planning. Chat with our AI to create your custom GTM plan.",
   keywords: "gtm agency, gtm agency uk, go-to-market strategy, gtm consultant, product launch, market entry strategy, b2b gtm, saas gtm",
   alternates: {
     canonical: "https://gtm.quest",
@@ -110,7 +110,7 @@ export default async function Home() {
                 </span>
 
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                  {heroSection?.title || "Launch Your Product to Market"}
+                  {heroSection?.title || "UK GTM Agency for Product Launches"}
                 </h1>
 
                 <p className="text-xl md:text-2xl text-gray-300 mb-4 leading-relaxed">
@@ -118,7 +118,7 @@ export default async function Home() {
                 </p>
 
                 <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-                  Chat with our AI to create your custom go-to-market plan. Access proven frameworks, connect with top GTM agencies, and launch successfully.
+                  Chat with our GTM agency AI to create your custom go-to-market plan. Access proven frameworks, connect with top GTM agencies, and launch successfully.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -161,7 +161,7 @@ export default async function Home() {
           <section className="py-20 md:py-28 bg-white">
             <div className="max-w-4xl mx-auto px-6 lg:px-8">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
-                {introSection.title}
+                {introSection.title || "What Are GTM Agencies?"}
               </h2>
               <div className="prose prose-lg max-w-none">
                 {introSection.content.paragraphs?.map((p: any, i: number) => (
@@ -179,7 +179,7 @@ export default async function Home() {
           <section className="py-20 md:py-28 bg-gray-50">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">{servicesSection.title}</h2>
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">{servicesSection.title || "GTM Agency Services"}</h2>
                 {servicesSection.subtitle && (
                   <p className="text-xl text-gray-600">{servicesSection.subtitle}</p>
                 )}
@@ -208,9 +208,9 @@ export default async function Home() {
           <section className="py-20 md:py-28 bg-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">{agenciesSection.title}</h2>
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">{agenciesSection.title || "Top GTM Agencies 2025"}</h2>
                 {agenciesSection.subtitle && (
-                  <p className="text-xl text-gray-600">{agenciesSection.subtitle}</p>
+                  <p className="text-xl text-gray-600">{agenciesSection.subtitle || "Leading go-to-market agencies and consultants"}</p>
                 )}
               </div>
 

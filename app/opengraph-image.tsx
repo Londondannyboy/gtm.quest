@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Fractional Quest - UK Fractional Executive Jobs Platform'
+export const alt = 'GTM Quest - UK GTM Agency for Go-To-Market Strategy and Product Launches'
 export const size = {
   width: 1200,
   height: 630,
@@ -58,18 +58,18 @@ export default async function Image() {
               letterSpacing: '-2px',
             }}
           >
-            Fractional Quest
+            GTM Quest
           </div>
 
           {/* Tagline */}
           <div
             style={{
               fontSize: 36,
-              color: '#a1a1aa',
+              color: '#f59e0b',
               marginBottom: 48,
             }}
           >
-            UK&apos;s #1 Fractional Executive Platform
+            UK&apos;s AI-Powered GTM Agency
           </div>
 
           {/* Stats row */}
@@ -80,20 +80,20 @@ export default async function Image() {
               marginBottom: 48,
             }}
           >
-            {['CFO', 'CTO', 'CMO', 'COO'].map((role) => (
+            {['Strategy', 'Launch', 'Scale', 'Growth'].map((service) => (
               <div
-                key={role}
+                key={service}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   padding: '12px 24px',
-                  backgroundColor: 'rgba(255,255,255,0.1)',
+                  backgroundColor: 'rgba(245, 158, 11, 0.1)',
                   borderRadius: 8,
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  border: '1px solid rgba(245, 158, 11, 0.3)',
                 }}
               >
                 <span style={{ color: '#ffffff', fontSize: 24, fontWeight: 600 }}>
-                  Fractional {role}
+                  {service}
                 </span>
               </div>
             ))}
@@ -106,7 +106,7 @@ export default async function Image() {
               color: '#71717a',
             }}
           >
-            fractional.quest
+            gtm.quest
           </div>
         </div>
       </div>
