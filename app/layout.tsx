@@ -1,12 +1,21 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "@/stack/server";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
-import { Footer } from "@/components/Footer";
-import { CookieConsent } from "@/components/CookieConsent";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default: m.Footer })), {
+  ssr: true,
+  loading: () => <div className="h-24 bg-gray-50" />
+});
+
+const CookieConsent = dynamic(() => import("@/components/CookieConsent").then(m => ({ default: m.CookieConsent })), {
+  ssr: false,
+  loading: () => null
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

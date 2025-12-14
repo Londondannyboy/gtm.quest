@@ -4,8 +4,8 @@ import { createDbQuery } from "@/lib/db";
 import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
 
 export const metadata: Metadata = {
-  title: "GTM Agency UK | Expert Go-To-Market Strategy Services | GTM Quest",
-  description: "Leading GTM agency providing expert go-to-market strategy, product launch support, and AI-powered planning tools. UK-based consultants helping B2B SaaS companies accelerate revenue growth.",
+  title: "GTM Agency UK | Go-To-Market Strategy",
+  description: "Top GTM agency providing expert go-to-market strategy, product launch support, and AI-powered planning tools for UK companies.",
   keywords: "GTM agency, GTM agency UK, go-to-market strategy, GTM consultant, GTM strategy, product launch, market entry strategy, B2B GTM, SaaS GTM, go-to-market agency",
   alternates: {
     canonical: "https://gtm.quest",

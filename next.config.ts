@@ -83,7 +83,13 @@ const nextConfig: NextConfig = {
     ],
     // Inline critical CSS to eliminate render-blocking requests
     optimizeCss: true,
+    // Optimize CSS-in-JS solutions
+    optimizeServerComponents: true,
   },
+
+  // Reduce render-blocking resources
+  compress: true,
+  poweredByHeader: false,
 };
 
 export default nextConfig;
