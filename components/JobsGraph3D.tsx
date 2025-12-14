@@ -200,9 +200,28 @@ export function JobsGraph3D({
   }, [graphData])
 
   const handleNodeClick = useCallback((node: any) => {
-    if (node.url) {
-      window.location.href = node.url
+    if (!node.url || !graphRef.current) {
+      return
     }
+
+    // Fly to the node with a "time warp" effect
+    const distance = 40
+    const distRatio = 1 + distance / Math.hypot(node.x || 0, node.y || 0, node.z || 0)
+
+    graphRef.current.cameraPosition(
+      {
+        x: (node.x || 0) * distRatio,
+        y: (node.y || 0) * distRatio,
+        z: (node.z || 0) * distRatio
+      },
+      node, // lookAt
+      1500  // transition duration
+    )
+
+    // Navigate after the fly animation completes
+    setTimeout(() => {
+      window.location.href = node.url
+    }, 1600)
   }, [])
 
   // Generate label for node - all are clickable
@@ -289,11 +308,11 @@ export function JobsGraph3D({
             width={dimensions.width}
             height={dimensions.height}
             backgroundColor="rgba(0,0,0,0)"
-            nodeThreeObject={createNodeObject}
-            nodeThreeObjectExtend={true}
+            nodeColor={(node: any) => node.color || groupColors.default}
+            nodeVal={(node: any) => node.val}
             nodeLabel={getNodeLabel}
-            nodeRelSize={6}
-            nodeOpacity={1}
+            nodeRelSize={8}
+            nodeOpacity={0.95}
             linkColor={() => 'rgba(99, 102, 241, 0.5)'}
             linkWidth={2}
             linkOpacity={0.6}
@@ -315,7 +334,31 @@ export function JobsGraph3D({
 
       {!loading && !error && showOverlay && (
         <>
-          {/* Bottom center legend - minimal for hero mode */}
+          {/* Navigation Guide - Top Right */}
+          <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-xl p-4 text-xs z-20 max-w-[200px]">
+            <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Navigation
+            </h4>
+            <ul className="space-y-2 text-gray-300">
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5">🖱️</span>
+                <span><strong className="text-white">Click</strong> any node to fly there & view details</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5">🔄</span>
+                <span><strong className="text-white">Drag</strong> to rotate the view</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-blue-400 mt-0.5">🔍</span>
+                <span><strong className="text-white">Scroll</strong> to zoom in/out</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Bottom center legend */}
           <div className={`absolute ${isHero ? 'bottom-6' : 'bottom-3'} left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-xs z-10 flex items-center gap-4`}>
             <div className="flex items-center gap-1.5">
               <div className="w-4 h-4 rounded-full bg-amber-500" />
@@ -329,7 +372,6 @@ export function JobsGraph3D({
               <div className="w-2 h-2 rounded-full bg-emerald-500" />
               <span className="text-slate-400">Skills</span>
             </div>
-            <span className="text-slate-400 border-l border-slate-600 pl-4">Click any node to explore</span>
           </div>
         </>
       )}
