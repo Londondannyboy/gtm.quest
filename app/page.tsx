@@ -10,8 +10,8 @@ import { JobsGraph3D } from "@/components/JobsGraph3D";
 import { DesktopOnly } from "@/components/DesktopOnly";
 
 export const metadata: Metadata = {
-  title: "Fractional Jobs UK | Fractional Executive Jobs & Services Platform",
-  description: "UK's marketplace for fractional jobs and executive services. Find fractional CFO, CMO, CTO roles or hire fractional executives for your business. Browse fractional executive jobs and fractional services.",
+  title: "Fractional Jobs | CFO, CMO, CTO Executive Roles UK",
+  description: "Find fractional jobs or hire fractional executives. CFO, CMO, CTO roles. £600-£1,500 day rates. Browse fractional jobs UK.",
   keywords: "fractional jobs, fractional jobs uk, fractional executive jobs, fractional services, fractional cfo roles, fractional roles uk, remote fractional jobs, fractional c-suite recruitment",
   alternates: {
     canonical: "https://fractional.quest",
@@ -322,9 +322,9 @@ export default async function Home() {
                     UK's Fractional Jobs & Services Platform
                   </span>
 
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1]">
+                  <div className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1]" role="heading" aria-level={1}>
                     Fractional Jobs UK
-                  </h1>
+                  </div>
 
                   <p className="text-xl md:text-2xl text-emerald-400 font-semibold mb-4">
                     Executive Jobs & Fractional Services Marketplace
@@ -374,6 +374,33 @@ export default async function Home() {
                 <span className="text-white font-medium">Explore:</span> Click nodes to view • Drag to rotate • Scroll to zoom
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content Section - Crawler Optimized */}
+      <section className="bg-white py-16 md:py-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="prose prose-lg max-w-none">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
+              The UK's Marketplace for Fractional Jobs
+            </h1>
+
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Fractional jobs are transforming how executives work in the UK. As the leading platform for fractional executive opportunities, we connect experienced professionals with companies seeking part-time leadership. Whether you're looking for fractional CFO, CMO, CTO, or COO roles, our marketplace offers hundreds of verified opportunities across the United Kingdom.
+            </p>
+
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              Fractional work differs from traditional employment by allowing executives to work with 2-4 companies simultaneously, typically dedicating 1-3 days per week to each client. This model has gained significant traction in the UK market, with fractional jobs now commanding day rates between £600-£1,500 depending on role and experience. Fractional executives can earn £150,000-£300,000+ annually while maintaining flexibility and work-life balance that full-time positions cannot offer.
+            </p>
+
+            <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              For companies, hiring fractional executives provides access to senior talent without the commitment and cost of full-time hires. Fractional jobs enable businesses to secure strategic leadership at 40-60% less expense than permanent executives, with engagements starting within days rather than months. This approach has proven particularly valuable for startups, scale-ups, and SMEs across London, Manchester, Birmingham, and throughout the UK.
+            </p>
+
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Our platform serves both sides of the fractional market: executives seeking flexible, high-value opportunities and companies requiring strategic leadership without full-time overhead. Browse our curated fractional jobs, explore fractional executive services, or learn more about how fractional work can transform your career or business.
+            </p>
           </div>
         </div>
       </section>

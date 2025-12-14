@@ -7,13 +7,15 @@ import { JobsGraph3D } from '@/components/JobsGraph3D'
 export const revalidate = 3600 // Revalidate every hour
 
 export const metadata: Metadata = {
-  title: 'Fractional Jobs UK | Fractional Jobs London - Executive Roles Nationwide',
-  description: 'Find fractional jobs UK wide. Fractional jobs London, Manchester, Birmingham & more. CFO, CMO, CTO roles. £800-£1,500 daily rates. 200+ fractional jobs UK opportunities.',
+  title: 'Fractional Jobs UK | London, Manchester, Birmingham',
+  description: 'Find fractional jobs UK wide. London, Manchester, Birmingham. CFO, CMO, CTO roles. £800-£1,500 day rates. 200+ opportunities.',
   keywords: 'fractional jobs UK, fractional jobs London, fractional executive jobs UK, fractional CFO jobs UK, fractional CMO jobs UK, fractional CTO jobs UK',
+  canonical: 'https://fractional.quest/uk-fractional-jobs-uk-london-fractional-jobs-london',
   openGraph: {
-    title: 'Fractional Jobs UK | Fractional Jobs London - Executive Roles Nationwide',
-    description: 'Find fractional jobs UK wide. Fractional jobs London, Manchester, Birmingham & more. CFO, CMO, CTO roles. £800-£1,500 daily rates.',
+    title: 'Fractional Jobs UK | London, Manchester, Birmingham',
+    description: 'Find fractional jobs UK wide. London, Manchester, Birmingham. CFO, CMO, CTO roles. £800-£1,500 day rates.',
     type: 'website',
+    url: 'https://fractional.quest/uk-fractional-jobs-uk-london-fractional-jobs-london',
   },
 }
 
@@ -203,9 +205,21 @@ export default async function FractionalJobsUKPage() {
               Your marketplace<br />for fractional jobs UK
             </h2>
           </div>
-          <div className="prose prose-xl prose-gray max-w-none">
-            <p className="text-xl text-gray-600 leading-relaxed text-center">
+          <div className="prose prose-xl prose-gray max-w-none space-y-8">
+            <p className="text-xl text-gray-600 leading-relaxed">
               Fractional jobs UK are transforming how executives work. With London accounting for 60% of opportunities and growing markets in Manchester, Birmingham, and Edinburgh, the UK fractional executive market offers unmatched flexibility and earning potential. Day rates range from £700-£1,500, with professionals earning £150,000-£300,000+ annually.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              The UK fractional jobs market has experienced remarkable growth over the past three years. What started primarily in London has expanded nationwide, with fractional jobs UK now available across every major city. Companies increasingly recognize that fractional executives provide the same strategic expertise as full-time hires, but with greater flexibility and cost efficiency. This shift has created unprecedented opportunities for experienced professionals seeking better work-life balance.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Fractional jobs London remain the largest segment of the UK market, particularly in fintech, professional services, and technology sectors. However, regional markets are rapidly expanding. Manchester leads the growth in Northern England, while Birmingham and Edinburgh have developed strong fractional ecosystems. Most fractional jobs UK offer hybrid or remote arrangements, enabling professionals to serve clients nationwide without geographic constraints.
+            </p>
+
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Whether you're a CFO, CTO, CMO, or COO, fractional jobs UK provide a viable alternative to traditional employment. Most fractional executives work with 2-4 clients simultaneously, dedicating 1-3 days per week to each engagement. This portfolio approach not only diversifies income but also provides exposure to different industries and business challenges, accelerating professional development while maintaining executive-level impact.
             </p>
           </div>
         </div>
@@ -440,6 +454,7 @@ export default async function FractionalJobsUKPage() {
       {/* Internal Links */}
       <section className="py-16 bg-gray-50 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-12 text-center">Explore Fractional Jobs UK</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
               <h3 className="font-bold text-gray-900 mb-4 text-sm uppercase tracking-wider">Fractional Jobs UK by Role</h3>
