@@ -87,13 +87,31 @@ export default function PlannerPage() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to generate plan')
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Failed to generate plan. Please try again.')
       }
 
       const plan = await response.json()
+
+      // Validate plan has required fields
+      if (!plan.executive_summary || !plan.phases) {
+        throw new Error('Invalid plan data received. Please try again.')
+      }
+
       setGeneratedPlan(plan)
+
+      // Send plan to email (optional - can implement later)
+      if (data.email) {
+        fetch('/api/send-gtm-plan', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: data.email, plan }),
+        }).catch(() => {}) // Silent fail for email
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error generating plan')
+      const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred. Please try again.'
+      setError(errorMessage)
+      console.error('Plan generation error:', err)
     } finally {
       setLoading(false)
     }
@@ -295,8 +313,15 @@ export default function PlannerPage() {
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-2xl shadow-xl p-8">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800">
-              {error}
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+              <div className="flex gap-3">
+                <span className="text-red-600 text-xl">⚠️</span>
+                <div>
+                  <p className="font-semibold text-red-900">Unable to Generate Plan</p>
+                  <p className="text-red-800 text-sm mt-1">{error}</p>
+                  <p className="text-red-700 text-xs mt-2">💡 Tip: Try with slightly different inputs, or <a href="/chat" className="underline font-semibold">chat with our AI strategist</a> for personalized help.</p>
+                </div>
+              </div>
             </div>
           )}
 
@@ -607,9 +632,19 @@ export default function PlannerPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:from-amber-600 hover:to-orange-600 transition-all disabled:opacity-50"
+                className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:from-amber-600 hover:to-orange-600 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                {loading ? 'Generating your plan...' : '🚀 Generate My GTM Plan'}
+                {loading ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Generating your plan...</span>
+                  </>
+                ) : (
+                  '🚀 Generate My GTM Plan'
+                )}
               </button>
             )}
           </div>

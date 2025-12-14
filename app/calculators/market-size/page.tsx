@@ -311,6 +311,37 @@ export default function MarketSizeCalculatorPage() {
           </div>
         </div>
 
+        {/* FAQ Section */}
+        <div className="mt-12 bg-gray-50 rounded-xl shadow-lg p-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="font-bold text-gray-900 mb-2">Q: How accurate is this calculator?</h3>
+              <p className="text-gray-700">
+                This calculator provides realistic estimates based on industry benchmarks. However, your specific market size depends on many factors including competitive landscape, pricing, and go-to-market strategy. Use these numbers as a guide, not gospel.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 mb-2">Q: Should I use TAM, SAM, or SOM for my business plan?</h3>
+              <p className="text-gray-700">
+                Use SAM for your business plan (realistic addressable market), SOM for your first 3-5 year goals, and TAM to understand the maximum opportunity. Investors typically focus on SAM and SOM.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 mb-2">Q: How do I improve my conversion rate assumption?</h3>
+              <p className="text-gray-700">
+                Test your product with real customers, analyze competitor conversion rates, and look at historical data. Start conservative (1-2%), then increase as you optimize. Most consumer products convert at 2-5%, B2B at 0.5-3%.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-bold text-gray-900 mb-2">Q: Is this calculator free?</h3>
+              <p className="text-gray-700">
+                Yes! This calculator is completely free. As a leading <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold">GTM agency</Link>, we provide free tools to help companies succeed with their go-to-market strategy.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* CTA Section */}
         <div className="mt-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Use This Data in Your GTM Plan</h2>

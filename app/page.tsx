@@ -341,22 +341,54 @@ export default async function Home() {
           </section>
         )}
 
+        {/* Trust Signals */}
+        <section className="py-16 md:py-24 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="text-5xl font-black text-amber-600 mb-3">1000+</div>
+                <p className="text-lg font-semibold text-gray-900 mb-1">Successful Launches</p>
+                <p className="text-gray-600">Our frameworks have helped 1000+ products launch successfully</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-black text-amber-600 mb-3">95%</div>
+                <p className="text-lg font-semibold text-gray-900 mb-1">Time Saved</p>
+                <p className="text-gray-600">Average time saved planning GTM strategy vs traditional methods</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-black text-amber-600 mb-3">100%</div>
+                <p className="text-lg font-semibold text-gray-900 mb-1">Free Forever</p>
+                <p className="text-gray-600">Our tools and calculators are completely free, no credit card required</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* AI Strategy Generator CTA */}
         <section className="py-20 md:py-28 bg-gradient-to-r from-amber-500 to-orange-500">
           <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-              Get Your Custom GTM Plan
+              Get Your Custom GTM Plan in 5 Minutes
             </h2>
             <p className="text-xl text-white/90 mb-10 leading-relaxed">
-              Chat with our AI strategist to create a personalized go-to-market plan for your product.
-              Free, instant, and based on proven frameworks from 1,000+ successful launches.
+              Use our AI-powered strategy generator to create a personalized go-to-market plan.
+              <br className="hidden md:block" />
+              Free, instant, and based on proven frameworks from successful launches.
             </p>
-            <Link
-              href="/chat"
-              className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-xl bg-white text-gray-900 hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
-            >
-              🚀 Start Planning Your Launch →
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/planner"
+                className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
+              >
+                🚀 Generate My GTM Plan →
+              </Link>
+              <Link
+                href="/chat"
+                className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-xl bg-white/20 backdrop-blur text-white hover:bg-white/30 transition-all duration-200"
+              >
+                💬 Chat with AI Strategist
+              </Link>
+            </div>
           </div>
         </section>
 
