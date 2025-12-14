@@ -13,7 +13,7 @@ const Footer = dynamic(() => import("@/components/Footer").then(m => ({ default:
 });
 
 const CookieConsent = dynamic(() => import("@/components/CookieConsent").then(m => ({ default: m.CookieConsent })), {
-  ssr: false,
+  ssr: true,
   loading: () => null
 });
 
