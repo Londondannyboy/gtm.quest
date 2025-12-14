@@ -84,27 +84,27 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-white font-bold mb-4">Resources</h3>
+            <h3 className="text-white font-bold mb-4">Guides</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
-                  GTM Templates
-                </a>
+                <Link href="/gtm-strategy" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                  GTM Strategy Guide
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
-                  Best GTM Practices
-                </a>
+                <Link href="/product-launch" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                  Product Launch Guide
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
-                  Case Studies
-                </a>
+                <Link href="/saas-gtm-plan" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                  SaaS GTM Playbook
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
-                  Blog
-                </a>
+                <Link href="/resources" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                  All Resources
+                </Link>
               </li>
             </ul>
           </div>
@@ -114,9 +114,14 @@ export function Footer() {
             <h3 className="text-white font-bold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/about" className="text-gray-400 hover:text-amber-500 transition text-sm">
                   About Us
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                  Contact
+                </Link>
               </li>
               <li>
                 <Link href="/privacy" className="text-gray-400 hover:text-amber-500 transition text-sm">
@@ -127,11 +132,6 @@ export function Footer() {
                 <Link href="/terms" className="text-gray-400 hover:text-amber-500 transition text-sm">
                   Terms of Service
                 </Link>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
-                  Contact
-                </a>
               </li>
             </ul>
           </div>
