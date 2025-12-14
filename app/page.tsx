@@ -112,7 +112,7 @@ export default async function Home() {
                   AI-Powered GTM Agency
                 </span>
 
-                <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" role="heading" aria-level="2">
+                <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" role="heading" aria-level={2}>
                   {heroSection?.title || "Launch Your Product to Market with AI-Powered GTM Agency"}
                 </div>
 
