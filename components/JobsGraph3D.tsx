@@ -341,8 +341,8 @@ export function JobsGraph3D({
             enableNavigationControls={true}
             d3AlphaDecay={0.02}
             d3VelocityDecay={0.3}
-            warmupTicks={50}
-            cooldownTicks={100}
+            warmupTicks={20}
+            cooldownTicks={30}
           />
         )}
       </div>

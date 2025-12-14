@@ -297,20 +297,6 @@ export default async function Home() {
           />
         </div>
 
-        {/* Mini Graph - London Focus (Middle Right) - Desktop Only */}
-        <div className="hidden lg:block absolute top-[340px] right-6 w-72 h-56 rounded-xl overflow-hidden border-2 border-white/20 shadow-2xl z-30">
-          <div className="absolute top-2 left-2 z-10 bg-black/70 backdrop-blur px-3 py-1 rounded text-xs">
-            <span className="text-blue-400 font-semibold">London Jobs</span>
-          </div>
-          <JobsGraph3D
-            locationFilter="london"
-            limit={12}
-            height="100%"
-            isHero={true}
-            showOverlay={false}
-          />
-        </div>
-
         {/* Bottom-aligned content with glass panel */}
         <div className="relative z-10 w-full pb-8 md:pb-12">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -683,20 +669,6 @@ export default async function Home() {
           </div>
         </section>
       )}
-
-      {/* 3D Jobs Knowledge Graph - Desktop Only */}
-      <DesktopOnly>
-        <section className="py-20 md:py-28 bg-gray-950">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-2 block">Interactive Network</span>
-              <h2 className="text-4xl font-bold text-white mb-4">Fractional Jobs Knowledge Graph</h2>
-              <p className="text-xl text-gray-400">Explore roles, skills, and companies in 3D</p>
-            </div>
-            <JobsGraph3D limit={30} height="600px" />
-          </div>
-        </section>
-      </DesktopOnly>
 
       {/* Latest News Section - Auto-generated + Manual Articles */}
       <section className="py-20 md:py-28 bg-white">
