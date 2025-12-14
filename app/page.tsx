@@ -109,52 +109,109 @@ export default async function Home() {
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
               <div className="text-center max-w-4xl mx-auto">
                 <span className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-8">
-                  AI-Powered GTM Agency
+                  ⚡ AI-Powered GTM Agency
                 </span>
 
                 <div className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight" role="heading" aria-level={2}>
-                  {heroSection?.title || "Launch Your Product to Market with AI-Powered GTM Agency"}
+                  {heroSection?.title || "Get Your Product to Market 3x Faster"}
                 </div>
 
-                <p className="text-xl md:text-2xl text-gray-300 mb-4 leading-relaxed">
-                  {heroSection?.subtitle || "Free GTM strategy tools, expert consultants, and AI-powered planning"}
+                <p className="text-xl md:text-2xl text-gray-300 mb-6 leading-relaxed">
+                  Create a winning GTM strategy in 5 minutes with AI. No guesswork. No confusion. Just results.
                 </p>
 
                 <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-                  Chat with our GTM agency AI to create your custom go-to-market plan. Access proven frameworks, connect with top GTM agencies, and launch successfully.
+                  Join hundreds of companies using our free AI-powered GTM tools to launch smarter, grow faster, and win their market.
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                   <Link
-                    href="/chat"
-                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    href="/planner"
+                    className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
                   >
-                    🤖 Chat with AI Strategist →
+                    🚀 Get My Free GTM Plan →
                   </Link>
                   <Link
-                    href="/agencies"
+                    href="/calculators/market-size"
                     className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
                   >
-                    Browse GTM Agencies
+                    📊 Calculate Market Size
                   </Link>
+                </div>
+
+                <div className="text-sm text-gray-400">
+                  Or <Link href="/chat" className="text-amber-400 hover:text-amber-300 underline">chat with our AI strategist</Link> for custom advice
                 </div>
 
                 {/* Stats */}
                 <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
                   <div className="text-center">
-                    <div className="text-4xl font-black text-white mb-2">500+</div>
-                    <div className="text-sm text-gray-400">GTM Agencies</div>
+                    <div className="text-4xl font-black text-white mb-2">5 min</div>
+                    <div className="text-sm text-gray-400">to GTM Plan</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-black text-white mb-2">1,000+</div>
-                    <div className="text-sm text-gray-400">Launches</div>
+                    <div className="text-4xl font-black text-white mb-2">4</div>
+                    <div className="text-sm text-gray-400">Free Calculators</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-black text-white mb-2">Free</div>
-                    <div className="text-sm text-gray-400">Strategy Tools</div>
+                    <div className="text-4xl font-black text-white mb-2">100%</div>
+                    <div className="text-sm text-gray-400">Free Forever</div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section className="py-20 md:py-28 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works in 4 Steps</h2>
+              <p className="text-xl text-gray-600">From zero to GTM strategy in 5 minutes</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
+                  1
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Answer 5 Questions</h3>
+                <p className="text-gray-600">Tell us about your product, market, and goals</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
+                  2
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Get AI Strategy</h3>
+                <p className="text-gray-600">Our AI generates your personalized GTM roadmap</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
+                  3
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Refine with Tools</h3>
+                <p className="text-gray-600">Use calculators to test pricing, budget, and market size</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
+                  4
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Launch & Scale</h3>
+                <p className="text-gray-600">Execute your plan or find an agency to help</p>
+              </div>
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link
+                href="/planner"
+                className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Try It Free →
+              </Link>
             </div>
           </div>
         </section>
