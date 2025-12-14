@@ -5,20 +5,47 @@ import { JobsGraph3D } from '@/components/JobsGraph3D'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Go-to-Market Consultant | GTM Strategy Expert | GTM Quest',
-  description: 'Expert go-to-market consultants for product launches and market entry. Strategic GTM planning, execution support, and launch management. Get your product to market successfully.',
-  keywords: 'go-to-market consultant, gtm consultant, gtm strategy consultant, product launch consultant, market entry strategy, go-to-market expert',
+  title: 'Go-to-Market Consultant | GTM Agency UK Expert | GTM Quest',
+  description: 'Expert go-to-market consultants and GTM agency UK specialists for product launches and market entry. Strategic GTM planning, execution support, and launch management. Get your product to market successfully.',
+  keywords: 'go-to-market consultant, gtm consultant, gtm strategy consultant, gtm agency uk, gtm agency, product launch consultant, market entry strategy, go-to-market expert, go-to-market agency',
   alternates: { canonical: 'https://gtm.quest/go-to-market-consultant' },
   openGraph: {
-    title: 'Go-to-Market Consultant | Expert GTM Strategy',
-    description: 'Work with experienced GTM consultants to plan and execute successful product launches and market entry strategies.',
+    title: 'Go-to-Market Consultant | GTM Agency UK Expert Strategy',
+    description: 'Work with experienced GTM consultants and GTM agency UK specialists to plan and execute successful product launches and market entry strategies.',
     type: 'website'
   }
 }
 
 export default function GoToMarketConsultantPage() {
+  // Service schema for GTM consultant services
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://gtm.quest/go-to-market-consultant#service",
+    name: "Go-to-Market Consultant Services",
+    description: "Expert go-to-market consulting and strategy services for product launches and market entry",
+    provider: {
+      "@type": "Organization",
+      name: "GTM Quest",
+      url: "https://gtm.quest",
+      "@id": "https://gtm.quest/#organization"
+    },
+    serviceType: "GTM Strategy Consulting",
+    areaServed: {
+      "@type": "Country",
+      name: "United Kingdom"
+    },
+    url: "https://gtm.quest/go-to-market-consultant",
+    image: "https://gtm.quest/logo.svg"
+  }
+
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <div className="min-h-screen bg-white">
       <section className="relative min-h-[60vh] flex items-center overflow-hidden">
         {/* 3D Knowledge Graph */}
         <div className="absolute inset-0">
@@ -248,5 +275,6 @@ export default function GoToMarketConsultantPage() {
         </div>
       </section>
     </div>
+    </>
   )
 }

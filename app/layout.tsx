@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://gtm.quest",
-    siteName: "GTM Quest",
+    siteName: "GTM Quest - GTM Agency UK Specialist",
     title: "AI-Powered GTM Agency | Go-To-Market Strategy UK",
     description: "Free GTM strategy tools and expert consultants. Chat with our AI to create your custom go-to-market plan.",
     // Images auto-generated from app/opengraph-image.tsx
@@ -79,7 +79,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   "@id": "https://gtm.quest/#organization",
   name: "GTM Quest",
-  alternateName: ["GTM Quest", "GTMQuest"],
+  alternateName: ["GTM Quest", "GTMQuest", "GTM Agency UK", "GTM Agency", "Go-to-Market Agency"],
   url: "https://gtm.quest",
   logo: {
     "@type": "ImageObject",
