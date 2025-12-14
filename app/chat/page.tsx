@@ -5,8 +5,8 @@ import { useUser } from '@stackframe/stack'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 
-const MAX_FREE_MESSAGES = 3
-const STORAGE_KEY = 'fractional_chat_uses'
+const MAX_FREE_MESSAGES = 5
+const STORAGE_KEY = 'gtm_chat_uses'
 
 function getChatUsageCount(): number {
   if (typeof window === 'undefined') return 0
@@ -36,8 +36,8 @@ export default function ChatPage() {
     {
       role: 'assistant',
       content: firstName
-        ? `Hi ${firstName}! I'm your Fractional Quest assistant. I can help you find information about fractional jobs, answer questions about our articles, and provide guidance on fractional executive careers. What would you like to know?`
-        : "Hi! I'm your Fractional Quest assistant. I can help you find information about fractional jobs, answer questions about our articles, and provide guidance on fractional executive careers. What would you like to know?",
+        ? `Hi ${firstName}! I'm your GTM Quest AI strategist. I can help you create custom go-to-market plans, answer questions about GTM strategy, product launches, and connect you with the right agencies. What would you like to know?`
+        : "Hi! I'm your GTM Quest AI strategist. I can help you create custom go-to-market plans, answer questions about GTM strategy, product launches, and connect you with the right agencies. What would you like to know?",
     },
   ])
   const [input, setInput] = useState('')
@@ -56,7 +56,7 @@ export default function ChatPage() {
     if (firstName && messages.length === 1 && messages[0].role === 'assistant') {
       setMessages([{
         role: 'assistant',
-        content: `Hi ${firstName}! I'm your Fractional Quest assistant. I can help you find information about fractional jobs, answer questions about our articles, and provide guidance on fractional executive careers. What would you like to know?`,
+        content: `Hi ${firstName}! I'm your GTM Quest AI strategist. I can help you create custom go-to-market plans, answer questions about GTM strategy, product launches, and connect you with the right agencies. What would you like to know?`,
       }])
     }
   }, [firstName, messages.length])
@@ -136,20 +136,20 @@ export default function ChatPage() {
   const remainingUses = Math.max(0, MAX_FREE_MESSAGES - usageCount)
 
   const suggestedQuestions = [
-    "What is a fractional executive?",
-    "Show me articles about CFO jobs",
-    "What are typical day rates for fractional work?",
-    "How do I transition to fractional consulting?",
+    "Help me create a GTM plan for my SaaS product",
+    "What GTM agencies specialize in B2B?",
+    "What are the key phases of a product launch?",
+    "How do I choose the right GTM strategy?",
   ]
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-purple-700 text-white py-8">
+      <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-8">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-3xl font-bold mb-2">Chat with Our Assistant</h1>
-          <p className="text-purple-100">
-            Ask questions about fractional jobs, get career advice, or explore our articles
+          <h1 className="text-3xl font-bold mb-2">AI GTM Strategist</h1>
+          <p className="text-white/90">
+            Get your custom go-to-market plan, strategy advice, and agency recommendations
           </p>
         </div>
       </div>
@@ -180,7 +180,7 @@ export default function ChatPage() {
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                   message.role === 'user'
-                    ? 'bg-purple-700 text-white'
+                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white'
                     : 'bg-white border border-gray-200 text-gray-800 shadow-sm'
                 }`}
               >
@@ -252,14 +252,14 @@ export default function ChatPage() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about fractional jobs, articles, or career advice..."
-            className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            placeholder="Ask about GTM strategy, product launches, or agencies..."
+            className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={isLoading || !input.trim()}
-            className="px-6 py-3 bg-purple-700 text-white rounded-xl font-medium hover:bg-purple-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            className="px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-medium hover:from-amber-700 hover:to-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -289,9 +289,13 @@ export default function ChatPage() {
             </p>
           )}
           <p className="text-xs text-gray-600">
-            Powered by AI. For job listings, visit our{' '}
-            <Link href="/fractionaljobsuk" className="text-purple-600 hover:underline">
-              jobs page
+            Powered by AI. Browse{' '}
+            <Link href="/agencies" className="text-amber-600 hover:underline">
+              GTM agencies
+            </Link>
+            {' '}or explore our{' '}
+            <Link href="/resources" className="text-amber-600 hover:underline">
+              strategy resources
             </Link>
             .
           </p>

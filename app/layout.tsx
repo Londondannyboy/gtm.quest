@@ -31,33 +31,33 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fractional Jobs UK | CFO, CTO, CMO Roles | Fractional Quest",
-    template: "%s | Fractional Quest"
+    default: "GTM Agency UK | Go-To-Market Strategy Consultants | GTM Quest",
+    template: "%s | GTM Quest"
   },
-  description: "Discover the best fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles in London. Connect with leading fractional recruitment agencies and find flexible leadership opportunities.",
-  keywords: ["fractional jobs", "fractional jobs UK", "fractional CFO", "fractional CTO", "fractional CMO", "fractional COO", "fractional executive", "part-time executive", "fractional recruitment agencies", "London fractional jobs"],
-  authors: [{ name: "Fractional Quest" }],
-  creator: "Fractional Quest",
-  publisher: "Fractional Quest",
-  metadataBase: new URL("https://fractional.quest"),
+  description: "AI-powered GTM agency helping UK companies launch and scale. Free GTM strategy tools, expert consultants, and comprehensive go-to-market resources. Get your custom GTM plan today.",
+  keywords: ["gtm agency", "gtm agency uk", "go-to-market strategy", "gtm consultant", "gtm strategy", "product launch", "market entry", "gtm planning", "b2b gtm", "saas gtm"],
+  authors: [{ name: "GTM Quest" }],
+  creator: "GTM Quest",
+  publisher: "GTM Quest",
+  metadataBase: new URL("https://gtm.quest"),
   alternates: {
-    canonical: "https://fractional.quest",
+    canonical: "https://gtm.quest",
   },
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://fractional.quest",
-    siteName: "Fractional Quest",
-    title: "Fractional Jobs UK | CFO, CTO, CMO Roles",
-    description: "Discover the best fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles in London.",
+    url: "https://gtm.quest",
+    siteName: "GTM Quest",
+    title: "AI-Powered GTM Agency | Go-To-Market Strategy UK",
+    description: "Free GTM strategy tools and expert consultants. Chat with our AI to create your custom go-to-market plan.",
     // Images auto-generated from app/opengraph-image.tsx
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fractional Jobs UK | Fractional Quest",
-    description: "Discover the best fractional jobs in the UK. Browse fractional CFO, CMO, CTO and executive roles.",
-    site: "@fractionalquest",
-    creator: "@fractionalquest",
+    title: "GTM Quest | AI-Powered GTM Agency",
+    description: "Free GTM strategy tools and expert consultants. Get your custom go-to-market plan.",
+    site: "@gtmquest",
+    creator: "@gtmquest",
     // Images auto-generated from app/twitter-image.tsx
   },
   robots: {
@@ -77,27 +77,27 @@ export const metadata: Metadata = {
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://fractional.quest/#organization",
-  name: "Fractional Quest",
-  alternateName: ["Fractional Quest", "FractionalQuest"],
-  url: "https://fractional.quest",
+  "@id": "https://gtm.quest/#organization",
+  name: "GTM Quest",
+  alternateName: ["GTM Quest", "GTMQuest"],
+  url: "https://gtm.quest",
   logo: {
     "@type": "ImageObject",
-    url: "https://fractional.quest/logo.svg",
+    url: "https://gtm.quest/logo.svg",
     width: "512",
     height: "512"
   },
-  image: "https://fractional.quest/logo.svg",
-  description: "UK marketplace for fractional jobs and executive services. Browse fractional CFO, CTO, CMO roles or hire fractional executives.",
-  foundingDate: "2024",
+  image: "https://gtm.quest/logo.svg",
+  description: "AI-powered GTM agency providing free strategy tools, expert consultants, and comprehensive go-to-market resources for UK companies.",
+  foundingDate: "2025",
   sameAs: [
-    "https://twitter.com/fractionalquest",
-    "https://linkedin.com/company/fractionalquest"
+    "https://twitter.com/gtmquest",
+    "https://linkedin.com/company/gtmquest"
   ],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
-    url: "https://fractional.quest/contact",
+    url: "https://gtm.quest/contact",
     availableLanguage: "English"
   },
   areaServed: {
@@ -109,25 +109,25 @@ const organizationJsonLd = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Fractional Quest",
-  alternateName: ["Fractional Quest", "FractionalQuest", "Fractional Jobs UK"],
-  url: "https://fractional.quest",
-  description: "UK marketplace for fractional jobs and executive services. Browse fractional CFO, CMO, CTO roles.",
+  name: "GTM Quest",
+  alternateName: ["GTM Quest", "GTMQuest", "GTM Agency UK"],
+  url: "https://gtm.quest",
+  description: "AI-powered GTM agency with free strategy tools and expert consultants. Get your custom go-to-market plan.",
   inLanguage: "en-GB",
   publisher: {
     "@type": "Organization",
-    name: "Fractional Quest",
-    url: "https://fractional.quest",
+    name: "GTM Quest",
+    url: "https://gtm.quest",
     logo: {
       "@type": "ImageObject",
-      url: "https://fractional.quest/logo.svg"
+      url: "https://gtm.quest/logo.svg"
     }
   },
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://fractional.quest/fractional-jobs?q={search_term_string}"
+      urlTemplate: "https://gtm.quest/search?q={search_term_string}"
     },
     "query-input": "required name=search_term_string"
   }
