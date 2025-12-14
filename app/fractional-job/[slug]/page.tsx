@@ -262,8 +262,8 @@ export default async function JobDetailPage({ params }: PageProps) {
         address: {
           '@type': 'PostalAddress',
           addressLocality: parsedLocation.addressLocality,
-          addressRegion: parsedLocation.addressRegion,
-          addressCountry: parsedLocation.addressCountry
+          ...(parsedLocation.addressRegion && { addressRegion: parsedLocation.addressRegion }),
+          addressCountry: 'GB'
         }
       },
       ...(job.is_remote && {

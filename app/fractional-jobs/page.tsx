@@ -276,11 +276,17 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
               address: {
                 '@type': 'PostalAddress',
                 addressLocality: parsedLoc.addressLocality,
-                addressRegion: parsedLoc.addressRegion,
-                addressCountry: parsedLoc.addressCountry
+                ...(parsedLoc.addressRegion && { addressRegion: parsedLoc.addressRegion }),
+                addressCountry: 'GB'
               }
             },
-            ...(job.is_remote && { jobLocationType: 'TELECOMMUTE' }),
+            ...(job.is_remote && {
+              jobLocationType: 'TELECOMMUTE',
+              applicantLocationRequirements: {
+                '@type': 'Country',
+                name: 'United Kingdom'
+              }
+            }),
             url: `https://fractional.quest/fractional-job/${job.slug}`
           }
         }
