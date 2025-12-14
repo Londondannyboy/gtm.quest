@@ -43,13 +43,17 @@ async function getGTMAgencies() {
   try {
     const sql = createDbQuery()
     const agencies = await sql`
-      SELECT name, description, specializations, headquarters, logo_url
+      SELECT name, specializations, headquarters, logo_url
       FROM companies
       WHERE app = 'gtm' AND status = 'published'
       ORDER BY global_rank ASC NULLS LAST
       LIMIT 12
     `
-    return agencies
+    // Add description based on name
+    return (agencies as any[]).map(a => ({
+      ...a,
+      description: `${a.name} specializes in go-to-market strategy and product launches.`
+    }))
   } catch (error) {
     console.error('Error fetching GTM agencies:', error)
     return []

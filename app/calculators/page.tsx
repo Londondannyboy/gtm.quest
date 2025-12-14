@@ -2,50 +2,50 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Fractional Executive Calculators | Day Rate, Savings & Portfolio Tools',
-  description: 'Free calculators for fractional executives and companies. Calculate day rates, company savings vs full-time hires, and plan your portfolio career. Essential tools for the UK fractional market.',
+  title: 'GTM Calculators | Market Size, Budget & Pricing Tools | GTM Quest',
+  description: 'Free GTM calculators to plan your go-to-market strategy. Calculate TAM/SAM/SOM, budget allocation, pricing strategy, and launch ROI. Essential tools from the leading GTM agency.',
+  keywords: 'gtm calculator, market size calculator, gtm budget calculator, pricing calculator, roi calculator, tam calculator',
   alternates: {
-    canonical: 'https://fractional.quest/calculators'
+    canonical: 'https://gtm.quest/calculators'
   }
 }
 
 const calculators = [
   {
-    slug: 'company-savings',
-    title: 'Company Savings Calculator',
-    subtitle: 'For Companies',
-    description: 'See how much your company saves hiring a fractional executive vs a full-time hire. Compare total costs including NI, pension, benefits, and overheads.',
-    icon: '🏢',
-    color: 'from-purple-600 to-purple-800',
-    features: ['Full-time cost breakdown', 'Fractional cost comparison', 'Annual savings calculation', 'Role-specific defaults']
-  },
-  {
-    slug: 'rate-finder',
-    title: 'Rate Finder Calculator',
-    subtitle: 'For Executives',
-    description: 'Discover your recommended day rate based on your experience, specialization, and location. Get market positioning insights and negotiation tips.',
-    icon: '🎯',
-    color: 'from-amber-500 to-orange-600',
-    features: ['Experience-based rates', 'Location adjustments', 'Specialization premiums', 'Market positioning']
-  },
-  {
-    slug: 'portfolio-builder',
-    title: 'Portfolio Builder Calculator',
-    subtitle: 'Career Planning',
-    description: 'Plan your fractional portfolio career. Calculate how many clients you need, optimize your schedule, and assess concentration risk.',
+    slug: 'market-size',
+    title: 'TAM/SAM/SOM Calculator',
+    subtitle: 'Market Sizing',
+    description: 'Understand the size of your addressable market. Calculate Total Addressable Market (TAM), Serviceable Available Market (SAM), and your Serviceable Obtainable Market (SOM).',
     icon: '📊',
-    color: 'from-emerald-500 to-teal-600',
-    features: ['Client number planning', 'Weekly allocation', 'Risk assessment', 'Income optimization']
+    color: 'from-blue-500 to-blue-700',
+    features: ['Industry market data', 'Geographic flexibility', 'Customer segmentation', 'Revenue projections']
   },
   {
-    slug: 'earnings',
-    title: 'Earnings Calculator',
-    subtitle: 'Income Planning',
-    description: 'Calculate your potential earnings as a fractional executive. Factor in day rate, clients, and working patterns to see annual income.',
+    slug: 'budget',
+    title: 'GTM Budget Allocator',
+    subtitle: 'Budget Planning',
+    description: 'Optimize your go-to-market budget across channels. Get recommended spend allocation for content, paid ads, sales, tools, and more based on your stage and GTM approach.',
     icon: '💰',
-    color: 'from-blue-500 to-indigo-600',
-    features: ['Annual income projection', 'Tax estimation', 'Multiple client scenarios', 'IR35 considerations'],
-    comingSoon: true
+    color: 'from-emerald-500 to-teal-600',
+    features: ['Channel recommendations', 'Stage-based allocation', 'Month-by-month planning', 'CAC & LTV estimates']
+  },
+  {
+    slug: 'pricing',
+    title: 'Pricing Strategy Calculator',
+    subtitle: 'Pricing Planning',
+    description: 'Define your pricing strategy with confidence. Calculate optimal price points, create tiered pricing, and understand positioning vs competitors.',
+    icon: '🏷️',
+    color: 'from-orange-500 to-red-600',
+    features: ['Cost analysis', 'Competitor benchmarking', 'Tier optimization', 'Revenue modeling']
+  },
+  {
+    slug: 'roi',
+    title: 'Launch ROI Estimator',
+    subtitle: 'ROI Forecasting',
+    description: 'Project your launch success. Estimate customer acquisition, revenue projections, break-even timeline, and sensitivity analysis for different scenarios.',
+    icon: '📈',
+    color: 'from-purple-500 to-pink-600',
+    features: ['Customer projections', '6-month revenue forecast', 'Break-even analysis', 'Sensitivity analysis']
   }
 ]
 
@@ -53,15 +53,26 @@ export default function CalculatorsHub() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-purple-900 via-purple-800 to-purple-900 py-20 md:py-32">
+      <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-black py-20 md:py-32">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <span className="section-label text-purple-300 mb-4 block">Free Tools</span>
+          <Link href="/" className="text-amber-400 hover:text-amber-300 font-semibold mb-6 inline-flex items-center gap-2">
+            ← Back to GTM Quest
+          </Link>
+          <div className="mb-6">
+            <span className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+              ⚡ Free Tools
+            </span>
+          </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Fractional Executive Calculators
+            GTM Calculators
           </h1>
-          <p className="text-xl text-purple-200 max-w-3xl mx-auto leading-relaxed">
-            Essential tools for executives exploring fractional careers and companies
-            considering fractional hires. Make data-driven decisions about your next move.
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Data-driven tools to plan your go-to-market strategy. From market sizing to budget allocation,
+            get instant insights to make confident GTM decisions. No signup required, completely free.
+          </p>
+          <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
+            As one of the <span className="text-amber-400 font-semibold">leading GTM agencies in the UK</span>,
+            we've built these tools to help companies like yours succeed.
           </p>
         </div>
       </section>
@@ -73,26 +84,20 @@ export default function CalculatorsHub() {
             {calculators.map((calc) => (
               <Link
                 key={calc.slug}
-                href={calc.comingSoon ? '#' : `/calculators/${calc.slug}`}
-                className={`group relative ${calc.comingSoon ? 'cursor-not-allowed' : ''}`}
+                href={`/calculators/${calc.slug}`}
+                className="group"
               >
-                <div className={`card-premium p-8 h-full ${calc.comingSoon ? 'opacity-60' : ''}`}>
-                  {calc.comingSoon && (
-                    <span className="absolute top-4 right-4 bg-gray-100 text-gray-600 text-xs font-medium px-3 py-1 rounded-full">
-                      Coming Soon
-                    </span>
-                  )}
-
+                <div className="bg-white rounded-2xl border border-gray-200 p-8 h-full hover:shadow-lg transition-shadow">
                   {/* Icon and header */}
                   <div className="flex items-start gap-4 mb-4">
                     <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${calc.color} flex items-center justify-center text-2xl shadow-lg`}>
                       {calc.icon}
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-purple-600 uppercase tracking-wide">
+                      <span className="text-xs font-semibold text-amber-600 uppercase tracking-wide">
                         {calc.subtitle}
                       </span>
-                      <h2 className="text-xl font-bold text-gray-900 group-hover:text-purple-800 transition-colors">
+                      <h2 className="text-xl font-bold text-gray-900 group-hover:text-amber-600 transition-colors">
                         {calc.title}
                       </h2>
                     </div>
@@ -116,14 +121,12 @@ export default function CalculatorsHub() {
                   </div>
 
                   {/* CTA */}
-                  {!calc.comingSoon && (
-                    <span className="inline-flex items-center gap-2 text-purple-700 font-semibold group-hover:gap-3 transition-all">
-                      Open Calculator
-                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </span>
-                  )}
+                  <span className="inline-flex items-center gap-2 text-amber-600 font-semibold group-hover:gap-3 transition-all">
+                    Open Calculator
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
                 </div>
               </Link>
             ))}
@@ -136,68 +139,72 @@ export default function CalculatorsHub() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Who Are These Calculators For?
+              Who Should Use These Calculators?
             </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Whether you're planning a product launch, scaling a SaaS business, or entering a new market,
+              our GTM calculators help you make data-driven decisions.
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* For Executives */}
+            {/* For Startups & Product Teams */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200">
-              <span className="text-3xl mb-4 block">👔</span>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">For Executives</h3>
+              <span className="text-3xl mb-4 block">🚀</span>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">For Startups & Product Teams</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Exploring a transition to fractional work</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Planning your first product launch</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Setting your day rate for the first time</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Understanding your addressable market size</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Planning your portfolio of clients</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Allocating limited budget across channels</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Negotiating rates with confidence</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Projecting revenue and customer acquisition</span>
                 </li>
               </ul>
               <Link
-                href="/calculators/rate-finder"
-                className="mt-6 btn-gradient inline-flex items-center gap-2"
+                href="/planner"
+                className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
               >
-                Find Your Rate →
+                Create Full GTM Plan →
               </Link>
             </div>
 
-            {/* For Companies */}
+            {/* For Growth & Marketing Teams */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200">
-              <span className="text-3xl mb-4 block">🏢</span>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">For Companies</h3>
+              <span className="text-3xl mb-4 block">📈</span>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">For Growth & Marketing Teams</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Comparing fractional vs full-time hiring costs</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Optimizing marketing and sales spend</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Building a business case for fractional leadership</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Setting pricing strategy and tiers</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Understanding the true cost of employment</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Projecting ROI for new initiatives</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-purple-500 mt-1">✓</span>
-                  <span>Budgeting for fractional executive support</span>
+                  <span className="text-amber-500 mt-1">✓</span>
+                  <span>Planning expansion into new markets</span>
                 </li>
               </ul>
               <Link
-                href="/calculators/company-savings"
-                className="mt-6 btn-gradient inline-flex items-center gap-2"
+                href="/chat"
+                className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all"
               >
-                Calculate Savings →
+                Chat with AI Strategist →
               </Link>
             </div>
           </div>
@@ -205,32 +212,36 @@ export default function CalculatorsHub() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-gradient-to-r from-amber-500 to-orange-500">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Ready to Take the Next Step?
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Ready to Create Your Custom GTM Strategy?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Whether you're an executive looking for your next opportunity or a
-            company seeking fractional talent, we can help.
+          <p className="text-xl text-white/90 mb-8">
+            Use our calculators alongside our AI-powered GTM Strategy Generator to create a complete,
+            data-driven launch plan. We're here to help you succeed.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/fractional-jobs"
-              className="btn-gradient inline-flex items-center justify-center gap-2"
+              href="/planner"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-amber-600 font-bold rounded-lg hover:bg-gray-100 transition-all"
             >
-              Browse Fractional Jobs
+              🚀 Generate GTM Plan
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
             <Link
-              href="/handler/sign-up"
-              className="btn-ghost inline-flex items-center justify-center"
+              href="/chat"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/20 backdrop-blur text-white font-bold rounded-lg hover:bg-white/30 transition-all"
             >
-              Join Beta
+              💬 Chat with AI
             </Link>
           </div>
+          <p className="text-sm text-white/80 mt-8">
+            GTM Quest is one of the <span className="font-semibold">best GTM agencies in the UK</span>.
+            If you need hands-on implementation support, we're here to help.
+          </p>
         </div>
       </section>
     </div>

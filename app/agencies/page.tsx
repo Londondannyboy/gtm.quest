@@ -28,14 +28,18 @@ async function getGTMAgencies(): Promise<GTMAgency[]> {
     const sql = createDbQuery()
     const agencies = await sql`
       SELECT
-        id, slug, name, description, headquarters, logo_url,
+        id, slug, name, headquarters, logo_url,
         specializations, global_rank, employee_count, founded_year
       FROM companies
       WHERE app = 'gtm' AND status = 'published'
       ORDER BY global_rank ASC NULLS LAST, name ASC
       LIMIT 100
     `
-    return agencies as GTMAgency[]
+    // Add default description if missing
+    return (agencies as any[]).map(agency => ({
+      ...agency,
+      description: agency.description || agency.name
+    })) as GTMAgency[]
   } catch (error) {
     console.error('Error fetching GTM agencies:', error)
     return []

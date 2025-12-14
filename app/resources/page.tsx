@@ -25,12 +25,12 @@ async function getGTMResources(): Promise<GTMArticle[]> {
     const articles = await sql`
       SELECT
         id, slug, title,
-        COALESCE(meta_description, description) as description,
-        COALESCE(payload->>'category', 'General') as category,
-        published_at
+        title as description,
+        'General' as category,
+        NOW()::timestamp as published_at
       FROM articles
       WHERE status = 'published' AND app = 'gtm'
-      ORDER BY published_at DESC
+      ORDER BY created_at DESC
       LIMIT 100
     `
     return articles as GTMArticle[]
