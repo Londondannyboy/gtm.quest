@@ -10,7 +10,9 @@ export const metadata: Metadata = {
   title: 'Fractional Jobs UK | London, Manchester, Birmingham',
   description: 'Find fractional jobs UK wide. London, Manchester, Birmingham. CFO, CMO, CTO roles. £800-£1,500 day rates. 200+ opportunities.',
   keywords: 'fractional jobs UK, fractional jobs London, fractional executive jobs UK, fractional CFO jobs UK, fractional CMO jobs UK, fractional CTO jobs UK',
-  canonical: 'https://fractional.quest/uk-fractional-jobs-uk-london-fractional-jobs-london',
+  alternates: {
+    canonical: 'https://fractional.quest/uk-fractional-jobs-uk-london-fractional-jobs-london',
+  },
   openGraph: {
     title: 'Fractional Jobs UK | London, Manchester, Birmingham',
     description: 'Find fractional jobs UK wide. London, Manchester, Birmingham. CFO, CMO, CTO roles. £800-£1,500 day rates.',
