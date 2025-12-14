@@ -19,6 +19,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.71.2",
     "@getzep/zep-cloud": "^3.13.0",
+    "@hookform/resolvers": "^5.2.2",
     "@humeai/voice-react": "^0.2.11",
     "@mux/mux-video-react": "^0.29.1",
     "@neondatabase/serverless": "^1.0.2",
@@ -30,6 +31,7 @@
     "react-dom": "19.2.1",
     "react-force-graph-2d": "^1.29.0",
     "react-force-graph-3d": "^1.29.0",
+    "react-hook-form": "^7.68.0",
     "react-markdown": "^10.1.0",
     "sunburst-chart": "^1.21.4",
     "three": "^0.182.0",
