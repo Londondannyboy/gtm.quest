@@ -51,9 +51,6 @@ const relatedSearches = [
   'Fractional Executive Equity', 'Part-Time CTO Startup', 'Scale-up CFO Jobs'
 ]
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 async function getStartupStats() {
   try {
     const sql = createDbQuery()

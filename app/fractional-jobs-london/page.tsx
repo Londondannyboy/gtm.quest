@@ -8,9 +8,6 @@ import { FAQ, LONDON_FAQS } from '@/components/FAQ'
 
 export const revalidate = 3600 // Revalidate every hour
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export const metadata: Metadata = {
   title: 'Fractional Jobs London - Executive Roles in the City, Shoreditch & Canary Wharf',
   description: 'Find fractional executive jobs in London. CFO, CMO, CTO roles across the City, Shoreditch, Canary Wharf. £800-£1,500 daily rates. 85+ opportunities.',

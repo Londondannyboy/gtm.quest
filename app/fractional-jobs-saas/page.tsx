@@ -42,9 +42,6 @@ const relatedSearches = [
   'B2B SaaS Fractional', 'SaaS Marketing Leadership', 'Fractional CRO UK'
 ]
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 async function getSaasStats() {
   try {
     const sql = createDbQuery()

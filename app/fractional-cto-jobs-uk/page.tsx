@@ -11,8 +11,6 @@ import { IR35Calculator } from '@/components/IR35Calculator'
 
 export const revalidate = 3600
 
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export const metadata: Metadata = {
   title: 'Fractional CTO Jobs UK | Part-Time CTO Roles',
   description: 'Fractional CTO jobs UK - Find part-time Chief Technology Officer positions paying £850-£1,600/day. Browse live CTO roles for experienced tech leaders.',

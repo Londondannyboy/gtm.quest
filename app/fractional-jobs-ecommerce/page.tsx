@@ -42,9 +42,6 @@ const relatedSearches = [
   'DTC Fractional Executive', 'E-commerce Operations Director', 'Retail Fractional CFO'
 ]
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 async function getEcommerceStats() {
   try {
     const sql = createDbQuery()

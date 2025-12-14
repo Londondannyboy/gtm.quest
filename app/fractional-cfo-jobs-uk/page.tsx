@@ -12,8 +12,6 @@ import { RoleNews } from '@/components/RoleNews'
 
 export const revalidate = 3600
 
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export const metadata: Metadata = {
   title: 'Fractional CFO Jobs UK | Part-Time CFO Roles 2025',
   description: 'Fractional CFO jobs UK - Find part-time Chief Financial Officer positions paying £800-£1,500/day. Browse live CFO roles for experienced finance leaders. Remote & hybrid available.',

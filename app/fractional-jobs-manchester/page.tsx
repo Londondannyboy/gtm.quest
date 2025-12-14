@@ -58,9 +58,6 @@ async function getManchesterStats() {
   }
 }
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export default async function ManchesterPage() {
   const stats = await getManchesterStats()
 

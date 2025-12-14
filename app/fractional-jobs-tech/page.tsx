@@ -48,9 +48,6 @@ const relatedSearches = [
   'SaaS Fractional CTO', 'FinTech Fractional CTO', 'Fractional Head of Engineering'
 ]
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 async function getTechStats() {
   try {
     const sql = createDbQuery()

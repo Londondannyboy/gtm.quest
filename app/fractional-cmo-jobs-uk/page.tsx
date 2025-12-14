@@ -12,9 +12,6 @@ import { RoleNews } from '@/components/RoleNews'
 
 export const revalidate = 3600
 
-// Mux video - professional executive theme
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export const metadata: Metadata = {
   title: 'Fractional CMO Jobs UK | Part-Time CMO Roles',
   description: 'Fractional CMO jobs UK - Find part-time Chief Marketing Officer positions paying £700-£1,400/day. Browse live CMO roles for experienced marketing leaders.',

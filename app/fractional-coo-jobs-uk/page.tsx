@@ -11,8 +11,6 @@ import { IR35Calculator } from '@/components/IR35Calculator'
 
 export const revalidate = 3600
 
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export const metadata: Metadata = {
   title: 'Fractional COO Jobs UK | Part-Time COO Roles',
   description: 'Fractional COO jobs UK - Find part-time Chief Operating Officer positions paying £750-£1,400/day. Browse live COO roles for experienced operations leaders.',

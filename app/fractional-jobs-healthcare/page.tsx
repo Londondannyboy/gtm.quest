@@ -49,9 +49,6 @@ const relatedSearches = [
   'Fractional CSO UK', 'Cambridge Fractional', 'Pharma Fractional Jobs'
 ]
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 async function getHealthcareStats() {
   try {
     const sql = createDbQuery()

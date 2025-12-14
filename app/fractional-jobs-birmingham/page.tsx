@@ -42,9 +42,6 @@ const relatedSearches = [
   'Fractional Jobs Solihull', 'Fractional Jobs Coventry', 'Fractional Executive Salary Birmingham'
 ]
 
-// Same video as homepage
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 async function getBirminghamStats() {
   try {
     const sql = createDbQuery()

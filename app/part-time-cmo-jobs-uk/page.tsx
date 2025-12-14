@@ -12,8 +12,6 @@ import { RoleNews } from '@/components/RoleNews'
 
 export const revalidate = 3600
 
-const HERO_VIDEO_PLAYBACK_ID: string | undefined = "qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-
 export const metadata: Metadata = {
   title: 'Part-Time CMO Jobs UK | Flexible Chief Marketing Officer Roles',
   description: 'Part-time CMO jobs UK - Find flexible Chief Marketing Officer positions paying £700-£1,400/day. Browse live part-time CMO roles for experienced marketing leaders. Remote & hybrid available.',
