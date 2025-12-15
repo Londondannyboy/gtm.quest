@@ -16,7 +16,7 @@ export default function GTMScorecard() {
   const [scores, setScores] = useState({})
   const [calculated, setCalculated] = useState(false)
 
-  const handleScore = (key, value) => {
+  const handleScore = (key: string, value: number) => {
     setScores(prev => ({ ...prev, [key]: value }))
   }
 
