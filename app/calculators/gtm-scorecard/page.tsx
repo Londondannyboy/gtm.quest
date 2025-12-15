@@ -20,9 +20,9 @@ export default function GTMScorecard() {
     setScores(prev => ({ ...prev, [key]: value }))
   }
 
-  const calculateTotal = () => {
+  const calculateTotal = (): string => {
     const values = Object.values(scores).filter((v): v is number => typeof v === 'number')
-    if (values.length === 0) return 0
+    if (values.length === 0) return '0'
     return ((values.reduce((a, b) => a + b, 0) / values.length) as number).toFixed(1)
   }
 
@@ -36,7 +36,7 @@ export default function GTMScorecard() {
     return { grade: 'D', color: 'text-red-600', bg: 'bg-red-50' }
   }
 
-  const gradeInfo = getGrade(parseFloat(total))
+  const gradeInfo = getGrade(total)
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
