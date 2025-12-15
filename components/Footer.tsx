@@ -87,6 +87,11 @@ export function Footer() {
             <h3 className="text-white font-bold mb-4">Guides</h3>
             <ul className="space-y-3">
               <li>
+                <Link href="/articles" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                  All Articles
+                </Link>
+              </li>
+              <li>
                 <Link href="/gtm-strategy" className="text-gray-400 hover:text-amber-500 transition text-sm">
                   GTM Strategy Guide
                 </Link>
