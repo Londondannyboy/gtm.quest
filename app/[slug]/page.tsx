@@ -24,11 +24,11 @@ async function getArticle(slug: string) {
         hero_asset_url,
         hero_asset_alt,
         published_at,
-        word_count
+        word_count,
+        app
       FROM articles
       WHERE slug = ${slug}
         AND status = 'published'
-        AND app = 'fractional'
       LIMIT 1
     `
     return articles[0] || null
@@ -43,12 +43,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = await getArticle(slug)
 
   if (!article) {
-    return { title: 'Article Not Found | Fractional Quest' }
+    return { title: 'Article Not Found' }
   }
 
+  const siteName = article.app === 'gtm' ? 'GTM Quest' : 'Fractional Quest'
+
   return {
-    title: `${article.title} | Fractional Quest`,
-    description: article.meta_description || article.excerpt || 'Read this article on Fractional Quest',
+    title: `${article.title} | ${siteName}`,
+    description: article.meta_description || article.excerpt || `Read this article on ${siteName}`,
   }
 }
 
@@ -69,6 +71,15 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       })
     : null
 
+  // Dynamic content based on app type
+  const isGTM = article.app === 'gtm'
+  const backLink = isGTM ? '/' : '/fractional-jobs-articles'
+  const badgeText = isGTM ? 'GTM Guide' : 'Fractional Executive Guide'
+  const ctaTitle = isGTM ? 'Explore GTM Resources' : 'Ready to find fractional talent?'
+  const ctaDescription = isGTM ? 'Discover more go-to-market strategies and agency guides.' : 'Browse our curated list of fractional executive opportunities.'
+  const ctaButtonText = isGTM ? 'View More Articles →' : 'Browse Jobs →'
+  const ctaButtonLink = isGTM ? '/' : '/fractional-jobs'
+
   return (
     <article className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -83,7 +94,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
           {/* Breadcrumb */}
           <nav className="mb-8">
-            <Link href="/fractional-jobs-articles" className="text-purple-200 hover:text-white transition-colors text-sm">
+            <Link href={backLink} className="text-purple-200 hover:text-white transition-colors text-sm">
               ← Back to Articles
             </Link>
           </nav>
@@ -91,7 +102,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
           {/* Category Badge */}
           <div className="mb-6">
             <Badge variant="primary" size="md" className="bg-purple-600/50 text-white border border-purple-400/30">
-              Fractional Executive Guide
+              {badgeText}
             </Badge>
           </div>
 
@@ -162,12 +173,12 @@ export default async function ArticleDetailPage({ params }: PageProps) {
         <div className="mt-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl p-8 md:p-10 text-white">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2">Ready to find fractional talent?</h3>
-              <p className="text-purple-100">Browse our curated list of fractional executive opportunities.</p>
+              <h3 className="text-2xl font-bold mb-2">{ctaTitle}</h3>
+              <p className="text-purple-100">{ctaDescription}</p>
             </div>
-            <Link href="/fractional-jobs">
+            <Link href={ctaButtonLink}>
               <button className="px-8 py-4 bg-white text-purple-700 rounded-xl font-bold hover:bg-purple-50 transition-colors whitespace-nowrap shadow-lg">
-                Browse Jobs →
+                {ctaButtonText}
               </button>
             </Link>
           </div>
@@ -175,7 +186,7 @@ export default async function ArticleDetailPage({ params }: PageProps) {
 
         {/* Back Link */}
         <div className="mt-12 pt-8 border-t border-gray-200 flex justify-between items-center">
-          <Link href="/fractional-jobs-articles" className="text-purple-700 hover:text-purple-900 font-medium flex items-center gap-2">
+          <Link href={backLink} className="text-purple-700 hover:text-purple-900 font-medium flex items-center gap-2">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
