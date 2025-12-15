@@ -46,6 +46,33 @@ const calculators = [
     icon: '📈',
     color: 'from-purple-500 to-pink-600',
     features: ['Customer projections', '6-month revenue forecast', 'Break-even analysis', 'Sensitivity analysis']
+  },
+  {
+    slug: 'gtm-playbook-generator',
+    title: 'GTM Playbook Generator',
+    subtitle: 'Playbook Creation',
+    description: 'Generate a custom go-to-market playbook tailored to your company stage and product type. Get personalized launch strategies ready to execute.',
+    icon: '📋',
+    color: 'from-indigo-500 to-purple-600',
+    features: ['Stage-based strategies', '3-phase playbook', 'Channel recommendations', 'Timeline & activities']
+  },
+  {
+    slug: 'gtm-scorecard',
+    title: 'Go-to-Market Scorecard',
+    subtitle: 'GTM Assessment',
+    description: 'Assess your GTM maturity across 6 critical dimensions. Get a comprehensive score and actionable recommendations to improve your go-to-market strategy.',
+    icon: '🎯',
+    color: 'from-cyan-500 to-blue-600',
+    features: ['6-dimension assessment', 'Maturity scoring', 'Gap identification', 'Improvement roadmap']
+  },
+  {
+    slug: 'sales-funnel-calculator',
+    title: 'Sales Funnel Calculator',
+    subtitle: 'Funnel Optimization',
+    description: 'Visualize your sales funnel and identify optimization opportunities. Calculate MQLs, SQLs, customers, revenue, and CAC at each stage.',
+    icon: '🔻',
+    color: 'from-rose-500 to-red-600',
+    features: ['Conversion visualization', 'Revenue projections', 'CAC estimation', 'Leak identification']
   }
 ]
 
