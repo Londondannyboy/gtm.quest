@@ -17,10 +17,8 @@ async function getArticles() {
         slug,
         title,
         excerpt,
-        target_keyword,
-        keyword_volume,
-        word_count,
         guide_type,
+        featured_asset_url,
         published_at
       FROM articles
       WHERE app = 'gtm' AND status = 'published'
@@ -46,39 +44,28 @@ export default async function ArticlesPage() {
     <Link
       key={article.id}
       href={`/${article.slug}`}
-      className="group block p-6 bg-white rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-200"
+      className="group block bg-white rounded-2xl border border-gray-200 hover:border-purple-300 hover:shadow-lg transition-all duration-200 overflow-hidden"
     >
-      <div className="flex flex-col gap-3">
-        <div>
-          <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-700 mb-3">
-            {article.guide_type.charAt(0).toUpperCase() + article.guide_type.slice(1)}
-          </span>
-          <h3 className="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
-            {article.title}
-          </h3>
-        </div>
-
-        {article.excerpt && (
-          <p className="text-sm text-gray-600 line-clamp-2">
-            {article.excerpt}
-          </p>
+      <div className="flex flex-col">
+        {article.featured_asset_url && (
+          <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
+            <img
+              src={article.featured_asset_url}
+              alt={article.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+            />
+          </div>
         )}
 
-        <div className="flex flex-wrap gap-3 text-xs text-gray-500 pt-2">
-          {article.target_keyword && (
-            <span>
-              <strong>Target:</strong> {article.target_keyword}
-            </span>
-          )}
-          {article.keyword_volume && (
-            <span>
-              <strong>Volume:</strong> {article.keyword_volume.toLocaleString()}/mo
-            </span>
-          )}
-          {article.word_count && (
-            <span>
-              <strong>Length:</strong> {article.word_count.toLocaleString()} words
-            </span>
+        <div className="p-6 flex flex-col flex-grow">
+          <h3 className="text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 mb-3">
+            {article.title}
+          </h3>
+
+          {article.excerpt && (
+            <p className="text-sm text-gray-600 line-clamp-2 flex-grow">
+              {article.excerpt}
+            </p>
           )}
         </div>
       </div>
@@ -101,13 +88,7 @@ export default async function ArticlesPage() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              {articles.length} Articles
-            </span>
-            <span className="inline-flex items-center gap-2 bg-purple-600/30 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-400/30">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
-              {articles.reduce((sum, a: any) => sum + (a.word_count || 0), 0).toLocaleString()} Words
+              {articles.length} Comprehensive Articles
             </span>
           </div>
         </div>

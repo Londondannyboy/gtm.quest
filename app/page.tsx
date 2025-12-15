@@ -60,10 +60,28 @@ async function getGTMAgencies() {
   }
 }
 
+async function getTopAgencyArticles() {
+  try {
+    const sql = createDbQuery()
+    const articles = await sql`
+      SELECT id, slug, title, excerpt, featured_asset_url
+      FROM articles
+      WHERE app = 'gtm' AND status = 'published' AND guide_type = 'listicle'
+      ORDER BY published_at DESC
+      LIMIT 6
+    `
+    return articles
+  } catch (error) {
+    console.error('Error fetching agency articles:', error)
+    return []
+  }
+}
+
 export default async function Home() {
-  const [sections, agencies] = await Promise.all([
+  const [sections, agencies, agencyArticles] = await Promise.all([
     getHomepageContent(),
-    getGTMAgencies()
+    getGTMAgencies(),
+    getTopAgencyArticles()
   ])
 
   // Extract sections by type
@@ -371,6 +389,62 @@ export default async function Home() {
                   className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200"
                 >
                   View All GTM Agencies →
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* Top GTM Agency Articles */}
+        {agencyArticles && agencyArticles.length > 0 && (
+          <section className="py-20 md:py-28 bg-gray-50">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">Find GTM Agencies by Location & Industry</h2>
+                <p className="text-xl text-gray-600">Discover top go-to-market agencies in your region and industry vertical</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {agencyArticles.map((article: any) => (
+                  <Link
+                    key={article.id}
+                    href={`/${article.slug}`}
+                    className="group bg-white rounded-2xl border border-gray-200 hover:border-amber-300 hover:shadow-lg transition-all duration-200 overflow-hidden"
+                  >
+                    <div className="flex flex-col h-full">
+                      {article.featured_asset_url && (
+                        <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
+                          <img
+                            src={article.featured_asset_url}
+                            alt={article.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6 flex flex-col flex-grow">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-2 mb-3">
+                          {article.title}
+                        </h3>
+                        {article.excerpt && (
+                          <p className="text-sm text-gray-600 line-clamp-2 flex-grow">
+                            {article.excerpt}
+                          </p>
+                        )}
+                        <div className="mt-4 pt-4 border-t border-gray-100">
+                          <span className="text-amber-600 font-semibold text-sm">Read Article →</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <Link
+                  href="/articles"
+                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200"
+                >
+                  View All GTM Agency Articles →
                 </Link>
               </div>
             </div>
