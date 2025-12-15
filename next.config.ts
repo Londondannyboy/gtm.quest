@@ -26,6 +26,17 @@ const nextConfig: NextConfig = {
         destination: '/part-time-cmo-jobs-uk',
         permanent: true, // 301 redirect for SEO
       },
+      // GTM URL optimization redirects
+      {
+        source: '/agencies',
+        destination: '/best-gtm-agencies',
+        permanent: true, // 301 redirect for SEO
+      },
+      {
+        source: '/resources',
+        destination: '/gtm-resources',
+        permanent: true, // 301 redirect for SEO
+      },
     ];
   },
 

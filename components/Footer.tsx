@@ -65,7 +65,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/agencies" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/best-gtm-agencies" className="text-gray-400 hover:text-amber-500 transition text-sm">
                   Agency Directory
                 </Link>
               </li>
@@ -107,7 +107,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/resources" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/gtm-resources" className="text-gray-400 hover:text-amber-500 transition text-sm">
                   All Resources
                 </Link>
               </li>

@@ -17,6 +17,8 @@ interface GTMArticle {
   description: string
   category: string
   published_at: string
+  featured_asset_url: string | null
+  hero_asset_url: string | null
 }
 
 async function getGTMResources(): Promise<GTMArticle[]> {
@@ -24,13 +26,15 @@ async function getGTMResources(): Promise<GTMArticle[]> {
     const sql = createDbQuery()
     const articles = await sql`
       SELECT
-        id, slug, title,
-        title as description,
+        id, slug, title, excerpt,
+        COALESCE(excerpt, title) as description,
         'General' as category,
-        NOW()::timestamp as published_at
+        published_at,
+        featured_asset_url,
+        hero_asset_url
       FROM articles
       WHERE status = 'published' AND app = 'gtm'
-      ORDER BY created_at DESC
+      ORDER BY published_at DESC
       LIMIT 100
     `
     return articles as GTMArticle[]
@@ -183,9 +187,12 @@ export default async function ResourcesPage() {
                     </li>
                   ))}
                 </ul>
-                <button className="w-full px-4 py-2 bg-gray-50 hover:bg-amber-50 border border-gray-200 hover:border-amber-300 rounded-lg text-sm font-semibold text-gray-900 hover:text-amber-700 transition-all">
-                  Coming Soon
-                </button>
+                <Link
+                  href="/articles"
+                  className="block w-full px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-center rounded-lg text-sm font-semibold transition-all"
+                >
+                  Browse Articles →
+                </Link>
               </div>
             ))}
           </div>
@@ -212,6 +219,15 @@ export default async function ResourcesPage() {
                   href={`/${article.slug}`}
                   className="group bg-white border border-gray-200 rounded-xl hover:shadow-lg hover:border-gray-300 transition-all duration-200 overflow-hidden"
                 >
+                  {(article.featured_asset_url || article.hero_asset_url) && (
+                    <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
+                      <img
+                        src={article.featured_asset_url || article.hero_asset_url || ''}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                      />
+                    </div>
+                  )}
                   <div className="p-6">
                     <span className="inline-block text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full mb-3 font-semibold">
                       {article.category}
@@ -242,27 +258,6 @@ export default async function ResourcesPage() {
         </section>
       )}
 
-      {/* Coming Soon Notice */}
-      {resources.length === 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <div className="text-6xl mb-6">📚</div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Resource Library Coming Soon
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              We're creating comprehensive GTM resources, templates, and playbooks.
-              In the meantime, chat with our AI to get personalized GTM strategy help.
-            </p>
-            <Link
-              href="/chat"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200"
-            >
-              Chat with AI Strategist →
-            </Link>
-          </div>
-        </section>
-      )}
 
       {/* Newsletter CTA */}
       <section className="py-16 bg-gradient-to-br from-gray-900 to-black text-white">

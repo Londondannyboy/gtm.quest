@@ -19,9 +19,9 @@ export function Navigation() {
   }, [])
 
   const navLinks = [
-    { href: '/agencies', label: 'GTM Agencies' },
+    { href: '/best-gtm-agencies', label: 'GTM Agencies' },
     { href: '/articles', label: 'Articles' },
-    { href: '/resources', label: 'Resources' },
+    { href: '/gtm-resources', label: 'Resources' },
     { href: '/chat', label: 'AI Strategist' }
   ]
 
