@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
 import { notFound } from 'next/navigation'
 import { Badge } from '@/components/Badge'
+import ReactMarkdown from 'react-markdown'
 
 // Revalidate every 4 hours for articles
 export const revalidate = 14400
@@ -164,10 +165,28 @@ export default async function ArticleDetailPage({ params }: PageProps) {
       {/* Article Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         {/* Article Body with Enhanced Styling */}
-        <div
-          className="article-content bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
+        <div className="prose prose-lg max-w-none bg-white rounded-2xl shadow-sm border border-gray-100 p-8 md:p-12 prose-headings:text-gray-900 prose-a:text-purple-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:bg-gray-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100">
+          <ReactMarkdown
+            components={{
+              h1: ({ node, ...props }) => <h1 className="text-4xl font-bold mt-8 mb-4 text-gray-900" {...props} />,
+              h2: ({ node, ...props }) => <h2 className="text-3xl font-bold mt-8 mb-4 text-gray-900" {...props} />,
+              h3: ({ node, ...props }) => <h3 className="text-2xl font-bold mt-6 mb-3 text-gray-900" {...props} />,
+              p: ({ node, ...props }) => <p className="text-gray-700 leading-relaxed mb-4" {...props} />,
+              ul: ({ node, ...props }) => <ul className="list-disc list-inside mb-4 text-gray-700" {...props} />,
+              ol: ({ node, ...props }) => <ol className="list-decimal list-inside mb-4 text-gray-700" {...props} />,
+              li: ({ node, ...props }) => <li className="mb-2 text-gray-700" {...props} />,
+              blockquote: ({ node, ...props }) => <blockquote className="border-l-4 border-purple-600 pl-4 italic text-gray-600 my-4" {...props} />,
+              a: ({ node, ...props }) => <a className="text-purple-600 hover:text-purple-700 underline" {...props} />,
+              table: ({ node, ...props }) => <table className="w-full border-collapse border border-gray-300 my-4" {...props} />,
+              th: ({ node, ...props }) => <th className="border border-gray-300 px-4 py-2 bg-gray-100 font-bold text-left" {...props} />,
+              td: ({ node, ...props }) => <td className="border border-gray-300 px-4 py-2" {...props} />,
+              img: ({ node, ...props }) => <img className="w-full rounded-lg my-6 shadow-md" {...props} />,
+              hr: () => <hr className="my-8 border-gray-300" />
+            }}
+          >
+            {article.content}
+          </ReactMarkdown>
+        </div>
 
         {/* CTA Section */}
         <div className="mt-12 bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl p-8 md:p-10 text-white">
