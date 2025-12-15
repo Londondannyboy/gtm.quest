@@ -13,7 +13,7 @@ const categories = [
 ]
 
 export default function GTMScorecard() {
-  const [scores, setScores] = useState({})
+  const [scores, setScores] = useState<Record<string, number>>({})
   const [calculated, setCalculated] = useState(false)
 
   const handleScore = (key: string, value: number) => {
@@ -21,17 +21,18 @@ export default function GTMScorecard() {
   }
 
   const calculateTotal = () => {
-    const values = Object.values(scores).filter(v => v)
+    const values = Object.values(scores).filter((v): v is number => typeof v === 'number')
     if (values.length === 0) return 0
-    return (values.reduce((a, b) => a + b, 0) / values.length).toFixed(1)
+    return ((values.reduce((a, b) => a + b, 0) / values.length) as number).toFixed(1)
   }
 
   const total = calculateTotal()
 
-  const getGrade = (score) => {
-    if (score >= 80) return { grade: 'A', color: 'text-green-600', bg: 'bg-green-50' }
-    if (score >= 70) return { grade: 'B', color: 'text-blue-600', bg: 'bg-blue-50' }
-    if (score >= 60) return { grade: 'C', color: 'text-yellow-600', bg: 'bg-yellow-50' }
+  const getGrade = (score: number | string) => {
+    const numScore = typeof score === 'string' ? parseFloat(score) : score
+    if (numScore >= 80) return { grade: 'A', color: 'text-green-600', bg: 'bg-green-50' }
+    if (numScore >= 70) return { grade: 'B', color: 'text-blue-600', bg: 'bg-blue-50' }
+    if (numScore >= 60) return { grade: 'C', color: 'text-yellow-600', bg: 'bg-yellow-50' }
     return { grade: 'D', color: 'text-red-600', bg: 'bg-red-50' }
   }
 
