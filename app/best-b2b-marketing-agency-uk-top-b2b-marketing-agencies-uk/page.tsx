@@ -137,10 +137,10 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* Educational Content */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight text-center">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
             B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
           </h2>
-          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-5xl mx-auto">
+          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-5xl">
             <p>
               The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers.<br/><br/>
               UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
@@ -154,10 +154,10 @@ export default async function B2BMarketingAgencyUKPage() {
             </p>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight text-center">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight">
             Top B2B Marketing Agencies UK: What to Look For
           </h2>
-          <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-5xl mx-auto">
+          <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-5xl">
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and Industry Knowledge</h3>
               <p>
@@ -206,20 +206,24 @@ export default async function B2BMarketingAgencyUKPage() {
             const description = (agency as any).b2b_description || agency.description
             const keyServices = (agency as any).key_services || agency.specializations || []
 
+            // Hide wrong brand.dev logos for specific agencies
+            const isGTMQuest = agency.slug === 'gtmquest' || agency.slug === 'gtm_quest'
+            const brandAssetsToUse = isGTMQuest ? null : brandAssets[agency.slug]
+
             return (
               <AgencyCard
                 key={agency.slug}
                 rank={i + 1}
                 name={agency.name}
-                tagline={brandAssets[agency.slug]?.slogan || description}
+                tagline={brandAssetsToUse?.slogan || description}
                 description={[description]}
                 bestFor={agency.specializations || []}
                 keyServices={keyServices}
                 website={website}
-                brandAssets={brandAssets[agency.slug]}
+                brandAssets={brandAssetsToUse}
                 isTopRanked={isTopRanked}
-                internalLink={agency.slug === 'gtmquest' || agency.slug === 'gtm_quest' ? '/planner' : undefined}
-                logoGroup={agency.slug === 'salescaptain' ? 1 : undefined}
+                internalLink={isGTMQuest ? '/planner' : undefined}
+                logoGroup={agency.slug === 'salescaptain' ? 2 : undefined}
               />
             )
           })}
@@ -229,9 +233,9 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* FAQ */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-white mb-16 text-center">UK B2B Marketing FAQs</h2>
+          <h2 className="text-5xl font-black text-white mb-16">UK B2B Marketing FAQs</h2>
 
-          <div className="space-y-12 max-w-5xl mx-auto">
+          <div className="space-y-12 max-w-5xl">
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
                 What is the typical cost of a B2B marketing agency in the UK?

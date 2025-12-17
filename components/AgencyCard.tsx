@@ -221,7 +221,7 @@ export function AgencyCard({
 
         {/* Contact Info & Socials */}
         {(brandAssets?.email || brandAssets?.socials || fullAddress) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24 max-w-[75%] mx-auto">
             {/* Contact Info */}
             {(brandAssets?.email || fullAddress) && (
               <div>
