@@ -191,7 +191,7 @@ export async function fetchAllAgencyLogos(): Promise<Record<string, BrandAssets 
 
 /**
  * Get the best logo for display (prefer light mode logo for dark backgrounds)
- * Also filters out third-party logos like cookiebot
+ * Also filters out third-party logos like cookiebot and prefers JPEG/PNG over SVG
  */
 export function getBestLogo(brandAssets: BrandAssets | null, preferredGroup?: number): string | null {
   if (!brandAssets?.logos || brandAssets.logos.length === 0) return null
@@ -206,22 +206,29 @@ export function getBestLogo(brandAssets: BrandAssets | null, preferredGroup?: nu
 
   if (companyLogos.length === 0) return brandAssets.logos[0]?.url || null
 
+  // Prefer JPEG/PNG over SVG for better quality
+  const jpegLogos = companyLogos.filter(logo => {
+    const url = logo.url.toLowerCase()
+    return url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png')
+  })
+  const logosToUse = jpegLogos.length > 0 ? jpegLogos : companyLogos
+
   // If preferredGroup is specified, try to find logo from that group first
   if (preferredGroup !== undefined) {
-    const groupLogo = companyLogos.find(l => l.group === preferredGroup && l.mode === 'light')
+    const groupLogo = logosToUse.find(l => l.group === preferredGroup && l.mode === 'light')
     if (groupLogo) return groupLogo.url
   }
 
   // Prefer light mode logo for dark backgrounds
-  const lightLogo = companyLogos.find(l => l.mode === 'light')
+  const lightLogo = logosToUse.find(l => l.mode === 'light')
   if (lightLogo) return lightLogo.url
 
   // Otherwise get dark logo
-  const darkLogo = companyLogos.find(l => l.mode === 'dark')
+  const darkLogo = logosToUse.find(l => l.mode === 'dark')
   if (darkLogo) return darkLogo.url
 
   // Fall back to first filtered logo
-  return companyLogos[0]?.url || null
+  return logosToUse[0]?.url || null
 }
 
 /**

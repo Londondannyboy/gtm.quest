@@ -140,7 +140,7 @@ export default async function B2BMarketingAgencyUKPage() {
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
             B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
           </h2>
-          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-5xl">
+          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
               The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers.<br/><br/>
               UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
@@ -157,7 +157,7 @@ export default async function B2BMarketingAgencyUKPage() {
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight">
             Top B2B Marketing Agencies UK: What to Look For
           </h2>
-          <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-5xl">
+          <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-6xl">
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and Industry Knowledge</h3>
               <p>
@@ -196,7 +196,7 @@ export default async function B2BMarketingAgencyUKPage() {
             <h2 className="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
               Get Started with GTM Quest
             </h2>
-            <p className="text-2xl text-white/80 leading-[1.8] mb-12 max-w-5xl">
+            <p className="text-2xl text-white/80 leading-[1.8] mb-12 max-w-6xl">
               Build your B2B marketing strategy in minutes with AI-powered GTM planning. Trusted by startups and scale-ups across fintech, martech, and enterprise software.
             </p>
             <div className="flex gap-8 flex-wrap">
@@ -232,12 +232,12 @@ export default async function B2BMarketingAgencyUKPage() {
             The Best B2B Marketing Agencies UK Has to Offer
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">
-            {totalAgencies - 2} verified B2B marketing agencies serving UK businesses with proven expertise and results.
+            {totalAgencies} verified B2B marketing agencies serving UK businesses with proven expertise and results.
           </p>
         </div>
 
         <div className="w-full">
-          {agencies.filter(a => a.slug !== 'gtmquest' && a.slug !== 'gtm_quest').map((agency, i) => {
+          {agencies.map((agency, i) => {
             const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
             const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
             const description = (agency as any).b2b_description || agency.description
@@ -260,7 +260,7 @@ export default async function B2BMarketingAgencyUKPage() {
                 brandAssets={brandAssetsToUse}
                 isTopRanked={isTopRanked}
                 internalLink={isGTMQuest ? '/planner' : undefined}
-                logoGroup={agency.slug === 'salescaptain' ? 2 : undefined}
+                logoGroup={agency.slug === 'salescaptain' ? 3 : undefined}
               />
             )
           })}
@@ -272,7 +272,7 @@ export default async function B2BMarketingAgencyUKPage() {
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl font-black text-white mb-16">UK B2B Marketing FAQs</h2>
 
-          <div className="space-y-12 max-w-5xl">
+          <div className="space-y-12 max-w-6xl">
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
                 What is the typical cost of a B2B marketing agency in the UK?
