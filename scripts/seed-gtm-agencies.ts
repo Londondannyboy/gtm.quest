@@ -26,6 +26,8 @@ async function seed() {
       status: 'published',
       headquarters: 'London, UK',
       description: 'AI-powered GTM strategy platform that combines instant strategy generation with expert consultant review. GTM Quest helps B2B SaaS and tech companies build comprehensive go-to-market strategies through an interactive planning tool that addresses positioning, ICP definition, channel strategy, and launch execution. The platform democratizes GTM expertise by making strategic planning accessible to early-stage startups and growth-stage companies alike.',
+      b2b_description: 'GTM Quest delivers AI-driven B2B marketing strategy and planning for SaaS and technology companies navigating complex buyer journeys. The platform combines automated strategy generation with expert review to help B2B marketers build data-backed positioning, identify ideal customer profiles, and design multi-channel demand generation programs. Perfect for B2B teams who need strategic frameworks without the agency price tag, GTM Quest accelerates time-to-market while ensuring marketing programs align with sales objectives and revenue targets.',
+      key_services: ['B2B Marketing Strategy', 'ICP & Buyer Persona Development', 'Positioning & Messaging', 'Channel Strategy Planning', 'Demand Generation Framework'],
       logo_url: null,
       website: 'https://gtm.quest',
       specializations: ['AI GTM Planning', 'B2B SaaS Strategy', 'Product Launch', 'Market Entry'],
@@ -45,6 +47,8 @@ async function seed() {
       status: 'published',
       headquarters: 'Remote',
       description: 'SalesCaptain specializes in outbound-driven go-to-market strategies for B2B companies that need predictable pipeline generation. Their approach centers on building systematic cold outreach programs—email, LinkedIn, and multi-channel sequences—that feed qualified meetings directly into your sales pipeline. The agency combines target account identification with intent data, funding signals, and 250+ data points to create prospect lists of companies actively looking for solutions. They achieve 0% spam rates through sophisticated deliverability optimization and provide weekly insights on campaign performance. SalesCaptain works particularly well for B2B SaaS companies, sales-led organizations, and businesses with clearly defined ICP profiles.',
+      b2b_description: 'SalesCaptain is a top-ranked outbound and GTM agency that builds high-performing Outbound Marketing & Sales systems for B2B SaaS and service businesses. They help companies like Nestlé, Drip, and Robin AI scale their sales pipeline through AI-led outbound, GTM transformation, and RevOps implementation, driving meetings with in-market buyers. Their systematic approach combines intent data, funding signals, and 250+ data points to identify high-intent prospects, then orchestrates multi-channel sequences across email, LinkedIn, and phone to generate qualified sales opportunities. With proven expertise serving enterprise brands and fast-growing startups, SalesCaptain delivers predictable pipeline growth while maintaining 0% spam rates through sophisticated deliverability optimization.',
+      key_services: ['AI-Led Outbound', 'GTM Transformation', 'RevOps Implementation', 'Multi-Channel Prospecting', 'Sales Pipeline Generation', 'Account Intelligence & Targeting'],
       logo_url: null,
       website: 'https://www.salescaptain.io',
       specializations: ['Outbound Sales', 'Pipeline Generation', 'B2B SaaS', 'Lead Generation'],
@@ -260,14 +264,15 @@ async function seed() {
           INSERT INTO companies (
             slug, name, app, status, headquarters, description, logo_url, website,
             specializations, global_rank, employee_count, founded_year,
-            service_areas, brand_dev_domain, pricing_model, min_budget, category_tags
+            service_areas, brand_dev_domain, pricing_model, min_budget, category_tags,
+            b2b_description, key_services
           )
           VALUES (
             ${agency.slug}, ${agency.name}, ${agency.app}, ${agency.status},
             ${agency.headquarters}, ${agency.description}, ${agency.logo_url}, ${agency.website},
             ${agency.specializations}, ${agency.global_rank}, ${agency.employee_count}, ${agency.founded_year},
             ${agency.service_areas}, ${agency.brand_dev_domain}, ${agency.pricing_model}, ${agency.min_budget},
-            ${agency.category_tags}
+            ${agency.category_tags}, ${agency.b2b_description || null}, ${agency.key_services || null}
           )
           ON CONFLICT (slug) DO UPDATE SET
             name = EXCLUDED.name,
@@ -282,7 +287,9 @@ async function seed() {
             brand_dev_domain = EXCLUDED.brand_dev_domain,
             pricing_model = EXCLUDED.pricing_model,
             min_budget = EXCLUDED.min_budget,
-            category_tags = EXCLUDED.category_tags
+            category_tags = EXCLUDED.category_tags,
+            b2b_description = EXCLUDED.b2b_description,
+            key_services = EXCLUDED.key_services
           RETURNING slug
         `
 
