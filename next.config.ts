@@ -77,6 +77,20 @@ const nextConfig: NextConfig = {
 
   images: {
     unoptimized: true, // For Vercel deployment
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media.brand.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.brand.dev',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.brandfetch.io',
+      },
+    ],
   },
 
   // Optimize CSS and package imports for modern browsers

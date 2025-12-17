@@ -1,607 +1,468 @@
 import Link from "next/link";
 import { Metadata } from "next";
-import { createDbQuery } from "@/lib/db";
 import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
+import { fetchAllAgencyLogos } from "@/lib/brand-api";
+import { AgencyCard } from "@/components/AgencyCard";
 
 export const metadata: Metadata = {
-  title: "GTM Agency UK | Go-To-Market Strategy",
-  description: "Top GTM agency providing expert go-to-market strategy, product launch support, and AI-powered planning tools for UK companies.",
-  keywords: "GTM agency, GTM agency UK, go-to-market strategy, GTM consultant, GTM strategy, product launch, market entry strategy, B2B GTM, SaaS GTM, go-to-market agency",
+  title: "Top 12 GTM Agencies in 2025 | Best Go-To-Market Agencies",
+  description: "Discover the best GTM agencies in 2025. Compare top go-to-market agencies specializing in strategy, product launches, and revenue growth for B2B SaaS and startups.",
+  keywords: "GTM agency, best GTM agencies, go-to-market agency, GTM consultants, product launch agency, B2B GTM strategy, SaaS GTM agency, startup GTM agency",
   alternates: {
     canonical: "https://gtm.quest",
   },
 };
 
-// Revalidate homepage every hour
 export const revalidate = 3600
 
-interface HomepageSection {
-  section_type: string
-  section_order: number
-  title: string
-  subtitle: string
-  content: any
-}
-
-async function getHomepageContent(): Promise<HomepageSection[]> {
-  try {
-    const sql = createDbQuery()
-    const sections = await sql`
-      SELECT section_type, section_order, title, subtitle, content
-      FROM homepage_content
-      WHERE site = 'gtm' AND is_active = true
-      ORDER BY section_order ASC
-    `
-    return sections as HomepageSection[]
-  } catch (error) {
-    console.error('Error fetching homepage content:', error)
-    return []
-  }
-}
-
-async function getGTMAgencies() {
-  try {
-    const sql = createDbQuery()
-    const agencies = await sql`
-      SELECT name, specializations, headquarters, logo_url
-      FROM companies
-      WHERE app = 'gtm' AND status = 'published'
-      ORDER BY global_rank ASC NULLS LAST
-      LIMIT 12
-    `
-    // Add description based on name
-    return (agencies as any[]).map(a => ({
-      ...a,
-      description: `${a.name} specializes in go-to-market strategy and product launches.`
-    }))
-  } catch (error) {
-    console.error('Error fetching GTM agencies:', error)
-    return []
-  }
-}
-
-async function getTopAgencyArticles() {
-  try {
-    const sql = createDbQuery()
-    const articles = await sql`
-      SELECT id, slug, title, excerpt, featured_asset_url
-      FROM articles
-      WHERE app = 'gtm' AND status = 'published' AND guide_type = 'listicle'
-      ORDER BY published_at DESC
-      LIMIT 6
-    `
-    return articles
-  } catch (error) {
-    console.error('Error fetching agency articles:', error)
-    return []
-  }
-}
-
 export default async function Home() {
-  const [sections, agencies, agencyArticles] = await Promise.all([
-    getHomepageContent(),
-    getGTMAgencies(),
-    getTopAgencyArticles()
-  ])
-
-  // Extract sections by type
-  const heroSection = sections.find(s => s.section_type === 'hero')
-  const introSection = sections.find(s => s.section_type === 'intro')
-  const servicesSection = sections.find(s => s.section_type === 'services')
-  const agenciesSection = sections.find(s => s.section_type === 'top_agencies')
-  const howItWorksSection = sections.find(s => s.section_type === 'how_it_works')
-  const faqSection = sections.find(s => s.section_type === 'faq')
-
-  // FAQ JSON-LD for search engines
-  const faqJsonLd = faqSection ? {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqSection.content.questions?.map((q: any) => ({
-      "@type": "Question",
-      name: q.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: q.answer
-      }
-    })) || []
-  } : null
-
-  // Organization JSON-LD for better SEO
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": ["Organization", "LocalBusiness"],
-    name: "GTM Quest",
-    alternateName: ["GTM Agency UK", "GTM Agency", "Go-To-Market Agency"],
-    description: "AI-powered GTM agency providing expert go-to-market strategy, product launch support, and consulting services.",
-    url: "https://gtm.quest",
-    logo: "https://gtm.quest/logo.svg",
-    foundingDate: "2025",
-    areaServed: {
-      "@type": "Country",
-      name: "United Kingdom"
-    },
-    serviceType: ["GTM Strategy", "Product Launch", "Go-To-Market Consulting"],
-    sameAs: [
-      "https://twitter.com/gtmquest",
-      "https://linkedin.com/company/gtmquest"
-    ]
-  }
+  const agencyLogos = await fetchAllAgencyLogos()
 
   return (
     <>
-      {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
-      {faqJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-      )}
+      <div className="flex flex-col bg-black text-white">
+        {/* Hero Section */}
+        <section className="relative py-24 md:py-32 bg-black">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <span className="inline-block bg-white text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
+              Updated January 2025
+            </span>
 
-      <div className="flex flex-col">
-        {/* Hero Section - AI-Powered GTM Agency */}
-        <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
-          {/* Animated background grid */}
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:40px_40px]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
+              Top 12 GTM Agencies in 2025
+            </h1>
 
-          {/* Content */}
-          <div className="relative z-10 w-full py-20">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center max-w-4xl mx-auto">
-                <span className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider mb-8">
-                  ⚡ AI-Powered GTM Agency
-                </span>
-
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight">
-                  <span className="bg-gradient-to-r from-amber-400 to-orange-300 bg-clip-text text-transparent">GTM Agency</span>: Expert Go-To-Market Strategy & Product Launch Services
-                </h1>
-
-                <p className="text-xl md:text-2xl text-gray-300 mb-6 leading-relaxed">
-                  Create a winning GTM strategy in 5 minutes with AI. No guesswork. No confusion. Just results.
-                </p>
-
-                <p className="text-lg text-gray-400 mb-10 max-w-2xl mx-auto">
-                  Whether you're a fast-growing SaaS company, enterprise launching into new markets, or B2B startup looking to scale, GTM strategy separates winners from the rest. Our AI-powered platform and expert consultants help UK companies reduce launch risk, accelerate revenue growth, and achieve market leadership. From product positioning to sales execution, we handle every step of your go-to-market journey.
-                </p>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                  <Link
-                    href="/planner"
-                    className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
-                  >
-                    🚀 Get My Free GTM Plan →
-                  </Link>
-                  <Link
-                    href="/calculators/market-size"
-                    className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
-                  >
-                    📊 Calculate Market Size
-                  </Link>
-                </div>
-
-                <div className="text-sm text-gray-400">
-                  Or <Link href="/chat" className="text-amber-400 hover:text-amber-300 underline">chat with our AI strategist</Link> for custom advice
-                </div>
-
-                {/* Stats */}
-                <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-                  <div className="text-center">
-                    <div className="text-4xl font-black text-white mb-2">5 min</div>
-                    <div className="text-sm text-gray-400">to GTM Plan</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-black text-white mb-2">4</div>
-                    <div className="text-sm text-gray-400">Free Calculators</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-black text-white mb-2">100%</div>
-                    <div className="text-sm text-gray-400">Free Forever</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works Section */}
-        <section className="py-20 md:py-28 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">How It Works in 4 Steps</h2>
-              <p className="text-xl text-gray-600">From zero to GTM strategy in 5 minutes</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
-                  1
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Answer 5 Questions</h3>
-                <p className="text-gray-600">Tell us about your product, market, and goals</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
-                  2
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Get AI Strategy</h3>
-                <p className="text-gray-600">Our AI generates your personalized GTM roadmap</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
-                  3
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Refine with Tools</h3>
-                <p className="text-gray-600">Use calculators to test pricing, budget, and market size</p>
-              </div>
-
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-black text-2xl mx-auto mb-4">
-                  4
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Launch & Scale</h3>
-                <p className="text-gray-600">Execute your plan or find an agency to help</p>
-              </div>
-            </div>
-
-            <div className="mt-12 text-center">
-              <Link
-                href="/planner"
-                className="inline-flex items-center justify-center px-10 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                Try It Free →
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Why GTM Strategy Matters */}
-        <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-              Why Go-To-Market Strategy Matters for Product Success
-            </h2>
-
-            <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-              <p>
-                A well-executed GTM strategy is the difference between successful product launches and missed market opportunities. Companies with structured go-to-market planning achieve 20-40% higher conversion rates and accelerate their sales cycles by 30-50% compared to those using unstructured approaches. GTM agencies provide the strategic framework and execution support that transforms product launches from uncertain gambles into predictable, revenue-generating successes.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border border-amber-200">
-                  <h3 className="font-bold text-gray-900 mb-2">Faster Time to Market</h3>
-                  <p className="text-gray-600">Proven frameworks reduce launch planning from months to weeks, enabling faster revenue generation and competitive advantage.</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border border-amber-200">
-                  <h3 className="font-bold text-gray-900 mb-2">Lower Customer Acquisition Cost</h3>
-                  <p className="text-gray-600">Optimized positioning, messaging, and channel strategy reduce CAC by focusing resources on your ideal customers and highest-probability channels.</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border border-amber-200">
-                  <h3 className="font-bold text-gray-900 mb-2">Revenue Growth & Scale</h3>
-                  <p className="text-gray-600">Comprehensive GTM strategy aligns sales and marketing, eliminates friction in your revenue operations, and creates sustainable growth foundations.</p>
-                </div>
-              </div>
-
-              <p className="mt-8">
-                Whether you're a B2B SaaS company launching new products, an enterprise entering adjacent markets, or a startup seeking to establish market presence, working with GTM consultants and agencies ensures you leverage best practices from thousands of successful launches across industries and company sizes.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Introduction Section */}
-        {introSection && (
-          <section className="py-20 md:py-28 bg-white">
-            <div className="max-w-4xl mx-auto px-6 lg:px-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
-                {introSection.title || "What Are GTM Agencies?"}
-              </h2>
-              <div className="prose prose-lg max-w-none">
-                {introSection.content.paragraphs?.map((p: any, i: number) => (
-                  <p key={i} className="text-lg text-gray-700 leading-relaxed mb-6">
-                    {p.text}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Core GTM Services */}
-        {servicesSection && (
-          <section className="py-20 md:py-28 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">{servicesSection.title || "GTM Agency Services"}</h2>
-                {servicesSection.subtitle && (
-                  <p className="text-xl text-gray-600">{servicesSection.subtitle}</p>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {servicesSection.content.items?.map((service: any, i: number) => (
-                  <div key={i} className="bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                    <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
-                    <p className="text-sm text-gray-500 italic">
-                      {i === 0 && "Identify market opportunities, competitive positioning, and ideal customer profiles."}
-                      {i === 1 && "Develop compelling value propositions and messaging that resonates with target audiences."}
-                      {i === 2 && "Create comprehensive go-to-market roadmaps with clear milestones and success metrics."}
-                      {i === 3 && "Align sales and marketing teams with SLAs and optimized lead handoff processes."}
-                      {i === 4 && "Execute coordinated product launches with marketing campaigns and sales enablement."}
-                      {i === 5 && "Monitor KPIs, optimize conversion funnels, and iterate based on market feedback."}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {servicesSection.content.summary && (
-                <div className="mt-12 text-center">
-                  <p className="text-lg text-gray-700 max-w-3xl mx-auto">{servicesSection.content.summary}</p>
-                </div>
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* Top GTM Agencies */}
-        {agenciesSection && (
-          <section className="py-20 md:py-28 bg-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">{agenciesSection.title || "Top GTM Agencies 2025"}</h2>
-                {agenciesSection.subtitle && (
-                  <p className="text-xl text-gray-600">{agenciesSection.subtitle || "Leading go-to-market agencies and consultants"}</p>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {agenciesSection.content.agencies?.map((agency: any, i: number) => (
-                  <div key={i} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow border border-gray-200">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-lg font-bold text-gray-900">{agency.name}</h3>
-                      {agency.size && (
-                        <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full">
-                          {agency.size}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">{agency.description}</p>
-                    {agency.specialties && (
-                      <div className="inline-block bg-gray-200 text-gray-700 px-3 py-1 rounded text-xs font-medium">
-                        {agency.specialties}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-12 text-center">
-                <Link
-                  href="/agencies"
-                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200"
-                >
-                  View All GTM Agencies →
-                </Link>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Top GTM Agency Articles */}
-        {agencyArticles && agencyArticles.length > 0 && (
-          <section className="py-20 md:py-28 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">Find GTM Agencies by Location & Industry</h2>
-                <p className="text-xl text-gray-600">Discover top go-to-market agencies in your region and industry vertical</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {agencyArticles.map((article: any) => (
-                  <Link
-                    key={article.id}
-                    href={`/${article.slug}`}
-                    className="group bg-white rounded-2xl border border-gray-200 hover:border-amber-300 hover:shadow-lg transition-all duration-200 overflow-hidden"
-                  >
-                    <div className="flex flex-col h-full">
-                      {article.featured_asset_url && (
-                        <div className="relative w-full h-48 bg-gray-200 overflow-hidden">
-                          <img
-                            src={article.featured_asset_url}
-                            alt={article.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
-                          />
-                        </div>
-                      )}
-                      <div className="p-6 flex flex-col flex-grow">
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-amber-600 transition-colors line-clamp-2 mb-3">
-                          {article.title}
-                        </h3>
-                        {article.excerpt && (
-                          <p className="text-sm text-gray-600 line-clamp-2 flex-grow">
-                            {article.excerpt}
-                          </p>
-                        )}
-                        <div className="mt-4 pt-4 border-t border-gray-100">
-                          <span className="text-amber-600 font-semibold text-sm">Read Article →</span>
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              <div className="mt-12 text-center">
-                <Link
-                  href="/articles"
-                  className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition-all duration-200"
-                >
-                  View All GTM Agency Articles →
-                </Link>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* How It Works - GTM Process */}
-        {howItWorksSection && (
-          <section className="py-20 md:py-28 bg-gradient-to-br from-gray-900 via-slate-900 to-black">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-white mb-4">{howItWorksSection.title}</h2>
-                {howItWorksSection.subtitle && (
-                  <p className="text-xl text-gray-300">{howItWorksSection.subtitle}</p>
-                )}
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                {howItWorksSection.content.phases?.map((phase: any, i: number) => (
-                  <div key={i} className="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
-                    <div className="text-amber-400 font-bold mb-2">{phase.duration}</div>
-                    <h3 className="text-lg font-bold text-white mb-3">{phase.name}</h3>
-                    <p className="text-gray-300 text-sm leading-relaxed">{phase.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              {howItWorksSection.content.summary && (
-                <div className="mt-12 text-center">
-                  <p className="text-lg text-gray-300 max-w-3xl mx-auto">{howItWorksSection.content.summary}</p>
-                </div>
-              )}
-            </div>
-          </section>
-        )}
-
-        {/* Trust Signals */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="text-5xl font-black text-amber-600 mb-3">1000+</div>
-                <p className="text-lg font-semibold text-gray-900 mb-1">Successful Launches</p>
-                <p className="text-gray-600">Our frameworks have helped 1000+ products launch successfully</p>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-black text-amber-600 mb-3">95%</div>
-                <p className="text-lg font-semibold text-gray-900 mb-1">Time Saved</p>
-                <p className="text-gray-600">Average time saved planning GTM strategy vs traditional methods</p>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-black text-amber-600 mb-3">100%</div>
-                <p className="text-lg font-semibold text-gray-900 mb-1">Free Forever</p>
-                <p className="text-gray-600">Our tools and calculators are completely free, no credit card required</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* AI Strategy Generator CTA */}
-        <section className="py-20 md:py-28 bg-gradient-to-r from-amber-500 to-orange-500">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-              Get Your Custom GTM Plan in 5 Minutes
-            </h2>
-            <p className="text-xl text-white/90 mb-10 leading-relaxed">
-              Use our AI-powered strategy generator to create a personalized go-to-market plan.
-              <br className="hidden md:block" />
-              Free, instant, and based on proven frameworks from successful launches.
+            <p className="text-2xl md:text-3xl text-white mb-10 leading-relaxed max-w-5xl mx-auto font-light">
+              Work with a go-to-market agency that builds strategy, channels, and launch plans that actually convert
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <Link
                 href="/planner"
-                className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all duration-200 shadow-xl hover:shadow-2xl"
+                className="inline-flex items-center justify-center px-12 py-5 text-xl font-bold rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
               >
-                🚀 Generate My GTM Plan →
+                🚀 Get Free GTM Strategy
               </Link>
               <Link
                 href="/chat"
-                className="inline-flex items-center justify-center px-10 py-5 text-lg font-semibold rounded-xl bg-white/20 backdrop-blur text-white hover:bg-white/30 transition-all duration-200"
+                className="inline-flex items-center justify-center px-12 py-5 text-xl font-bold rounded-xl bg-white/10 backdrop-blur border-2 border-white/30 text-white hover:bg-white/20 transition-all duration-200"
               >
-                💬 Chat with AI Strategist
+                💬 Chat with AI
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Featured GTM Resources */}
-        <section className="py-20 md:py-28 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured GTM Agency Resources</h2>
-              <p className="text-xl text-gray-600">Expert guides and frameworks from our GTM agency specialists</p>
-            </div>
+        {/* What Is a GTM Agency Section */}
+        <section id="what-is-gtm-agency" className="py-32 md:py-40 bg-zinc-950 border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
+              What Is a Go-To-Market Agency?
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Link href="/go-to-market-consultant" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">GTM Agency Consultant</h3>
-                <p className="text-gray-600 text-sm mb-4">Work with experienced go-to-market consultants to plan and execute your product launch successfully.</p>
-                <span className="text-amber-600 font-semibold text-sm">Learn More →</span>
-              </Link>
+            <div className="space-y-12 text-3xl text-gray-300 leading-relaxed font-light">
+              <p>
+                A go-to-market (GTM) agency helps companies launch products, enter new markets, and scale revenue. They bridge product, sales, marketing, and customer success to create strategies that drive measurable outcomes.
+              </p>
 
-              <Link href="/b2b-gtm-strategy" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">B2B GTM Strategy</h3>
-                <p className="text-gray-600 text-sm mb-4">Specialized GTM strategies for B2B companies including account-based marketing and enterprise sales.</p>
-                <span className="text-amber-600 font-semibold text-sm">Explore Framework →</span>
-              </Link>
-
-              <Link href="/enterprise-gtm-strategy" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Enterprise GTM</h3>
-                <p className="text-gray-600 text-sm mb-4">Master complex enterprise sales cycles and build successful go-to-market strategies at scale.</p>
-                <span className="text-amber-600 font-semibold text-sm">View Strategy →</span>
-              </Link>
-
-              <Link href="/gtm-for-startups" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Startup GTM Guide</h3>
-                <p className="text-gray-600 text-sm mb-4">Lean GTM frameworks specifically designed for early-stage startups launching their first products.</p>
-                <span className="text-amber-600 font-semibold text-sm">Start Guide →</span>
-              </Link>
-
-              <Link href="/gtm-strategy-examples" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">Case Studies</h3>
-                <p className="text-gray-600 text-sm mb-4">Real-world GTM case studies from Slack, Stripe, Salesforce, and other industry leaders.</p>
-                <span className="text-amber-600 font-semibold text-sm">Read Cases →</span>
-              </Link>
-
-              <Link href="/what-is-gtm" className="group p-8 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">What is Go-to-Market?</h3>
-                <p className="text-gray-600 text-sm mb-4">Comprehensive guide to GTM strategy, frameworks, and best practices for product success.</p>
-                <span className="text-amber-600 font-semibold text-sm">Read Full Guide →</span>
-              </Link>
+              <p>
+                GTM agencies answer critical questions: Who is your ideal customer? What channels reach them? How should you price? What messaging resonates? They build launch roadmaps, sales playbooks, and marketing campaigns that scale revenue predictably.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        {faqSection && (
-          <section className="py-20 md:py-28 bg-white">
-            <div className="max-w-4xl mx-auto px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <h2 className="text-4xl font-bold text-gray-900 mb-4">{faqSection.title}</h2>
-                {faqSection.subtitle && (
-                  <p className="text-xl text-gray-600">{faqSection.subtitle}</p>
-                )}
+        {/* Benefits Section */}
+        <section id="benefits" className="py-32 md:py-40 bg-black border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
+              Benefits of Hiring a GTM Agency
+            </h2>
+
+            <div className="space-y-12 text-3xl text-gray-300 leading-relaxed mb-20 font-light">
+              <p>
+                GTM agencies bring deep expertise from hundreds of product launches. They compress timelines dramatically—what takes internal teams 6-9 months, experienced agencies deliver in 8-12 weeks.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
+                <div className="text-white text-7xl font-black mb-6">2-3x</div>
+                <h3 className="text-3xl font-bold text-white mb-5">Faster Time to Market</h3>
+                <p className="text-gray-400 text-xl leading-relaxed font-light">Proven frameworks accelerate strategy development from months to weeks.</p>
               </div>
 
-              <div className="space-y-6">
-                {faqSection.content.questions?.map((faq: any, i: number) => (
-                  <div key={i} className="bg-gray-50 rounded-xl p-8 border border-gray-200">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
-                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                  </div>
-                ))}
+              <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
+                <div className="text-white text-7xl font-black mb-6">40-60%</div>
+                <h3 className="text-3xl font-bold text-white mb-5">Lower CAC</h3>
+                <p className="text-gray-400 text-xl leading-relaxed font-light">Optimized targeting and messaging reduce wasted spend.</p>
+              </div>
+
+              <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
+                <div className="text-white text-7xl font-black mb-6">5-10x</div>
+                <h3 className="text-3xl font-bold text-white mb-5">ROI on Launch</h3>
+                <p className="text-gray-400 text-xl leading-relaxed font-light">Structured GTM planning drives dramatically higher returns.</p>
+              </div>
+
+              <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
+                <div className="text-white text-7xl font-black mb-6">85%</div>
+                <h3 className="text-3xl font-bold text-white mb-5">Risk Reduction</h3>
+                <p className="text-gray-400 text-xl leading-relaxed font-light">Market validation prevents costly post-launch pivots.</p>
               </div>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+
+        {/* Agency Listings Section */}
+        <section id="agencies" className="py-32 md:py-40 bg-black border-t border-white/10">
+          <div className="w-full">
+            <div className="text-center mb-32 px-6">
+              <h2 className="text-7xl md:text-8xl font-black text-white mb-12">
+                Top GTM Agencies
+              </h2>
+              <p className="text-3xl text-white max-w-5xl mx-auto font-light">
+                Compare the leading go-to-market agencies
+              </p>
+            </div>
+
+            <div className="space-y-0">
+              {/* #1 - GTM Quest */}
+              <AgencyCard
+                rank={1}
+                name="GTM Quest"
+                tagline="AI-Powered GTM Strategy & Launch Platform"
+                description={[
+                  "GTM Quest combines AI-powered strategy generation with expert consulting to deliver comprehensive go-to-market plans in a fraction of the time traditional agencies require. Their proprietary AI platform analyzes your product, market, and competition to generate customized GTM strategies in minutes.",
+                  "What sets GTM Quest apart is their hybrid model: instant AI-generated strategy frameworks that would normally take weeks to develop, combined with on-demand access to senior GTM consultants who have led launches at companies like Stripe, Salesforce, and HubSpot.",
+                  "GTM Quest specializes in B2B SaaS and technology companies at all stages—from pre-launch startups validating product-market fit to growth-stage companies launching new products or entering adjacent markets."
+                ]}
+                bestFor={[
+                  "B2B SaaS companies launching new products",
+                  "Startups seeking expert GTM strategy on lean budgets",
+                  "Growth-stage companies entering new markets",
+                  "Product teams needing fast, data-driven launch plans"
+                ]}
+                keyServices={[
+                  "AI-powered GTM strategy generation (5 minutes)",
+                  "Market sizing & pricing calculators",
+                  "Expert consultant review & refinement",
+                  "Launch roadmaps & execution playbooks",
+                  "Sales enablement materials & messaging frameworks"
+                ]}
+                website="https://gtm.quest"
+                brandAssets={agencyLogos.gtmquest}
+                isTopRanked={true}
+                internalLink="/planner"
+                stats={[
+                  { value: "Free", label: "Strategy Tools" },
+                  { value: "5 min", label: "To Full Strategy" },
+                  { value: "500+", label: "Launches" }
+                ]}
+              />
+
+              {/* #2 - SalesCaptain */}
+              <AgencyCard
+                rank={2}
+                name="SalesCaptain"
+                tagline="B2B Outbound-Driven GTM Strategy"
+                description={[
+                  "SalesCaptain specializes in outbound-driven go-to-market strategies for B2B companies that need predictable pipeline generation. Their approach centers on building systematic cold outreach programs—email, LinkedIn, and multi-channel sequences—that feed qualified meetings directly into your sales pipeline.",
+                  "The agency works particularly well for B2B SaaS companies, sales-led organizations, and businesses with clearly defined ICP profiles. They handle everything from list building and contact research through copywriting, sequence design, and deliverability optimization."
+                ]}
+                bestFor={[
+                  "B2B companies building outbound sales engines",
+                  "Sales-led organizations needing pipeline generation",
+                  "Companies with well-defined ICP and buyer personas"
+                ]}
+                keyServices={[
+                  "Cold email campaign strategy & execution",
+                  "LinkedIn outreach & social selling",
+                  "List building & contact research",
+                  "Copywriting & sequence optimization",
+                  "Multi-channel outbound programs"
+                ]}
+                website="https://www.salescaptain.io"
+                brandAssets={agencyLogos.salescaptain}
+              />
+
+              {/* #3 - inBeat */}
+              <AgencyCard
+                rank={3}
+                name="inBeat"
+                tagline="DTC & Influencer-Led GTM Strategy"
+                description={[
+                  "inBeat has built their reputation on influencer marketing and creator-led growth strategies for DTC brands, consumer apps, and B2C companies. They excel at identifying the right micro and macro influencers for your target audience, negotiating partnerships, and managing campaigns that drive authentic engagement and conversions.",
+                  "Beyond influencer marketing, inBeat offers comprehensive DTC growth services including paid social media management, user-generated content programs, and community building. They understand the nuances of launching consumer products where social proof, creator validation, and community momentum can make or break market entry."
+                ]}
+                bestFor={[
+                  "DTC brands and consumer products",
+                  "Companies launching in creator-driven markets",
+                  "B2C apps needing influencer partnerships"
+                ]}
+                keyServices={[
+                  "Influencer identification & vetting",
+                  "Creator campaign management",
+                  "User-generated content programs",
+                  "Paid social media management",
+                  "Community building strategies"
+                ]}
+                website="https://inbeat.agency"
+                brandAssets={agencyLogos.inbeat}
+              />
+
+              {/* #4 - Ironpaper */}
+              <AgencyCard
+                rank={4}
+                name="Ironpaper"
+                tagline="B2B Complex Sales & Marketing Alignment"
+                description={[
+                  "Ironpaper focuses on complex B2B companies with long sales cycles, multiple stakeholders, and technical products. They excel at building GTM strategies for businesses where deals take 6-18 months to close and require extensive education, nurturing, and multi-threading across buying committees.",
+                  "The agency brings particular expertise to enterprise software, industrial technology, and professional services firms. They understand how to create content and campaigns that address technical buyers, economic buyers, and end users simultaneously."
+                ]}
+                bestFor={[
+                  "Enterprise B2B companies with complex sales",
+                  "Technical products requiring buyer education",
+                  "Long sales cycles with multiple stakeholders"
+                ]}
+                keyServices={[
+                  "Account-based marketing programs",
+                  "Sales-marketing alignment & SLAs",
+                  "Lead nurturing & automation",
+                  "Technical content development",
+                  "Sales enablement for complex deals"
+                ]}
+                website="https://www.ironpaper.com"
+                brandAssets={agencyLogos.ironpaper}
+              />
+
+              {/* #5 - Ziggy */}
+              <AgencyCard
+                rank={5}
+                name="Ziggy"
+                tagline="Early-Stage Startup Positioning"
+                description={[
+                  "Ziggy specializes in helping early-stage startups refine their positioning, messaging, and initial GTM approach before major launches. They work with pre-seed through Series A companies that are still figuring out product-market fit, testing messaging with early customers, and establishing their foundational GTM strategy.",
+                  "What makes Ziggy valuable for startups is their focus on getting the fundamentals right before scaling—ensuring you understand your ICP deeply, can articulate differentiation compellingly, and have validated your messaging with real buyers."
+                ]}
+                bestFor={[
+                  "Pre-seed to Series A startups",
+                  "Companies refining product-market fit",
+                  "Founders needing positioning clarity"
+                ]}
+                keyServices={[
+                  "Customer research & ICP definition",
+                  "Positioning strategy workshops",
+                  "Messaging framework development",
+                  "Early GTM strategy validation",
+                  "Founder marketing advisory"
+                ]}
+                website="https://www.ziggy.io"
+                brandAssets={agencyLogos.ziggy}
+              />
+
+              {/* #6 - Deviate Labs */}
+              <AgencyCard
+                rank={6}
+                name="Deviate Labs"
+                tagline="Creative Growth & Unconventional Tactics"
+                description={[
+                  "Deviate Labs brings creative, unconventional thinking to GTM strategy. They specialize in growth tactics that break from traditional playbooks—viral loops, product-led growth mechanisms, community-driven launches, and guerrilla marketing campaigns that generate outsized attention.",
+                  "The agency works particularly well with companies willing to experiment and take calculated risks for differentiated launch approaches. Rather than following standard agency frameworks, Deviate Labs designs custom strategies based on your specific context."
+                ]}
+                bestFor={[
+                  "Companies wanting unconventional growth tactics",
+                  "Products with inherent viral potential",
+                  "Brands seeking differentiated launch approaches"
+                ]}
+                keyServices={[
+                  "Product-led growth strategy",
+                  "Viral marketing campaigns",
+                  "Community-driven launch programs",
+                  "Growth experimentation & testing",
+                  "Creative partnership development"
+                ]}
+                website="https://www.deviatelabs.com"
+                brandAssets={agencyLogos.deviatelabs}
+              />
+
+              {/* #7 - Refine Labs */}
+              <AgencyCard
+                rank={7}
+                name="Refine Labs"
+                tagline="B2B Demand Generation & Buyer Alignment"
+                description={[
+                  "Refine Labs has pioneered modern B2B demand generation approaches that align with how buyers actually research and evaluate solutions today. They reject traditional MQL-focused lead gen in favor of strategies that create genuine demand, build brand authority, and meet buyers throughout their self-directed research journey.",
+                  "The agency brings deep expertise in podcast-led content strategies, video-first demand generation, and community building for B2B brands. They understand that today's B2B buyers conduct extensive research independently before engaging sales."
+                ]}
+                bestFor={[
+                  "B2B SaaS companies building demand",
+                  "Companies moving beyond MQL-focused strategies",
+                  "Brands wanting thought leadership positioning"
+                ]}
+                keyServices={[
+                  "Modern demand generation strategy",
+                  "Podcast & video content programs",
+                  "B2B brand building",
+                  "Community development",
+                  "Buyer journey mapping & optimization"
+                ]}
+                website="https://www.refinelabs.com"
+                brandAssets={agencyLogos.refinelabs}
+              />
+
+              {/* #8 - Six & Flow */}
+              <AgencyCard
+                rank={8}
+                name="Six & Flow"
+                tagline="HubSpot-Integrated GTM & RevOps"
+                description={[
+                  "Six & Flow specializes in GTM strategies and revenue operations built on the HubSpot platform. They combine strategic planning with technical implementation—helping you design your GTM approach and then actually building it within HubSpot's CRM, marketing automation, and sales tools.",
+                  "The agency works particularly well for companies already using HubSpot or planning to implement it as their revenue operations backbone. They understand the platform's capabilities deeply and can architect sophisticated marketing-sales alignment, lead lifecycle management, and attribution reporting within the HubSpot ecosystem."
+                ]}
+                bestFor={[
+                  "HubSpot users scaling revenue operations",
+                  "Companies needing strategy + technical implementation",
+                  "B2B SaaS with complex lead lifecycle management"
+                ]}
+                keyServices={[
+                  "HubSpot implementation & optimization",
+                  "Revenue operations strategy",
+                  "Marketing automation & workflows",
+                  "Sales-marketing alignment & SLAs",
+                  "Attribution & reporting dashboards"
+                ]}
+                website="https://www.sixandflow.com"
+                brandAssets={agencyLogos.sixandflow}
+              />
+
+              {/* #9 - Single Grain */}
+              <AgencyCard
+                rank={9}
+                name="Single Grain"
+                tagline="SaaS & Performance-Driven GTM"
+                description={[
+                  "Single Grain brings performance marketing expertise to GTM strategy, with particular strength in SaaS, education, and B2B technology sectors. They combine strategic planning with strong execution across paid acquisition, SEO, content marketing, and conversion rate optimization.",
+                  "The agency works best with growth-stage companies that have product-market fit and need to scale acquisition efficiently. They excel at identifying the right channel mix for your product and audience, then systematically testing and optimizing to reduce CAC and improve LTV."
+                ]}
+                bestFor={[
+                  "SaaS companies scaling customer acquisition",
+                  "B2B tech companies with growth budgets",
+                  "Companies wanting performance marketing + strategy"
+                ]}
+                keyServices={[
+                  "Paid acquisition (Google, LinkedIn, Facebook)",
+                  "SEO & content marketing",
+                  "Conversion rate optimization",
+                  "Channel strategy & testing",
+                  "Analytics & attribution"
+                ]}
+                website="https://www.singlegrain.com"
+                brandAssets={agencyLogos.singlegrain}
+              />
+
+              {/* #10 - Boil */}
+              <AgencyCard
+                rank={10}
+                name="Boil"
+                tagline="SaaS Positioning & Research-Based Messaging"
+                description={[
+                  "Boil specializes in customer research-driven positioning and messaging for B2B SaaS companies. Their methodology centers on extensive customer interviews, competitive analysis, and win-loss research to understand exactly how buyers perceive your product, what drives purchase decisions, and what language resonates.",
+                  "The agency works particularly well with SaaS companies that struggle to articulate differentiation clearly or have high-quality products that aren't translating to strong pipeline. Boil's research-based approach removes guesswork from positioning."
+                ]}
+                bestFor={[
+                  "B2B SaaS needing positioning clarity",
+                  "Companies with unclear differentiation",
+                  "Products with complex value propositions"
+                ]}
+                keyServices={[
+                  "Customer research & interviews",
+                  "Win-loss analysis",
+                  "Positioning strategy development",
+                  "Messaging framework creation",
+                  "Website & sales copy optimization"
+                ]}
+                website="https://www.boilmarketing.com"
+                brandAssets={agencyLogos.boil}
+              />
+
+              {/* #11 - Arise GTM */}
+              <AgencyCard
+                rank={11}
+                name="Arise GTM"
+                tagline="Boutique Strategy & Pre-Launch Clarity"
+                description={[
+                  "Arise GTM operates as a boutique consultancy focused on pre-launch strategic clarity for B2B companies. They work with a limited number of clients at any time, providing senior-level strategic advisory rather than scaled execution services.",
+                  "The agency works best with companies in the planning phase—typically 3-6 months before launch—who need strategic guidance to make critical decisions about positioning, target segments, pricing, and channel strategy."
+                ]}
+                bestFor={[
+                  "Companies in pre-launch planning phase",
+                  "B2B SaaS needing strategic clarity",
+                  "Founders seeking senior advisory support"
+                ]}
+                keyServices={[
+                  "Strategic advisory & planning",
+                  "Market & competitive analysis",
+                  "Launch roadmap development",
+                  "Pricing & packaging strategy",
+                  "Channel strategy & prioritization"
+                ]}
+                website="https://www.arisegtm.com"
+                brandAssets={agencyLogos.arisegtm}
+              />
+
+              {/* #12 - Kalungi */}
+              <AgencyCard
+                rank={12}
+                name="Kalungi"
+                tagline="B2B SaaS Startups & Fractional CMO Services"
+                description={[
+                  "Kalungi provides fractional CMO services combined with marketing execution specifically for B2B SaaS startups. Their model pairs a senior marketing executive (fractional CMO) with an execution team, giving startups access to VP/CMO-level strategic guidance without the cost of a full-time executive hire.",
+                  "Kalungi's team brings deep B2B SaaS expertise across demand generation, product marketing, content strategy, and marketing operations. They understand the unique challenges of startup marketing—limited budgets, rapid iteration, founder-led sales transitioning to scalable processes, and the need to prove ROI quickly."
+                ]}
+                bestFor={[
+                  "B2B SaaS startups (seed to Series B)",
+                  "Companies needing fractional CMO guidance",
+                  "Startups scaling from founder-led sales"
+                ]}
+                keyServices={[
+                  "Fractional CMO leadership",
+                  "Demand generation programs",
+                  "Product marketing & positioning",
+                  "Content strategy & execution",
+                  "Marketing operations & stack setup"
+                ]}
+                website="https://www.kalungi.com"
+                brandAssets={agencyLogos.kalungi}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-32 md:py-40 bg-zinc-950 border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <h2 className="text-6xl md:text-7xl font-black text-white mb-12">
+              Start Your GTM Strategy Today
+            </h2>
+            <p className="text-3xl text-white mb-16 leading-relaxed font-light">
+              Get a comprehensive go-to-market plan in minutes
+            </p>
+            <div className="flex flex-col sm:flex-row gap-8 justify-center">
+              <Link
+                href="/planner"
+                className="inline-flex items-center justify-center px-16 py-6 text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
+              >
+                Get Free GTM Plan →
+              </Link>
+              <Link
+                href="/chat"
+                className="inline-flex items-center justify-center px-16 py-6 text-2xl font-black rounded-xl bg-white/10 backdrop-blur border-2 border-white/40 text-white hover:bg-white/20 transition-all duration-200"
+              >
+                Chat with AI Strategist
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* Voice AI Widget */}
         <AuthAwareHumeWidget />
