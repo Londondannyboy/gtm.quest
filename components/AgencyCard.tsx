@@ -41,13 +41,25 @@ export function AgencyCard({
 
   return (
     <div
-      className="relative py-32 md:py-40 border-t-8"
+      className="relative py-32 md:py-40 border-t-8 overflow-hidden"
       style={{
         borderTopColor: primaryColor,
         background: `linear-gradient(180deg, ${primaryColor}08 0%, transparent 40%)`
       }}
     >
-      <div className="w-full px-8 md:px-12 lg:px-16 max-w-[2000px] mx-auto">
+      {/* Subtle backdrop background */}
+      {secondBackdropUrl && (
+        <div
+          className="absolute inset-0 opacity-[0.15] pointer-events-none"
+          style={{
+            backgroundImage: `url(${secondBackdropUrl})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            zIndex: 0
+          }}
+        />
+      )}
+      <div className="relative z-10 w-full px-8 md:px-12 lg:px-16 max-w-[2000px] mx-auto">
         {/* Header Section */}
         <div className="flex items-start gap-16 mb-20 flex-wrap">
           {/* Large Logo */}
@@ -99,18 +111,31 @@ export function AgencyCard({
               </p>
             )}
 
-            {/* Try Free Button - only for GTM Quest */}
+            {/* GTM Quest Buttons */}
             {internalLink && (
-              <div className="mt-16">
-                <Link
-                  href={internalLink}
+              <div className="mt-16 flex gap-8 flex-wrap">
+                <a
+                  href="https://calendar.app.google/iEbf7PJA9qyiP9Ng9"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block px-20 py-8 text-4xl font-black rounded-2xl transition-all shadow-2xl"
                   style={{
                     backgroundColor: primaryColor,
                     color: '#000'
                   }}
                 >
-                  Try Free →
+                  Speak with us →
+                </a>
+                <Link
+                  href={internalLink}
+                  className="inline-block px-20 py-8 text-4xl font-black rounded-2xl transition-all shadow-2xl border-4"
+                  style={{
+                    backgroundColor: 'transparent',
+                    color: primaryColor,
+                    borderColor: primaryColor
+                  }}
+                >
+                  Try AI Strategist →
                 </Link>
               </div>
             )}
@@ -143,9 +168,9 @@ export function AgencyCard({
           ))}
         </div>
 
-        {/* Best For & Key Services */}
+        {/* Best For & Key Services - 3/4 width */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-32 pt-20 pb-20 border-t-4 border-b-4 rounded-3xl px-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-32 pt-20 pb-20 border-t-4 border-b-4 rounded-3xl px-12 max-w-[75%]"
           style={{
             borderColor: primaryColor,
             backgroundColor: `${primaryColor}10`
