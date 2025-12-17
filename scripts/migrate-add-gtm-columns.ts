@@ -22,6 +22,7 @@ async function migrate() {
     // Add columns (all NULLABLE, generic for all company types)
     await sql`
       ALTER TABLE companies
+        ADD COLUMN IF NOT EXISTS website text,
         ADD COLUMN IF NOT EXISTS service_areas text[],
         ADD COLUMN IF NOT EXISTS brand_dev_domain text,
         ADD COLUMN IF NOT EXISTS pricing_model text,
