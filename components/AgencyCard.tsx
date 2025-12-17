@@ -149,9 +149,9 @@ export function AgencyCard({
               src={backdropUrl}
               alt={`${brandAssets?.title || name} banner`}
               width={2400}
-              height={800}
+              height={400}
               className="w-full h-auto object-cover"
-              style={{ maxHeight: '800px', minHeight: '500px' }}
+              style={{ maxHeight: '400px', minHeight: '300px' }}
             />
           </div>
         )}
