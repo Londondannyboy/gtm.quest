@@ -94,13 +94,13 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* Hero Section with Image */}
       <section className="relative py-24 md:py-32 bg-black overflow-hidden">
         {/* Hero Image */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black z-10"></div>
+        <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=80"
             alt="Best B2B marketing agencies UK - London cityscape with Thames River and iconic landmarks"
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -142,13 +142,15 @@ export default async function B2BMarketingAgencyUKPage() {
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal">
             <p>
-              The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers. UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
+              The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers.<br/><br/>
+              UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
             </p>
             <p>
               Whether you're a B2B SaaS company preparing for European expansion, an enterprise software provider targeting UK enterprises, or a services firm building systematic demand generation, partnering with a UK-based B2B marketing agency provides timezone alignment, cultural fluency, and on-the-ground market intelligence that remote agencies struggle to replicate.
             </p>
             <p>
-              UK agencies excel at navigating the complexities of multi-stakeholder B2B sales cycles, building sophisticated account-based marketing programs for enterprise targets, and creating demand generation engines that align marketing with sales revenue goals. The agencies listed below have been verified for their B2B expertise, client results, and transparent approach to partnerships.
+              UK agencies excel at navigating the complexities of multi-stakeholder B2B sales cycles, building sophisticated account-based marketing programs for enterprise targets, and creating demand generation engines that align marketing with sales revenue goals.<br/><br/>
+              The agencies listed below have been verified for their B2B expertise, client results, and transparent approach to partnerships.
             </p>
           </div>
 
@@ -157,23 +159,29 @@ export default async function B2BMarketingAgencyUKPage() {
           </h2>
           <div className="space-y-10 text-2xl text-white/90 leading-[1.8]">
             <div>
-              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">B2B Experience and Industry Knowledge</h3>
+              <h3 className="text-4xl font-black text-white mb-6">B2B Experience and Industry Knowledge</h3>
               <p>
-                B2B marketing fundamentally differs from B2C in sales cycle length, decision-making complexity, and stakeholder dynamics. The best B2B agencies demonstrate experience with long sales cycles, understand how to create content for technical buyers versus economic buyers, and can navigate buying committees with 5-10 stakeholders. Look for agencies with case studies in your industry—enterprise software requires different approaches than professional services or industrial equipment.
+                B2B marketing fundamentally differs from B2C in sales cycle length, decision-making complexity, and stakeholder dynamics.<br/><br/>
+                The best B2B agencies demonstrate experience with long sales cycles, understand how to create content for technical buyers versus economic buyers, and can navigate buying committees with 5-10 stakeholders.<br/><br/>
+                Look for agencies with case studies in your industry—enterprise software requires different approaches than professional services or industrial equipment.
               </p>
             </div>
 
             <div>
-              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">Demand Generation Capabilities</h3>
+              <h3 className="text-4xl font-black text-white mb-6">Demand Generation Capabilities</h3>
               <p>
-                Effective B2B marketing agencies build demand generation systems, not just campaigns. This means creating buyer journey frameworks, implementing marketing automation, developing lead scoring models, and establishing closed-loop reporting between marketing and sales. Ask agencies about their approach to MQLs, SQLs, and pipeline contribution. The best agencies focus on revenue influence, not vanity metrics like impressions or clicks.
+                Effective B2B marketing agencies build demand generation systems, not just campaigns.<br/><br/>
+                This means creating buyer journey frameworks, implementing marketing automation, developing lead scoring models, and establishing closed-loop reporting between marketing and sales.<br/><br/>
+                Ask agencies about their approach to MQLs, SQLs, and pipeline contribution. The best agencies focus on revenue influence, not vanity metrics like impressions or clicks.
               </p>
             </div>
 
             <div>
-              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">Technology Stack and Integration</h3>
+              <h3 className="text-4xl font-black text-white mb-6">Technology Stack and Integration</h3>
               <p>
-                Modern B2B marketing requires sophisticated technology. Top agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation. They understand how to implement account-based marketing platforms like Demandbase or 6sense. They know how to integrate marketing technology with your CRM, set up proper attribution tracking, and build dashboards that show real business impact.
+                Modern B2B marketing requires sophisticated technology.<br/><br/>
+                Top agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation.<br/><br/>
+                They understand how to implement account-based marketing platforms like Demandbase or 6sense. They know how to integrate marketing technology with your CRM, set up proper attribution tracking, and build dashboards that show real business impact.
               </p>
             </div>
           </div>
@@ -191,7 +199,7 @@ export default async function B2BMarketingAgencyUKPage() {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="w-full">
           {agencies.map((agency, i) => {
             const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
             const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
@@ -224,16 +232,17 @@ export default async function B2BMarketingAgencyUKPage() {
 
           <div className="space-y-12">
             <div>
-              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">
+              <h3 className="text-4xl font-black text-white mb-6">
                 What is the typical cost of a B2B marketing agency in the UK?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
-                UK B2B marketing agencies typically charge £{Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements. Project-based work ranges from £15K-£75K depending on scope.
+                UK B2B marketing agencies typically charge £{Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements.<br/><br/>
+                Project-based work ranges from £15K-£75K depending on scope.
               </p>
             </div>
 
             <div>
-              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">
+              <h3 className="text-4xl font-black text-white mb-6">
                 How long does it take to see results from B2B marketing?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
