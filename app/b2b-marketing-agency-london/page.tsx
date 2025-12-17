@@ -115,19 +115,19 @@ export default async function B2BMarketingAgencyLondonPage() {
 
       {/* Educational Content - Following SalesCaptain Pattern */}
       <section className="bg-zinc-950 border-t border-white/10 py-20">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-8">
-            Why Choose a B2B Marketing Agency in London?
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
+            B2B Marketing in London: Europe's Tech & Finance Capital
           </h2>
-          <div className="space-y-6 text-lg text-white/80 leading-relaxed">
+          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
-              London stands as Europe's leading tech and business hub, home to the highest concentration of B2B technology companies, fintech innovators, and enterprise software providers outside Silicon Valley. The city's unique position at the crossroads of European, Middle Eastern, and American markets makes London-based B2B marketing agencies particularly valuable for companies navigating complex international expansion and multi-market strategies.
+              London dominates as <a href="https://en.wikipedia.org/wiki/Economy_of_London" className="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener">Europe's largest financial center</a> with $730 billion in GDP, anchoring the continent's technology ecosystem alongside traditional strengths in financial services, professional services, and media. The city hosts over <a href="https://techcrunch.com/2023/06/15/london-tech-ecosystem/" className="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener">40,000 technology companies</a> across fintech, enterprise software, cybersecurity, and AI, creating the most sophisticated B2B marketing landscape outside North America.
             </p>
             <p>
-              London agencies bring sophisticated understanding of European business culture, GDPR compliance, cross-border marketing, and the nuances of selling to both UK enterprises and international corporations with European operations. Whether you're a B2B SaaS company headquartered in London planning European expansion, a US company entering the UK market, or an enterprise software provider targeting financial services and professional services firms concentrated in the City, partnering with a London-based B2B marketing agency provides local market intelligence that remote agencies cannot replicate.
+              London's unique position bridging American innovation and European markets shapes its B2B marketing culture. Agencies here blend Silicon Valley growth tactics with European sophistication, understanding both aggressive revenue scaling and the compliance requirements, cultural nuances, and buying behaviors across diverse European markets. The city's concentration of venture capital, Fortune 500 European headquarters, and international corporations creates marketing environments that span early-stage startup growth marketing to complex enterprise ABM programs for global accounts. London agencies excel at navigating GDPR, cross-border campaigns, and multi-language go-to-market strategies.
             </p>
             <p>
-              The agencies listed here demonstrate proven expertise in B2B marketing, measurable client results, and transparent partnership approaches. Many have worked with category-defining B2B companies and bring battle-tested frameworks for scaling revenue in the UK and across Europe. London's competitive agency landscape means you have access to world-class marketing talent at every price point and specialization.
+              The best London B2B marketing agencies specialize in fintech positioning, enterprise SaaS for financial services, cybersecurity marketing, and European market expansion strategy. They bring expertise in regulatory-compliant campaigns, thought leadership for financial services audiences, account-based marketing for multinational enterprises, and scaling B2B companies across EMEA. With access to the City's financial institutions, Tech City's startup ecosystem, and Canary Wharf's enterprise concentration, London agencies deliver globally-competitive B2B marketing with deep European market intelligence.
             </p>
           </div>
 
