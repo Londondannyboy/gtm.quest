@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { fetchBrandFromBrandDev, BrandAssets } from '@/lib/brand-api'
 import { AgencyCard } from '@/components/AgencyCard'
-import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Best B2B Marketing Agency UK 2025 | Top B2B Marketing Agencies UK',
@@ -95,15 +94,13 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* Hero Section with Image */}
       <section className="relative py-24 md:py-32 bg-black overflow-hidden">
         {/* Hero Image */}
-        <div className="absolute inset-0 opacity-30">
-          <Image
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-black z-10"></div>
+          <img
             src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=80"
-            alt="Best B2B marketing agencies UK - London cityscape with Thames River"
-            fill
-            className="object-cover"
-            priority
+            alt="Best B2B marketing agencies UK - London cityscape with Thames River and iconic landmarks"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
@@ -143,7 +140,7 @@ export default async function B2BMarketingAgencyUKPage() {
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
             B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
           </h2>
-          <div className="space-y-8 text-xl text-white/85 leading-[1.8] font-normal max-w-5xl">
+          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal">
             <p>
               The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers. UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
             </p>
@@ -158,23 +155,23 @@ export default async function B2BMarketingAgencyUKPage() {
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight">
             Top B2B Marketing Agencies UK: What to Look For
           </h2>
-          <div className="space-y-10 text-xl text-white/85 leading-[1.8] max-w-5xl">
+          <div className="space-y-10 text-2xl text-white/90 leading-[1.8]">
             <div>
-              <h3 className="text-3xl font-black text-white mb-5">B2B Experience and Industry Knowledge</h3>
+              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">B2B Experience and Industry Knowledge</h3>
               <p>
                 B2B marketing fundamentally differs from B2C in sales cycle length, decision-making complexity, and stakeholder dynamics. The best B2B agencies demonstrate experience with long sales cycles, understand how to create content for technical buyers versus economic buyers, and can navigate buying committees with 5-10 stakeholders. Look for agencies with case studies in your industry—enterprise software requires different approaches than professional services or industrial equipment.
               </p>
             </div>
 
             <div>
-              <h3 className="text-3xl font-black text-white mb-5">Demand Generation Capabilities</h3>
+              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">Demand Generation Capabilities</h3>
               <p>
                 Effective B2B marketing agencies build demand generation systems, not just campaigns. This means creating buyer journey frameworks, implementing marketing automation, developing lead scoring models, and establishing closed-loop reporting between marketing and sales. Ask agencies about their approach to MQLs, SQLs, and pipeline contribution. The best agencies focus on revenue influence, not vanity metrics like impressions or clicks.
               </p>
             </div>
 
             <div>
-              <h3 className="text-3xl font-black text-white mb-5">Technology Stack and Integration</h3>
+              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">Technology Stack and Integration</h3>
               <p>
                 Modern B2B marketing requires sophisticated technology. Top agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation. They understand how to implement account-based marketing platforms like Demandbase or 6sense. They know how to integrate marketing technology with your CRM, set up proper attribution tracking, and build dashboards that show real business impact.
               </p>
@@ -189,12 +186,12 @@ export default async function B2BMarketingAgencyUKPage() {
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
             The Best B2B Marketing Agencies UK Has to Offer
           </h2>
-          <p className="text-xl text-white/70 leading-[1.8] max-w-5xl">
+          <p className="text-2xl text-white/80 leading-[1.8]">
             {totalAgencies} verified B2B marketing agencies serving UK businesses with proven expertise and results.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-6">
           {agencies.map((agency, i) => {
             const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
             const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
@@ -225,21 +222,21 @@ export default async function B2BMarketingAgencyUKPage() {
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl font-black text-white mb-16">UK B2B Marketing FAQs</h2>
 
-          <div className="space-y-12 max-w-5xl">
+          <div className="space-y-12">
             <div>
-              <h3 className="text-3xl font-black text-white mb-5">
+              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">
                 What is the typical cost of a B2B marketing agency in the UK?
               </h3>
-              <p className="text-xl text-white/75 leading-[1.8]">
+              <p className="text-2xl text-white/80 leading-[1.8]">
                 UK B2B marketing agencies typically charge £{Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements. Project-based work ranges from £15K-£75K depending on scope.
               </p>
             </div>
 
             <div>
-              <h3 className="text-3xl font-black text-white mb-5">
+              <h3 className="text-4xl font-black text-white mb-6 bg-white/5 inline-block px-4 py-2 rounded">
                 How long does it take to see results from B2B marketing?
               </h3>
-              <p className="text-xl text-white/75 leading-[1.8]">
+              <p className="text-2xl text-white/80 leading-[1.8]">
                 Expect 3-6 months to see meaningful pipeline impact from demand generation programs. ABM targeting enterprise accounts may take 6-12 months to influence deals.
               </p>
             </div>
