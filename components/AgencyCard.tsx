@@ -44,7 +44,8 @@ export function AgencyCard({
       className="relative py-32 md:py-40 border-t-8 overflow-hidden"
       style={{
         borderTopColor: primaryColor,
-        background: `linear-gradient(180deg, ${primaryColor}08 0%, transparent 40%)`
+        background: `linear-gradient(180deg, ${primaryColor}08 0%, transparent 40%)`,
+        border: '5px solid red'  // TEMPORARY TEST MARKER
       }}
     >
       {/* Subtle backdrop background */}
