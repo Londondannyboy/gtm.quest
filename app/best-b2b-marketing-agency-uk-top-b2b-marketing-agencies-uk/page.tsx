@@ -190,43 +190,6 @@ export default async function B2BMarketingAgencyUKPage() {
 
       {/* Agency Cards */}
       <section className="bg-black py-20">
-        {/* GTM Quest Special Intro */}
-        <div className="max-w-7xl mx-auto px-6 mb-32">
-          <div className="mb-16">
-            <h2 className="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
-              Get Started with GTM Quest
-            </h2>
-            <p className="text-2xl text-white/80 leading-[1.8] mb-12 max-w-6xl">
-              Build your B2B marketing strategy in minutes with AI-powered GTM planning. Trusted by startups and scale-ups across fintech, martech, and enterprise software.
-            </p>
-            <div className="flex gap-8 flex-wrap">
-              <a
-                href="https://calendar.app.google/iEbf7PJA9qyiP9Ng9"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-20 py-8 text-4xl font-black rounded-2xl transition-all shadow-2xl"
-                style={{
-                  backgroundColor: '#8B5CF6',
-                  color: '#000'
-                }}
-              >
-                Speak with us →
-              </a>
-              <Link
-                href="/planner"
-                className="inline-block px-20 py-8 text-4xl font-black rounded-2xl transition-all shadow-2xl border-4"
-                style={{
-                  backgroundColor: 'transparent',
-                  color: '#8B5CF6',
-                  borderColor: '#8B5CF6'
-                }}
-              >
-                Try AI Strategist →
-              </Link>
-            </div>
-          </div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
             The Best B2B Marketing Agencies UK Has to Offer
