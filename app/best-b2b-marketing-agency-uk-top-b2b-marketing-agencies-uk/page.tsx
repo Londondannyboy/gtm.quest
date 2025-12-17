@@ -244,7 +244,7 @@ export default async function B2BMarketingAgencyUKPage() {
             const keyServices = (agency as any).key_services || agency.specializations || []
 
             // Hide wrong brand.dev logos for specific agencies
-            const isGTMQuest = agency.slug === 'gtmquest' || agency.slug === 'gtm_quest'
+            const isGTMQuest = agency.slug === 'gtmquest'
             const brandAssetsToUse = isGTMQuest ? null : brandAssets[agency.slug]
 
             return (

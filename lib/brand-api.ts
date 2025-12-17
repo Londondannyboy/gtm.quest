@@ -206,11 +206,12 @@ export function getBestLogo(brandAssets: BrandAssets | null, preferredGroup?: nu
 
   if (companyLogos.length === 0) return brandAssets.logos[0]?.url || null
 
-  // Prefer JPEG/PNG over SVG for better quality
+  // Prefer JPEG/PNG over SVG for better quality, but allow SVG as fallback
   const jpegLogos = companyLogos.filter(logo => {
     const url = logo.url.toLowerCase()
     return url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png')
   })
+  // Use JPEG/PNG if available, otherwise use all company logos
   const logosToUse = jpegLogos.length > 0 ? jpegLogos : companyLogos
 
   // If preferredGroup is specified, try to find logo from that group first
