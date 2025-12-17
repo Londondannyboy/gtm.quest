@@ -119,15 +119,15 @@ export default async function B2BMarketingAgencyUSPage() {
           <h2 className="text-4xl md:text-5xl font-black text-white mb-8">
             Why Choose a B2B Marketing Agency in the United States?
           </h2>
-          <div className="space-y-6 text-lg text-white/80 leading-relaxed">
+          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
-              The United States remains the world's largest and most competitive B2B market, with major tech hubs in San Francisco, New York, Boston, Austin, and Seattle driving innovation across SaaS, enterprise software, and technology services. US-based B2B marketing agencies bring unmatched expertise in scaling high-velocity sales organizations, building sophisticated demand generation engines, and navigating the unique dynamics of selling to American businesses.
+              The <a href="https://en.wikipedia.org/wiki/Economy_of_the_United_States" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">United States economy generates over $27 trillion in GDP</a>, representing the world's largest and most sophisticated B2B market. Major technology hubs in San Francisco, New York, Boston, Austin, and Seattle drive global innovation across SaaS, enterprise software, and technology services, while Fortune 500 headquarters spanning financial services, healthcare, manufacturing, and professional services create unmatched opportunities for B2B marketers.
             </p>
             <p>
-              Whether you're a venture-backed startup preparing to scale from $1M to $10M ARR, an established SaaS company expanding into enterprise accounts, or a services firm building predictable pipeline generation, partnering with a US-based B2B marketing agency provides access to proven playbooks, cutting-edge marketing technology, and deep experience with American buying behaviors that fundamentally differ from other markets.
+              The US B2B marketing landscape reflects American business culture that values innovation, data-driven decision-making, and rapid execution. From <a href="https://en.wikipedia.org/wiki/Silicon_Valley" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">Silicon Valley</a> venture-backed startups to multinational enterprise buyers, B2B decision-makers expect marketing that demonstrates clear ROI, leverages cutting-edge technology platforms, and supports aggressive growth targets through systematic demand generation and account-based marketing approaches.
             </p>
             <p>
-              US agencies lead globally in modern B2B marketing approaches—account-based marketing, product-led growth, community-driven demand generation, and revenue operations. The agencies listed below have been verified for their B2B expertise, measurable client results, and transparent approach to partnerships. Many have worked with category-defining B2B companies and bring battle-tested frameworks for scaling revenue.
+              US B2B marketing agencies lead globally in modern marketing innovation including product-led growth strategies, revenue operations alignment, community-driven demand generation, and sophisticated martech stack implementation. They bring proven playbooks for scaling companies from early-stage through IPO, deep expertise in vertical industries, and the battle-tested frameworks required to compete in the world's most competitive and fast-moving B2B environment.
             </p>
           </div>
 
