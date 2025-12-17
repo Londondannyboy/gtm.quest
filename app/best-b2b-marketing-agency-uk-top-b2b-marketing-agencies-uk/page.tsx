@@ -218,7 +218,8 @@ export default async function B2BMarketingAgencyUKPage() {
                 website={website}
                 brandAssets={brandAssets[agency.slug]}
                 isTopRanked={isTopRanked}
-                internalLink={agency.slug === 'gtmquest' ? '/planner' : undefined}
+                internalLink={agency.slug === 'gtmquest' || agency.slug === 'gtm_quest' ? '/planner' : undefined}
+                logoGroup={agency.slug === 'salescaptain' ? 1 : undefined}
               />
             )
           })}

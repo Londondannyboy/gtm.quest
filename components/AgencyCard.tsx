@@ -159,11 +159,19 @@ export function AgencyCard({
         {/* Description - SMALLER than agency name */}
         <div className="mb-32">
           <p style={{ color: '#E5E5E5' }} className="text-2xl leading-relaxed font-light">
-            {brandDescription}
+            {brandDescription.split('. ').map((sentence, i, arr) => (
+              <span key={i}>
+                {sentence}{i < arr.length - 1 ? '.' : ''}{i < arr.length - 1 && <><br/><br/></>}
+              </span>
+            ))}
           </p>
           {description.length > 1 && description.slice(1).map((para, i) => (
             <p key={i} style={{ color: '#E5E5E5' }} className="text-2xl leading-relaxed mt-10 font-light">
-              {para}
+              {para.split('. ').map((sentence, j, arr) => (
+                <span key={j}>
+                  {sentence}{j < arr.length - 1 ? '.' : ''}{j < arr.length - 1 && <><br/><br/></>}
+                </span>
+              ))}
             </p>
           ))}
         </div>
