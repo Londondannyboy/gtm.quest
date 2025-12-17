@@ -50,7 +50,7 @@ export function AgencyCard({
       {/* Subtle backdrop background */}
       {secondBackdropUrl && (
         <div
-          className="absolute inset-0 opacity-[0.15] pointer-events-none"
+          className="absolute inset-0 opacity-[0.10] pointer-events-none"
           style={{
             backgroundImage: `url(${secondBackdropUrl})`,
             backgroundSize: 'cover',
@@ -93,16 +93,16 @@ export function AgencyCard({
               </div>
             )}
 
-            {/* Agency Name - MASSIVE */}
+            {/* Agency Name - EVEN MORE MASSIVE */}
             <h3
-              className="text-[8rem] md:text-[12rem] font-black mb-12 leading-[0.85]"
+              className="text-[10rem] md:text-[16rem] font-black mb-12 leading-[0.85]"
               style={{ color: '#FFFFFF' }}
             >
               {brandAssets?.title || name}
             </h3>
 
-            {/* Slogan - Prominent */}
-            {brandSlogan && (
+            {/* Slogan - Max 20 words, don't show if duplicates description */}
+            {brandSlogan && brandSlogan !== brandDescription && brandSlogan.split(' ').length <= 20 && (
               <p
                 className="text-4xl md:text-6xl font-light leading-tight italic"
                 style={{ color: primaryColor }}
@@ -168,9 +168,9 @@ export function AgencyCard({
           ))}
         </div>
 
-        {/* Best For & Key Services - 3/4 width */}
+        {/* Best For & Key Services - 3/4 width, centered */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-32 pt-20 pb-20 border-t-4 border-b-4 rounded-3xl px-12 max-w-[75%]"
+          className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-32 pt-20 pb-20 border-t-4 border-b-4 rounded-3xl px-12 max-w-[75%] mx-auto"
           style={{
             borderColor: primaryColor,
             backgroundColor: `${primaryColor}10`

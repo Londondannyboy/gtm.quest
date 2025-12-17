@@ -137,10 +137,10 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* Educational Content */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight text-center">
             B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
           </h2>
-          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal">
+          <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-5xl mx-auto">
             <p>
               The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers.<br/><br/>
               UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
@@ -154,12 +154,12 @@ export default async function B2BMarketingAgencyUKPage() {
             </p>
           </div>
 
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight text-center">
             Top B2B Marketing Agencies UK: What to Look For
           </h2>
-          <div className="space-y-10 text-2xl text-white/90 leading-[1.8]">
+          <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-5xl mx-auto">
             <div>
-              <h3 className="text-4xl font-black text-white mb-6">B2B Experience and Industry Knowledge</h3>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and Industry Knowledge</h3>
               <p>
                 B2B marketing fundamentally differs from B2C in sales cycle length, decision-making complexity, and stakeholder dynamics.<br/><br/>
                 The best B2B agencies demonstrate experience with long sales cycles, understand how to create content for technical buyers versus economic buyers, and can navigate buying committees with 5-10 stakeholders.<br/><br/>
@@ -168,7 +168,7 @@ export default async function B2BMarketingAgencyUKPage() {
             </div>
 
             <div>
-              <h3 className="text-4xl font-black text-white mb-6">Demand Generation Capabilities</h3>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>Demand Generation Capabilities</h3>
               <p>
                 Effective B2B marketing agencies build demand generation systems, not just campaigns.<br/><br/>
                 This means creating buyer journey frameworks, implementing marketing automation, developing lead scoring models, and establishing closed-loop reporting between marketing and sales.<br/><br/>
@@ -177,7 +177,7 @@ export default async function B2BMarketingAgencyUKPage() {
             </div>
 
             <div>
-              <h3 className="text-4xl font-black text-white mb-6">Technology Stack and Integration</h3>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>Technology Stack and Integration</h3>
               <p>
                 Modern B2B marketing requires sophisticated technology.<br/><br/>
                 Top agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation.<br/><br/>
@@ -228,11 +228,11 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* FAQ */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-white mb-16">UK B2B Marketing FAQs</h2>
+          <h2 className="text-5xl font-black text-white mb-16 text-center">UK B2B Marketing FAQs</h2>
 
-          <div className="space-y-12">
+          <div className="space-y-12 max-w-5xl mx-auto">
             <div>
-              <h3 className="text-4xl font-black text-white mb-6">
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
                 What is the typical cost of a B2B marketing agency in the UK?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
@@ -242,7 +242,7 @@ export default async function B2BMarketingAgencyUKPage() {
             </div>
 
             <div>
-              <h3 className="text-4xl font-black text-white mb-6">
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
                 How long does it take to see results from B2B marketing?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
@@ -254,7 +254,7 @@ export default async function B2BMarketingAgencyUKPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-amber-500 to-orange-500 py-24">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-500 py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
             Build Your B2B Marketing Strategy
