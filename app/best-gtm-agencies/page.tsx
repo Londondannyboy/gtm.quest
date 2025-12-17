@@ -154,7 +154,7 @@ export default async function AgenciesPage() {
         /* Agency Cards - Using same style as home page */
         <section className="bg-black">
           {agencies.map((agency) => {
-            const isTopRanked = agency.global_rank && agency.global_rank <= 3
+            const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
             const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
 
             return (

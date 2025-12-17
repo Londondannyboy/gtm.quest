@@ -95,7 +95,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
 
   // Prepare data for AgencyCard
   const website = agency.website || (brandAssets?.domain ? `https://${brandAssets.domain}` : '#')
-  const isTopRanked = agency.global_rank && agency.global_rank <= 3
+  const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
 
   return (
     <div className="bg-black min-h-screen">

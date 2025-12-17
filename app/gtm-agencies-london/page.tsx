@@ -84,7 +84,7 @@ export default async function GTMAgenciesLondonPage() {
 
       <section className="bg-black">
         {agencies.map((agency, i) => {
-          const isTopRanked = agency.global_rank && agency.global_rank <= 3
+          const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
           const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
 
           return (
