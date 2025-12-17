@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { createDbQuery } from '@/lib/db'
-import { fetchBrandFromBrandDev, BrandAssets } from '@/lib/brand-api'
 import { AgencyCard } from '@/components/AgencyCard'
 
 interface AgencyPageProps {
@@ -83,18 +82,8 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
     notFound()
   }
 
-  // Fetch brand assets from brand.dev if domain is available
-  let brandAssets: BrandAssets | null = null
-  if (agency.brand_dev_domain) {
-    try {
-      brandAssets = await fetchBrandFromBrandDev(agency.brand_dev_domain)
-    } catch (error) {
-      console.error(`Error fetching brand assets for ${agency.slug}:`, error)
-    }
-  }
-
-  // Prepare data for AgencyCard
-  const website = agency.website || (brandAssets?.domain ? `https://${brandAssets.domain}` : '#')
+  // Brand assets now stored in database - no API calls!
+  const website = agency.website || '#'
   const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
 
   return (
@@ -108,16 +97,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             "@type": "Organization",
             "name": agency.name,
             "description": agency.description,
-            "url": website,
-            "address": brandAssets?.address ? {
-              "@type": "PostalAddress",
-              "streetAddress": brandAssets.address.street,
-              "addressLocality": brandAssets.address.city,
-              "addressRegion": brandAssets.address.state_province,
-              "postalCode": brandAssets.address.postal_code,
-              "addressCountry": brandAssets.address.country_code
-            } : undefined,
-            "sameAs": brandAssets?.socials?.map(s => s.url) || []
+            "url": website
           })
         }}
       />
@@ -135,12 +115,14 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       <AgencyCard
         rank={agency.global_rank || 0}
         name={agency.name}
-        tagline={brandAssets?.slogan || agency.description}
+        tagline={agency.description}
         description={[agency.description]}
         bestFor={agency.specializations || []}
-        keyServices={[]} // Can be enhanced later with config
+        keyServices={[]}
         website={website}
-        brandAssets={brandAssets}
+        primaryColor={(agency as any).primary_color || '#8B5CF6'}
+        logoUrl={(agency as any).logo_url}
+        backdropUrl={(agency as any).backdrop_url}
         isTopRanked={isTopRanked}
         internalLink={agency.slug === 'gtmquest' ? '/planner' : undefined}
       />

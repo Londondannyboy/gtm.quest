@@ -39,19 +39,7 @@ export default async function B2BMarketingAgencyLondonPage() {
     .slice(0, 5)
     .map(([spec]) => spec)
 
-  // Fetch brand assets for each agency
-  const brandAssets: Record<string, BrandAssets | null> = {}
-  for (const agency of agencies) {
-    if (agency.brand_dev_domain) {
-      try {
-        brandAssets[agency.slug] = await fetchBrandFromBrandDev(agency.brand_dev_domain)
-        await sleep(500) // Rate limit
-      } catch (error) {
-        console.error(`Error fetching brand for ${agency.slug}:`, error)
-        brandAssets[agency.slug] = null
-      }
-    }
-  }
+  // Brand assets now stored in database - no API calls!
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -210,19 +198,21 @@ export default async function B2BMarketingAgencyLondonPage() {
         </div>
         {agencies.map((agency, i) => {
           const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
-          const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
+          const website = agency.website || '#'
 
           return (
             <AgencyCard
               key={agency.slug}
               rank={i + 1}
               name={agency.name}
-              tagline={brandAssets[agency.slug]?.slogan || agency.description}
+              tagline={agency.description}
               description={[agency.description]}
               bestFor={agency.specializations || []}
               keyServices={[]}
               website={website}
-              brandAssets={brandAssets[agency.slug]}
+              primaryColor={(agency as any).primary_color || '#8B5CF6'}
+                logoUrl={(agency as any).logo_url}
+                backdropUrl={(agency as any).backdrop_url}
               isTopRanked={isTopRanked}
               internalLink={agency.slug === 'gtmquest' ? '/planner' : undefined}
             />

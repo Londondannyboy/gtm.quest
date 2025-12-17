@@ -84,19 +84,21 @@ export default async function GTMAgenciesLondonPage() {
       <section className="bg-black">
         {agencies.map((agency, i) => {
           const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
-          const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
+          const website = agency.website || '#'
 
           return (
             <AgencyCard
               key={agency.slug}
               rank={i + 1}
               name={agency.name}
-              tagline={brandAssets[agency.slug]?.slogan || agency.description}
+              tagline={agency.description}
               description={[agency.description]}
               bestFor={agency.specializations || []}
               keyServices={[]}
               website={website}
-              brandAssets={brandAssets[agency.slug]}
+              primaryColor={(agency as any).primary_color || '#8B5CF6'}
+                logoUrl={(agency as any).logo_url}
+                backdropUrl={(agency as any).backdrop_url}
               isTopRanked={isTopRanked}
               internalLink={agency.slug === 'gtmquest' ? '/planner' : undefined}
             />
