@@ -38,10 +38,13 @@ export default async function B2BMarketingAgencyUKPage() {
     .map(([spec]) => spec)
 
   const brandAssets: Record<string, BrandAssets | null> = {}
+  console.log(`[B2B UK] Fetching brands for ${agencies.length} agencies...`)
   for (const agency of agencies) {
     if (agency.brand_dev_domain) {
       try {
-        brandAssets[agency.slug] = await fetchBrandFromBrandDev(agency.brand_dev_domain)
+        const assets = await fetchBrandFromBrandDev(agency.brand_dev_domain)
+        brandAssets[agency.slug] = assets
+        console.log(`[${agency.slug}] Brand fetched:`, assets ? `✓ (logos: ${assets.logos?.length || 0})` : '✗ null')
         await sleep(500)
       } catch (error) {
         console.error(`Error fetching brand for ${agency.slug}:`, error)

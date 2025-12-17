@@ -39,13 +39,18 @@ export function AgencyCard({
   const brandSlogan = brandAssets?.slogan || tagline
   const fullAddress = brandAssets?.address
 
+  // Debug logging
+  if (typeof window === 'undefined') {
+    console.log(`[${name}] brandAssets:`, brandAssets ? 'present' : 'null',
+      `logoUrl: ${logoUrl ? 'yes' : 'no'}, backdropUrl: ${backdropUrl ? 'yes' : 'no'}`)
+  }
+
   return (
     <div
       className="relative py-32 md:py-40 border-t-8 overflow-hidden"
       style={{
         borderTopColor: primaryColor,
-        background: `linear-gradient(180deg, ${primaryColor}08 0%, transparent 40%)`,
-        border: '5px solid red'  // TEMPORARY TEST MARKER
+        background: `linear-gradient(180deg, ${primaryColor}08 0%, transparent 40%)`
       }}
     >
       {/* Subtle backdrop background */}
