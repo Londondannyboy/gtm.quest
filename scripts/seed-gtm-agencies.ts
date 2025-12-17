@@ -36,6 +36,7 @@ async function seed() {
       brand_dev_domain: 'gtm.quest',
       pricing_model: 'Freemium + Consulting',
       min_budget: 0,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency'],
     },
     {
       slug: 'salescaptain',
@@ -54,6 +55,7 @@ async function seed() {
       brand_dev_domain: 'salescaptain.io',
       pricing_model: 'Monthly Retainer',
       min_budget: 3500,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Demand Generation Agency'],
     },
     {
       slug: 'inbeat',
@@ -72,6 +74,7 @@ async function seed() {
       brand_dev_domain: 'inbeat.agency',
       pricing_model: 'Project + Retainer',
       min_budget: 10000,
+      category_tags: ['GTM Agency', 'DTC Marketing Agency', 'Influencer Marketing Agency'],
     },
     {
       slug: 'ironpaper',
@@ -90,6 +93,7 @@ async function seed() {
       brand_dev_domain: 'ironpaper.com',
       pricing_model: 'Monthly Retainer',
       min_budget: 15000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Account-Based Marketing Agency'],
     },
     {
       slug: 'ziggy',
@@ -108,6 +112,7 @@ async function seed() {
       brand_dev_domain: 'ziggy.agency',
       pricing_model: 'Project-Based',
       min_budget: 8000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Demand Generation Agency'],
     },
     {
       slug: 'deviatelabs',
@@ -126,6 +131,7 @@ async function seed() {
       brand_dev_domain: 'deviatelabs.com',
       pricing_model: 'Retainer + Performance',
       min_budget: 12000,
+      category_tags: ['GTM Agency', 'Growth Marketing Agency', 'Product-Led Growth Agency'],
     },
     {
       slug: 'refinelabs',
@@ -144,6 +150,7 @@ async function seed() {
       brand_dev_domain: 'refinelabs.com',
       pricing_model: 'Monthly Retainer',
       min_budget: 20000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Demand Generation Agency'],
     },
     {
       slug: 'sixandflow',
@@ -162,6 +169,7 @@ async function seed() {
       brand_dev_domain: 'sixandflow.com',
       pricing_model: 'Monthly Retainer',
       min_budget: 10000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Revenue Operations Agency'],
     },
     {
       slug: 'singlegrain',
@@ -180,6 +188,7 @@ async function seed() {
       brand_dev_domain: 'singlegrain.com',
       pricing_model: 'Monthly Retainer',
       min_budget: 15000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Performance Marketing Agency'],
     },
     {
       slug: 'fletchpmm',
@@ -198,6 +207,7 @@ async function seed() {
       brand_dev_domain: 'fletchpmm.com',
       pricing_model: 'Project-Based',
       min_budget: 15000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Positioning Agency'],
     },
     {
       slug: 'arisegtm',
@@ -216,6 +226,7 @@ async function seed() {
       brand_dev_domain: 'arisegtm.com',
       pricing_model: 'Consulting + Platform',
       min_budget: 20000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Revenue Operations Agency'],
     },
     {
       slug: 'kalungi',
@@ -234,6 +245,7 @@ async function seed() {
       brand_dev_domain: 'kalungi.com',
       pricing_model: 'Monthly Retainer',
       min_budget: 45000,
+      category_tags: ['GTM Agency', 'B2B Marketing Agency', 'Demand Generation Agency', 'Fractional CMO Agency'],
     },
   ]
 
@@ -243,18 +255,19 @@ async function seed() {
 
     for (const agency of agencies) {
       try {
-        // Insert with ON CONFLICT DO NOTHING to prevent duplicates
+        // Insert with ON CONFLICT DO UPDATE to upsert
         const result = await sql`
           INSERT INTO companies (
             slug, name, app, status, headquarters, description, logo_url, website,
             specializations, global_rank, employee_count, founded_year,
-            service_areas, brand_dev_domain, pricing_model, min_budget
+            service_areas, brand_dev_domain, pricing_model, min_budget, category_tags
           )
           VALUES (
             ${agency.slug}, ${agency.name}, ${agency.app}, ${agency.status},
             ${agency.headquarters}, ${agency.description}, ${agency.logo_url}, ${agency.website},
             ${agency.specializations}, ${agency.global_rank}, ${agency.employee_count}, ${agency.founded_year},
-            ${agency.service_areas}, ${agency.brand_dev_domain}, ${agency.pricing_model}, ${agency.min_budget}
+            ${agency.service_areas}, ${agency.brand_dev_domain}, ${agency.pricing_model}, ${agency.min_budget},
+            ${agency.category_tags}
           )
           ON CONFLICT (slug) DO UPDATE SET
             name = EXCLUDED.name,
@@ -268,7 +281,8 @@ async function seed() {
             service_areas = EXCLUDED.service_areas,
             brand_dev_domain = EXCLUDED.brand_dev_domain,
             pricing_model = EXCLUDED.pricing_model,
-            min_budget = EXCLUDED.min_budget
+            min_budget = EXCLUDED.min_budget,
+            category_tags = EXCLUDED.category_tags
           RETURNING slug
         `
 

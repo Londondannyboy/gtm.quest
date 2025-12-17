@@ -22,6 +22,7 @@ export interface GTMAgency {
   brand_dev_domain: string | null
   pricing_model: string | null
   min_budget: number | null
+  category_tags: string[]
 }
 
 export interface LocationStats {
@@ -53,6 +54,48 @@ export async function getAgenciesForLocation(location: string): Promise<GTMAgenc
     return agencies as GTMAgency[]
   } catch (error) {
     console.error(`Error fetching agencies for location ${location}:`, error)
+    return []
+  }
+}
+
+/**
+ * Get agencies by category, optionally filtered by location
+ *
+ * @param category - Category tag (e.g., 'GTM Agency', 'B2B Marketing Agency', 'Demand Generation Agency')
+ * @param location - Optional location to filter by (e.g., 'UK', 'London', 'US')
+ * @returns Array of agencies matching the category and location
+ */
+export async function getAgenciesByCategory(
+  category: string,
+  location?: string
+): Promise<GTMAgency[]> {
+  try {
+    const sql = createDbQuery()
+
+    if (location) {
+      // Filter by both category and location
+      const agencies = await sql`
+        SELECT *
+        FROM companies
+        WHERE status = 'published'
+          AND ${category} = ANY(category_tags)
+          AND ${location} = ANY(service_areas)
+        ORDER BY global_rank ASC NULLS LAST, name ASC
+      `
+      return agencies as GTMAgency[]
+    } else {
+      // Filter by category only
+      const agencies = await sql`
+        SELECT *
+        FROM companies
+        WHERE status = 'published'
+          AND ${category} = ANY(category_tags)
+        ORDER BY global_rank ASC NULLS LAST, name ASC
+      `
+      return agencies as GTMAgency[]
+    }
+  } catch (error) {
+    console.error(`Error fetching agencies for category ${category}:`, error)
     return []
   }
 }
