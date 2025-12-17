@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { createDbQuery } from "@/lib/db";
-import { fetchBrandFromBrandDev, BrandAssets } from "@/lib/brand-api";
 import { AgencyCard } from "@/components/AgencyCard";
 import Link from "next/link";
 
@@ -49,25 +48,9 @@ async function getGTMAgencies(): Promise<GTMAgency[]> {
   }
 }
 
-// Helper to add delay between requests
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
 export default async function AgenciesPage() {
   const agencies = await getGTMAgencies()
-
-  // Fetch brand assets for each agency (with rate limiting)
-  const brandAssets: Record<string, BrandAssets | null> = {}
-  for (const agency of agencies) {
-    if (agency.brand_dev_domain) {
-      try {
-        brandAssets[agency.slug] = await fetchBrandFromBrandDev(agency.brand_dev_domain)
-        await sleep(500) // Rate limit: 500ms between requests
-      } catch (error) {
-        console.error(`Error fetching brand for ${agency.slug}:`, error)
-        brandAssets[agency.slug] = null
-      }
-    }
-  }
+  // Brand assets now stored in database - no API calls!
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -155,19 +138,21 @@ export default async function AgenciesPage() {
         <section className="bg-black">
           {agencies.map((agency) => {
             const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
-            const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
+            const website = agency.website || '#'
 
             return (
               <AgencyCard
                 key={agency.slug}
                 rank={agency.global_rank || 0}
                 name={agency.name}
-                tagline={brandAssets[agency.slug]?.slogan || agency.description}
+                tagline={agency.description}
                 description={[agency.description]}
                 bestFor={agency.specializations || []}
-                keyServices={[]} // Can enhance later with config
+                keyServices={[]}
                 website={website}
-                brandAssets={brandAssets[agency.slug]}
+                primaryColor={(agency as any).primary_color || '#8B5CF6'}
+                logoUrl={(agency as any).logo_url}
+                backdropUrl={(agency as any).backdrop_url}
                 isTopRanked={isTopRanked}
                 internalLink={agency.slug === 'gtmquest' ? '/planner' : undefined}
               />

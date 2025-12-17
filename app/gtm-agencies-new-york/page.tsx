@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { getAgenciesForLocation, getLocationStats } from '@/lib/location-agencies'
-import { fetchBrandFromBrandDev, BrandAssets } from '@/lib/brand-api'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
