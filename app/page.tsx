@@ -21,8 +21,36 @@ export default async function Home() {
   return (
     <>
       <div className="flex flex-col bg-black text-white">
+        {/* Schema Markup */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "GTM Agency Guide 2024 | Top 12 Go-To-Market Agencies UK",
+              "description": "GTM agency guide: Compare the top GTM agencies in the UK. Expert go-to-market agencies specializing in strategy, product launches, and revenue growth.",
+              "url": "https://gtm.quest",
+              "about": {
+                "@type": "Thing",
+                "name": "GTM Agency Services"
+              },
+              "mainEntity": {
+                "@type": "ItemList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "GTM Quest"
+                  }
+                ]
+              }
+            })
+          }}
+        />
+
         {/* Hero Section */}
-        <section className="relative py-24 md:py-32 bg-black">
+        <section className="relative py-16 md:py-20 bg-black">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
             <span className="inline-block bg-white text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
               Updated December 2024
@@ -36,25 +64,25 @@ export default async function Home() {
               Find the perfect <strong>GTM agency</strong> to build your go-to-market strategy, channels, and launch plans that actually convert
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link
-                href="/planner"
-                className="inline-flex items-center justify-center px-12 py-5 text-xl font-bold rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
+                href="/contact"
+                className="inline-flex items-center justify-center px-16 py-6 text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
               >
-                🚀 Get Free GTM Strategy
+                Work with us →
               </Link>
               <Link
-                href="/chat"
-                className="inline-flex items-center justify-center px-12 py-5 text-xl font-bold rounded-xl bg-white/10 backdrop-blur border-2 border-white/30 text-white hover:bg-white/20 transition-all duration-200"
+                href="/planner"
+                className="inline-flex items-center justify-center px-10 py-4 text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
               >
-                💬 Chat with AI
+                Use AI to create your GTM strategy
               </Link>
             </div>
           </div>
         </section>
 
         {/* Hero Image Section */}
-        <section className="py-16 md:py-20 bg-zinc-950">
+        <section className="py-8 md:py-12 bg-zinc-950">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <img
               src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop"
@@ -67,7 +95,7 @@ export default async function Home() {
         </section>
 
         {/* What Is a GTM Agency Section */}
-        <section id="what-is-gtm-agency" className="py-32 md:py-40 bg-zinc-950 border-t border-white/10">
+        <section id="what-is-gtm-agency" className="py-16 md:py-24 bg-zinc-950 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
               What Is a GTM Agency?
@@ -86,7 +114,7 @@ export default async function Home() {
         </section>
 
         {/* Benefits Section */}
-        <section id="benefits" className="py-32 md:py-40 bg-black border-t border-white/10">
+        <section id="benefits" className="py-16 md:py-24 bg-black border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
               Why Choose a GTM Agency?
@@ -127,7 +155,7 @@ export default async function Home() {
         </section>
 
         {/* Agency Listings Section */}
-        <section id="agencies" className="py-32 md:py-40 bg-black border-t border-white/10">
+        <section id="agencies" className="py-16 md:py-24 bg-black border-t border-white/10">
           <div className="w-full">
             <div className="text-center mb-32 px-6">
               <h2 className="text-7xl md:text-8xl font-black text-white mb-12">
@@ -178,6 +206,7 @@ export default async function Home() {
                 rank={2}
                 name="SalesCaptain"
                 tagline="B2B Outbound-Driven GTM Strategy"
+                logoGroup={1}
                 description={[
                   "SalesCaptain specializes in outbound-driven go-to-market strategies for B2B companies that need predictable pipeline generation. Their approach centers on building systematic cold outreach programs—email, LinkedIn, and multi-channel sequences—that feed qualified meetings directly into your sales pipeline.",
                   "The agency works particularly well for B2B SaaS companies, sales-led organizations, and businesses with clearly defined ICP profiles. They handle everything from list building and contact research through copywriting, sequence design, and deliverability optimization."
@@ -452,7 +481,7 @@ export default async function Home() {
         </section>
 
         {/* Final CTA */}
-        <section className="py-32 md:py-40 bg-zinc-950 border-t border-white/10">
+        <section className="py-16 md:py-24 bg-zinc-950 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
             <h2 className="text-6xl md:text-7xl font-black text-white mb-12">
               Find Your Perfect GTM Agency Today

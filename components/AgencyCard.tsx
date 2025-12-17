@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BrandAssets, getBestLogo, getBestBackdrop, getPrimaryColor } from "@/lib/brand-api";
+import { BrandAssets, getBestLogo, getBestBackdrop, getSecondBackdrop, getPrimaryColor } from "@/lib/brand-api";
 
 interface AgencyCardProps {
   rank: number
@@ -14,6 +14,7 @@ interface AgencyCardProps {
   isTopRanked?: boolean
   stats?: Array<{ value: string; label: string }>
   internalLink?: string
+  logoGroup?: number
 }
 
 export function AgencyCard({
@@ -27,13 +28,16 @@ export function AgencyCard({
   brandAssets,
   isTopRanked = false,
   stats,
-  internalLink
+  internalLink,
+  logoGroup
 }: AgencyCardProps) {
   const primaryColor = getPrimaryColor(brandAssets)
-  const logoUrl = getBestLogo(brandAssets)
+  const logoUrl = getBestLogo(brandAssets, logoGroup)
   const backdropUrl = getBestBackdrop(brandAssets)
+  const secondBackdropUrl = getSecondBackdrop(brandAssets)
   const brandDescription = brandAssets?.description || description.join(' ')
   const brandSlogan = brandAssets?.slogan || tagline
+  const fullAddress = brandAssets?.address
 
   return (
     <div
@@ -43,7 +47,7 @@ export function AgencyCard({
         background: `linear-gradient(180deg, ${primaryColor}08 0%, transparent 40%)`
       }}
     >
-      <div className="w-full px-8 md:px-12 lg:px-16 max-w-[2400px] mx-auto">
+      <div className="w-full px-8 md:px-12 lg:px-16 max-w-[2000px] mx-auto">
         {/* Header Section */}
         <div className="flex items-start gap-16 mb-20 flex-wrap">
           {/* Large Logo */}
@@ -77,21 +81,23 @@ export function AgencyCard({
               </div>
             )}
 
-            {/* Agency Name - HUGE */}
+            {/* Agency Name - MASSIVE */}
             <h3
-              className="text-9xl md:text-[10rem] font-black mb-12 leading-[0.9]"
+              className="text-[8rem] md:text-[12rem] font-black mb-12 leading-[0.85]"
               style={{ color: '#FFFFFF' }}
             >
               {brandAssets?.title || name}
             </h3>
 
-            {/* Slogan - LARGE but smaller than name */}
-            <p
-              className="text-4xl md:text-5xl font-light leading-tight"
-              style={{ color: primaryColor }}
-            >
-              {brandSlogan}
-            </p>
+            {/* Slogan - Prominent */}
+            {brandSlogan && (
+              <p
+                className="text-4xl md:text-6xl font-light leading-tight italic"
+                style={{ color: primaryColor }}
+              >
+                "{brandSlogan}"
+              </p>
+            )}
 
             {/* Try Free Button - only for GTM Quest */}
             {internalLink && (
@@ -181,10 +187,10 @@ export function AgencyCard({
         </div>
 
         {/* Contact Info & Socials */}
-        {(brandAssets?.email || brandAssets?.socials || brandAssets?.address) && (
+        {(brandAssets?.email || brandAssets?.socials || fullAddress) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24 mb-24">
             {/* Contact Info */}
-            {(brandAssets?.email || brandAssets?.address) && (
+            {(brandAssets?.email || fullAddress) && (
               <div>
                 <h4 className="text-4xl font-black mb-10 uppercase tracking-wider" style={{ color: primaryColor }}>
                   Contact
@@ -198,14 +204,18 @@ export function AgencyCard({
                       </a>
                     </div>
                   )}
-                  {brandAssets.address && (
+                  {fullAddress && (
                     <div className="flex items-start gap-5">
                       <span className="text-4xl">📍</span>
-                      <span style={{ color: '#E5E5E5' }} className="text-xl font-light">
-                        {brandAssets.address.city && brandAssets.address.country &&
-                          `${brandAssets.address.city}, ${brandAssets.address.country}`
-                        }
-                      </span>
+                      <div style={{ color: '#E5E5E5' }} className="text-xl font-light">
+                        {fullAddress.street && <div>{fullAddress.street}</div>}
+                        <div>
+                          {fullAddress.city && `${fullAddress.city}`}
+                          {fullAddress.state_province && `, ${fullAddress.state_province}`}
+                          {fullAddress.postal_code && ` ${fullAddress.postal_code}`}
+                        </div>
+                        {fullAddress.country && <div>{fullAddress.country}</div>}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -280,6 +290,19 @@ export function AgencyCard({
           </div>
         )}
       </div>
+
+      {/* Second Backdrop as Decorative Strip */}
+      {secondBackdropUrl && (
+        <div className="w-full h-32 md:h-48 overflow-hidden mt-12" style={{ opacity: 0.3 }}>
+          <Image
+            src={secondBackdropUrl}
+            alt={`${brandAssets?.title || name} brand imagery`}
+            width={2400}
+            height={200}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
     </div>
   );
 }

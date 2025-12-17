@@ -193,7 +193,7 @@ export async function fetchAllAgencyLogos(): Promise<Record<string, BrandAssets 
  * Get the best logo for display (prefer light mode logo for dark backgrounds)
  * Also filters out third-party logos like cookiebot
  */
-export function getBestLogo(brandAssets: BrandAssets | null): string | null {
+export function getBestLogo(brandAssets: BrandAssets | null, preferredGroup?: number): string | null {
   if (!brandAssets?.logos || brandAssets.logos.length === 0) return null
 
   // Filter out third-party logos (cookiebot, etc.)
@@ -205,6 +205,12 @@ export function getBestLogo(brandAssets: BrandAssets | null): string | null {
   })
 
   if (companyLogos.length === 0) return brandAssets.logos[0]?.url || null
+
+  // If preferredGroup is specified, try to find logo from that group first
+  if (preferredGroup !== undefined) {
+    const groupLogo = companyLogos.find(l => l.group === preferredGroup && l.mode === 'light')
+    if (groupLogo) return groupLogo.url
+  }
 
   // Prefer light mode logo for dark backgrounds
   const lightLogo = companyLogos.find(l => l.mode === 'light')
@@ -224,6 +230,14 @@ export function getBestLogo(brandAssets: BrandAssets | null): string | null {
 export function getBestBackdrop(brandAssets: BrandAssets | null): string | null {
   if (!brandAssets?.backdrops || brandAssets.backdrops.length === 0) return null
   return brandAssets.backdrops[0]?.url || null
+}
+
+/**
+ * Get the second backdrop image for decorative purposes
+ */
+export function getSecondBackdrop(brandAssets: BrandAssets | null): string | null {
+  if (!brandAssets?.backdrops || brandAssets.backdrops.length < 2) return null
+  return brandAssets.backdrops[1]?.url || null
 }
 
 /**
