@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { getAgenciesByCategory } from '@/lib/location-agencies'
-import { fetchBrandFromBrandDev, BrandAssets } from '@/lib/brand-api'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
@@ -37,21 +36,7 @@ export default async function B2BMarketingAgencyUKPage() {
     .slice(0, 5)
     .map(([spec]) => spec)
 
-  const brandAssets: Record<string, BrandAssets | null> = {}
-  console.log(`[B2B UK] Fetching brands for ${agencies.length} agencies...`)
-  for (const agency of agencies) {
-    if (agency.brand_dev_domain) {
-      try {
-        const assets = await fetchBrandFromBrandDev(agency.brand_dev_domain)
-        brandAssets[agency.slug] = assets
-        console.log(`[${agency.slug}] Brand fetched:`, assets ? `✓ (logos: ${assets.logos?.length || 0})` : '✗ null')
-        await sleep(500)
-      } catch (error) {
-        console.error(`Error fetching brand for ${agency.slug}:`, error)
-        brandAssets[agency.slug] = null
-      }
-    }
-  }
+  // Brand assets are now stored in the database - no API calls during page load!
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -205,25 +190,24 @@ export default async function B2BMarketingAgencyUKPage() {
         <div className="w-full">
           {agencies.map((agency, i) => {
             const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
-            const website = agency.website || (brandAssets[agency.slug]?.domain ? `https://${brandAssets[agency.slug]?.domain}` : '#')
+            const website = agency.website || '#'
             const description = (agency as any).b2b_description || agency.description
             const keyServices = (agency as any).key_services || agency.specializations || []
-
-            // Hide wrong brand.dev logos for specific agencies
             const isGTMQuest = agency.slug === 'gtmquest'
-            const brandAssetsToUse = isGTMQuest ? null : brandAssets[agency.slug]
 
             return (
               <AgencyCard
                 key={agency.slug}
                 rank={i + 1}
                 name={agency.name}
-                tagline={brandAssetsToUse?.slogan || description}
+                tagline={description}
                 description={[description]}
                 bestFor={agency.specializations || []}
                 keyServices={keyServices}
                 website={website}
-                brandAssets={brandAssetsToUse}
+                primaryColor={(agency as any).primary_color || '#8B5CF6'}
+                logoUrl={(agency as any).logo_url}
+                backdropUrl={(agency as any).backdrop_url}
                 isTopRanked={isTopRanked}
                 internalLink={isGTMQuest ? '/planner' : undefined}
               />
