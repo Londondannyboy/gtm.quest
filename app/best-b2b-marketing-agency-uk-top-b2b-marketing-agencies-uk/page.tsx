@@ -260,7 +260,6 @@ export default async function B2BMarketingAgencyUKPage() {
                 brandAssets={brandAssetsToUse}
                 isTopRanked={isTopRanked}
                 internalLink={isGTMQuest ? '/planner' : undefined}
-                logoGroup={agency.slug === 'salescaptain' ? 3 : undefined}
               />
             )
           })}
