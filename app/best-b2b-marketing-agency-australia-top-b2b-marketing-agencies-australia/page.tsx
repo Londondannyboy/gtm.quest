@@ -4,20 +4,18 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best B2B Marketing Agency UK 2025 | Top B2B Marketing Agencies UK',
-  description: 'Discover the best B2B marketing agencies UK has to offer. Compare top UK B2B marketing consultancies with verified credentials, proven results, and specialized expertise.',
-  keywords: 'best B2B marketing agency UK, top B2B marketing agencies UK, B2B digital marketing UK, demand generation UK, B2B lead generation UK',
+  title: 'Best B2B Marketing Agency Australia 2025 | Top B2B Marketing Agencies Australia',
+  description: 'Discover the best B2B marketing agencies Australia has to offer. Compare top Australian B2B marketing consultancies with verified credentials, proven results, and specialized expertise.',
+  keywords: 'best B2B marketing agency Australia, top B2B marketing agencies Australia, B2B digital marketing Sydney, demand generation Melbourne, B2B lead generation Australia',
   alternates: {
-    canonical: 'https://gtm.quest/best-b2b-marketing-agency-uk-top-b2b-marketing-agencies-uk'
+    canonical: 'https://gtm.quest/best-b2b-marketing-agency-australia-top-b2b-marketing-agencies-australia'
   }
 }
 
 export const revalidate = 3600
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
-export default async function B2BMarketingAgencyUKPage() {
-  const agencies = await getAgenciesByCategory('B2B Marketing Agency', 'UK')
+export default async function B2BMarketingAgencyAustraliaPage() {
+  const agencies = await getAgenciesByCategory('B2B Marketing Agency', 'Australia')
 
   const totalAgencies = agencies.length
   const avgMinBudget = agencies
@@ -47,9 +45,9 @@ export default async function B2BMarketingAgencyUKPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Best B2B Marketing Agencies UK",
-            "description": "Top B2B marketing agencies serving the UK market",
-            "url": "https://gtm.quest/best-b2b-marketing-agency-uk-top-b2b-marketing-agencies-uk",
+            "name": "Best B2B Marketing Agencies Australia",
+            "description": "Top B2B marketing agencies serving the Australian market",
+            "url": "https://gtm.quest/best-b2b-marketing-agency-australia-top-b2b-marketing-agencies-australia",
             "mainEntity": {
               "@type": "ItemList",
               "itemListElement": agencies.map((agency, index) => ({
@@ -74,7 +72,7 @@ export default async function B2BMarketingAgencyUKPage() {
             {' '}/{' '}
             <Link href="/best-gtm-agencies" className="hover:text-white transition-colors">Agencies</Link>
             {' '}/{' '}
-            <span className="text-white">B2B Marketing UK</span>
+            <span className="text-white">B2B Marketing Australia</span>
           </nav>
         </div>
       </div>
@@ -84,20 +82,20 @@ export default async function B2BMarketingAgencyUKPage() {
         {/* Hero Image */}
         <div className="absolute inset-0 opacity-40">
           <img
-            src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=80"
-            alt="Best B2B marketing agencies UK - London cityscape with Thames River and iconic landmarks"
+            src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1920&q=80"
+            alt="Best B2B marketing agencies Australia - Sydney Opera House and Harbour Bridge iconic skyline"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <span className="text-white/70 text-base uppercase tracking-wider font-semibold">United Kingdom</span>
+          <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Australia</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best B2B Marketing<br />Agencies UK
+            Best B2B Marketing<br />Agencies Australia
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
-            Discover the top {totalAgencies} B2B marketing agencies the UK has to offer—verified experts in demand generation, ABM, and revenue growth.
+            Discover the top {totalAgencies} B2B marketing agencies Australia has to offer—verified experts in demand generation, ABM, and revenue growth.
           </p>
 
           {/* Quick Stats */}
@@ -107,7 +105,7 @@ export default async function B2BMarketingAgencyUKPage() {
               <div className="text-white/70 text-lg">Top Agencies</div>
             </div>
             <div>
-              <div className="text-6xl font-black text-white mb-3">£{Math.round(avgMinBudget / 1000)}K+</div>
+              <div className="text-6xl font-black text-white mb-3">A${Math.round(avgMinBudget / 1000)}K+</div>
               <div className="text-white/70 text-lg">Avg Budget</div>
             </div>
             <div>
@@ -126,50 +124,51 @@ export default async function B2BMarketingAgencyUKPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
+            B2B Marketing Agencies Australia Guide: Why Choose Australian Experts?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
-              The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers.<br/><br/>
-              UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
+              Australia's B2B technology market is rapidly maturing, with Sydney and Melbourne emerging as significant Asia-Pacific tech hubs for fintech, SaaS, enterprise software, and digital innovation.<br/><br/>
+              Australian B2B marketing agencies bring deep understanding of the unique challenges facing businesses in the APAC region, including timezone considerations for global sales, cultural nuances across Asian markets, and the specific regulatory environment that governs Australian business operations.
             </p>
             <p>
-              Whether you're a B2B SaaS company preparing for European expansion, an enterprise software provider targeting UK enterprises, or a services firm building systematic demand generation, partnering with a UK-based B2B marketing agency provides timezone alignment, cultural fluency, and on-the-ground market intelligence that remote agencies struggle to replicate.
+              Whether you're an Australian B2B SaaS company scaling domestically, preparing for international expansion into Southeast Asia or the US, or an international firm entering the Australian market, partnering with a local Australian B2B marketing agency provides timezone alignment, cultural fluency, and on-the-ground market intelligence.<br/><br/>
+              Australian agencies excel at navigating the country's relatively smaller but highly sophisticated B2B market, where relationship-based selling remains important and buyers expect high-quality, locally relevant content and engagement.
             </p>
             <p>
-              UK agencies excel at navigating the complexities of multi-stakeholder B2B sales cycles, building sophisticated account-based marketing programs for enterprise targets, and creating demand generation engines that align marketing with sales revenue goals.<br/><br/>
-              The agencies listed below have been verified for their B2B expertise, client results, and transparent approach to partnerships.
+              The agencies listed below have been verified for their Australian market presence, B2B expertise, client results, and transparent approach to partnerships. Many also bring valuable APAC regional experience for companies expanding beyond Australia.<br/><br/>
+              Australia's smaller market size means agencies often develop deep specializations and provide more personalized service than counterparts in larger markets.
             </p>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight">
-            Top B2B Marketing Agencies UK: What to Look For
+            Top B2B Marketing Agencies Australia: What to Look For
           </h2>
           <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-6xl">
             <div>
-              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and Industry Knowledge</h3>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and APAC Market Knowledge</h3>
               <p>
-                B2B marketing fundamentally differs from B2C in sales cycle length, decision-making complexity, and stakeholder dynamics.<br/><br/>
-                The best B2B agencies demonstrate experience with long sales cycles, understand how to create content for technical buyers versus economic buyers, and can navigate buying committees with 5-10 stakeholders.<br/><br/>
-                Look for agencies with case studies in your industry—enterprise software requires different approaches than professional services or industrial equipment.
+                B2B marketing in Australia requires understanding both domestic market dynamics and broader APAC considerations for companies with regional expansion plans.<br/><br/>
+                The best Australian B2B agencies demonstrate experience with Australian enterprise buyers, understand how to position for both domestic and international growth, and can navigate cultural differences across APAC markets.<br/><br/>
+                Look for agencies with case studies in your industry and proven experience helping Australian companies scale regionally or internationally.
               </p>
             </div>
 
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>Demand Generation Capabilities</h3>
               <p>
-                Effective B2B marketing agencies build demand generation systems, not just campaigns.<br/><br/>
-                This means creating buyer journey frameworks, implementing marketing automation, developing lead scoring models, and establishing closed-loop reporting between marketing and sales.<br/><br/>
-                Ask agencies about their approach to MQLs, SQLs, and pipeline contribution. The best agencies focus on revenue influence, not vanity metrics like impressions or clicks.
+                Effective Australian B2B marketing agencies build sophisticated demand generation systems adapted to the smaller Australian market size.<br/><br/>
+                This means creating targeted account-based approaches, implementing marketing automation that aligns with Australian business hours and buying patterns, and developing lead scoring models appropriate for Australia's B2B landscape.<br/><br/>
+                Ask agencies about their approach to balancing broad demand generation with the account-based precision often required in Australia's concentrated B2B markets.
               </p>
             </div>
 
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>Technology Stack and Integration</h3>
               <p>
-                Modern B2B marketing requires sophisticated technology.<br/><br/>
-                Top agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation.<br/><br/>
-                They understand how to implement account-based marketing platforms like Demandbase or 6sense. They know how to integrate marketing technology with your CRM, set up proper attribution tracking, and build dashboards that show real business impact.
+                Modern B2B marketing requires sophisticated technology, and Australian agencies increasingly match their US and UK counterparts in martech expertise.<br/><br/>
+                Top Australian agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or other leading marketing automation platforms.<br/><br/>
+                They understand how to implement account-based marketing platforms, integrate marketing technology with your CRM, and build attribution models that demonstrate ROI in the Australian context.
               </p>
             </div>
           </div>
@@ -180,10 +179,10 @@ export default async function B2BMarketingAgencyUKPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            The Best B2B Marketing Agencies UK Has to Offer
+            The Best B2B Marketing Agencies Australia Has to Offer
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">
-            {totalAgencies} verified B2B marketing agencies serving UK businesses with proven expertise and results.
+            {totalAgencies} verified B2B marketing agencies serving Australian businesses with proven expertise and results.
           </p>
         </div>
 
@@ -220,25 +219,34 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* FAQ */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-white mb-16">UK B2B Marketing FAQs</h2>
+          <h2 className="text-5xl font-black text-white mb-16">Australia B2B Marketing FAQs</h2>
 
           <div className="space-y-12 max-w-6xl">
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
-                What is the typical cost of a B2B marketing agency in the UK?
+                What is the typical cost of a B2B marketing agency in Australia?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
-                UK B2B marketing agencies typically charge £{Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements.<br/><br/>
-                Project-based work ranges from £15K-£75K depending on scope.
+                Australian B2B marketing agencies typically charge A${Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements.<br/><br/>
+                Project-based work ranges from A$20K-A$80K depending on scope. Costs in Australia generally sit between UK and US pricing, reflecting the local market size and cost structure.
               </p>
             </div>
 
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
-                How long does it take to see results from B2B marketing?
+                How long does it take to see results from B2B marketing in Australia?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
-                Expect 3-6 months to see meaningful pipeline impact from demand generation programs. ABM targeting enterprise accounts may take 6-12 months to influence deals.
+                Expect 3-6 months to see meaningful pipeline impact from demand generation programs in the Australian market. Given Australia's smaller addressable markets, account-based approaches may show results faster than broad demand generation, though enterprise deals still typically take 6-12 months to close.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
+                Do Australian B2B agencies support APAC expansion?
+              </h3>
+              <p className="text-2xl text-white/80 leading-[1.8]">
+                Many Australian B2B marketing agencies have experience supporting regional expansion into Southeast Asia, New Zealand, and broader APAC markets. Australia's timezone position and cultural proximity to Asian markets makes Australian agencies valuable partners for APAC growth strategies.
               </p>
             </div>
           </div>
@@ -252,7 +260,7 @@ export default async function B2BMarketingAgencyUKPage() {
             Build Your B2B Marketing Strategy
           </h2>
           <p className="text-2xl text-white/95 mb-12">
-            Create a comprehensive go-to-market strategy tailored to the UK market in minutes.
+            Create a comprehensive go-to-market strategy tailored to the Australian market in minutes.
           </p>
           <Link
             href="/planner"

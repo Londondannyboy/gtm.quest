@@ -4,20 +4,18 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best B2B Marketing Agency UK 2025 | Top B2B Marketing Agencies UK',
-  description: 'Discover the best B2B marketing agencies UK has to offer. Compare top UK B2B marketing consultancies with verified credentials, proven results, and specialized expertise.',
-  keywords: 'best B2B marketing agency UK, top B2B marketing agencies UK, B2B digital marketing UK, demand generation UK, B2B lead generation UK',
+  title: 'Best B2B Marketing Agency Canada 2025 | Top B2B Marketing Agencies Canada',
+  description: 'Discover the best B2B marketing agencies Canada has to offer. Compare top Canadian B2B marketing consultancies with verified credentials, proven results, and specialized expertise.',
+  keywords: 'best B2B marketing agency Canada, top B2B marketing agencies Canada, B2B digital marketing Toronto, demand generation Vancouver, B2B lead generation Canada',
   alternates: {
-    canonical: 'https://gtm.quest/best-b2b-marketing-agency-uk-top-b2b-marketing-agencies-uk'
+    canonical: 'https://gtm.quest/best-b2b-marketing-agency-canada-top-b2b-marketing-agencies-canada'
   }
 }
 
 export const revalidate = 3600
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
-export default async function B2BMarketingAgencyUKPage() {
-  const agencies = await getAgenciesByCategory('B2B Marketing Agency', 'UK')
+export default async function B2BMarketingAgencyCanadaPage() {
+  const agencies = await getAgenciesByCategory('B2B Marketing Agency', 'Canada')
 
   const totalAgencies = agencies.length
   const avgMinBudget = agencies
@@ -47,9 +45,9 @@ export default async function B2BMarketingAgencyUKPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Best B2B Marketing Agencies UK",
-            "description": "Top B2B marketing agencies serving the UK market",
-            "url": "https://gtm.quest/best-b2b-marketing-agency-uk-top-b2b-marketing-agencies-uk",
+            "name": "Best B2B Marketing Agencies Canada",
+            "description": "Top B2B marketing agencies serving the Canadian market",
+            "url": "https://gtm.quest/best-b2b-marketing-agency-canada-top-b2b-marketing-agencies-canada",
             "mainEntity": {
               "@type": "ItemList",
               "itemListElement": agencies.map((agency, index) => ({
@@ -74,7 +72,7 @@ export default async function B2BMarketingAgencyUKPage() {
             {' '}/{' '}
             <Link href="/best-gtm-agencies" className="hover:text-white transition-colors">Agencies</Link>
             {' '}/{' '}
-            <span className="text-white">B2B Marketing UK</span>
+            <span className="text-white">B2B Marketing Canada</span>
           </nav>
         </div>
       </div>
@@ -84,20 +82,20 @@ export default async function B2BMarketingAgencyUKPage() {
         {/* Hero Image */}
         <div className="absolute inset-0 opacity-40">
           <img
-            src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=80"
-            alt="Best B2B marketing agencies UK - London cityscape with Thames River and iconic landmarks"
+            src="https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1920&q=80"
+            alt="Best B2B marketing agencies Canada - Toronto skyline with CN Tower"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6">
-          <span className="text-white/70 text-base uppercase tracking-wider font-semibold">United Kingdom</span>
+          <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Canada</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best B2B Marketing<br />Agencies UK
+            Best B2B Marketing<br />Agencies Canada
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
-            Discover the top {totalAgencies} B2B marketing agencies the UK has to offer—verified experts in demand generation, ABM, and revenue growth.
+            Discover the top {totalAgencies} B2B marketing agencies Canada has to offer—verified experts in demand generation, ABM, and revenue growth.
           </p>
 
           {/* Quick Stats */}
@@ -107,7 +105,7 @@ export default async function B2BMarketingAgencyUKPage() {
               <div className="text-white/70 text-lg">Top Agencies</div>
             </div>
             <div>
-              <div className="text-6xl font-black text-white mb-3">£{Math.round(avgMinBudget / 1000)}K+</div>
+              <div className="text-6xl font-black text-white mb-3">CA${Math.round(avgMinBudget / 1000)}K+</div>
               <div className="text-white/70 text-lg">Avg Budget</div>
             </div>
             <div>
@@ -126,50 +124,51 @@ export default async function B2BMarketingAgencyUKPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
+            B2B Marketing Agencies Canada Guide: Why Choose Canadian Experts?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
-              The UK remains one of Europe's most dynamic markets for B2B technology and services, with London serving as a global fintech hub and Manchester, Edinburgh, and Cambridge emerging as significant tech centers.<br/><br/>
-              UK-based B2B marketing agencies bring deep understanding of European market dynamics, GDPR compliance, cross-border expansion strategies, and the unique challenges of selling to British and European businesses.
+              Canada's B2B technology market is thriving, with Toronto, Vancouver, and Montreal emerging as major North American tech hubs for SaaS, fintech, AI, and enterprise software innovation.<br/><br/>
+              Canadian B2B marketing agencies bring unique advantages including bilingual capabilities (English/French), cultural bridges between US and international markets, strong technology ecosystems, and sophisticated understanding of both domestic Canadian and cross-border US marketing dynamics.
             </p>
             <p>
-              Whether you're a B2B SaaS company preparing for European expansion, an enterprise software provider targeting UK enterprises, or a services firm building systematic demand generation, partnering with a UK-based B2B marketing agency provides timezone alignment, cultural fluency, and on-the-ground market intelligence that remote agencies struggle to replicate.
+              Whether you're a Canadian B2B company scaling domestically, preparing for US market entry, or an international firm launching into Canada, partnering with a Canadian B2B marketing agency provides timezone alignment with North American markets, cultural expertise, and deep knowledge of Canadian business regulations and buying behaviors.<br/><br/>
+              Canadian agencies excel at navigating the country's bilingual requirements for Quebec, understanding regional differences across provinces, and building strategies that work across both Canadian and US markets.
             </p>
             <p>
-              UK agencies excel at navigating the complexities of multi-stakeholder B2B sales cycles, building sophisticated account-based marketing programs for enterprise targets, and creating demand generation engines that align marketing with sales revenue goals.<br/><br/>
-              The agencies listed below have been verified for their B2B expertise, client results, and transparent approach to partnerships.
+              The agencies listed below have been verified for their Canadian market presence, B2B expertise, client results, and transparent approach to partnerships. Many bring valuable North American regional experience for companies expanding between Canada and the United States.<br/><br/>
+              Canada's innovation-friendly environment and government support for technology companies creates ideal conditions for B2B marketing experimentation and growth.
             </p>
           </div>
 
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 mt-20 leading-tight">
-            Top B2B Marketing Agencies UK: What to Look For
+            Top B2B Marketing Agencies Canada: What to Look For
           </h2>
           <div className="space-y-10 text-2xl text-white/90 leading-[1.8] max-w-6xl">
             <div>
-              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and Industry Knowledge</h3>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>B2B Experience and North American Market Knowledge</h3>
               <p>
-                B2B marketing fundamentally differs from B2C in sales cycle length, decision-making complexity, and stakeholder dynamics.<br/><br/>
-                The best B2B agencies demonstrate experience with long sales cycles, understand how to create content for technical buyers versus economic buyers, and can navigate buying committees with 5-10 stakeholders.<br/><br/>
-                Look for agencies with case studies in your industry—enterprise software requires different approaches than professional services or industrial equipment.
+                B2B marketing in Canada requires understanding both domestic dynamics and cross-border considerations for companies scaling into the US market.<br/><br/>
+                The best Canadian B2B agencies demonstrate experience with Canadian enterprise buyers, understand how to position for both Canadian and US markets, and can navigate the unique challenges of selling B2B solutions across North American markets.<br/><br/>
+                Look for agencies with case studies showing success in the Canadian market and proven experience supporting cross-border expansion.
               </p>
             </div>
 
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>Demand Generation Capabilities</h3>
               <p>
-                Effective B2B marketing agencies build demand generation systems, not just campaigns.<br/><br/>
-                This means creating buyer journey frameworks, implementing marketing automation, developing lead scoring models, and establishing closed-loop reporting between marketing and sales.<br/><br/>
-                Ask agencies about their approach to MQLs, SQLs, and pipeline contribution. The best agencies focus on revenue influence, not vanity metrics like impressions or clicks.
+                Effective Canadian B2B marketing agencies build sophisticated demand generation systems that work across Canadian markets and support North American expansion.<br/><br/>
+                This means creating targeted approaches for Canada's major business centers (Toronto, Vancouver, Montreal), implementing bilingual marketing automation where required, and developing lead scoring models appropriate for Canadian B2B buying patterns.<br/><br/>
+                Ask agencies about their approach to balancing Canadian market focus with cross-border US expansion considerations.
               </p>
             </div>
 
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>Technology Stack and Integration</h3>
               <p>
-                Modern B2B marketing requires sophisticated technology.<br/><br/>
-                Top agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation.<br/><br/>
-                They understand how to implement account-based marketing platforms like Demandbase or 6sense. They know how to integrate marketing technology with your CRM, set up proper attribution tracking, and build dashboards that show real business impact.
+                Modern B2B marketing requires sophisticated technology, and Canadian agencies match their US counterparts in martech expertise.<br/><br/>
+                Top Canadian agencies demonstrate expertise in HubSpot, Salesforce, Marketo, or Pardot for marketing automation.<br/><br/>
+                They understand how to implement account-based marketing platforms, integrate marketing technology with your CRM, and build attribution models that work across Canadian and North American markets. Many Canadian agencies bring additional bilingual capabilities for Quebec market requirements.
               </p>
             </div>
           </div>
@@ -180,10 +179,10 @@ export default async function B2BMarketingAgencyUKPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            The Best B2B Marketing Agencies UK Has to Offer
+            The Best B2B Marketing Agencies Canada Has to Offer
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">
-            {totalAgencies} verified B2B marketing agencies serving UK businesses with proven expertise and results.
+            {totalAgencies} verified B2B marketing agencies serving Canadian businesses with proven expertise and results.
           </p>
         </div>
 
@@ -220,25 +219,34 @@ export default async function B2BMarketingAgencyUKPage() {
       {/* FAQ */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-white mb-16">UK B2B Marketing FAQs</h2>
+          <h2 className="text-5xl font-black text-white mb-16">Canada B2B Marketing FAQs</h2>
 
           <div className="space-y-12 max-w-6xl">
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
-                What is the typical cost of a B2B marketing agency in the UK?
+                What is the typical cost of a B2B marketing agency in Canada?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
-                UK B2B marketing agencies typically charge £{Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements.<br/><br/>
-                Project-based work ranges from £15K-£75K depending on scope.
+                Canadian B2B marketing agencies typically charge CA${Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements.<br/><br/>
+                Project-based work ranges from CA$20K-CA$75K depending on scope. Pricing in Canada generally aligns with US rates when accounting for currency exchange.
               </p>
             </div>
 
             <div>
               <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
-                How long does it take to see results from B2B marketing?
+                How long does it take to see results from B2B marketing in Canada?
               </h3>
               <p className="text-2xl text-white/80 leading-[1.8]">
-                Expect 3-6 months to see meaningful pipeline impact from demand generation programs. ABM targeting enterprise accounts may take 6-12 months to influence deals.
+                Expect 3-6 months to see meaningful pipeline impact from demand generation programs in the Canadian market. ABM targeting Canadian enterprise accounts typically takes 6-12 months to influence deals, similar to US timelines.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-5xl font-black mb-6" style={{color: '#3B82F6'}}>
+                Do Canadian agencies support US market expansion?
+              </h3>
+              <p className="text-2xl text-white/80 leading-[1.8]">
+                Many Canadian B2B marketing agencies have extensive experience supporting companies expanding into the US market. Canada's proximity, timezone alignment, and cultural similarities make Canadian agencies valuable partners for North American growth strategies. Bilingual agencies also bring advantages for companies operating in both English and French-speaking markets.
               </p>
             </div>
           </div>
@@ -252,7 +260,7 @@ export default async function B2BMarketingAgencyUKPage() {
             Build Your B2B Marketing Strategy
           </h2>
           <p className="text-2xl text-white/95 mb-12">
-            Create a comprehensive go-to-market strategy tailored to the UK market in minutes.
+            Create a comprehensive go-to-market strategy tailored to the Canadian market in minutes.
           </p>
           <Link
             href="/planner"

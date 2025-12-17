@@ -15,6 +15,7 @@ interface AgencyCardProps {
   isTopRanked?: boolean
   stats?: Array<{ value: string; label: string }>
   internalLink?: string
+  serviceAreas?: string[]
 }
 
 export function AgencyCard({
@@ -30,7 +31,8 @@ export function AgencyCard({
   backdropUrl,
   isTopRanked = false,
   stats,
-  internalLink
+  internalLink,
+  serviceAreas
 }: AgencyCardProps) {
   const brandDescription = description.join(' ')
 
@@ -208,6 +210,16 @@ export function AgencyCard({
                 <div style={{ color: '#E5E5E5' }} className="text-2xl font-light">{stat.label}</div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Service Areas Debug Section */}
+        {serviceAreas && serviceAreas.length > 0 && (
+          <div className="mt-16 pt-12 border-t-2" style={{ borderColor: `${primaryColor}30` }}>
+            <div className="text-xl font-light" style={{ color: '#999' }}>
+              <span className="font-bold" style={{ color: primaryColor }}>Regions Covered:</span>{' '}
+              {serviceAreas.join(', ')}
+            </div>
           </div>
         )}
 

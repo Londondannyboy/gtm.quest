@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Metadata } from "next";
 import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
-import { fetchAllAgencyLogos } from "@/lib/brand-api";
 import { AgencyCard } from "@/components/AgencyCard";
 
 export const metadata: Metadata = {
@@ -16,8 +15,6 @@ export const metadata: Metadata = {
 export const revalidate = 3600
 
 export default async function Home() {
-  const agencyLogos = await fetchAllAgencyLogos()
-
   return (
     <>
       <div className="flex flex-col bg-black text-white">
@@ -191,7 +188,6 @@ export default async function Home() {
                   "Sales enablement materials & messaging frameworks"
                 ]}
                 website="https://gtm.quest"
-                brandAssets={agencyLogos.gtmquest}
                 isTopRanked={true}
                 internalLink="/planner"
                 stats={[
@@ -206,7 +202,6 @@ export default async function Home() {
                 rank={2}
                 name="SalesCaptain"
                 tagline="B2B Outbound-Driven GTM Strategy"
-                logoGroup={1}
                 description={[
                   "SalesCaptain specializes in outbound-driven go-to-market strategies for B2B companies that need predictable pipeline generation. Their approach centers on building systematic cold outreach programs—email, LinkedIn, and multi-channel sequences—that feed qualified meetings directly into your sales pipeline.",
                   "The agency works particularly well for B2B SaaS companies, sales-led organizations, and businesses with clearly defined ICP profiles. They handle everything from list building and contact research through copywriting, sequence design, and deliverability optimization."
@@ -224,7 +219,6 @@ export default async function Home() {
                   "Multi-channel outbound programs"
                 ]}
                 website="https://www.salescaptain.io"
-                brandAssets={agencyLogos.salescaptain}
               />
 
               {/* #3 - inBeat */}
@@ -249,7 +243,6 @@ export default async function Home() {
                   "Community building strategies"
                 ]}
                 website="https://inbeat.agency"
-                brandAssets={agencyLogos.inbeat}
               />
 
               {/* #4 - Ironpaper */}
@@ -274,7 +267,6 @@ export default async function Home() {
                   "Sales enablement for complex deals"
                 ]}
                 website="https://www.ironpaper.com"
-                brandAssets={agencyLogos.ironpaper}
               />
 
               {/* #5 - Ziggy */}
@@ -299,7 +291,6 @@ export default async function Home() {
                   "Founder marketing advisory"
                 ]}
                 website="https://www.ziggy.io"
-                brandAssets={agencyLogos.ziggy}
               />
 
               {/* #6 - Deviate Labs */}
@@ -324,7 +315,6 @@ export default async function Home() {
                   "Creative partnership development"
                 ]}
                 website="https://www.deviatelabs.com"
-                brandAssets={agencyLogos.deviatelabs}
               />
 
               {/* #7 - Refine Labs */}
@@ -349,7 +339,6 @@ export default async function Home() {
                   "Buyer journey mapping & optimization"
                 ]}
                 website="https://www.refinelabs.com"
-                brandAssets={agencyLogos.refinelabs}
               />
 
               {/* #8 - Six & Flow */}
@@ -374,7 +363,6 @@ export default async function Home() {
                   "Attribution & reporting dashboards"
                 ]}
                 website="https://www.sixandflow.com"
-                brandAssets={agencyLogos.sixandflow}
               />
 
               {/* #9 - Single Grain */}
@@ -399,7 +387,6 @@ export default async function Home() {
                   "Analytics & attribution"
                 ]}
                 website="https://www.singlegrain.com"
-                brandAssets={agencyLogos.singlegrain}
               />
 
               {/* #10 - Boil */}
@@ -424,7 +411,6 @@ export default async function Home() {
                   "Website & sales copy optimization"
                 ]}
                 website="https://www.boilmarketing.com"
-                brandAssets={agencyLogos.boil}
               />
 
               {/* #11 - Arise GTM */}
@@ -449,7 +435,6 @@ export default async function Home() {
                   "Channel strategy & prioritization"
                 ]}
                 website="https://www.arisegtm.com"
-                brandAssets={agencyLogos.arisegtm}
               />
 
               {/* #12 - Kalungi */}
@@ -474,7 +459,6 @@ export default async function Home() {
                   "Marketing operations & stack setup"
                 ]}
                 website="https://www.kalungi.com"
-                brandAssets={agencyLogos.kalungi}
               />
             </div>
           </div>

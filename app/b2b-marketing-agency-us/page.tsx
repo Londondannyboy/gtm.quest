@@ -15,8 +15,6 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600 // Revalidate every hour
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
 export default async function B2BMarketingAgencyUSPage() {
   // Fetch B2B Marketing agencies serving US
   const agencies = await getAgenciesByCategory('B2B Marketing Agency', 'US')

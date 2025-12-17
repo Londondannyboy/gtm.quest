@@ -14,24 +14,9 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600
 
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
-
 export default async function GTMAgenciesLondonPage() {
   const agencies = await getAgenciesForLocation('London')
   const stats = await getLocationStats('London')
-
-  const brandAssets: Record<string, BrandAssets | null> = {}
-  for (const agency of agencies) {
-    if (agency.brand_dev_domain) {
-      try {
-        brandAssets[agency.slug] = await fetchBrandFromBrandDev(agency.brand_dev_domain)
-        await sleep(500)
-      } catch (error) {
-        console.error(`Error fetching brand for ${agency.slug}:`, error)
-        brandAssets[agency.slug] = null
-      }
-    }
-  }
 
   return (
     <div className="bg-black text-white min-h-screen">
