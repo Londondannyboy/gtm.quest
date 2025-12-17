@@ -5,9 +5,9 @@ import { fetchAllAgencyLogos } from "@/lib/brand-api";
 import { AgencyCard } from "@/components/AgencyCard";
 
 export const metadata: Metadata = {
-  title: "Top 12 GTM Agencies in 2025 | Best Go-To-Market Agencies",
-  description: "Discover the best GTM agencies in 2025. Compare top go-to-market agencies specializing in strategy, product launches, and revenue growth for B2B SaaS and startups.",
-  keywords: "GTM agency, best GTM agencies, go-to-market agency, GTM consultants, product launch agency, B2B GTM strategy, SaaS GTM agency, startup GTM agency",
+  title: "GTM Agency Guide 2024 | Top 12 Go-To-Market Agencies UK",
+  description: "GTM agency guide: Compare the top GTM agencies in the UK. Expert go-to-market agencies specializing in strategy, product launches, and revenue growth for B2B SaaS and startups.",
+  keywords: "GTM agency, best GTM agencies, go-to-market agency, GTM consultants, product launch agency, B2B GTM strategy, SaaS GTM agency, startup GTM agency, UK GTM agency",
   alternates: {
     canonical: "https://gtm.quest",
   },
@@ -25,15 +25,15 @@ export default async function Home() {
         <section className="relative py-24 md:py-32 bg-black">
           <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
             <span className="inline-block bg-white text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
-              Updated January 2025
+              Updated December 2024
             </span>
 
             <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
-              Top 12 GTM Agencies in 2025
+              GTM Agency Guide - Your Guide to the Top GTM Agencies
             </h1>
 
             <p className="text-2xl md:text-3xl text-white mb-10 leading-relaxed max-w-5xl mx-auto font-light">
-              Work with a go-to-market agency that builds strategy, channels, and launch plans that actually convert
+              Find the perfect <strong>GTM agency</strong> to build your go-to-market strategy, channels, and launch plans that actually convert
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -53,20 +53,33 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Hero Image Section */}
+        <section className="py-16 md:py-20 bg-zinc-950">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop"
+              alt="GTM agency team collaborating on go-to-market strategy"
+              title="GTM agency professionals developing strategic marketing plans"
+              className="w-full h-auto rounded-3xl shadow-2xl"
+              loading="eager"
+            />
+          </div>
+        </section>
+
         {/* What Is a GTM Agency Section */}
         <section id="what-is-gtm-agency" className="py-32 md:py-40 bg-zinc-950 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
-              What Is a Go-To-Market Agency?
+              What Is a GTM Agency?
             </h2>
 
             <div className="space-y-12 text-3xl text-gray-300 leading-relaxed font-light">
               <p>
-                A go-to-market (GTM) agency helps companies launch products, enter new markets, and scale revenue. They bridge product, sales, marketing, and customer success to create strategies that drive measurable outcomes.
+                A <strong>GTM agency</strong> (go-to-market agency) helps companies launch products, enter new markets, and scale revenue. A specialist GTM agency bridges product, sales, marketing, and customer success to create strategies that drive measurable outcomes.
               </p>
 
               <p>
-                GTM agencies answer critical questions: Who is your ideal customer? What channels reach them? How should you price? What messaging resonates? They build launch roadmaps, sales playbooks, and marketing campaigns that scale revenue predictably.
+                The best GTM agencies answer critical questions: Who is your ideal customer? What channels reach them? How should you price? What messaging resonates? A professional GTM agency builds launch roadmaps, sales playbooks, and marketing campaigns that scale revenue predictably.
               </p>
             </div>
           </div>
@@ -76,37 +89,37 @@ export default async function Home() {
         <section id="benefits" className="py-32 md:py-40 bg-black border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
-              Benefits of Hiring a GTM Agency
+              Why Choose a GTM Agency?
             </h2>
 
             <div className="space-y-12 text-3xl text-gray-300 leading-relaxed mb-20 font-light">
               <p>
-                GTM agencies bring deep expertise from hundreds of product launches. They compress timelines dramatically—what takes internal teams 6-9 months, experienced agencies deliver in 8-12 weeks.
+                Choosing the right <strong>GTM agency</strong> brings deep expertise from hundreds of product launches. A top GTM agency compresses timelines dramatically—what takes internal teams 6-9 months, experienced GTM agencies deliver in 8-12 weeks.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
                 <div className="text-white text-7xl font-black mb-6">2-3x</div>
-                <h3 className="text-3xl font-bold text-white mb-5">Faster Time to Market</h3>
+                <h3 className="text-3xl font-bold text-white mb-5">GTM Agency Speed Advantage</h3>
                 <p className="text-gray-400 text-xl leading-relaxed font-light">Proven frameworks accelerate strategy development from months to weeks.</p>
               </div>
 
               <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
                 <div className="text-white text-7xl font-black mb-6">40-60%</div>
-                <h3 className="text-3xl font-bold text-white mb-5">Lower CAC</h3>
-                <p className="text-gray-400 text-xl leading-relaxed font-light">Optimized targeting and messaging reduce wasted spend.</p>
+                <h3 className="text-3xl font-bold text-white mb-5">Lower Customer Acquisition Cost</h3>
+                <p className="text-gray-400 text-xl leading-relaxed font-light">A specialist GTM agency optimizes targeting and messaging to reduce wasted spend.</p>
               </div>
 
               <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
                 <div className="text-white text-7xl font-black mb-6">5-10x</div>
-                <h3 className="text-3xl font-bold text-white mb-5">ROI on Launch</h3>
+                <h3 className="text-3xl font-bold text-white mb-5">Higher ROI with GTM Agency Partners</h3>
                 <p className="text-gray-400 text-xl leading-relaxed font-light">Structured GTM planning drives dramatically higher returns.</p>
               </div>
 
               <div className="bg-zinc-900 border-2 border-white/20 p-14 rounded-3xl hover:border-white/40 transition-all">
                 <div className="text-white text-7xl font-black mb-6">85%</div>
-                <h3 className="text-3xl font-bold text-white mb-5">Risk Reduction</h3>
+                <h3 className="text-3xl font-bold text-white mb-5">GTM Agency Risk Mitigation</h3>
                 <p className="text-gray-400 text-xl leading-relaxed font-light">Market validation prevents costly post-launch pivots.</p>
               </div>
             </div>
@@ -118,10 +131,10 @@ export default async function Home() {
           <div className="w-full">
             <div className="text-center mb-32 px-6">
               <h2 className="text-7xl md:text-8xl font-black text-white mb-12">
-                Top GTM Agencies
+                Top 12 GTM Agencies UK
               </h2>
               <p className="text-3xl text-white max-w-5xl mx-auto font-light">
-                Compare the leading go-to-market agencies
+                Compare the leading <strong>GTM agency</strong> partners for your business
               </p>
             </div>
 
@@ -442,10 +455,10 @@ export default async function Home() {
         <section className="py-32 md:py-40 bg-zinc-950 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
             <h2 className="text-6xl md:text-7xl font-black text-white mb-12">
-              Start Your GTM Strategy Today
+              Find Your Perfect GTM Agency Today
             </h2>
             <p className="text-3xl text-white mb-16 leading-relaxed font-light">
-              Get a comprehensive go-to-market plan in minutes
+              Get a comprehensive <strong>GTM agency</strong> strategy plan in minutes
             </p>
             <div className="flex flex-col sm:flex-row gap-8 justify-center">
               <Link
