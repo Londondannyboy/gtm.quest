@@ -4,8 +4,8 @@ import { AuthAwareHumeWidget } from "@/components/AuthAwareHumeWidget";
 import { AgencyCard } from "@/components/AgencyCard";
 
 export const metadata: Metadata = {
-  title: "GTM Agency Guide 2024 | Top 12 Go-To-Market Agencies UK",
-  description: "GTM agency guide: Compare the top GTM agencies in the UK. Expert go-to-market agencies specializing in strategy, product launches, and revenue growth for B2B SaaS and startups.",
+  title: "QUEST GTM Agency Wins new business with go-to-market",
+  description: "Quest is a GTM agency that helps you plan and win new business.",
   keywords: "GTM agency, best GTM agencies, go-to-market agency, GTM consultants, product launch agency, B2B GTM strategy, SaaS GTM agency, startup GTM agency, UK GTM agency",
   alternates: {
     canonical: "https://gtm.quest",
