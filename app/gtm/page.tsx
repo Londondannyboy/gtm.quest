@@ -78,10 +78,7 @@ export default function GTMAssistantPage() {
 
         {/* Hume Voice Widget */}
         <div className="mb-8">
-          <AuthAwareHumeWidget
-            userName={firstName}
-            isAuthenticated={true}
-          />
+          <AuthAwareHumeWidget />
         </div>
 
         {/* Instructions */}

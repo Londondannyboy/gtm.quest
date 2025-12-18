@@ -84,35 +84,32 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Hero Text Content - Centered */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-5 px-6">
-            <div className="text-center max-w-4xl">
-              <span className="inline-block bg-white text-black px-6 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider mb-6 md:mb-8">
-                Go-To-Market Strategy Platform
-              </span>
+        </section>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 md:mb-8 leading-tight">
-                Scale Your Revenue with AI-Powered GTM
-              </h1>
+        {/* Content Below Video */}
+        <section className="py-16 md:py-24 bg-black">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 md:mb-8 leading-tight">
+              Scale Your Revenue with AI-Powered GTM
+            </h1>
 
-              <p className="text-lg md:text-2xl text-white mb-8 md:mb-10 leading-relaxed font-light">
-                Custom Clay & AI Agent workflows tailored to your industry. Generate predictable pipelines through multi-channel outreach, social selling, and AI-driven insights.
-              </p>
+            <p className="text-lg md:text-2xl text-white mb-8 md:mb-10 leading-relaxed font-light">
+              Custom Clay & AI Agent workflows tailored to your industry. Generate predictable pipelines through multi-channel outreach, social selling, and AI-driven insights.
+            </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-8 md:px-16 py-3 md:py-6 text-lg md:text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
-                >
-                  Work with us →
-                </Link>
-                <Link
-                  href="/planner"
-                  className="inline-flex items-center justify-center px-6 md:px-10 py-3 md:py-4 text-sm md:text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
-                >
-                  Use AI to create your GTM strategy
-                </Link>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-8 md:px-16 py-3 md:py-6 text-lg md:text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
+              >
+                Work with us →
+              </Link>
+              <Link
+                href="/planner"
+                className="inline-flex items-center justify-center px-6 md:px-10 py-3 md:py-4 text-sm md:text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
+              >
+                Use AI to create your GTM strategy
+              </Link>
             </div>
           </div>
         </section>
