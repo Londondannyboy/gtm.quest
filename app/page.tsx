@@ -105,44 +105,44 @@ export default async function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Scalable Outbound */}
-              <div className="bg-gradient-to-br from-blue-900/20 to-blue-800/5 border-2 border-blue-500/30 p-10 rounded-3xl hover:border-blue-500/60 transition-all duration-300">
+              <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
                 <div className="text-blue-400 text-5xl font-black mb-6">→</div>
                 <h3 className="text-3xl font-bold text-white mb-6">Scalable Outbound</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   Generate a predictable pipeline with multi-channel Cold Email and LinkedIn Outreach campaigns. We build custom Clay & AI Agent workflows tailored to your industry and business.
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                  <span className="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">Cold Email</span>
-                  <span className="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">Social Selling</span>
-                  <span className="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">AI Workflows</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Cold Email</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Social Selling</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">AI Workflows</span>
                 </div>
               </div>
 
               {/* Inbound-Led Outbound */}
-              <div className="bg-gradient-to-br from-purple-900/20 to-purple-800/5 border-2 border-purple-500/30 p-10 rounded-3xl hover:border-purple-500/60 transition-all duration-300">
-                <div className="text-purple-400 text-5xl font-black mb-6">⬆</div>
+              <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
+                <div className="text-blue-400 text-5xl font-black mb-6">⬆</div>
                 <h3 className="text-3xl font-bold text-white mb-6">Inbound-Led Outbound</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   Inbound leads and MQLs are expensive and shouldn't go to waste. Our AI-driven Inbound-Led Outbound system qualifies by ICP and triggers personalized outreach that books meetings.
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                  <span className="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">AI-Generated SEO</span>
-                  <span className="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Lead Qualification</span>
-                  <span className="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Social Signals</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">AI-Generated SEO</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Lead Qualification</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Social Signals</span>
                 </div>
               </div>
 
               {/* AI-Powered RevOps */}
-              <div className="bg-gradient-to-br from-emerald-900/20 to-emerald-800/5 border-2 border-emerald-500/30 p-10 rounded-3xl hover:border-emerald-500/60 transition-all duration-300">
-                <div className="text-emerald-400 text-5xl font-black mb-6">⚙</div>
+              <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
+                <div className="text-blue-400 text-5xl font-black mb-6">⚙</div>
                 <h3 className="text-3xl font-bold text-white mb-6">AI-Powered RevOps</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   You want clean data, fast handoffs, and reliable pipeline visibility. Our RevOps approach aligns your inbound, outbound, and post-sale motions and automates your Marketing & Sales collaboration.
                 </p>
                 <div className="flex gap-2 flex-wrap">
-                  <span className="inline-block bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium">Data Automation</span>
-                  <span className="inline-block bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium">Pipeline Visibility</span>
-                  <span className="inline-block bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium">AI Analytics</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Data Automation</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Pipeline Visibility</span>
+                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">AI Analytics</span>
                 </div>
               </div>
             </div>
