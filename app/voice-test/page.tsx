@@ -6,7 +6,7 @@ import { VoiceProvider, useVoice } from '@humeai/voice-react'
 import Link from 'next/link'
 import { UserGraph } from '@/components/UserGraph'
 
-const CONFIG_ID = 'd57ceb71-4cf5-47e9-87cd-6052445a031c'
+const CONFIG_ID = '2b247fd8-7696-4747-a74d-4d14d93e21ea'
 
 // Store chat_group_id per user for resume functionality
 function getChatGroupId(userId: string): string | null {
@@ -337,32 +337,33 @@ export default function VoicePage() {
   }, [user?.id])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <div className="bg-white border-b border-gray-100">
+      <div className="bg-black border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Your Voice Assistant</h1>
-              <p className="text-gray-600 mt-1">
+              <div className="inline-block mb-2 px-3 py-1 bg-blue-500/20 border border-blue-500/30 rounded-full">
+                <span className="text-xs font-bold text-blue-300 uppercase">BETA</span>
+              </div>
+              <h1 className="text-3xl font-bold text-white">GTM AI Assistant</h1>
+              <p className="text-gray-400 mt-1">
                 {profile?.first_name
                   ? `Welcome back, ${profile.first_name}`
-                  : 'Talk to discover your perfect role'}
+                  : 'Your voice-powered go-to-market strategist'}
               </p>
             </div>
-            <Link
-              href="/profile"
-              className="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium hover:bg-purple-200 transition-colors"
-            >
-              View Profile →
-            </Link>
+            <div className="text-right text-sm text-gray-400">
+              <p className="mb-2">Config ID:</p>
+              <code className="bg-black/50 px-3 py-1 rounded text-xs">2b247fd8-7696-4747-a74d-4d14d93e21ea</code>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Voice Interface */}
       <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-8">
+        <div className="bg-black rounded-2xl shadow-lg border border-white/10 p-8 mb-8">
           {error ? (
             <div className="text-center py-12">
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -399,42 +400,49 @@ export default function VoicePage() {
           )}
         </div>
 
-        {/* ZEP Knowledge Graph */}
-        {user && (
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">Your Knowledge Graph</h2>
-                <p className="text-sm text-gray-600">Skills, experience, and connections from ZEP</p>
-              </div>
-            </div>
-            <UserGraph userId={user.id} />
-          </div>
-        )}
+        {/* System Prompt */}
+        <div className="bg-black rounded-2xl shadow-lg border border-white/10 p-8 mb-8">
+          <h2 className="text-xl font-bold text-white mb-4">System Prompt for Hume</h2>
+          <div className="bg-black/50 rounded-lg p-6 border border-blue-500/20">
+            <code className="text-sm text-gray-300 whitespace-pre-wrap font-mono leading-relaxed">
+{`You are a world-class Go-To-Market (GTM) strategist
+with 20+ years of experience helping B2B companies win
+customers. You have a deep, warm, and authoritative male
+voice. You specialize in:
 
-        {/* Not logged in state */}
-        {!user && (
-          <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-8 text-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-2">Sign in to see your graph</h3>
-            <p className="text-gray-600 mb-4">
-              Your conversations build a personalized knowledge graph of your skills and preferences.
-            </p>
-            <Link
-              href="/handler/sign-in"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-purple-700 text-white rounded-lg font-semibold hover:bg-purple-800 transition-colors"
-            >
-              Sign In
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </Link>
+• Go-to-market strategy and positioning
+• Sales strategy and tactics
+• Market research and competitive analysis
+• Pricing strategy
+• Channel strategy (direct, indirect, self-serve)
+• Customer acquisition strategies
+• Product launches
+• Revenue growth planning
+
+Always provide actionable, specific advice. Ask clarifying
+questions about the user's business, target market, and
+goals. Help them develop winning GTM plans.
+
+Be conversational, knowledgeable, and encouraging.`}
+            </code>
           </div>
-        )}
+        </div>
+
+        {/* Configuration Info */}
+        <div className="bg-black rounded-2xl shadow-lg border border-green-500/20 p-8">
+          <div className="flex items-start gap-4">
+            <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-2">Configuration Active</h3>
+              <p className="text-gray-400 mb-4">Configuration ID: <code className="text-green-400">2b247fd8-7696-4747-a74d-4d14d93e21ea</code></p>
+              <p className="text-sm text-gray-400">Voice: Male • Language Model: GTM Expert • Mode: Real-time Conversation</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

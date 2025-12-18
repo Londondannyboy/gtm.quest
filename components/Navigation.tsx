@@ -22,6 +22,7 @@ export function Navigation() {
     { href: '/best-gtm-agencies', label: 'GTM Agencies' },
     { href: '/articles', label: 'Articles' },
     { href: '/gtm-resources', label: 'Resources' },
+    { href: '/gtm', label: 'GTM Assistant' },
     { href: '/chat', label: 'AI Strategist' }
   ]
 
