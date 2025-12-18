@@ -46,50 +46,69 @@ export default async function Home() {
           }}
         />
 
-        {/* Hero Section with Video Banner */}
-        <section className="relative py-16 md:py-20 bg-black">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            {/* Video Banner - MUX Background Video */}
-            <div className="mb-16 rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '16/9', height: '600px' }}>
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-                style={{ display: 'block' }}
-              >
-                <source
-                  src="https://stream.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y.m3u8"
-                  type="application/x-mpegURL"
-                />
-              </video>
-            </div>
+        {/* Hero Section with Full Screen Video */}
+        <section className="relative w-full h-screen bg-black overflow-hidden">
+          {/* Video Banner - MUX Background Video */}
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ display: 'block' }}
+          >
+            <source
+              src="https://stream.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y.m3u8"
+              type="application/x-mpegURL"
+            />
+          </video>
 
-            {/* Hero Text Content */}
-            <div className="text-center">
-              <span className="inline-block bg-white text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
+
+          {/* Cool Bottom Left Overlay Card */}
+          <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10">
+            <div
+              className="backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 shadow-2xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(147, 51, 234, 0.1) 100%)',
+                backdropFilter: 'blur(12px)'
+              }}
+            >
+              <h2 className="text-xl md:text-2xl font-black text-white mb-2">
+                Scale Your GTM
+              </h2>
+              <p className="text-sm md:text-base text-white/80 font-light">
+                Win new clients with AI-powered go-to-market
+              </p>
+            </div>
+          </div>
+
+          {/* Hero Text Content - Centered */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-5 px-6">
+            <div className="text-center max-w-4xl">
+              <span className="inline-block bg-white text-black px-6 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider mb-6 md:mb-8">
                 Go-To-Market Strategy Platform
               </span>
 
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 md:mb-8 leading-tight">
                 Scale Your Revenue with AI-Powered GTM
               </h1>
 
-              <p className="text-2xl md:text-3xl text-white mb-10 leading-relaxed max-w-5xl mx-auto font-light">
+              <p className="text-lg md:text-2xl text-white mb-8 md:mb-10 leading-relaxed font-light">
                 Custom Clay & AI Agent workflows tailored to your industry. Generate predictable pipelines through multi-channel outreach, social selling, and AI-driven insights.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-16 py-6 text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
+                  className="inline-flex items-center justify-center px-8 md:px-16 py-3 md:py-6 text-lg md:text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
                 >
                   Work with us →
                 </Link>
                 <Link
                   href="/planner"
-                  className="inline-flex items-center justify-center px-10 py-4 text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
+                  className="inline-flex items-center justify-center px-6 md:px-10 py-3 md:py-4 text-sm md:text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
                 >
                   Use AI to create your GTM strategy
                 </Link>
