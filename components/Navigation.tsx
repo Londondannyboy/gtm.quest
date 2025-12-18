@@ -29,8 +29,8 @@ export function Navigation() {
   }
 
   return (
-    <nav className={`nav-sticky transition-all duration-300 backdrop-blur-md bg-black/15 border-b border-white/5 ${
-      scrolled ? 'shadow-md bg-black/25' : 'shadow-sm'
+    <nav className={`nav-sticky transition-all duration-300 backdrop-blur-md bg-black/5 border-b border-white/5 ${
+      scrolled ? 'shadow-md bg-black/10' : 'shadow-sm'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -72,7 +72,11 @@ export function Navigation() {
             <AuthButtons />
             <Link
               href="/contact"
-              className="hidden sm:inline-flex bg-white/5 text-white hover:bg-white/15 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2 border border-white/15 mr-3"
+              className={`hidden sm:inline-flex text-sm font-medium transition-colors ${
+                isActive('/contact')
+                  ? 'text-blue-400'
+                  : 'text-gray-300 hover:text-white'
+              }`}
             >
               Discuss GTM now →
             </Link>
