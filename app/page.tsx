@@ -49,20 +49,20 @@ export default async function Home() {
         {/* Hero Section with Video Banner */}
         <section className="relative py-16 md:py-20 bg-black">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            {/* Video Banner - MUX Player */}
-            <div className="mb-16 rounded-3xl overflow-hidden shadow-2xl">
+            {/* Video Banner - MUX Background Video */}
+            <div className="mb-16 rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '16/9', height: '600px' }}>
               <video
-                className="w-full h-auto rounded-3xl"
-                controls
+                className="w-full h-full object-cover"
                 autoPlay
                 muted
+                loop
+                playsInline
                 style={{ display: 'block' }}
               >
                 <source
                   src="https://stream.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y.m3u8"
                   type="application/x-mpegURL"
                 />
-                <p>Your browser does not support HTML5 video.</p>
               </video>
             </div>
 
