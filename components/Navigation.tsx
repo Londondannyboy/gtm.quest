@@ -19,8 +19,6 @@ export function Navigation() {
   }, [])
 
   const navLinks = [
-    { href: '/best-gtm-agencies', label: 'GTM Agencies' },
-    { href: '/articles', label: 'Articles' },
     { href: '/gtm-resources', label: 'Resources' },
     { href: '/gtm', label: 'GTM Assistant' },
     { href: '/chat', label: 'AI Strategist' }
@@ -32,8 +30,8 @@ export function Navigation() {
   }
 
   return (
-    <nav className={`nav-sticky transition-all duration-300 ${
-      scrolled ? 'shadow-md' : 'shadow-sm'
+    <nav className={`nav-sticky transition-all duration-300 backdrop-blur-md bg-black/30 border-b border-white/10 ${
+      scrolled ? 'shadow-md bg-black/50' : 'shadow-sm'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -73,6 +71,12 @@ export function Navigation() {
             </Link>
 
             <AuthButtons />
+            <Link
+              href="/contact"
+              className="hidden sm:inline-flex bg-white/10 text-white hover:bg-white/20 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2 border border-white/20 mr-3"
+            >
+              Discuss GTM now →
+            </Link>
             <Link
               href="/chat"
               className="hidden sm:inline-flex bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2 relative group"
