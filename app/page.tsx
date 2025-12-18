@@ -46,48 +46,106 @@ export default async function Home() {
           }}
         />
 
-        {/* Hero Section */}
+        {/* Hero Section with Video Banner */}
         <section className="relative py-16 md:py-20 bg-black">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <span className="inline-block bg-white text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
-              Updated December 2024
-            </span>
-
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
-              GTM Agency Guide - Your Guide to the Top GTM Agencies
-            </h1>
-
-            <p className="text-2xl md:text-3xl text-white mb-10 leading-relaxed max-w-5xl mx-auto font-light">
-              Find the perfect <strong>GTM agency</strong> to build your go-to-market strategy, channels, and launch plans that actually convert
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-16 py-6 text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            {/* Video Banner */}
+            <div className="mb-16 rounded-3xl overflow-hidden shadow-2xl">
+              <video
+                className="w-full h-auto"
+                controls
+                poster="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop"
               >
-                Work with us →
-              </Link>
-              <Link
-                href="/planner"
-                className="inline-flex items-center justify-center px-10 py-4 text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
-              >
-                Use AI to create your GTM strategy
-              </Link>
+                <source
+                  src="https://stream.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y.m3u8"
+                  type="application/x-mpegURL"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+
+            {/* Hero Text Content */}
+            <div className="text-center">
+              <span className="inline-block bg-white text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-8">
+                Go-To-Market Strategy Platform
+              </span>
+
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
+                Scale Your Revenue with AI-Powered GTM
+              </h1>
+
+              <p className="text-2xl md:text-3xl text-white mb-10 leading-relaxed max-w-5xl mx-auto font-light">
+                Custom Clay & AI Agent workflows tailored to your industry. Generate predictable pipelines through multi-channel outreach, social selling, and AI-driven insights.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center px-16 py-6 text-2xl font-black rounded-xl bg-white text-black hover:bg-gray-200 transition-all duration-200 shadow-2xl"
+                >
+                  Work with us →
+                </Link>
+                <Link
+                  href="/planner"
+                  className="inline-flex items-center justify-center px-10 py-4 text-base font-medium rounded-xl bg-white/10 backdrop-blur border border-white/30 text-white/80 hover:bg-white/20 hover:text-white transition-all duration-200"
+                >
+                  Use AI to create your GTM strategy
+                </Link>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Hero Image Section */}
-        <section className="py-8 md:py-12 bg-zinc-950">
+        {/* Three Propositions Section */}
+        <section className="py-16 md:py-24 bg-zinc-950 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop"
-              alt="GTM agency team collaborating on go-to-market strategy"
-              title="GTM agency professionals developing strategic marketing plans"
-              className="w-full h-auto rounded-3xl shadow-2xl"
-              loading="eager"
-            />
+            <h2 className="text-6xl md:text-7xl font-black text-white mb-20 text-center">
+              Our Go-To-Market Solutions
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Scalable Outbound */}
+              <div className="bg-gradient-to-br from-blue-900/20 to-blue-800/5 border-2 border-blue-500/30 p-10 rounded-3xl hover:border-blue-500/60 transition-all duration-300">
+                <div className="text-blue-400 text-5xl font-black mb-6">→</div>
+                <h3 className="text-3xl font-bold text-white mb-6">Scalable Outbound</h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Generate a predictable pipeline with multi-channel Cold Email and LinkedIn Outreach campaigns. We build custom Clay & AI Agent workflows tailored to your industry and business.
+                </p>
+                <div className="flex gap-2 flex-wrap">
+                  <span className="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">Cold Email</span>
+                  <span className="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">Social Selling</span>
+                  <span className="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">AI Workflows</span>
+                </div>
+              </div>
+
+              {/* Inbound-Led Outbound */}
+              <div className="bg-gradient-to-br from-purple-900/20 to-purple-800/5 border-2 border-purple-500/30 p-10 rounded-3xl hover:border-purple-500/60 transition-all duration-300">
+                <div className="text-purple-400 text-5xl font-black mb-6">⬆</div>
+                <h3 className="text-3xl font-bold text-white mb-6">Inbound-Led Outbound</h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Inbound leads and MQLs are expensive and shouldn't go to waste. Our AI-driven Inbound-Led Outbound system qualifies by ICP and triggers personalized outreach that books meetings.
+                </p>
+                <div className="flex gap-2 flex-wrap">
+                  <span className="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">AI-Generated SEO</span>
+                  <span className="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Lead Qualification</span>
+                  <span className="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">Social Signals</span>
+                </div>
+              </div>
+
+              {/* AI-Powered RevOps */}
+              <div className="bg-gradient-to-br from-emerald-900/20 to-emerald-800/5 border-2 border-emerald-500/30 p-10 rounded-3xl hover:border-emerald-500/60 transition-all duration-300">
+                <div className="text-emerald-400 text-5xl font-black mb-6">⚙</div>
+                <h3 className="text-3xl font-bold text-white mb-6">AI-Powered RevOps</h3>
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  You want clean data, fast handoffs, and reliable pipeline visibility. Our RevOps approach aligns your inbound, outbound, and post-sale motions and automates your Marketing & Sales collaboration.
+                </p>
+                <div className="flex gap-2 flex-wrap">
+                  <span className="inline-block bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium">Data Automation</span>
+                  <span className="inline-block bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium">Pipeline Visibility</span>
+                  <span className="inline-block bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-sm font-medium">AI Analytics</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
