@@ -49,19 +49,18 @@ export default async function Home() {
         {/* Hero Section with Video Banner */}
         <section className="relative py-16 md:py-20 bg-black">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            {/* Video Banner */}
-            <div className="mb-16 rounded-3xl overflow-hidden shadow-2xl">
-              <video
-                className="w-full h-auto"
-                controls
-                poster="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&h=900&fit=crop"
-              >
-                <source
-                  src="https://stream.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y.m3u8"
-                  type="application/x-mpegURL"
-                />
-                Your browser does not support the video tag.
-              </video>
+            {/* Video Banner - MUX Player */}
+            <div className="mb-16 rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: '16/9' }}>
+              <iframe
+                src="https://mux.com/player/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
+                className="w-full h-full"
+                style={{
+                  borderRadius: '24px',
+                  border: 'none'
+                }}
+                allowFullScreen
+                allow="autoplay; fullscreen; picture-in-picture"
+              />
             </div>
 
             {/* Hero Text Content */}

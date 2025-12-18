@@ -77,7 +77,7 @@ export function Navigation() {
               className="hidden sm:inline-flex bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2 relative group"
             >
               🤖 Try AI Strategies
-              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">Mark Beta</span>
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">beta</span>
             </Link>
 
             {/* Mobile menu button */}
@@ -124,7 +124,7 @@ export function Navigation() {
                 className="mx-4 mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg py-3 text-center hover:from-blue-600 hover:to-blue-700 transition-all relative inline-block w-full"
               >
                 🤖 Try AI Strategies
-                <span className="absolute -top-1 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">Mark Beta</span>
+                <span className="absolute -top-1 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">beta</span>
               </Link>
             </div>
           </div>
