@@ -123,7 +123,7 @@ export default function PlannerPage() {
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           {/* Back Link */}
-          <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold mb-8 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold mb-8 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
 
@@ -140,9 +140,9 @@ export default function PlannerPage() {
           </section>
 
           {/* Recommended Approach */}
-          <section className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl shadow-lg p-8 mb-8 border border-amber-200">
+          <section className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-xl shadow-lg p-8 mb-8 border border-blue-200">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Recommended GTM Approach: <span className="text-amber-600">{generatedPlan.recommended_approach}</span>
+              Recommended GTM Approach: <span className="text-blue-600">{generatedPlan.recommended_approach}</span>
             </h2>
             <p className="text-lg text-gray-700 leading-relaxed">{generatedPlan.approach_explanation}</p>
           </section>
@@ -152,13 +152,13 @@ export default function PlannerPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Your 4-Phase GTM Roadmap</h2>
             <div className="space-y-6">
               {generatedPlan.phases.map((phase) => (
-                <div key={phase.phase_number} className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-amber-500">
+                <div key={phase.phase_number} className="bg-white rounded-xl shadow-lg p-8 border-l-4 border-blue-500">
                   <div className="flex items-start justify-between mb-4">
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900">
                         Phase {phase.phase_number}: {phase.name}
                       </h3>
-                      <p className="text-amber-600 font-semibold">{phase.duration}</p>
+                      <p className="text-blue-600 font-semibold">{phase.duration}</p>
                     </div>
                   </div>
 
@@ -192,7 +192,7 @@ export default function PlannerPage() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {Object.entries(generatedPlan.budget_allocation).map(([channel, percentage]) => (
                 <div key={channel} className="bg-gray-50 p-4 rounded-lg text-center">
-                  <div className="text-2xl font-black text-amber-600">{Math.round(percentage)}%</div>
+                  <div className="text-2xl font-black text-blue-600">{Math.round(percentage)}%</div>
                   <div className="text-sm text-gray-600 mt-2">{channel}</div>
                 </div>
               ))}
@@ -205,7 +205,7 @@ export default function PlannerPage() {
             <div className="space-y-6">
               <div>
                 <h3 className="font-bold text-gray-900 mb-2">North Star Metric:</h3>
-                <p className="text-lg text-amber-600">{generatedPlan.success_metrics.north_star}</p>
+                <p className="text-lg text-blue-600">{generatedPlan.success_metrics.north_star}</p>
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-3">Leading Indicators:</h3>
@@ -232,14 +232,14 @@ export default function PlannerPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Recommended GTM Agencies</h2>
               <p className="text-gray-600 mb-6">
                 Based on your goals and budget, here are the top GTM agencies that specialize in your situation.
-                As one of the <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold">leading GTM agencies</Link>,
+                As one of the <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold">leading GTM agencies</Link>,
                 we can also help implement this strategy directly.
               </p>
               <div className="space-y-4">
                 {generatedPlan.recommended_agencies.map((agency, i) => (
                   <div key={i} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
                     <h3 className="font-bold text-gray-900 mb-2">{agency.name}</h3>
-                    <p className="text-sm text-amber-600 font-semibold mb-2">{agency.specialization}</p>
+                    <p className="text-sm text-blue-600 font-semibold mb-2">{agency.specialization}</p>
                     <p className="text-gray-700">{agency.reason}</p>
                   </div>
                 ))}
@@ -248,7 +248,7 @@ export default function PlannerPage() {
           )}
 
           {/* Next Steps */}
-          <section className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-lg p-8 text-white mb-8">
+          <section className="bg-gradient-to-r from-blue-500 to-blue-500 rounded-xl shadow-lg p-8 text-white mb-8">
             <h2 className="text-2xl font-bold mb-6">Your Next Steps</h2>
             <ol className="space-y-3">
               {generatedPlan.next_steps.map((step, i) => (
@@ -264,7 +264,7 @@ export default function PlannerPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link
               href="/calculators/market-size"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all duration-200"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-blue-600 hover:bg-gray-100 transition-all duration-200"
             >
               📊 Refine with Calculators
             </Link>
@@ -292,7 +292,7 @@ export default function PlannerPage() {
       <div className="max-w-2xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold mb-6 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold mb-6 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
           <h1 className="text-4xl font-black text-gray-900 mb-4">Create Your Custom GTM Plan</h1>
@@ -302,7 +302,7 @@ export default function PlannerPage() {
               <div
                 key={s}
                 className={`h-2 rounded-full transition-all ${
-                  s <= step ? 'bg-amber-600 w-8' : 'bg-gray-300 w-2'
+                  s <= step ? 'bg-blue-600 w-8' : 'bg-gray-300 w-2'
                 }`}
               />
             ))}
@@ -334,7 +334,7 @@ export default function PlannerPage() {
                   type="text"
                   {...register('companyName')}
                   placeholder="Your company name"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.companyName && <p className="text-red-600 text-sm mt-1">{errors.companyName.message}</p>}
               </div>
@@ -343,7 +343,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Industry</label>
                 <select
                   {...register('industry')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select your industry</option>
                   <option value="saas">SaaS</option>
@@ -363,7 +363,7 @@ export default function PlannerPage() {
                   type="text"
                   {...register('productName')}
                   placeholder="What's your product called?"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.productName && <p className="text-red-600 text-sm mt-1">{errors.productName.message}</p>}
               </div>
@@ -375,7 +375,7 @@ export default function PlannerPage() {
                   placeholder="What does your product do? (100 characters max)"
                   maxLength={100}
                   rows={2}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.productDescription && <p className="text-red-600 text-sm mt-1">{errors.productDescription.message}</p>}
               </div>
@@ -389,7 +389,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Market Type</label>
                 <select
                   {...register('marketType')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select market type</option>
                   <option value="b2b">B2B</option>
@@ -405,7 +405,7 @@ export default function PlannerPage() {
                   type="text"
                   {...register('targetCustomer')}
                   placeholder="e.g., Marketing Directors at mid-size SaaS companies"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.targetCustomer && <p className="text-red-600 text-sm mt-1">{errors.targetCustomer.message}</p>}
               </div>
@@ -414,7 +414,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Geographic Market</label>
                 <select
                   {...register('geography')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select geography</option>
                   <option value="uk">UK</option>
@@ -436,7 +436,7 @@ export default function PlannerPage() {
                   {...register('problem')}
                   placeholder="Describe the pain point your product addresses"
                   rows={3}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.problem && <p className="text-red-600 text-sm mt-1">{errors.problem.message}</p>}
               </div>
@@ -447,7 +447,7 @@ export default function PlannerPage() {
                   {...register('solution')}
                   placeholder="What makes your approach unique?"
                   rows={3}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.solution && <p className="text-red-600 text-sm mt-1">{errors.solution.message}</p>}
               </div>
@@ -458,7 +458,7 @@ export default function PlannerPage() {
                   type="text"
                   {...register('advantage')}
                   placeholder="Your biggest differentiation"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.advantage && <p className="text-red-600 text-sm mt-1">{errors.advantage.message}</p>}
               </div>
@@ -472,7 +472,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Current Stage</label>
                 <select
                   {...register('stage')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select stage</option>
                   <option value="idea">Idea</option>
@@ -488,7 +488,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Do you have customers?</label>
                 <select
                   {...register('hasCustomers')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select</option>
                   <option value="yes">Yes</option>
@@ -501,7 +501,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Monthly Revenue</label>
                 <select
                   {...register('monthlyRevenue')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select range</option>
                   <option value="0">$0</option>
@@ -517,7 +517,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Team Size</label>
                 <select
                   {...register('teamSize')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select</option>
                   <option value="just-me">Just me</option>
@@ -537,7 +537,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Primary GTM Goal</label>
                 <select
                   {...register('primaryGoal')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select goal</option>
                   <option value="launch">Launch to Market</option>
@@ -553,7 +553,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Timeline</label>
                 <select
                   {...register('timeline')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select timeline</option>
                   <option value="1-month">1 month</option>
@@ -568,7 +568,7 @@ export default function PlannerPage() {
                 <label className="block text-lg font-semibold text-gray-900 mb-2">Budget Range</label>
                 <select
                   {...register('budget')}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select budget</option>
                   <option value="0-5k">$0 - $5k</option>
@@ -585,7 +585,7 @@ export default function PlannerPage() {
           {/* Step 6: Email */}
           {step === 6 && (
             <div className="space-y-6">
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-6">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
                 <p className="text-gray-900 font-semibold">Ready to generate your custom GTM plan?</p>
                 <p className="text-gray-600 mt-2">Enter your email to receive your personalized strategy roadmap</p>
               </div>
@@ -596,7 +596,7 @@ export default function PlannerPage() {
                   type="email"
                   {...register('email')}
                   placeholder="your@email.com"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 />
                 {errors.email && <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>}
               </div>
@@ -624,7 +624,7 @@ export default function PlannerPage() {
               <button
                 type="button"
                 onClick={() => setStep(step + 1)}
-                className="flex-1 px-6 py-3 rounded-lg bg-amber-600 text-white font-semibold hover:bg-amber-700 transition-all"
+                className="flex-1 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all"
               >
                 Next →
               </button>
@@ -632,7 +632,7 @@ export default function PlannerPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:from-amber-600 hover:to-orange-600 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-blue-500 text-white font-semibold hover:from-blue-600 hover:to-blue-600 transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
                 {loading ? (
                   <>
@@ -657,7 +657,7 @@ export default function PlannerPage() {
           </p>
           <Link
             href="/chat"
-            className="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-semibold"
+            className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold"
           >
             → Chat with our AI strategist for guidance
           </Link>

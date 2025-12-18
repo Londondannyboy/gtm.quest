@@ -346,7 +346,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                   <div className="text-xs text-gray-500 uppercase tracking-wider">Jobs</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-amber-400">7</div>
+                  <div className="text-2xl font-bold text-blue-400">7</div>
                   <div className="text-xs text-gray-500 uppercase tracking-wider">Categories</div>
                 </div>
                 <div className="text-center">
@@ -366,7 +366,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                   <span className="text-sm text-gray-300">
                     Filtered by:
                     {searchQuery && <span className="ml-2 px-2 py-0.5 bg-blue-500/20 rounded text-blue-300">"{searchQuery}"</span>}
-                    {roleFilter && <span className="ml-2 px-2 py-0.5 bg-amber-500/20 rounded text-amber-300">{roleFilter}</span>}
+                    {roleFilter && <span className="ml-2 px-2 py-0.5 bg-blue-500/20 rounded text-blue-300">{roleFilter}</span>}
                     {locationFilter && <span className="ml-2 px-2 py-0.5 bg-purple-500/20 rounded text-purple-300">{locationFilter}</span>}
                     {industryFilter && <span className="ml-2 px-2 py-0.5 bg-emerald-500/20 rounded text-emerald-300">{industryFilter}</span>}
                   </span>
@@ -597,12 +597,12 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                 {/* Sunburst */}
                 <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-800">
                   <h3 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                    <span className="text-amber-400">◉</span> Role Hierarchy
+                    <span className="text-blue-400">◉</span> Role Hierarchy
                   </h3>
                   <p className="text-sm text-gray-400 mb-4">Click to explore roles, companies, and jobs</p>
                   <Suspense fallback={
                     <div className="flex items-center justify-center h-80 bg-gray-900 rounded-lg">
-                      <div className="w-10 h-10 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin" />
+                      <div className="w-10 h-10 border-4 border-blue-500/30 border-t-amber-500 rounded-full animate-spin" />
                     </div>
                   }>
                     <JobsSunburst height="320px" />

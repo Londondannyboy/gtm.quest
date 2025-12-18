@@ -419,7 +419,7 @@ export default function VoicePage() {
 
         {/* Not logged in state */}
         {!user && (
-          <div className="bg-gradient-to-r from-purple-50 to-amber-50 rounded-2xl p-8 text-center">
+          <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-8 text-center">
             <h3 className="text-xl font-bold text-gray-900 mb-2">Sign in to see your graph</h3>
             <p className="text-gray-600 mb-4">
               Your conversations build a personalized knowledge graph of your skills and preferences.

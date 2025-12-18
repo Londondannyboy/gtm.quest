@@ -168,8 +168,8 @@ export default function GTMSuccessStoriesPage() {
                         <p className="text-xs font-bold text-purple-600 uppercase mb-2">Execution</p>
                         <p className="text-sm text-gray-700">{story.strategy.execution}</p>
                       </div>
-                      <div className="p-4 bg-orange-50 rounded-lg">
-                        <p className="text-xs font-bold text-orange-600 uppercase mb-2">Pricing</p>
+                      <div className="p-4 bg-blue-50 rounded-lg">
+                        <p className="text-xs font-bold text-blue-600 uppercase mb-2">Pricing</p>
                         <p className="text-sm text-gray-700">{story.strategy.pricing}</p>
                       </div>
                     </div>

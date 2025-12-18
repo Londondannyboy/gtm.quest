@@ -29,7 +29,7 @@ export function ResultsPanel({
   const gradientClass = useMemo(() => {
     switch (accentColor) {
       case 'amber':
-        return 'from-amber-600 to-amber-500'
+        return 'from-blue-600 to-blue-500'
       case 'green':
         return 'from-gray-800 to-gray-700'
       default:

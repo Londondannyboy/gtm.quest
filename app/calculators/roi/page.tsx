@@ -90,7 +90,7 @@ export default function ROICalculatorPage() {
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold mb-6 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold mb-6 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
           <h1 className="text-4xl font-black text-gray-900 mb-4">Launch ROI Estimator</h1>
@@ -180,7 +180,7 @@ export default function ROICalculatorPage() {
 
               <button
                 onClick={calculateROI}
-                className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
               >
                 📈 Calculate ROI & Projections
               </button>
@@ -205,7 +205,7 @@ export default function ROICalculatorPage() {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Break-Even Timeline</span>
-                      <span className={`font-bold ${results.paybackMonths < 12 ? 'text-green-600' : 'text-orange-600'}`}>
+                      <span className={`font-bold ${results.paybackMonths < 12 ? 'text-green-600' : 'text-blue-600'}`}>
                         {results.paybackMonths < 1 ? '<1 month' : `${Math.round(results.paybackMonths)} months`}
                       </span>
                     </div>
@@ -247,7 +247,7 @@ export default function ROICalculatorPage() {
                     </div>
                     <div className="col-span-2">
                       <p className="text-sm text-gray-600">LTV:CAC Ratio</p>
-                      <p className={`font-bold text-lg ${results.ltv_cac_ratio >= 3 ? 'text-green-600' : 'text-orange-600'}`}>
+                      <p className={`font-bold text-lg ${results.ltv_cac_ratio >= 3 ? 'text-green-600' : 'text-blue-600'}`}>
                         {results.ltv_cac_ratio}:1
                       </p>
                       <p className="text-xs text-gray-500 mt-1">
@@ -306,11 +306,11 @@ export default function ROICalculatorPage() {
         )}
 
         {/* CTA */}
-        <div className="mt-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-lg p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-500 to-blue-500 rounded-xl shadow-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Use This Analysis in Your GTM Plan</h2>
           <Link
             href="/planner"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-blue-600 hover:bg-gray-100 transition-all"
           >
             🚀 Create Complete GTM Plan
           </Link>

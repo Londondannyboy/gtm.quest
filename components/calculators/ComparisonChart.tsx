@@ -28,7 +28,7 @@ export function ComparisonChart({
 
   const colorClasses = {
     purple: 'bg-gray-800',
-    amber: 'bg-amber-500',
+    amber: 'bg-blue-500',
     gray: 'bg-gray-400',
     green: 'bg-gray-600',
     red: 'bg-red-500',

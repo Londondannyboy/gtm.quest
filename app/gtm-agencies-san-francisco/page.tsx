@@ -104,7 +104,7 @@ export default async function GTMAgenciesSanFranciscoPage() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-amber-500 to-orange-500 py-20">
+      <section className="bg-gradient-to-r from-blue-500 to-blue-500 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">Build Your Bay Area GTM Strategy</h2>
           <p className="text-xl text-white/90 mb-10">Create a go-to-market strategy for Silicon Valley and beyond.</p>

@@ -70,7 +70,7 @@ export default function MarketplaceGTMPage() {
                 desc: 'Two-sided pricing is tricky. Too much on one side, they leave. Too little, you don\'t profit'
               },
             ].map((item, i) => (
-              <div key={i} className="p-4 bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 rounded-lg">
+              <div key={i} className="p-4 bg-gradient-to-r from-red-50 to-blue-50 border-l-4 border-red-500 rounded-lg">
                 <h4 className="font-bold text-gray-900 mb-1">{item.challenge}</h4>
                 <p className="text-gray-700 text-sm">{item.desc}</p>
               </div>

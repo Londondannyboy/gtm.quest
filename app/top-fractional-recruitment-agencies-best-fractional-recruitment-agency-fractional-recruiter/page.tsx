@@ -43,13 +43,13 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                   <span className="mr-2">←</span> Back to Home
                 </Link>
 
-                <span className="inline-block bg-amber-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">
+                <span className="inline-block bg-blue-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">
                   Launching January 2025
                 </span>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-[0.95] tracking-tight">
                   Fractional Recruitment Agency
-                  <span className="block text-amber-400"> - Done Differently</span>
+                  <span className="block text-blue-400"> - Done Differently</span>
                 </h1>
 
                 <p className="text-xl text-white/80 leading-relaxed max-w-xl mb-8">
@@ -74,8 +74,8 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                 </div>
 
                 {/* Beta Badge */}
-                <div className="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full border border-amber-500/30">
-                  <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+                <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full border border-blue-500/30">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
                   <span className="text-sm font-medium">Beta - Building our network now</span>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                       <input
                         type="text"
                         name="name"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="John Smith"
                       />
                     </div>
@@ -101,7 +101,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                       <input
                         type="text"
                         name="company"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Acme Ltd"
                       />
                     </div>
@@ -112,7 +112,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                     <input
                       type="email"
                       name="email"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -121,7 +121,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                     <label className="block text-sm font-semibold text-gray-700 mb-1">Role Needed</label>
                     <select
                       name="role"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select a role...</option>
                       <option value="cfo">Fractional CFO</option>
@@ -138,14 +138,14 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
                     <textarea
                       name="message"
                       rows={3}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="e.g., Series A startup needs fractional CFO 2 days/week for fundraising support..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-amber-500 text-black py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors"
+                    className="w-full bg-blue-500 text-black py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors"
                   >
                     Register Interest
                   </button>
@@ -194,7 +194,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
               { step: '4', title: 'Engage', description: 'Agree terms with your chosen executive. Pay our fee only on success.' }
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-black text-amber-400 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4">
+                <div className="w-16 h-16 bg-black text-blue-400 rounded-full flex items-center justify-center text-2xl font-black mx-auto mb-4">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
@@ -217,17 +217,17 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 rounded-xl p-8 text-center border-2 border-transparent hover:border-amber-400 transition-colors">
+            <div className="bg-gray-50 rounded-xl p-8 text-center border-2 border-transparent hover:border-blue-400 transition-colors">
               <div className="text-4xl font-black text-gray-900 mb-2">10%</div>
               <div className="text-lg font-bold text-gray-900 mb-2">Director Roles</div>
               <div className="text-sm text-gray-600">Finance Director, HR Director, Marketing Director</div>
             </div>
             <div className="bg-black rounded-xl p-8 text-center text-white transform md:scale-105">
-              <div className="text-4xl font-black text-amber-400 mb-2">12.5%</div>
+              <div className="text-4xl font-black text-blue-400 mb-2">12.5%</div>
               <div className="text-lg font-bold mb-2">C-Suite Roles</div>
               <div className="text-sm text-gray-400">CFO, CTO, CMO, COO</div>
             </div>
-            <div className="bg-gray-50 rounded-xl p-8 text-center border-2 border-transparent hover:border-amber-400 transition-colors">
+            <div className="bg-gray-50 rounded-xl p-8 text-center border-2 border-transparent hover:border-blue-400 transition-colors">
               <div className="text-4xl font-black text-gray-900 mb-2">15%</div>
               <div className="text-lg font-bold text-gray-900 mb-2">Executive Search</div>
               <div className="text-sm text-gray-600">CEO, specialist or hard-to-fill roles</div>
@@ -244,7 +244,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="inline-block bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">Beta Tool</span>
+            <span className="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">Beta Tool</span>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900">Savings Calculator</h2>
             <p className="text-gray-600 mt-2">Estimate potential savings with fractional hiring. Results are illustrative only.</p>
           </div>
@@ -315,9 +315,9 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4 block">The Guide</span>
             <h2 className="text-4xl font-black text-gray-900 mb-6 leading-tight">
               What Makes the Best<br />
-              <span className="text-amber-600">Fractional Recruitment Agency</span>
+              <span className="text-blue-600">Fractional Recruitment Agency</span>
             </h2>
-            <div className="w-24 h-1 bg-amber-500"></div>
+            <div className="w-24 h-1 bg-blue-500"></div>
           </div>
 
           {/* SEO Image */}
@@ -342,7 +342,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
               The <strong>best fractional recruitment agencies</strong> in the UK maintain networks of verified fractional CFOs, CTOs, CMOs, COOs, and other C-suite professionals. They understand that fractional hiring requires different assessment criteria: candidates must excel at rapid onboarding, managing multiple clients, and delivering impact in limited time.
             </p>
 
-            <div className="bg-gray-50 p-8 my-10 border-l-4 border-amber-500">
+            <div className="bg-gray-50 p-8 my-10 border-l-4 border-blue-500">
               <p className="text-xl font-semibold text-gray-900 mb-0">
                 "Working with a specialist fractional recruitment agency typically costs 10-20% of engagement value—often less than traditional executive search fees of 25-33%."
               </p>
@@ -395,13 +395,13 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
       {/* Final CTA */}
       <section className="py-20 bg-black text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <span className="inline-block bg-amber-500/20 text-amber-300 px-4 py-2 rounded-full border border-amber-500/30 mb-6">
-            <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse inline-block mr-2" />
+          <span className="inline-block bg-blue-500/20 text-blue-300 px-4 py-2 rounded-full border border-blue-500/30 mb-6">
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse inline-block mr-2" />
             Launching January 2025
           </span>
           <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
             Join Us As<br />
-            <span className="text-amber-400">We Launch</span>
+            <span className="text-blue-400">We Launch</span>
           </h2>
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
             We're building a better fractional recruitment agency. Register your interest and be first to know when we launch.
@@ -409,7 +409,7 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="#contact-form"
-              className="px-10 py-5 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors"
+              className="px-10 py-5 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors"
             >
               Register Interest
             </a>
@@ -429,11 +429,11 @@ export default async function TopFractionalRecruitmentAgenciesPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <span className="text-sm font-bold uppercase tracking-wider text-gray-400">Related</span>
             <div className="flex flex-wrap gap-4">
-              <Link href="/fractional-cfo-jobs-uk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">Fractional CFO Jobs</Link>
-              <Link href="/fractional-cto-jobs-uk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">Fractional CTO Jobs</Link>
-              <Link href="/fractional-cmo-jobs-uk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">Fractional CMO Jobs</Link>
-              <Link href="/fractional-coo-jobs-uk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">Fractional COO Jobs</Link>
-              <Link href="/fractionaljobsuk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">All Jobs</Link>
+              <Link href="/fractional-cfo-jobs-uk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Fractional CFO Jobs</Link>
+              <Link href="/fractional-cto-jobs-uk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Fractional CTO Jobs</Link>
+              <Link href="/fractional-cmo-jobs-uk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Fractional CMO Jobs</Link>
+              <Link href="/fractional-coo-jobs-uk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Fractional COO Jobs</Link>
+              <Link href="/fractionaljobsuk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">All Jobs</Link>
             </div>
           </div>
         </div>
@@ -447,7 +447,7 @@ function AgencyCard({ agency }: { agency: Agency }) {
   const website = agency.payload?.website
 
   return (
-    <div className="bg-white p-6 border border-gray-200 hover:border-amber-400 transition-colors">
+    <div className="bg-white p-6 border border-gray-200 hover:border-blue-400 transition-colors">
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-xl font-bold text-gray-900">{agency.name}</h3>
         <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">Fee: {fee}</span>
@@ -465,7 +465,7 @@ function AgencyCard({ agency }: { agency: Agency }) {
       <div className="flex justify-between items-center text-sm text-gray-600">
         <span>{agency.headquarters}</span>
         {website && (
-          <a href={website} target="_blank" rel="noopener noreferrer" className="text-amber-600 font-medium hover:underline">
+          <a href={website} target="_blank" rel="noopener noreferrer" className="text-blue-600 font-medium hover:underline">
             Visit Website →
           </a>
         )}

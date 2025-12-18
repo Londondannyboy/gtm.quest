@@ -122,7 +122,7 @@ export default function BudgetCalculatorPage() {
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold mb-6 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold mb-6 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
           <h1 className="text-4xl font-black text-gray-900 mb-4">GTM Budget Allocator</h1>
@@ -155,7 +155,7 @@ export default function BudgetCalculatorPage() {
                 <select
                   value={stage}
                   onChange={(e) => setStage(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="pre-launch">Pre-Launch</option>
                   <option value="launch">Launch</option>
@@ -168,7 +168,7 @@ export default function BudgetCalculatorPage() {
                 <select
                   value={approach}
                   onChange={(e) => setApproach(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="product-led">Product-Led Growth</option>
                   <option value="sales-led">Sales-Led</option>
@@ -181,7 +181,7 @@ export default function BudgetCalculatorPage() {
                 <select
                   value={timeline}
                   onChange={(e) => setTimeline(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="3">3 months</option>
                   <option value="6">6 months</option>
@@ -191,7 +191,7 @@ export default function BudgetCalculatorPage() {
 
               <button
                 onClick={calculateBudgetAllocation}
-                className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
               >
                 💰 Calculate Allocation
               </button>
@@ -212,7 +212,7 @@ export default function BudgetCalculatorPage() {
                     </div>
                     <div className="flex justify-between items-center">
                       <span className="text-gray-700">Monthly Average</span>
-                      <span className="font-bold text-amber-600">{formatCurrency(results.monthlyBudget)}</span>
+                      <span className="font-bold text-blue-600">{formatCurrency(results.monthlyBudget)}</span>
                     </div>
                   </div>
                 </div>
@@ -225,11 +225,11 @@ export default function BudgetCalculatorPage() {
                       <div key={i}>
                         <div className="flex justify-between items-center mb-2">
                           <span className="text-gray-700 font-semibold">{item.channel}</span>
-                          <span className="font-bold text-amber-600">{item.percentage}%</span>
+                          <span className="font-bold text-blue-600">{item.percentage}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
-                            className="bg-gradient-to-r from-amber-500 to-orange-500 h-2 rounded-full"
+                            className="bg-gradient-to-r from-blue-500 to-blue-500 h-2 rounded-full"
                             style={{ width: `${item.percentage}%` }}
                           />
                         </div>
@@ -262,26 +262,26 @@ export default function BudgetCalculatorPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Budget Tips</h2>
           <ul className="space-y-4 text-gray-700">
             <li className="flex gap-4">
-              <span className="text-amber-600 font-bold">•</span>
+              <span className="text-blue-600 font-bold">•</span>
               <span><strong>Product-Led</strong> focuses on content and paid ads to drive organic adoption</span>
             </li>
             <li className="flex gap-4">
-              <span className="text-amber-600 font-bold">•</span>
+              <span className="text-blue-600 font-bold">•</span>
               <span><strong>Sales-Led</strong> invests heavily in sales team and targeted outreach</span>
             </li>
             <li className="flex gap-4">
-              <span className="text-amber-600 font-bold">•</span>
+              <span className="text-blue-600 font-bold">•</span>
               <span><strong>Hybrid</strong> balances both channels for maximum flexibility</span>
             </li>
           </ul>
         </div>
 
         {/* CTA */}
-        <div className="mt-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-lg p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-500 to-blue-500 rounded-xl shadow-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Use This Budget in Your GTM Plan</h2>
           <Link
             href="/planner"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-blue-600 hover:bg-gray-100 transition-all"
           >
             🚀 Create Complete GTM Plan
           </Link>

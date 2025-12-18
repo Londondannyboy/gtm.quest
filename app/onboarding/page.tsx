@@ -205,7 +205,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-amber-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-6">
@@ -386,8 +386,8 @@ export default function OnboardingPage() {
                         onClick={() => setFormData(prev => ({ ...prev, budget: option }))}
                         className={`p-2 rounded-lg border-2 text-sm font-medium transition-all ${
                           formData.budget === option
-                            ? 'border-amber-500 bg-amber-50 text-amber-700'
-                            : 'border-gray-200 hover:border-amber-300'
+                            ? 'border-blue-500 bg-blue-50 text-blue-700'
+                            : 'border-gray-200 hover:border-blue-300'
                         }`}
                       >
                         {option}

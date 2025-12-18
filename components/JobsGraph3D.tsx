@@ -386,7 +386,7 @@ export function JobsGraph3D({
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Nodes:</span>
-                  <span className="text-amber-400">{graphData?.nodes.length || 0}</span>
+                  <span className="text-blue-400">{graphData?.nodes.length || 0}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-500">Links:</span>
@@ -399,7 +399,7 @@ export function JobsGraph3D({
           {/* Bottom center legend */}
           <div className={`absolute ${isHero ? 'bottom-6' : 'bottom-3'} left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-xs z-10 flex items-center gap-4`}>
             <div className="flex items-center gap-1.5">
-              <div className="w-4 h-4 rounded-full bg-amber-500" />
+              <div className="w-4 h-4 rounded-full bg-blue-500" />
               <span className="text-white font-medium">Companies</span>
             </div>
             <div className="flex items-center gap-1.5">

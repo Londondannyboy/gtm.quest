@@ -14,10 +14,10 @@ export function Footer() {
               AI-powered GTM agency helping UK companies launch and scale their products faster.
             </p>
             <div className="flex gap-4 mt-6">
-              <a href="https://twitter.com" className="text-gray-400 hover:text-amber-500 transition">
+              <a href="https://twitter.com" className="text-gray-400 hover:text-blue-500 transition">
                 Twitter
               </a>
-              <a href="https://linkedin.com" className="text-gray-400 hover:text-amber-500 transition">
+              <a href="https://linkedin.com" className="text-gray-400 hover:text-blue-500 transition">
                 LinkedIn
               </a>
             </div>
@@ -28,27 +28,27 @@ export function Footer() {
             <h3 className="text-white font-bold mb-4">GTM Tools</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/planner" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/planner" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Strategy Generator
                 </Link>
               </li>
               <li>
-                <Link href="/calculators/market-size" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/calculators/market-size" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Market Size Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/calculators/budget" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/calculators/budget" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Budget Allocator
                 </Link>
               </li>
               <li>
-                <Link href="/calculators/pricing" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/calculators/pricing" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Pricing Calculator
                 </Link>
               </li>
               <li>
-                <Link href="/calculators/roi" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/calculators/roi" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   ROI Estimator
                 </Link>
               </li>
@@ -60,22 +60,22 @@ export function Footer() {
             <h3 className="text-white font-bold mb-4">GTM Services</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/chat" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/chat" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   AI Strategist
                 </Link>
               </li>
               <li>
-                <Link href="/best-gtm-agencies" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/best-gtm-agencies" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Agency Directory
                 </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <a href="#" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   GTM Consulting
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <a href="#" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Launch Planning
                 </a>
               </li>
@@ -87,27 +87,27 @@ export function Footer() {
             <h3 className="text-white font-bold mb-4">Guides</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/articles" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/articles" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   All Articles
                 </Link>
               </li>
               <li>
-                <Link href="/gtm-strategy" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/gtm-strategy" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   GTM Strategy Guide
                 </Link>
               </li>
               <li>
-                <Link href="/product-launch" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/product-launch" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Product Launch Guide
                 </Link>
               </li>
               <li>
-                <Link href="/saas-gtm-plan" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/saas-gtm-plan" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   SaaS GTM Playbook
                 </Link>
               </li>
               <li>
-                <Link href="/gtm-resources" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/gtm-resources" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   All Resources
                 </Link>
               </li>
@@ -119,22 +119,22 @@ export function Footer() {
             <h3 className="text-white font-bold mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/about" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/contact" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/privacy" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="text-gray-400 hover:text-amber-500 transition text-sm">
+                <Link href="/terms" className="text-gray-400 hover:text-blue-500 transition text-sm">
                   Terms of Service
                 </Link>
               </li>
@@ -146,16 +146,16 @@ export function Footer() {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm">
-              © 2025 GTM Quest. One of the <span className="text-amber-500 font-semibold">leading GTM agencies in the UK</span>.
+              © 2025 GTM Quest. One of the <span className="text-blue-500 font-semibold">leading GTM agencies in the UK</span>.
             </p>
             <div className="flex gap-6 mt-4 md:mt-0 text-sm">
-              <a href="#" className="text-gray-500 hover:text-amber-500 transition">
+              <a href="#" className="text-gray-500 hover:text-blue-500 transition">
                 Status
               </a>
-              <a href="#" className="text-gray-500 hover:text-amber-500 transition">
+              <a href="#" className="text-gray-500 hover:text-blue-500 transition">
                 Partners
               </a>
-              <a href="#" className="text-gray-500 hover:text-amber-500 transition">
+              <a href="#" className="text-gray-500 hover:text-blue-500 transition">
                 Support
               </a>
             </div>

@@ -578,7 +578,7 @@ function VoiceInterface({ token, userId, profile, memoryContext, graphData, onPr
 
       {/* Jobs Panel - appears when Repo finds jobs */}
       {showJobsPanel && displayedJobs.length > 0 && (
-        <div className="border-t border-gray-200 bg-gradient-to-r from-purple-50 to-amber-50 p-6">
+        <div className="border-t border-gray-200 bg-gradient-to-r from-purple-50 to-blue-50 p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-gray-900">
               Jobs Repo Found For You

@@ -183,7 +183,7 @@ export function ExtractionPanel({ userId, liveExtraction, isExtracting, onRefres
                       <span className="text-xs text-gray-300">•</span>
                       <span className={`text-xs ${
                         item.confidence >= 0.8 ? 'text-green-600' :
-                        item.confidence >= 0.6 ? 'text-yellow-600' : 'text-orange-600'
+                        item.confidence >= 0.6 ? 'text-yellow-600' : 'text-blue-600'
                       }`}>
                         {Math.round(item.confidence * 100)}% confident
                       </span>

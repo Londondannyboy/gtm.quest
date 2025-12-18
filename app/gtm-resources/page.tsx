@@ -129,7 +129,7 @@ export default async function ResourcesPage() {
       <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="inline-block bg-amber-500/20 text-amber-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+            <span className="inline-block bg-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
               Free GTM Resources
             </span>
             <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
@@ -141,7 +141,7 @@ export default async function ResourcesPage() {
             </p>
             <Link
               href="/chat"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 transition-all duration-200 shadow-lg"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-gradient-to-r from-blue-500 to-blue-500 text-white hover:from-blue-600 hover:to-blue-600 transition-all duration-200 shadow-lg"
             >
               🤖 Get Custom GTM Plan →
             </Link>
@@ -165,7 +165,7 @@ export default async function ResourcesPage() {
             {resourceCategories.map((category, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-xl border border-gray-200 hover:border-amber-300 hover:shadow-lg transition-all duration-200 p-6"
+                className="bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-200 p-6"
               >
                 <div className="text-4xl mb-4">{category.icon}</div>
                 <div className="flex items-start justify-between mb-3">
@@ -182,14 +182,14 @@ export default async function ResourcesPage() {
                 <ul className="space-y-2 mb-6">
                   {category.items.map((item, i) => (
                     <li key={i} className="text-sm text-gray-700 flex items-start gap-2">
-                      <span className="text-amber-500 mt-0.5">•</span>
+                      <span className="text-blue-500 mt-0.5">•</span>
                       {item}
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/articles"
-                  className="block w-full px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-center rounded-lg text-sm font-semibold transition-all"
+                  className="block w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white text-center rounded-lg text-sm font-semibold transition-all"
                 >
                   Browse Articles →
                 </Link>
@@ -229,10 +229,10 @@ export default async function ResourcesPage() {
                     </div>
                   )}
                   <div className="p-6">
-                    <span className="inline-block text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full mb-3 font-semibold">
+                    <span className="inline-block text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full mb-3 font-semibold">
                       {article.category}
                     </span>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-amber-600 transition-colors">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-sm text-gray-600 line-clamp-3 mb-4">
@@ -246,7 +246,7 @@ export default async function ResourcesPage() {
                           year: 'numeric'
                         })}
                       </span>
-                      <span className="text-amber-600 font-semibold flex items-center gap-1">
+                      <span className="text-blue-600 font-semibold flex items-center gap-1">
                         Read more →
                       </span>
                     </div>
@@ -273,9 +273,9 @@ export default async function ResourcesPage() {
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button className="px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-semibold hover:from-amber-600 hover:to-orange-600 transition-all">
+            <button className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-500 text-white rounded-lg font-semibold hover:from-blue-600 hover:to-blue-600 transition-all">
               Subscribe
             </button>
           </div>

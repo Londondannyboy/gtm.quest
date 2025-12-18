@@ -462,7 +462,7 @@ export default function FractionalCMOCostPage() {
                 </ul>
               </div>
 
-              <div className="bg-amber-50 border-2 border-amber-200 p-6 rounded-lg">
+              <div className="bg-blue-50 border-2 border-blue-200 p-6 rounded-lg">
                 <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
                   <span className="text-2xl">💡</span> Budget For These
                 </h3>

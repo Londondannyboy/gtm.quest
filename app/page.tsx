@@ -107,7 +107,7 @@ export default async function Home() {
               {/* Scalable Outbound */}
               <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
                 <div className="text-blue-400 text-5xl font-black mb-6">→</div>
-                <h3 className="text-3xl font-bold text-white mb-6">Scalable Outbound</h3>
+                <h3 className="text-3xl font-black text-blue-500 mb-6">Scalable Outbound</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   Generate a predictable pipeline with multi-channel Cold Email and LinkedIn Outreach campaigns. We build custom Clay & AI Agent workflows tailored to your industry and business.
                 </p>
@@ -121,7 +121,7 @@ export default async function Home() {
               {/* Inbound-Led Outbound */}
               <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
                 <div className="text-blue-400 text-5xl font-black mb-6">⬆</div>
-                <h3 className="text-3xl font-bold text-white mb-6">Inbound-Led Outbound</h3>
+                <h3 className="text-3xl font-black text-blue-500 mb-6">Inbound-Led Outbound</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   Inbound leads and MQLs are expensive and shouldn't go to waste. Our AI-driven Inbound-Led Outbound system qualifies by ICP and triggers personalized outreach that books meetings.
                 </p>
@@ -135,7 +135,7 @@ export default async function Home() {
               {/* AI-Powered RevOps */}
               <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
                 <div className="text-blue-400 text-5xl font-black mb-6">⚙</div>
-                <h3 className="text-3xl font-bold text-white mb-6">AI-Powered RevOps</h3>
+                <h3 className="text-3xl font-black text-blue-500 mb-6">AI-Powered RevOps</h3>
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
                   You want clean data, fast handoffs, and reliable pipeline visibility. Our RevOps approach aligns your inbound, outbound, and post-sale motions and automates your Marketing & Sales collaboration.
                 </p>

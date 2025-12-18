@@ -247,7 +247,7 @@ export default function RepoBuilder({ userId, voiceTranscript, onPreferenceSaved
   return (
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
       {/* Header */}
-      <div className="px-4 py-3 bg-gradient-to-r from-purple-50 to-amber-50 border-b border-gray-100">
+      <div className="px-4 py-3 bg-gradient-to-r from-purple-50 to-blue-50 border-b border-gray-100">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
           <h3 className="text-sm font-semibold text-gray-800">Building your Repo</h3>
@@ -279,7 +279,7 @@ export default function RepoBuilder({ userId, voiceTranscript, onPreferenceSaved
                 item.status === 'confirmed'
                   ? 'bg-green-50 border border-green-200'
                   : item.status === 'hard'
-                  ? 'bg-amber-50 border border-amber-200'
+                  ? 'bg-blue-50 border border-blue-200'
                   : 'bg-gray-50 border border-gray-200'
               }`}
               style={{ opacity: item.opacity }}

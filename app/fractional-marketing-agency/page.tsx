@@ -22,11 +22,11 @@ export default function FractionalMarketingAgencyPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <Link href="/" className="inline-flex items-center text-white/60 hover:text-white mb-8 transition-colors text-sm"><span className="mr-2">←</span> Back to Home</Link>
             <div className="max-w-4xl">
-              <span className="inline-block bg-amber-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Marketing Agency</span>
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Fractional<br /><span className="text-amber-400">Marketing Agency</span></h1>
+              <span className="inline-block bg-blue-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Marketing Agency</span>
+              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Fractional<br /><span className="text-blue-400">Marketing Agency</span></h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-2xl mb-8">Access marketing agency expertise on a fractional basis. Get strategic marketing leadership and execution without the overhead of traditional agency retainers.</p>
               <div className="flex flex-wrap gap-4">
-                <Link href="#contact" className="px-8 py-4 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors">Get Started</Link>
+                <Link href="#contact" className="px-8 py-4 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Get Started</Link>
                 <Link href="/fractional-cmo-services" className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Fractional CMO</Link>
               </div>
             </div>
@@ -54,7 +54,7 @@ export default function FractionalMarketingAgencyPage() {
               { title: 'Demand Generation', description: 'Lead generation, nurturing programmes, and conversion optimisation.' },
               { title: 'Marketing Operations', description: 'MarTech implementation, automation, and analytics.' },
             ].map((item, i) => (
-              <div key={i} className="p-6 bg-white border-l-4 border-amber-500">
+              <div key={i} className="p-6 bg-white border-l-4 border-blue-500">
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm">{item.description}</p>
               </div>
@@ -71,7 +71,7 @@ export default function FractionalMarketingAgencyPage() {
               <thead>
                 <tr className="bg-gray-100">
                   <th className="p-4 text-left font-bold">Aspect</th>
-                  <th className="p-4 text-left font-bold text-amber-700">Fractional Agency</th>
+                  <th className="p-4 text-left font-bold text-blue-700">Fractional Agency</th>
                   <th className="p-4 text-left font-bold">Traditional Agency</th>
                 </tr>
               </thead>
@@ -92,7 +92,7 @@ export default function FractionalMarketingAgencyPage() {
           <h2 className="text-4xl font-black mb-6">Get Fractional Marketing Support</h2>
           <p className="text-xl text-gray-400 mb-10">Tell us about your marketing needs and we'll match you with the right fractional marketing expertise.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/handler/sign-up" className="px-10 py-5 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors">Get Started</Link>
+            <Link href="/handler/sign-up" className="px-10 py-5 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Get Started</Link>
             <Link href="/fractional-marketing" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Marketing Leadership</Link>
           </div>
         </div>

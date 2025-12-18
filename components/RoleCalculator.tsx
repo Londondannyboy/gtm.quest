@@ -126,7 +126,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
           onClick={() => setMode('candidate')}
           className={`flex-1 px-6 py-4 text-sm font-bold uppercase tracking-wider transition-colors ${
             mode === 'candidate'
-              ? 'bg-amber-500 text-black'
+              ? 'bg-blue-500 text-black'
               : 'bg-gray-900 text-gray-400 hover:text-white'
           }`}
         >
@@ -136,7 +136,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
           onClick={() => setMode('employer')}
           className={`flex-1 px-6 py-4 text-sm font-bold uppercase tracking-wider transition-colors ${
             mode === 'employer'
-              ? 'bg-amber-500 text-black'
+              ? 'bg-blue-500 text-black'
               : 'bg-gray-900 text-gray-400 hover:text-white'
           }`}
         >
@@ -159,7 +159,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
                 <label className="block text-sm font-medium text-gray-400 mb-2">
                   Your Day Rate
                 </label>
-                <div className="text-3xl font-black text-amber-400 mb-3">
+                <div className="text-3xl font-black text-blue-400 mb-3">
                   {formatCurrency(dayRate)}
                 </div>
                 <input
@@ -173,7 +173,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
                 />
                 <div className="flex justify-between text-xs text-gray-500 mt-1">
                   <span>£{roleData.minDayRate}</span>
-                  <span className="text-amber-500">Avg: £{roleData.avgDayRate}</span>
+                  <span className="text-blue-500">Avg: £{roleData.avgDayRate}</span>
                   <span>£{roleData.maxDayRate}</span>
                 </div>
               </div>
@@ -241,7 +241,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
               </div>
               <div className="text-center">
                 <div className="text-sm text-gray-500 mb-1 uppercase tracking-wider">Annual</div>
-                <div className="text-3xl font-black text-amber-400">
+                <div className="text-3xl font-black text-blue-400">
                   {formatCurrency(annualEarnings)}
                 </div>
               </div>
@@ -281,7 +281,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
                   />
                   <div className="flex justify-between text-xs text-gray-500 mt-1">
                     <span>£80k</span>
-                    <span className="text-amber-500">Avg: £{(roleData.avgSalary / 1000).toFixed(0)}k</span>
+                    <span className="text-blue-500">Avg: £{(roleData.avgSalary / 1000).toFixed(0)}k</span>
                     <span>£250k</span>
                   </div>
                 </div>
@@ -341,7 +341,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
                 </div>
 
                 {/* Savings */}
-                <div className="bg-amber-500 text-black p-5 text-center mt-4">
+                <div className="bg-blue-500 text-black p-5 text-center mt-4">
                   <div className="text-sm font-bold uppercase tracking-wider mb-1">Your Annual Savings</div>
                   <div className="text-4xl font-black mb-1">
                     {formatCurrency(savings)}
@@ -362,7 +362,7 @@ export function RoleCalculator({ role, className = '' }: RoleCalculatorProps) {
         {/* Beta Disclaimer */}
         <div className="mt-6 p-4 bg-gray-900 border border-gray-800 rounded">
           <p className="text-xs text-gray-500 text-center">
-            <span className="inline-block bg-amber-500 text-black px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mr-2">Beta</span>
+            <span className="inline-block bg-blue-500 text-black px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mr-2">Beta</span>
             This calculator provides rough estimates for illustration only. Actual rates and salaries vary based on location, experience, industry, and market conditions.
             Consult with a qualified accountant for accurate financial planning.
           </p>

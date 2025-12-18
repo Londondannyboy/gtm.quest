@@ -35,7 +35,7 @@ const calculators = [
     subtitle: 'Pricing Planning',
     description: 'Define your pricing strategy with confidence. Calculate optimal price points, create tiered pricing, and understand positioning vs competitors.',
     icon: '🏷️',
-    color: 'from-orange-500 to-red-600',
+    color: 'from-blue-500 to-red-600',
     features: ['Cost analysis', 'Competitor benchmarking', 'Tier optimization', 'Revenue modeling']
   },
   {
@@ -82,11 +82,11 @@ export default function CalculatorsHub() {
       {/* Hero */}
       <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-black py-20 md:py-32">
         <div className="max-w-5xl mx-auto px-4 text-center">
-          <Link href="/" className="text-amber-400 hover:text-amber-300 font-semibold mb-6 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-400 hover:text-blue-300 font-semibold mb-6 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
           <div className="mb-6">
-            <span className="inline-block bg-gradient-to-r from-amber-500 to-orange-500 text-white px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
+            <span className="inline-block bg-gradient-to-r from-blue-500 to-blue-500 text-white px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider">
               ⚡ Free Tools
             </span>
           </div>
@@ -98,7 +98,7 @@ export default function CalculatorsHub() {
             get instant insights to make confident GTM decisions. No signup required, completely free.
           </p>
           <p className="text-gray-400 mt-6 max-w-2xl mx-auto">
-            As one of the <span className="text-amber-400 font-semibold">leading GTM agencies in the UK</span>,
+            As one of the <span className="text-blue-400 font-semibold">leading GTM agencies in the UK</span>,
             we've built these tools to help companies like yours succeed.
           </p>
         </div>
@@ -121,10 +121,10 @@ export default function CalculatorsHub() {
                       {calc.icon}
                     </div>
                     <div>
-                      <span className="text-xs font-semibold text-amber-600 uppercase tracking-wide">
+                      <span className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
                         {calc.subtitle}
                       </span>
-                      <h2 className="text-xl font-bold text-gray-900 group-hover:text-amber-600 transition-colors">
+                      <h2 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                         {calc.title}
                       </h2>
                     </div>
@@ -148,7 +148,7 @@ export default function CalculatorsHub() {
                   </div>
 
                   {/* CTA */}
-                  <span className="inline-flex items-center gap-2 text-amber-600 font-semibold group-hover:gap-3 transition-all">
+                  <span className="inline-flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-3 transition-all">
                     Open Calculator
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -181,25 +181,25 @@ export default function CalculatorsHub() {
               <h3 className="text-xl font-bold text-gray-900 mb-3">For Startups & Product Teams</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Planning your first product launch</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Understanding your addressable market size</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Allocating limited budget across channels</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Projecting revenue and customer acquisition</span>
                 </li>
               </ul>
               <Link
                 href="/planner"
-                className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
               >
                 Create Full GTM Plan →
               </Link>
@@ -211,19 +211,19 @@ export default function CalculatorsHub() {
               <h3 className="text-xl font-bold text-gray-900 mb-3">For Growth & Marketing Teams</h3>
               <ul className="space-y-3 text-gray-600">
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Optimizing marketing and sales spend</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Setting pricing strategy and tiers</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Projecting ROI for new initiatives</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-500 mt-1">✓</span>
+                  <span className="text-blue-500 mt-1">✓</span>
                   <span>Planning expansion into new markets</span>
                 </li>
               </ul>
@@ -239,7 +239,7 @@ export default function CalculatorsHub() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-amber-500 to-orange-500">
+      <section className="py-16 md:py-24 bg-gradient-to-r from-blue-500 to-blue-500">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Ready to Create Your Custom GTM Strategy?
@@ -251,7 +251,7 @@ export default function CalculatorsHub() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/planner"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-amber-600 font-bold rounded-lg hover:bg-gray-100 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-blue-600 font-bold rounded-lg hover:bg-gray-100 transition-all"
             >
               🚀 Generate GTM Plan
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

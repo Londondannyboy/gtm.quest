@@ -95,7 +95,7 @@ export default function MarketSizeCalculatorPage() {
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold mb-6 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold mb-6 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
           <h1 className="text-4xl font-black text-gray-900 mb-4">TAM/SAM/SOM Calculator</h1>
@@ -113,7 +113,7 @@ export default function MarketSizeCalculatorPage() {
                 <select
                   value={industry}
                   onChange={(e) => setIndustry(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select your industry</option>
                   <option value="saas">SaaS</option>
@@ -129,7 +129,7 @@ export default function MarketSizeCalculatorPage() {
                 <select
                   value={geography}
                   onChange={(e) => setGeography(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select geography</option>
                   <option value="global">Global</option>
@@ -144,7 +144,7 @@ export default function MarketSizeCalculatorPage() {
                 <select
                   value={targetSegment}
                   onChange={(e) => setTargetSegment(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                 >
                   <option value="">Select segment</option>
                   <option value="enterprise-1000+">Enterprise (1000+ employees)</option>
@@ -205,7 +205,7 @@ export default function MarketSizeCalculatorPage() {
 
               <button
                 onClick={calculateMarketSize}
-                className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
               >
                 📊 Calculate Market Size
               </button>
@@ -225,10 +225,10 @@ export default function MarketSizeCalculatorPage() {
                 </div>
 
                 {/* SAM Card */}
-                <div className="bg-gradient-to-br from-amber-50 to-orange-100 rounded-xl p-8 border border-amber-200">
-                  <p className="text-amber-600 text-sm font-semibold uppercase tracking-wide mb-2">SAM</p>
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 border border-blue-200">
+                  <p className="text-blue-600 text-sm font-semibold uppercase tracking-wide mb-2">SAM</p>
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Serviceable Addressable Market</h3>
-                  <p className="text-4xl font-black text-amber-600 mb-4">{formatCurrency(results.sam)}</p>
+                  <p className="text-4xl font-black text-blue-600 mb-4">{formatCurrency(results.sam)}</p>
                   <p className="text-sm text-gray-700">The portion of TAM you can realistically serve with your product/strategy</p>
                 </div>
 
@@ -269,7 +269,7 @@ export default function MarketSizeCalculatorPage() {
                   </button>
                   <Link
                     href="/planner"
-                    className="flex-1 px-6 py-3 rounded-lg bg-amber-600 text-white font-semibold hover:bg-amber-700 transition-all text-center"
+                    className="flex-1 px-6 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all text-center"
                   >
                     Refine Plan →
                   </Link>
@@ -336,14 +336,14 @@ export default function MarketSizeCalculatorPage() {
             <div>
               <h3 className="font-bold text-gray-900 mb-2">Q: Is this calculator free?</h3>
               <p className="text-gray-700">
-                Yes! This calculator is completely free. As a leading <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold">GTM agency</Link>, we provide free tools to help companies succeed with their go-to-market strategy.
+                Yes! This calculator is completely free. As a leading <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold">GTM agency</Link>, we provide free tools to help companies succeed with their go-to-market strategy.
               </p>
             </div>
           </div>
         </div>
 
         {/* CTA Section */}
-        <div className="mt-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-lg p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-500 to-blue-500 rounded-xl shadow-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Use This Data in Your GTM Plan</h2>
           <p className="text-lg mb-6">
             Now that you understand your market size, use this calculator with our GTM Strategy Generator to create a data-driven go-to-market plan.
@@ -354,7 +354,7 @@ export default function MarketSizeCalculatorPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/planner"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-blue-600 hover:bg-gray-100 transition-all"
             >
               🚀 Create GTM Plan
             </Link>

@@ -349,7 +349,7 @@ export default function HireFractionalCMOPage() {
               </ul>
             </div>
 
-            <div className="bg-amber-50 border-2 border-amber-200 p-10 rounded-lg">
+            <div className="bg-blue-50 border-2 border-blue-200 p-10 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-900 mb-6">🔍 Fit & Working Model Questions</h3>
               <ul className="space-y-4">
                 <li className="text-gray-700">

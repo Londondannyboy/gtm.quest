@@ -348,7 +348,7 @@ function VoiceTest() {
             <button
               onClick={handleConnectThenSend}
               disabled={!token || status.value === 'connected'}
-              className="px-4 py-2 bg-orange-600 text-white rounded disabled:opacity-50 hover:bg-orange-700 text-sm"
+              className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50 hover:bg-blue-700 text-sm"
             >
               3. Send AFTER Connect
             </button>

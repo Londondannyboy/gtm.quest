@@ -526,7 +526,7 @@ export default async function JobDetailPage({ params }: PageProps) {
                   <ul className="space-y-4">
                     {job.responsibilities.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-4">
-                        <span className="flex-shrink-0 w-7 h-7 bg-amber-100 text-amber-700 rounded-full flex items-center justify-center font-bold text-sm">
+                        <span className="flex-shrink-0 w-7 h-7 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-bold text-sm">
                           {idx + 1}
                         </span>
                         <span className="text-gray-700 leading-7 pt-0.5">{item}</span>
@@ -713,7 +713,7 @@ export default async function JobDetailPage({ params }: PageProps) {
                     {job.compensation && (
                       <div className="flex justify-between">
                         <dt className="text-gray-500">Compensation</dt>
-                        <dd className="font-medium text-amber-600">{job.compensation}</dd>
+                        <dd className="font-medium text-blue-600">{job.compensation}</dd>
                       </div>
                     )}
                     {job.location && (

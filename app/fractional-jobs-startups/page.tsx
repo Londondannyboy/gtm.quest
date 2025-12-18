@@ -89,13 +89,13 @@ export default async function StartupJobsPage() {
                     <span className="mr-2">←</span> Back to Home
                   </Link>
 
-                  <span className="inline-block bg-orange-500/20 backdrop-blur text-orange-200 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6">
+                  <span className="inline-block bg-blue-500/20 backdrop-blur text-blue-200 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest mb-6">
                     {stats.total}+ Startup & Scale-up Roles
                   </span>
 
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-[0.95] tracking-tight">
                     Fractional Jobs<br />
-                    <span className="text-orange-300">Startups</span>
+                    <span className="text-blue-300">Startups</span>
                   </h1>
 
                   <p className="text-lg text-white/70 mb-8 leading-relaxed max-w-lg">
@@ -172,7 +172,7 @@ export default async function StartupJobsPage() {
               <div key={stage.name} className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-all">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{stage.name}</h3>
                 <p className="text-gray-600 text-sm mb-3">{stage.description}</p>
-                <p className="text-orange-600 font-semibold mb-1">{stage.rateRange}</p>
+                <p className="text-blue-600 font-semibold mb-1">{stage.rateRange}</p>
                 <p className="text-gray-600 text-sm">Equity: {stage.equity}</p>
               </div>
             ))}
@@ -213,7 +213,7 @@ export default async function StartupJobsPage() {
               <div key={sector.name} className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-lg transition-all">
                 <span className="text-4xl mb-3 block">{sector.icon}</span>
                 <h3 className="font-bold text-gray-900 mb-1">{sector.name}</h3>
-                <p className="text-orange-600 text-sm font-semibold">{sector.count}</p>
+                <p className="text-blue-600 text-sm font-semibold">{sector.count}</p>
               </div>
             ))}
           </div>
@@ -229,7 +229,7 @@ export default async function StartupJobsPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-2xl p-8">
-              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                 <span className="text-3xl">💎</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Equity Upside</h3>
@@ -238,7 +238,7 @@ export default async function StartupJobsPage() {
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8">
-              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                 <span className="text-3xl">🎯</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">High Impact</h3>
@@ -247,7 +247,7 @@ export default async function StartupJobsPage() {
               </p>
             </div>
             <div className="bg-white rounded-2xl p-8">
-              <div className="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
                 <span className="text-3xl">🚀</span>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Fast-Paced</h3>
@@ -292,7 +292,7 @@ export default async function StartupJobsPage() {
               <Link
                 key={search}
                 href={`/fractional-jobs?q=${encodeURIComponent(search)}`}
-                className="px-4 py-2 bg-gray-50 rounded-full text-gray-700 hover:bg-orange-100 hover:text-orange-700 transition-colors text-sm border border-gray-200"
+                className="px-4 py-2 bg-gray-50 rounded-full text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-colors text-sm border border-gray-200"
               >
                 {search}
               </Link>

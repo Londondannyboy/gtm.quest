@@ -74,7 +74,7 @@ export default function RateFinderCalculator() {
   }, [salary, daysPerWeek, experience, specialization, location])
 
   const positioningColors = {
-    below: 'text-amber-600',
+    below: 'text-blue-600',
     at: 'text-green-600',
     above: 'text-purple-600'
   }
@@ -100,13 +100,13 @@ export default function RateFinderCalculator() {
       </div>
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-amber-500 via-amber-600 to-orange-600 py-16 md:py-24">
+      <section className="bg-gradient-to-br from-blue-500 via-amber-600 to-blue-600 py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <span className="section-label text-amber-100 mb-4 block">For Executives</span>
+          <span className="section-label text-blue-100 mb-4 block">For Executives</span>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Rate Finder Calculator
           </h1>
-          <p className="text-xl text-amber-100 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
             Discover your recommended day rate based on your experience, specialization,
             and market positioning.
           </p>
@@ -235,7 +235,7 @@ export default function RateFinderCalculator() {
                   </div>
                   <div className="h-3 bg-gray-100 rounded-full relative">
                     <div
-                      className="absolute h-6 w-6 bg-amber-500 rounded-full -top-1.5 shadow-lg border-2 border-white transform -translate-x-1/2 transition-all duration-500"
+                      className="absolute h-6 w-6 bg-blue-500 rounded-full -top-1.5 shadow-lg border-2 border-white transform -translate-x-1/2 transition-all duration-500"
                       style={{ left: `${Math.min(Math.max(((calculations.recommendedRate - 500) / 1500) * 100, 0), 100)}%` }}
                     />
                   </div>
@@ -268,19 +268,19 @@ export default function RateFinderCalculator() {
                 <h3 className="text-lg font-bold text-gray-900 mb-3">Negotiation Tips</h3>
                 <ul className="space-y-2 text-sm text-gray-600">
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">→</span>
+                    <span className="text-blue-500">→</span>
                     <span>Start at the higher end of your range and negotiate down if needed</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">→</span>
+                    <span className="text-blue-500">→</span>
                     <span>Factor in project complexity — strategic work commands higher rates</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">→</span>
+                    <span className="text-blue-500">→</span>
                     <span>Consider retainer arrangements for consistent income</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-amber-500">→</span>
+                    <span className="text-blue-500">→</span>
                     <span>Value-based pricing for specific outcomes can exceed day rates</span>
                   </li>
                 </ul>

@@ -30,15 +30,15 @@ export default function InterimCMOPage() {
               <span className="mr-2">←</span> Back to Home
             </Link>
             <div className="max-w-4xl">
-              <span className="inline-block bg-amber-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Interim Leadership</span>
+              <span className="inline-block bg-blue-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Interim Leadership</span>
               <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">
-                Interim CMO<br /><span className="text-amber-400">Services UK</span>
+                Interim CMO<br /><span className="text-blue-400">Services UK</span>
               </h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-2xl mb-8">
                 Full-time temporary CMO leadership for transitions, rebrands, and marketing transformations. Expert marketing executives available to start immediately.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="#contact" className="px-8 py-4 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors">Hire an Interim CMO</Link>
+                <Link href="#contact" className="px-8 py-4 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Hire an Interim CMO</Link>
                 <Link href="/fractional-cmo-services" className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Consider Fractional Instead?</Link>
               </div>
             </div>
@@ -87,7 +87,7 @@ export default function InterimCMOPage() {
               <thead>
                 <tr className="bg-gray-50">
                   <th className="p-4 text-left font-bold">Aspect</th>
-                  <th className="p-4 text-left font-bold text-amber-700">Interim CMO</th>
+                  <th className="p-4 text-left font-bold text-blue-700">Interim CMO</th>
                   <th className="p-4 text-left font-bold">Fractional CMO</th>
                 </tr>
               </thead>
@@ -99,10 +99,10 @@ export default function InterimCMOPage() {
               </tbody>
             </table>
           </div>
-          <div className="mt-8 p-6 bg-amber-50 border border-amber-200 rounded-lg">
-            <p className="text-amber-800 font-medium mb-2">Not sure which is right for you?</p>
-            <p className="text-amber-700 text-sm mb-4">If you need full-time focus for a specific project, choose interim. If you need ongoing marketing leadership at lower cost, choose fractional.</p>
-            <Link href="/fractional-cmo-services" className="text-amber-700 font-bold hover:text-amber-900">Learn about Fractional CMO Services →</Link>
+          <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+            <p className="text-blue-800 font-medium mb-2">Not sure which is right for you?</p>
+            <p className="text-blue-700 text-sm mb-4">If you need full-time focus for a specific project, choose interim. If you need ongoing marketing leadership at lower cost, choose fractional.</p>
+            <Link href="/fractional-cmo-services" className="text-blue-700 font-bold hover:text-blue-900">Learn about Fractional CMO Services →</Link>
           </div>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default function InterimCMOPage() {
           <h2 className="text-4xl font-black mb-6">Need an Interim CMO?</h2>
           <p className="text-xl text-gray-400 mb-10">Tell us about your situation and we'll help you find the right interim or fractional CMO.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/handler/sign-up" className="px-10 py-5 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors">Find an Interim CMO</Link>
+            <Link href="/handler/sign-up" className="px-10 py-5 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Find an Interim CMO</Link>
             <Link href="/fractional-cmo-services" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Explore Fractional CMO</Link>
           </div>
         </div>
@@ -127,10 +127,10 @@ export default function InterimCMOPage() {
       <section className="py-12 bg-white border-t border-gray-200">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/fractional-cmo-services" className="text-gray-600 hover:text-amber-600 font-medium">Fractional CMO</Link>
-            <Link href="/interim-cfo" className="text-gray-600 hover:text-amber-600 font-medium">Interim CFO</Link>
-            <Link href="/interim-cto" className="text-gray-600 hover:text-amber-600 font-medium">Interim CTO</Link>
-            <Link href="/interim-coo" className="text-gray-600 hover:text-amber-600 font-medium">Interim COO</Link>
+            <Link href="/fractional-cmo-services" className="text-gray-600 hover:text-blue-600 font-medium">Fractional CMO</Link>
+            <Link href="/interim-cfo" className="text-gray-600 hover:text-blue-600 font-medium">Interim CFO</Link>
+            <Link href="/interim-cto" className="text-gray-600 hover:text-blue-600 font-medium">Interim CTO</Link>
+            <Link href="/interim-coo" className="text-gray-600 hover:text-blue-600 font-medium">Interim COO</Link>
           </div>
         </div>
       </section>

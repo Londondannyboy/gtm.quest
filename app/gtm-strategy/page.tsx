@@ -15,7 +15,7 @@ export default function GTMStrategyPage() {
         {/* Hero */}
         <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-20 md:py-32">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <Link href="/" className="text-amber-400 hover:text-amber-300 font-semibold mb-6 inline-flex items-center gap-2">
+            <Link href="/" className="text-blue-400 hover:text-blue-300 font-semibold mb-6 inline-flex items-center gap-2">
               ← Back to GTM Quest
             </Link>
             <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
@@ -107,7 +107,7 @@ export default function GTMStrategyPage() {
                   ].map((step) => (
                     <div key={step.num} className="flex gap-6">
                       <div className="flex-shrink-0">
-                        <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 text-white font-bold text-lg">
+                        <div className="flex items-center justify-center h-12 w-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-500 text-white font-bold text-lg">
                           {step.num}
                         </div>
                       </div>
@@ -151,7 +151,7 @@ export default function GTMStrategyPage() {
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
                   Your positioning statement is the foundation of your entire GTM. It answers: "For [customer], [product] is the [category] that [solves problem] unlike [competitor]."
                 </p>
-                <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded">
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded">
                   <p className="text-gray-700 mb-4">
                     <strong>Why positioning matters:</strong> It shapes your messaging, pricing, target customer selection, and channel strategy. Everything flows from positioning.
                   </p>
@@ -267,14 +267,14 @@ export default function GTMStrategyPage() {
               </div>
 
               {/* CTA */}
-              <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-8 border border-amber-200">
+              <div className="bg-gradient-to-r from-blue-50 to-blue-50 rounded-xl p-8 border border-blue-200">
                 <h3 className="font-bold text-gray-900 mb-3 text-2xl">Ready to Build Your GTM Plan?</h3>
                 <p className="text-gray-700 mb-6">
                   Use our free GTM Strategy Generator to create a personalized go-to-market plan. As one of the <span className="font-semibold">best GTM agencies in the UK</span>, we've built this tool to help companies like yours succeed.
                 </p>
                 <Link
                   href="/planner"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
                 >
                   🚀 Generate Your GTM Plan
                 </Link>

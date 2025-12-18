@@ -78,13 +78,13 @@ export default async function FractionalCmoJobsUkPage() {
 
             {/* Editorial Typography */}
             <div className="max-w-4xl">
-              <span className="inline-block bg-amber-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">
+              <span className="inline-block bg-blue-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">
                 Marketing Leadership
               </span>
 
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-[0.9] tracking-tight">
                 Fractional CMO<br />
-                <span className="text-amber-400">Jobs UK</span>
+                <span className="text-blue-400">Jobs UK</span>
               </h1>
 
               <p className="text-xl md:text-2xl text-white/80 leading-relaxed max-w-2xl mb-8">
@@ -95,7 +95,7 @@ export default async function FractionalCmoJobsUkPage() {
               {/* Stats Row */}
               <div className="flex flex-wrap gap-8 mb-10">
                 <div>
-                  <div className="text-4xl md:text-5xl font-black text-amber-400">{stats.total}+</div>
+                  <div className="text-4xl md:text-5xl font-black text-blue-400">{stats.total}+</div>
                   <div className="text-white/60 text-sm uppercase tracking-wider">Live Roles</div>
                 </div>
                 <div>
@@ -112,7 +112,7 @@ export default async function FractionalCmoJobsUkPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="#jobs"
-                  className="px-8 py-4 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors"
+                  className="px-8 py-4 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors"
                 >
                   Browse Jobs Now
                 </Link>
@@ -205,7 +205,7 @@ export default async function FractionalCmoJobsUkPage() {
               {companies.map((company: string, index: number) => (
                 <span
                   key={index}
-                  className="text-xl md:text-2xl font-light text-gray-400 hover:text-amber-400 transition-colors cursor-default"
+                  className="text-xl md:text-2xl font-light text-gray-400 hover:text-blue-400 transition-colors cursor-default"
                 >
                   {company}
                 </span>
@@ -223,9 +223,9 @@ export default async function FractionalCmoJobsUkPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4 block">The Guide</span>
             <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
               Everything You Need to Know About<br />
-              <span className="text-amber-600">Fractional CMO Jobs UK</span>
+              <span className="text-blue-600">Fractional CMO Jobs UK</span>
             </h2>
-            <div className="w-24 h-1 bg-amber-500"></div>
+            <div className="w-24 h-1 bg-blue-500"></div>
           </div>
 
           {/* SEO Image - Editorial Style */}
@@ -251,7 +251,7 @@ export default async function FractionalCmoJobsUkPage() {
               The UK market for <strong>fractional CMO jobs UK</strong> has exploded, with a 200% year-on-year increase in searches. Startups, scale-ups, and SMEs are accessing senior marketing talent without the £120,000-£200,000 annual cost of a full-time Chief Marketing Officer.
             </p>
 
-            <div className="bg-gray-50 p-8 my-10 border-l-4 border-amber-500">
+            <div className="bg-gray-50 p-8 my-10 border-l-4 border-blue-500">
               <p className="text-xl font-semibold text-gray-900 mb-0">
                 "Companies access CMO expertise for £1,500-£4,000/week instead of £10,000+ monthly for full-time."
               </p>
@@ -277,7 +277,7 @@ export default async function FractionalCmoJobsUkPage() {
                 <div key={i} className="bg-gray-50 p-6 border border-gray-200">
                   <h4 className="font-bold text-gray-900 mb-1">{type.title}</h4>
                   <p className="text-gray-600 text-sm mb-2">{type.desc}</p>
-                  <span className="text-amber-600 font-semibold text-sm">{type.rate}</span>
+                  <span className="text-blue-600 font-semibold text-sm">{type.rate}</span>
                 </div>
               ))}
             </div>
@@ -345,7 +345,7 @@ export default async function FractionalCmoJobsUkPage() {
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-500 mb-4 block">Ready?</span>
           <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
             Find Your Next<br />
-            <span className="text-amber-400">Fractional CMO Role</span>
+            <span className="text-blue-400">Fractional CMO Role</span>
           </h2>
           <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
             Create your profile and get matched with companies seeking fractional marketing leadership.
@@ -353,7 +353,7 @@ export default async function FractionalCmoJobsUkPage() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
               href="/handler/sign-up"
-              className="px-10 py-5 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors"
+              className="px-10 py-5 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors"
             >
               Create Profile
             </Link>
@@ -373,11 +373,11 @@ export default async function FractionalCmoJobsUkPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <span className="text-sm font-bold uppercase tracking-wider text-gray-400">Related</span>
             <div className="flex flex-wrap gap-4">
-              <Link href="/part-time-cmo" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">Part-Time CMO Guide</Link>
-              <Link href="/fractional-cmo-salary" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">CMO Salary Guide</Link>
-              <Link href="/fractional-jobs-london" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">Jobs London</Link>
-              <Link href="/fractional-cfo-jobs-uk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">CFO Jobs UK</Link>
-              <Link href="/fractional-cto-jobs-uk" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">CTO Jobs UK</Link>
+              <Link href="/part-time-cmo" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Part-Time CMO Guide</Link>
+              <Link href="/fractional-cmo-salary" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">CMO Salary Guide</Link>
+              <Link href="/fractional-jobs-london" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Jobs London</Link>
+              <Link href="/fractional-cfo-jobs-uk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">CFO Jobs UK</Link>
+              <Link href="/fractional-cto-jobs-uk" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">CTO Jobs UK</Link>
             </div>
           </div>
         </div>

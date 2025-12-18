@@ -88,12 +88,12 @@ export function SimilarJobs({
             href={`/fractional-job/${job.slug}`}
             className="block p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors group"
           >
-            <h4 className="font-medium text-gray-900 group-hover:text-amber-600 transition-colors text-sm line-clamp-2">
+            <h4 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors text-sm line-clamp-2">
               {job.title}
             </h4>
             <p className="text-xs text-gray-500 mt-1">{job.company_name}</p>
             {job.compensation && (
-              <p className="text-xs font-medium text-amber-600 mt-1">{job.compensation}</p>
+              <p className="text-xs font-medium text-blue-600 mt-1">{job.compensation}</p>
             )}
           </Link>
         ))}

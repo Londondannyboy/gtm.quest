@@ -145,7 +145,7 @@ export default function ChatPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-8">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white py-8">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h1 className="text-3xl font-bold mb-2">AI GTM Strategist</h1>
           <p className="text-white/90">
@@ -180,7 +180,7 @@ export default function ChatPage() {
               <div
                 className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                   message.role === 'user'
-                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white'
+                    ? 'bg-gradient-to-r from-blue-600 to-blue-600 text-white'
                     : 'bg-white border border-gray-200 text-gray-800 shadow-sm'
                 }`}
               >
@@ -253,13 +253,13 @@ export default function ChatPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about GTM strategy, product launches, or agencies..."
-            className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+            className="flex-1 px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={isLoading || !input.trim()}
-            className="px-6 py-3 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded-xl font-medium hover:from-amber-700 hover:to-orange-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-600 text-white rounded-xl font-medium hover:from-blue-700 hover:to-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -275,9 +275,9 @@ export default function ChatPage() {
             </p>
           )}
           {isClient && !isAuthenticated && remainingUses === 0 && (
-            <p className="text-xs text-orange-600 font-medium">
+            <p className="text-xs text-blue-600 font-medium">
               Free trial ended.{' '}
-              <Link href="/handler/sign-in" className="underline hover:text-orange-800">
+              <Link href="/handler/sign-in" className="underline hover:text-blue-800">
                 Sign in
               </Link>{' '}
               for unlimited access.
@@ -290,11 +290,11 @@ export default function ChatPage() {
           )}
           <p className="text-xs text-gray-600">
             Powered by AI. Browse{' '}
-            <Link href="/agencies" className="text-amber-600 hover:underline">
+            <Link href="/agencies" className="text-blue-600 hover:underline">
               GTM agencies
             </Link>
             {' '}or explore our{' '}
-            <Link href="/resources" className="text-amber-600 hover:underline">
+            <Link href="/resources" className="text-blue-600 hover:underline">
               strategy resources
             </Link>
             .

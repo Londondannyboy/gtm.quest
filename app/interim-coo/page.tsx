@@ -23,11 +23,11 @@ export default function InterimCOOPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <Link href="/" className="inline-flex items-center text-white/60 hover:text-white mb-8 transition-colors text-sm"><span className="mr-2">←</span> Back to Home</Link>
             <div className="max-w-4xl">
-              <span className="inline-block bg-orange-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Interim Leadership</span>
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Interim COO<br /><span className="text-orange-400">Services UK</span></h1>
+              <span className="inline-block bg-blue-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Interim Leadership</span>
+              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Interim COO<br /><span className="text-blue-400">Services UK</span></h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-2xl mb-8">Full-time temporary COO leadership for operational transformations, restructuring, and scaling challenges. Expert operations executives available immediately.</p>
               <div className="flex flex-wrap gap-4">
-                <Link href="#contact" className="px-8 py-4 bg-orange-500 text-black font-bold uppercase tracking-wider hover:bg-orange-400 transition-colors">Hire an Interim COO</Link>
+                <Link href="#contact" className="px-8 py-4 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Hire an Interim COO</Link>
                 <Link href="/fractional-coo-services" className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Consider Fractional Instead?</Link>
               </div>
             </div>
@@ -75,7 +75,7 @@ export default function InterimCOOPage() {
           <h2 className="text-4xl font-black mb-6">Need an Interim COO?</h2>
           <p className="text-xl text-gray-400 mb-10">Tell us about your situation and we'll help you find the right interim or fractional COO.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/handler/sign-up" className="px-10 py-5 bg-orange-500 text-black font-bold uppercase tracking-wider hover:bg-orange-400 transition-colors">Find an Interim COO</Link>
+            <Link href="/handler/sign-up" className="px-10 py-5 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Find an Interim COO</Link>
             <Link href="/fractional-coo-services" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Explore Fractional COO</Link>
           </div>
         </div>

@@ -76,7 +76,7 @@ export default function VisualizationsPage() {
         {/* 2. Sunburst */}
         <section>
           <div className="mb-6">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 mb-2 block">Hierarchical</span>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-400 mb-2 block">Hierarchical</span>
             <h2 className="text-3xl font-black text-white">Role Explorer Sunburst</h2>
             <p className="text-gray-400 mt-2">Drill down through roles, companies, and jobs</p>
           </div>

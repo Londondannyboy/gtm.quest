@@ -358,7 +358,7 @@ export default function FractionalCMOForStartupsPage() {
 
             <h3 className="text-2xl font-bold text-gray-900 mt-12">Equity Considerations for Startups</h3>
 
-            <div className="bg-amber-50 border-l-4 border-amber-500 p-8 my-8">
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-8 my-8">
               <h4 className="text-lg font-bold text-gray-900 mb-4">Should You Offer Equity?</h4>
               <p className="text-gray-700 mb-4">
                 Offering 0.1-0.25% equity to a fractional CMO makes sense if:

@@ -38,12 +38,9 @@ export function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-              <span className="text-white font-black text-xl">G</span>
-            </div>
             <div className="hidden sm:block">
-              <span className="font-bold text-gray-900 text-lg">GTM</span>
-              <span className="text-gray-600 font-bold text-lg">.Quest</span>
+              <span className="font-black text-gray-900 text-lg tracking-tight" style={{ fontFamily: 'var(--font-space-grotesk, system-ui)', fontSize: '20px', fontWeight: '900', letterSpacing: '-0.02em' }}>GTM</span>
+              <span className="text-blue-500 font-black text-lg tracking-tight" style={{ fontFamily: 'var(--font-space-grotesk, system-ui)', fontSize: '20px', fontWeight: '900', letterSpacing: '-0.02em' }}>Quest</span>
             </div>
           </Link>
 
@@ -67,7 +64,7 @@ export function Navigation() {
               href="/chat"
               className={`md:hidden px-3 py-2 rounded-lg font-semibold text-sm transition-colors ${
                 isActive('/chat')
-                  ? 'bg-amber-100 text-amber-900'
+                  ? 'bg-blue-100 text-blue-900'
                   : 'text-gray-700 hover:bg-gray-100'
               }`}
             >
@@ -77,9 +74,10 @@ export function Navigation() {
             <AuthButtons />
             <Link
               href="/chat"
-              className="hidden sm:inline-flex bg-gradient-to-r from-amber-500 to-orange-500 text-white hover:from-amber-600 hover:to-orange-600 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2"
+              className="hidden sm:inline-flex bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 font-semibold rounded-lg transition-all duration-200 text-sm px-4 py-2 relative group"
             >
-              🤖 Try AI Strategist
+              🤖 Try AI Strategies
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">Mark Beta</span>
             </Link>
 
             {/* Mobile menu button */}
@@ -113,7 +111,7 @@ export function Navigation() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-4 py-3 rounded-lg font-medium transition-colors ${
                     isActive(link.href)
-                      ? 'bg-amber-50 text-amber-900'
+                      ? 'bg-blue-50 text-blue-900'
                       : 'text-gray-600 hover:bg-gray-50'
                   }`}
                 >
@@ -123,9 +121,10 @@ export function Navigation() {
               <Link
                 href="/chat"
                 onClick={() => setMobileMenuOpen(false)}
-                className="mx-4 mt-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-lg py-3 text-center hover:from-amber-600 hover:to-orange-600 transition-all"
+                className="mx-4 mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-lg py-3 text-center hover:from-blue-600 hover:to-blue-700 transition-all relative inline-block w-full"
               >
-                🤖 Try AI Strategist
+                🤖 Try AI Strategies
+                <span className="absolute -top-1 right-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full font-bold">Mark Beta</span>
               </Link>
             </div>
           </div>

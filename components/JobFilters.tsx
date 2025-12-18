@@ -147,11 +147,11 @@ export function JobFilters({
             </span>
           )}
           {currentIndustry && (
-            <span className="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 text-orange-800 text-sm rounded-full">
+            <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
               {industryOptions.find(i => i.value === currentIndustry)?.label || currentIndustry}
               <button
                 onClick={() => handleFilterChange('industry', '')}
-                className="hover:text-orange-900"
+                className="hover:text-blue-900"
                 aria-label={`Remove ${industryOptions.find(i => i.value === currentIndustry)?.label || currentIndustry} filter`}
               >
                 &times;

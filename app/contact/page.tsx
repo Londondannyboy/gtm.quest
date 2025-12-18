@@ -32,7 +32,7 @@ export default function ContactPage() {
         {/* Hero */}
         <section className="bg-gradient-to-br from-slate-950 via-slate-900 to-black text-white py-20 md:py-32">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <Link href="/" className="text-amber-400 hover:text-amber-300 font-semibold mb-6 inline-flex items-center gap-2">
+            <Link href="/" className="text-blue-400 hover:text-blue-300 font-semibold mb-6 inline-flex items-center gap-2">
               ← Back to GTM Quest
             </Link>
             <h1 className="text-5xl md:text-6xl font-black mb-6 leading-tight">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                     placeholder="John Doe"
                   />
                 </div>
@@ -79,7 +79,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -93,7 +93,7 @@ export default function ContactPage() {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                     placeholder="Your Company"
                   />
                 </div>
@@ -108,14 +108,14 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 outline-none"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none"
                     placeholder="Tell us about your GTM needs..."
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                  className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
                 >
                   Send Message
                 </button>
@@ -129,21 +129,21 @@ export default function ContactPage() {
                 <div className="text-center">
                   <div className="text-3xl mb-3">📧</div>
                   <h3 className="font-bold text-gray-900 mb-2">Email</h3>
-                  <a href="mailto:hello@gtm.quest" className="text-amber-600 hover:text-amber-700">
+                  <a href="mailto:hello@gtm.quest" className="text-blue-600 hover:text-blue-700">
                     hello@gtm.quest
                   </a>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl mb-3">💬</div>
                   <h3 className="font-bold text-gray-900 mb-2">Chat with AI</h3>
-                  <Link href="/chat" className="text-amber-600 hover:text-amber-700">
+                  <Link href="/chat" className="text-blue-600 hover:text-blue-700">
                     Get instant strategy help
                   </Link>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl mb-3">🚀</div>
                   <h3 className="font-bold text-gray-900 mb-2">Get Started</h3>
-                  <Link href="/planner" className="text-amber-600 hover:text-amber-700">
+                  <Link href="/planner" className="text-blue-600 hover:text-blue-700">
                     Build your GTM plan
                   </Link>
                 </div>

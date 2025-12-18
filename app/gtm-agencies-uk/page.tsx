@@ -185,7 +185,7 @@ export default async function GTMAgenciesUKPage() {
               href="/gtm-agencies-london"
               className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
             >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
                 London →
               </h3>
               <p className="text-white/60">
@@ -197,7 +197,7 @@ export default async function GTMAgenciesUKPage() {
               href="/gtm-agencies-us"
               className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
             >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
                 United States →
               </h3>
               <p className="text-white/60">
@@ -209,7 +209,7 @@ export default async function GTMAgenciesUKPage() {
               href="/gtm-agencies-australia"
               className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
             >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
                 Australia →
               </h3>
               <p className="text-white/60">
@@ -221,7 +221,7 @@ export default async function GTMAgenciesUKPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-amber-500 to-orange-500 py-20">
+      <section className="bg-gradient-to-r from-blue-500 to-blue-500 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             Build Your GTM Strategy

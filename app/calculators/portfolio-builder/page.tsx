@@ -65,7 +65,7 @@ export default function PortfolioBuilderCalculator() {
 
   const riskColors = {
     low: 'text-green-600 bg-green-50',
-    medium: 'text-amber-600 bg-amber-50',
+    medium: 'text-blue-600 bg-blue-50',
     high: 'text-red-600 bg-red-50'
   }
 

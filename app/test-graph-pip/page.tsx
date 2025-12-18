@@ -57,7 +57,7 @@ export default function TestGraphPipPage() {
       {/* Legend */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-sm px-6 py-3 rounded-full text-xs z-30 flex items-center gap-6">
         <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-amber-500" />
+          <div className="w-4 h-4 rounded-full bg-blue-500" />
           <span className="text-white">Companies</span>
         </div>
         <div className="flex items-center gap-2">

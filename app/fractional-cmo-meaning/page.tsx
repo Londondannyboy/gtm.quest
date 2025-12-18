@@ -45,19 +45,19 @@ export default function FractionalCMOMeaningPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-amber-600 to-amber-500 py-24">
+      <section className="bg-gradient-to-br from-blue-600 to-blue-500 py-24">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <Link href="/fractional-cmo" className="text-amber-100 hover:text-white mb-8 inline-flex items-center text-sm">
+          <Link href="/fractional-cmo" className="text-blue-100 hover:text-white mb-8 inline-flex items-center text-sm">
             <span className="mr-2">←</span> Back to Fractional CMO Guide
           </Link>
           <div className="max-w-3xl">
-            <span className="inline-block bg-black text-amber-400 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">
+            <span className="inline-block bg-black text-blue-400 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">
               Definition
             </span>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-tight">
               Fractional CMO<br />Meaning
             </h1>
-            <p className="text-2xl md:text-3xl text-amber-50 leading-relaxed font-light">
+            <p className="text-2xl md:text-3xl text-blue-50 leading-relaxed font-light">
               A simple, clear explanation of what "fractional CMO" means and when businesses use them.
             </p>
           </div>
@@ -65,10 +65,10 @@ export default function FractionalCMOMeaningPage() {
       </section>
 
       {/* Quick Answer */}
-      <section className="py-16 bg-amber-50 border-b-4 border-amber-500">
+      <section className="py-16 bg-blue-50 border-b-4 border-blue-500">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <div className="bg-white p-10 rounded-lg shadow-sm border-2 border-amber-200">
-            <div className="text-sm font-bold uppercase tracking-wider text-amber-600 mb-4">Quick Answer</div>
+          <div className="bg-white p-10 rounded-lg shadow-sm border-2 border-blue-200">
+            <div className="text-sm font-bold uppercase tracking-wider text-blue-600 mb-4">Quick Answer</div>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-6 leading-tight">
               What Does Fractional CMO Mean?
             </h2>
@@ -92,7 +92,7 @@ export default function FractionalCMOMeaningPage() {
               Let's break down the term piece by piece:
             </p>
 
-            <div className="bg-gray-50 p-8 rounded-lg my-8 border-l-4 border-amber-500">
+            <div className="bg-gray-50 p-8 rounded-lg my-8 border-l-4 border-blue-500">
               <h3 className="text-2xl font-bold text-gray-900 mt-0 mb-4">Fractional</h3>
               <p className="mb-0 text-gray-700">
                 <strong>"Fractional"</strong> refers to working a <em>fraction</em> or <em>portion</em> of full-time hours.
@@ -101,7 +101,7 @@ export default function FractionalCMOMeaningPage() {
               </p>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-lg my-8 border-l-4 border-amber-500">
+            <div className="bg-gray-50 p-8 rounded-lg my-8 border-l-4 border-blue-500">
               <h3 className="text-2xl font-bold text-gray-900 mt-0 mb-4">CMO (Chief Marketing Officer)</h3>
               <p className="mb-0 text-gray-700">
                 A <strong>CMO</strong> is the senior executive responsible for all marketing activities in a company.
@@ -129,7 +129,7 @@ export default function FractionalCMOMeaningPage() {
               marketing leadership several days per week—without the cost of a full-time executive.
             </p>
 
-            <div className="bg-amber-50 border-l-4 border-amber-500 p-8 my-10">
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-8 my-10">
               <p className="text-xl font-semibold text-gray-900 mb-3">
                 💡 Industry Note
               </p>
@@ -207,10 +207,10 @@ export default function FractionalCMOMeaningPage() {
             <div className="overflow-x-auto my-8">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-amber-50">
-                    <th className="text-left p-4 font-semibold text-gray-900 border-b-2 border-amber-500">Term</th>
-                    <th className="text-left p-4 font-semibold text-gray-900 border-b-2 border-amber-500">Meaning</th>
-                    <th className="text-left p-4 font-semibold text-gray-900 border-b-2 border-amber-500">Time Commitment</th>
+                  <tr className="bg-blue-50">
+                    <th className="text-left p-4 font-semibold text-gray-900 border-b-2 border-blue-500">Term</th>
+                    <th className="text-left p-4 font-semibold text-gray-900 border-b-2 border-blue-500">Meaning</th>
+                    <th className="text-left p-4 font-semibold text-gray-900 border-b-2 border-blue-500">Time Commitment</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -247,7 +247,7 @@ export default function FractionalCMOMeaningPage() {
 
             <div className="bg-gray-900 text-white p-10 rounded-lg my-8">
               <p className="text-xl leading-relaxed mb-6">
-                <strong className="text-amber-400">Fractional CMO meaning in one sentence:</strong>
+                <strong className="text-blue-400">Fractional CMO meaning in one sentence:</strong>
               </p>
               <p className="text-2xl font-light leading-relaxed mb-0">
                 A fractional CMO is a senior marketing executive who works part-time (typically 1-3 days per week)
@@ -274,19 +274,19 @@ export default function FractionalCMOMeaningPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-amber-600 text-white">
+      <section className="py-20 bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
             Ready to Learn More?
           </h2>
-          <p className="text-xl text-amber-100 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
             Now that you understand what fractional CMO means, explore our complete guide or browse live fractional CMO jobs.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/fractional-cmo" className="px-10 py-5 bg-white text-amber-600 font-bold uppercase tracking-wider hover:bg-amber-50 transition-colors">
+            <Link href="/fractional-cmo" className="px-10 py-5 bg-white text-blue-600 font-bold uppercase tracking-wider hover:bg-blue-50 transition-colors">
               Complete Fractional CMO Guide
             </Link>
-            <Link href="/fractional-cmo-jobs-uk" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-amber-600 transition-colors">
+            <Link href="/fractional-cmo-jobs-uk" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-blue-600 transition-colors">
               Browse CMO Jobs
             </Link>
           </div>
@@ -299,19 +299,19 @@ export default function FractionalCMOMeaningPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <span className="text-sm font-bold uppercase tracking-wider text-gray-400">Related Articles</span>
             <div className="flex flex-wrap gap-4">
-              <Link href="/fractional-cmo" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">
+              <Link href="/fractional-cmo" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                 What is a Fractional CMO?
               </Link>
-              <Link href="/fractional-cmo-cost" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">
+              <Link href="/fractional-cmo-cost" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                 Fractional CMO Cost
               </Link>
-              <Link href="/fractional-cmo-services" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">
+              <Link href="/fractional-cmo-services" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                 CMO Services
               </Link>
-              <Link href="/fractional-cmo-salary" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">
+              <Link href="/fractional-cmo-salary" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                 CMO Salary Guide
               </Link>
-              <Link href="/what-is-a-fractional-cmo" className="text-gray-600 hover:text-amber-600 font-medium transition-colors">
+              <Link href="/what-is-a-fractional-cmo" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">
                 Fractional CMO Explained
               </Link>
             </div>

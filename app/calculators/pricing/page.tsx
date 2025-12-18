@@ -73,7 +73,7 @@ export default function PricingCalculatorPage() {
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12">
-          <Link href="/" className="text-amber-600 hover:text-amber-700 font-semibold mb-6 inline-flex items-center gap-2">
+          <Link href="/" className="text-blue-600 hover:text-blue-700 font-semibold mb-6 inline-flex items-center gap-2">
             ← Back to GTM Quest
           </Link>
           <h1 className="text-4xl font-black text-gray-900 mb-4">Pricing Strategy Calculator</h1>
@@ -131,7 +131,7 @@ export default function PricingCalculatorPage() {
                 />
               </div>
 
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <p className="text-sm text-gray-700 mb-2"><strong>Total Cost per Unit:</strong> ${cogs + overhead}</p>
                 <p className="text-sm text-gray-700"><strong>Minimum Price:</strong> ${Math.round((cogs + overhead) * 1.1)} (with 10% margin)</p>
               </div>
@@ -166,7 +166,7 @@ export default function PricingCalculatorPage() {
 
               <button
                 onClick={calculatePricing}
-                className="w-full px-6 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all"
+                className="w-full px-6 py-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white font-bold rounded-lg hover:from-blue-600 hover:to-blue-600 transition-all"
               >
                 🏷️ Calculate Pricing Tiers
               </button>
@@ -179,14 +179,14 @@ export default function PricingCalculatorPage() {
               <div className="space-y-6">
                 {/* Pricing Tiers */}
                 {results.tiers.map((tier: any, i: number) => (
-                  <div key={i} className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-amber-500">
+                  <div key={i} className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
                     <div className="flex justify-between items-start mb-3">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900">{tier.name}</h3>
                         <p className="text-sm text-gray-600">{tier.description}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-3xl font-black text-amber-600">${tier.price}</p>
+                        <p className="text-3xl font-black text-blue-600">${tier.price}</p>
                         <p className="text-xs text-gray-600">/month</p>
                       </div>
                     </div>
@@ -242,11 +242,11 @@ export default function PricingCalculatorPage() {
         </div>
 
         {/* CTA */}
-        <div className="mt-12 bg-gradient-to-r from-amber-500 to-orange-500 rounded-xl shadow-lg p-8 text-white text-center">
+        <div className="mt-12 bg-gradient-to-r from-blue-500 to-blue-500 rounded-xl shadow-lg p-8 text-white text-center">
           <h2 className="text-2xl font-bold mb-4">Use This Pricing in Your GTM Plan</h2>
           <Link
             href="/planner"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-amber-600 hover:bg-gray-100 transition-all"
+            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl bg-white text-blue-600 hover:bg-gray-100 transition-all"
           >
             🚀 Create Complete GTM Plan
           </Link>

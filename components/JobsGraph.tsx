@@ -113,7 +113,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
               <p className="text-gray-600 text-xs">Skills</p>
             </div>
             <div className="text-center">
-              <span className="font-semibold text-amber-600">{stats.uniqueCompanies}</span>
+              <span className="font-semibold text-blue-600">{stats.uniqueCompanies}</span>
               <p className="text-gray-600 text-xs">Companies</p>
             </div>
           </div>
@@ -163,7 +163,7 @@ export function JobsGraph({ roleFilter, limit = 20 }: JobsGraphProps) {
                 {stats.topCompanies.map(({ company, count }) => (
                   <div key={company} className="flex items-center gap-2">
                     <div
-                      className="h-2 bg-amber-500 rounded-full"
+                      className="h-2 bg-blue-500 rounded-full"
                       style={{
                         width: `${(count / stats.topCompanies[0].count) * 100}%`,
                         minWidth: '20px',

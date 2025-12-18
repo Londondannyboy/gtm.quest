@@ -38,7 +38,7 @@ const categoryDisplayNames: Record<string, string> = {
 // Map article_type to badge
 const typeBadges: Record<string, { label: string; color: string }> = {
   job_roundup: { label: 'Jobs Update', color: 'bg-blue-100 text-blue-800' },
-  company_spotlight: { label: 'Company', color: 'bg-amber-100 text-amber-800' },
+  company_spotlight: { label: 'Company', color: 'bg-blue-100 text-blue-800' },
   market_trend: { label: 'Insights', color: 'bg-purple-100 text-purple-800' },
   manual: { label: 'Article', color: 'bg-gray-100 text-gray-700' }
 }
@@ -87,7 +87,7 @@ export async function RoleNews({
         {showViewAll && (
           <Link
             href="/fractional-jobs-articles"
-            className="text-sm font-medium text-amber-700 hover:text-amber-800 transition-colors"
+            className="text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors"
           >
             View all articles →
           </Link>
@@ -103,7 +103,7 @@ export async function RoleNews({
             <Link
               key={article.id}
               href={`/${article.slug}`}
-              className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md hover:border-amber-200 transition-all duration-200"
+              className="group block bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-md hover:border-blue-200 transition-all duration-200"
             >
               {/* Image */}
               {article.featured_asset_url && (
@@ -131,7 +131,7 @@ export async function RoleNews({
                 </div>
 
                 {/* Title */}
-                <h4 className="font-semibold text-gray-900 line-clamp-2 group-hover:text-amber-700 transition-colors text-sm">
+                <h4 className="font-semibold text-gray-900 line-clamp-2 group-hover:text-blue-700 transition-colors text-sm">
                   {article.title}
                 </h4>
 
@@ -183,7 +183,7 @@ export async function RoleNewsCompact({
           <li key={article.id}>
             <Link
               href={`/${article.slug}`}
-              className="block text-sm text-gray-700 hover:text-amber-700 transition-colors line-clamp-2"
+              className="block text-sm text-gray-700 hover:text-blue-700 transition-colors line-clamp-2"
             >
               {article.title}
             </Link>
@@ -270,7 +270,7 @@ export async function LatestNews({ limit = 6 }: { limit?: number }) {
         </div>
         <Link
           href="/fractional-jobs-articles"
-          className="hidden md:inline-flex items-center text-sm font-medium text-amber-700 hover:text-amber-800 transition-colors"
+          className="hidden md:inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors"
         >
           View all articles →
         </Link>
@@ -288,7 +288,7 @@ export async function LatestNews({ limit = 6 }: { limit?: number }) {
             <Link
               key={article.id}
               href={`/${article.slug}`}
-              className="group block bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:border-amber-200 transition-all duration-200"
+              className="group block bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg hover:border-blue-200 transition-all duration-200"
             >
               {/* Image */}
               {article.featured_asset_url ? (
@@ -300,7 +300,7 @@ export async function LatestNews({ limit = 6 }: { limit?: number }) {
                   />
                 </div>
               ) : (
-                <div className="h-2 bg-gradient-to-r from-amber-500 to-amber-600" />
+                <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600" />
               )}
 
               {/* Content */}
@@ -318,7 +318,7 @@ export async function LatestNews({ limit = 6 }: { limit?: number }) {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-amber-700 transition-colors">
+                <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-700 transition-colors">
                   {article.title}
                 </h3>
 
@@ -334,7 +334,7 @@ export async function LatestNews({ limit = 6 }: { limit?: number }) {
                   <span className="text-gray-500">
                     {formatDate(article.published_at)}
                   </span>
-                  <span className="font-medium text-amber-700 group-hover:text-amber-800">
+                  <span className="font-medium text-blue-700 group-hover:text-blue-800">
                     Read →
                   </span>
                 </div>
@@ -348,7 +348,7 @@ export async function LatestNews({ limit = 6 }: { limit?: number }) {
       <div className="mt-6 md:hidden text-center">
         <Link
           href="/fractional-jobs-articles"
-          className="inline-flex items-center text-sm font-medium text-amber-700 hover:text-amber-800 transition-colors"
+          className="inline-flex items-center text-sm font-medium text-blue-700 hover:text-blue-800 transition-colors"
         >
           View all articles →
         </Link>

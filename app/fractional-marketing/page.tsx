@@ -24,11 +24,11 @@ export default function FractionalMarketingPage() {
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <Link href="/" className="inline-flex items-center text-white/60 hover:text-white mb-8 transition-colors text-sm"><span className="mr-2">←</span> Back to Home</Link>
             <div className="max-w-4xl">
-              <span className="inline-block bg-amber-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Functional Leadership</span>
-              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Fractional<br /><span className="text-amber-400">Marketing</span></h1>
+              <span className="inline-block bg-blue-500 text-black px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Functional Leadership</span>
+              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Fractional<br /><span className="text-blue-400">Marketing</span></h1>
               <p className="text-xl text-white/80 leading-relaxed max-w-2xl mb-8">Access senior marketing leadership without the full-time commitment. From CMOs to VPs of Marketing, find the right level of expertise for your growth stage.</p>
               <div className="flex flex-wrap gap-4">
-                <Link href="#contact" className="px-8 py-4 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors">Find Marketing Leadership</Link>
+                <Link href="#contact" className="px-8 py-4 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Find Marketing Leadership</Link>
                 <Link href="/fractional-cmo-services" className="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Fractional CMO Services</Link>
               </div>
             </div>
@@ -46,7 +46,7 @@ export default function FractionalMarketingPage() {
               { title: 'VP of Marketing', description: 'Senior marketing leadership focused on execution and team building.', link: '#contact' },
               { title: 'Marketing Director', description: 'Hands-on marketing leadership for growing teams.', link: '#contact' },
             ].map((item, i) => (
-              <Link key={i} href={item.link} className="block p-6 bg-gray-50 border border-gray-200 hover:border-amber-500 transition-colors">
+              <Link key={i} href={item.link} className="block p-6 bg-gray-50 border border-gray-200 hover:border-blue-500 transition-colors">
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm">{item.description}</p>
               </Link>
@@ -67,7 +67,7 @@ export default function FractionalMarketingPage() {
               { title: 'Marketing Operations', description: 'Implement marketing technology, processes, and measurement frameworks.' },
               { title: 'Budget Management', description: 'Allocate and optimise marketing spend for maximum ROI.' },
             ].map((item, i) => (
-              <div key={i} className="p-6 bg-white border-l-4 border-amber-500">
+              <div key={i} className="p-6 bg-white border-l-4 border-blue-500">
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm">{item.description}</p>
               </div>
@@ -87,7 +87,7 @@ export default function FractionalMarketingPage() {
           <h2 className="text-4xl font-black mb-6">Find Marketing Leadership</h2>
           <p className="text-xl text-gray-400 mb-10">Tell us about your marketing challenges and we'll match you with the right fractional marketing executive.</p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/handler/sign-up" className="px-10 py-5 bg-amber-500 text-black font-bold uppercase tracking-wider hover:bg-amber-400 transition-colors">Get Started</Link>
+            <Link href="/handler/sign-up" className="px-10 py-5 bg-blue-500 text-black font-bold uppercase tracking-wider hover:bg-blue-400 transition-colors">Get Started</Link>
             <Link href="/fractional-cmo-services" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-black transition-colors">Learn About Fractional CMOs</Link>
           </div>
         </div>
