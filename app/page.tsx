@@ -25,7 +25,7 @@ export default async function Home() {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "name": "GTM Agency Guide 2024 | Top 12 Go-To-Market Agencies UK",
+              "name": "GTM Agency Guide 2026 | Top 12 Go-To-Market Agencies UK",
               "description": "GTM agency guide: Compare the top GTM agencies in the UK. Expert go-to-market agencies specializing in strategy, product launches, and revenue growth.",
               "url": "https://gtm.quest",
               "about": {

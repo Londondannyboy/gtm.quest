@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
       type: 'work_history',
       experiences: [
         { company: 'Quest Network', role: 'Founder & CEO', startYear: 2023, isCurrent: true, industry: 'Technology' },
-        { company: 'Predeploy', role: 'Co-Founder', startYear: 2024, isCurrent: true, industry: 'AI/Dev Tools' },
+        { company: 'Predeploy', role: 'Co-Founder', startYear: 2026, isCurrent: true, industry: 'AI/Dev Tools' },
         { company: 'Tech Startup (Series B)', role: 'Fractional CPO', startYear: 2022, endYear: 2023, industry: 'FinTech' },
         { company: 'Enterprise SaaS', role: 'VP Product', startYear: 2019, endYear: 2022, industry: 'SaaS' },
       ],

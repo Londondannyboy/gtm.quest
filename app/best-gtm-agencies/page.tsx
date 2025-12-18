@@ -4,7 +4,7 @@ import { AgencyCard } from "@/components/AgencyCard";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Best GTM Agencies 2024 | Top Go-To-Market Consultants Directory",
+  title: "Best GTM Agencies 2026 | Top Go-To-Market Consultants Directory",
   description: "Browse the best GTM agencies and consultants. Find expert go-to-market strategy partners specializing in B2B SaaS, product launches, and market entry.",
   keywords: "gtm agencies, go-to-market consultants, gtm agency directory, product launch agencies, market entry consultants, best gtm agencies",
   alternates: {
@@ -61,7 +61,7 @@ export default async function AgenciesPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "name": "Best GTM Agencies 2024",
+            "name": "Best GTM Agencies 2026",
             "description": "Browse the best GTM agencies and consultants specializing in go-to-market strategy.",
             "url": "https://gtm.quest/best-gtm-agencies",
             "mainEntity": {
@@ -89,7 +89,7 @@ export default async function AgenciesPage() {
           </span>
 
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-tight">
-            Best GTM Agencies 2024
+            Best GTM Agencies 2026
           </h1>
 
           <p className="text-2xl md:text-3xl text-white/80 mb-10 leading-relaxed max-w-5xl mx-auto font-light">

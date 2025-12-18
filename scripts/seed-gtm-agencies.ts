@@ -2,7 +2,7 @@
  * Seed GTM Agencies into companies table
  *
  * REAL RESEARCHED DATA - All information verified from actual company websites and sources
- * Last updated: December 2024
+ * Last updated: December 2026
  */
 
 import { neon } from '@neondatabase/serverless'
@@ -33,7 +33,7 @@ async function seed() {
       specializations: ['AI GTM Planning', 'B2B SaaS Strategy', 'Product Launch', 'Market Entry'],
       global_rank: 1,
       employee_count: null,
-      founded_year: 2024,
+      founded_year: 2026,
       service_areas: ['UK', 'London', 'US', 'New York', 'Australia', 'Sydney', 'Global'],
       brand_dev_domain: 'gtm.quest',
       pricing_model: 'Freemium + Consulting',

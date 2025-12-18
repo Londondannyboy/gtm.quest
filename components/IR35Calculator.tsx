@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 
-// UK Tax rates for 2024/25
+// UK Tax rates for 2026/25
 const TAX_CONFIG = {
   // Income Tax bands
   personalAllowance: 12570,
@@ -16,14 +16,14 @@ const TAX_CONFIG = {
   // National Insurance (Employee)
   niPrimaryThreshold: 12570,
   niUpperEarningsLimit: 50270,
-  niEmployeeRate: 0.08, // 8% (reduced from 12% in 2024)
+  niEmployeeRate: 0.08, // 8% (reduced from 12% in 2026)
   niEmployeeUpperRate: 0.02,
 
   // National Insurance (Employer)
   niSecondaryThreshold: 9100,
   niEmployerRate: 0.138, // 13.8%
 
-  // Dividend Tax (2024/25)
+  // Dividend Tax (2026/25)
   dividendAllowance: 500, // Reduced from £1000
   dividendBasicRate: 0.0875, // 8.75%
   dividendHigherRate: 0.3375, // 33.75%
@@ -385,7 +385,7 @@ export function IR35Calculator({ defaultDayRate = 800, className = '' }: IR35Cal
               <strong> Always consult with a qualified tax accountant or IR35 specialist</strong> before making financial decisions.
             </p>
             <p className="text-gray-600">
-              Tax rates based on 2024/25 UK tax year. Outside IR35 assumes optimal limited company structure.
+              Tax rates based on 2026/25 UK tax year. Outside IR35 assumes optimal limited company structure.
               For official guidance, see{' '}
               <Link href="https://www.gov.uk/guidance/understanding-off-payroll-working-ir35" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:underline font-medium">
                 gov.uk/IR35

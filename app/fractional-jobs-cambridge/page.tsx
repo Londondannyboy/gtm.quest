@@ -126,7 +126,7 @@ export default async function CambridgePage() {
             </div>
             <div>
               <div className="text-4xl font-black text-cyan-700">£1.7bn</div>
-              <div className="text-gray-600 font-medium">VC invested 2024</div>
+              <div className="text-gray-600 font-medium">VC invested 2026</div>
             </div>
           </div>
         </div>

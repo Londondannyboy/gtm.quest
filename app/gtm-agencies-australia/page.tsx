@@ -4,7 +4,7 @@ import { getAgenciesForLocation, getLocationStats } from '@/lib/location-agencie
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'GTM Agencies Australia 2024 | Top Go-To-Market Consultants Australia',
+  title: 'GTM Agencies Australia 2026 | Top Go-To-Market Consultants Australia',
   description: 'Find the best GTM agencies serving Australia. Compare top Australian go-to-market consultancies in Sydney, Melbourne, and across APAC.',
   keywords: 'GTM agency Australia, go-to-market agencies Australia, GTM consultants Sydney, Melbourne GTM agencies',
   alternates: {
