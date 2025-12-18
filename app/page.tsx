@@ -115,53 +115,35 @@ export default async function Home() {
         </section>
 
         {/* Three Propositions Section */}
-        <section className="py-16 md:py-24 bg-zinc-950 border-t border-white/10">
+        <section className="py-16 md:py-24 bg-black border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <h2 className="text-6xl md:text-7xl font-black text-white mb-20 text-center">
+            <h2 className="text-6xl md:text-7xl font-black text-white mb-20">
               Our Go-To-Market Solutions
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="space-y-12">
               {/* Scalable Outbound */}
-              <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
-                <div className="text-blue-400 text-5xl font-black mb-6">→</div>
-                <h3 className="text-2xl font-black text-white mb-6">Scalable Outbound</h3>
-                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              <div>
+                <h3 className="text-4xl md:text-5xl font-black text-white mb-4">Scalable Outbound</h3>
+                <p className="text-2xl text-gray-300 leading-relaxed font-light">
                   Generate a predictable pipeline with multi-channel Cold Email and LinkedIn Outreach campaigns. We build custom Clay & AI Agent workflows tailored to your industry and business.
                 </p>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Cold Email</span>
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Social Selling</span>
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">AI Workflows</span>
-                </div>
               </div>
 
               {/* Inbound-Led Outbound */}
-              <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
-                <div className="text-blue-400 text-5xl font-black mb-6">⬆</div>
-                <h3 className="text-2xl font-black text-white mb-6">Inbound-Led Outbound</h3>
-                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              <div>
+                <h3 className="text-4xl md:text-5xl font-black text-white mb-4">Inbound-Led Outbound</h3>
+                <p className="text-2xl text-gray-300 leading-relaxed font-light">
                   Inbound leads and MQLs are expensive and shouldn't go to waste. Our AI-driven Inbound-Led Outbound system qualifies by ICP and triggers personalized outreach that books meetings.
                 </p>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">AI-Generated SEO</span>
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Lead Qualification</span>
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Social Signals</span>
-                </div>
               </div>
 
               {/* AI-Powered RevOps */}
-              <div className="bg-black border-2 border-white/20 p-10 rounded-3xl hover:border-white/40 transition-all duration-300">
-                <div className="text-blue-400 text-5xl font-black mb-6">⚙</div>
-                <h3 className="text-2xl font-black text-white mb-6">AI-Powered RevOps</h3>
-                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              <div>
+                <h3 className="text-4xl md:text-5xl font-black text-white mb-4">AI-Powered RevOps</h3>
+                <p className="text-2xl text-gray-300 leading-relaxed font-light">
                   You want clean data, fast handoffs, and reliable pipeline visibility. Our RevOps approach aligns your inbound, outbound, and post-sale motions and automates your Marketing & Sales collaboration.
                 </p>
-                <div className="flex gap-2 flex-wrap">
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Data Automation</span>
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">Pipeline Visibility</span>
-                  <span className="inline-block bg-white/10 text-white px-3 py-1 rounded-full text-sm font-medium">AI Analytics</span>
-                </div>
               </div>
             </div>
           </div>
