@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { VoiceProvider, useVoice } from '@humeai/voice-react'
 
-const CONFIG_ID = process.env.NEXT_PUBLIC_HUME_CONFIG_ID || 'd57ceb71-4cf5-47e9-87cd-6052445a031c'
+const CONFIG_ID = process.env.NEXT_PUBLIC_HUME_CONFIG_ID || '2b247fd8-7696-4747-a74d-4d14d93e21ea'
 
 export interface UserProfile {
   first_name: string | null
