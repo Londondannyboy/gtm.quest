@@ -522,6 +522,68 @@ export default async function Home() {
           </div>
         </section>
 
+        {/* Fractional Executives CTA */}
+        <section className="py-16 md:py-24 bg-gradient-to-b from-black to-zinc-900 border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="flex-1">
+                <span className="inline-flex items-center px-4 py-2 bg-purple-500/20 rounded-full text-purple-300 text-sm font-medium mb-6">
+                  <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+                  Executives Available
+                </span>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+                  Need Fractional Executive Support?
+                </h2>
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                  Connect with experienced CFOs, CMOs, CTOs, and other C-suite leaders for part-time and project-based engagements. Get senior expertise without the full-time cost.
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    href="/people"
+                    className="inline-flex items-center px-8 py-4 bg-purple-600 text-white font-bold rounded-xl hover:bg-purple-700 transition-all"
+                  >
+                    Browse Executives →
+                  </Link>
+                  <Link
+                    href="/handler/sign-up"
+                    className="inline-flex items-center px-8 py-4 bg-white/10 text-white font-medium rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+                  >
+                    Create Your Profile
+                  </Link>
+                </div>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="text-4xl font-black text-white mb-2">CFO</div>
+                    <div className="text-gray-400 text-sm">Financial</div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="text-4xl font-black text-white mb-2">CMO</div>
+                    <div className="text-gray-400 text-sm">Marketing</div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="text-4xl font-black text-white mb-2">CTO</div>
+                    <div className="text-gray-400 text-sm">Technology</div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="text-4xl font-black text-white mb-2">COO</div>
+                    <div className="text-gray-400 text-sm">Operations</div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="text-4xl font-black text-white mb-2">CPO</div>
+                    <div className="text-gray-400 text-sm">Product</div>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/10">
+                    <div className="text-4xl font-black text-purple-400 mb-2">+</div>
+                    <div className="text-gray-400 text-sm">More</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="py-16 md:py-24 bg-zinc-950 border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">

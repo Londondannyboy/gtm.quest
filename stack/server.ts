@@ -4,8 +4,8 @@ import { StackServerApp } from "@stackframe/stack";
 export const stackServerApp = new StackServerApp({
   tokenStore: "nextjs-cookie",
   urls: {
-    afterSignIn: "/gtm",
-    afterSignUp: "/gtm",
+    afterSignIn: "/profile/edit",
+    afterSignUp: "/profile/edit",
     afterSignOut: "/",
   },
 });

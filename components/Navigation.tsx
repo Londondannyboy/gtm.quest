@@ -20,6 +20,7 @@ export function Navigation() {
 
   const navLinks = [
     { href: '/gtm-resources', label: 'Resources' },
+    { href: '/people', label: 'Executives' },
     { href: '/chat', label: 'AI Strategist' }
   ]
 
