@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { getAgenciesByCategory } from '@/lib/location-agencies'
-import { fetchBrandFromBrandDev, BrandAssets } from '@/lib/brand-api'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
@@ -13,7 +12,46 @@ export const metadata: Metadata = {
   }
 }
 
-export const revalidate = 3600 // Revalidate every hour
+export const revalidate = 3600
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why choose a London B2B marketing agency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "London agencies combine European market access with global reach. They understand UK and EU regulations, have strong fintech and enterprise software expertise, and offer easier timezone coordination for European expansion. London's position as Europe's tech and finance capital creates unparalleled B2B marketing sophistication."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do B2B marketing agencies in London charge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "London B2B marketing agencies typically charge £10,000-£50,000+ per month for retainer engagements including strategy, execution, and reporting. Specialized projects like ABM program design or European market entry strategies range from £20,000-£100,000 depending on scope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries do London B2B marketing agencies specialize in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "London agencies specialize in fintech, financial services technology, cybersecurity, regtech, and enterprise SaaS given London's position as Europe's financial and business hub. Many develop deep vertical expertise within these sectors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do London agencies serve companies outside the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, most London B2B marketing agencies serve global markets, particularly companies expanding from UK into Europe or entering the UK market from US or other regions. They bring valuable expertise on European market entry, GDPR compliance, and cross-border marketing strategies."
+      }
+    }
+  ]
+}
 
 export default async function B2BMarketingAgencyLondonPage() {
   // Fetch B2B Marketing agencies serving London
@@ -37,35 +75,10 @@ export default async function B2BMarketingAgencyLondonPage() {
     .slice(0, 5)
     .map(([spec]) => spec)
 
-  // Brand assets now stored in database - no API calls!
-
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "B2B Marketing Agencies London",
-            "description": "Top B2B marketing agencies in London",
-            "url": "https://gtm.quest/b2b-marketing-agency-london",
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": agencies.map((agency, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                  "@type": "Organization",
-                  "name": agency.name,
-                  "url": `https://gtm.quest/agency/${agency.slug}`
-                }
-              }))
-            }
-          })
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"CollectionPage","name":"B2B Marketing Agencies London","url":"https://gtm.quest/b2b-marketing-agency-london"})}} />
 
       {/* Breadcrumb */}
       <div className="border-b border-white/10 py-6">
@@ -80,35 +93,22 @@ export default async function B2BMarketingAgencyLondonPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="py-16 md:py-20 bg-black">
-        <div className="max-w-7xl mx-auto px-6">
-          <span className="text-white/60 text-sm uppercase tracking-wider">London, United Kingdom</span>
-          <h1 className="text-6xl md:text-8xl font-black text-white mb-6 leading-tight">
-            B2B Marketing<br />Agencies in London
-          </h1>
-          <p className="text-2xl md:text-3xl text-gray-300 mb-12 max-w-4xl">
-            {totalAgencies} verified B2B marketing agencies in London with expertise in demand generation, account-based marketing, and revenue growth.
+      <section className="relative py-24 md:py-32 bg-black overflow-hidden">
+        <div className="absolute inset-0 opacity-40">
+          <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=80" alt="B2B marketing agencies London - City of London skyline" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <span className="text-white/70 text-base uppercase tracking-wider font-semibold">London, United Kingdom</span>
+          <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>B2B Marketing Agencies London</h1>
+          <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
+            {totalAgencies} verified B2B marketing agencies in London—Europe's leading hub for fintech, enterprise software, and global B2B marketing.
           </p>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl">
-            <div>
-              <div className="text-5xl font-black text-white mb-2">{totalAgencies}</div>
-              <div className="text-white/60">Agencies</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-white mb-2">£{Math.round(avgMinBudget / 1000)}K+</div>
-              <div className="text-white/60">Avg Min Budget</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-white mb-2">100%</div>
-              <div className="text-white/60">Verified</div>
-            </div>
-            <div>
-              <div className="text-5xl font-black text-white mb-2">{topSpecializations.length}+</div>
-              <div className="text-white/60">Specializations</div>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-4xl">
+            <div><div className="text-6xl font-black text-white mb-3">{totalAgencies}</div><div className="text-white/70 text-lg">Agencies</div></div>
+            <div><div className="text-6xl font-black text-white mb-3">£{Math.round(avgMinBudget / 1000)}K+</div><div className="text-white/70 text-lg">Avg Budget</div></div>
+            <div><div className="text-6xl font-black text-white mb-3">100%</div><div className="text-white/70 text-lg">Verified</div></div>
+            <div><div className="text-6xl font-black text-white mb-3">{topSpecializations.length}+</div><div className="text-white/70 text-lg">Specialties</div></div>
           </div>
         </div>
       </section>
@@ -187,141 +187,166 @@ export default async function B2BMarketingAgencyLondonPage() {
         </div>
       </section>
 
-      {/* Agency Cards */}
-      <section className="bg-black">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <h2 className="text-5xl font-black text-white mb-12">
-            Top B2B Marketing Agencies in London
-          </h2>
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">B2B Marketing Services in London</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">World-class marketing capabilities for Europe's leading business hub.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🌍</div>
+              <h3 className="text-2xl font-bold text-white mb-4">European Expansion</h3>
+              <p className="text-white/70 text-lg">Pan-European GTM strategies from London hub, covering DACH, Nordics, and Southern Europe.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💰</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Fintech Marketing</h3>
+              <p className="text-white/70 text-lg">Specialized campaigns for London's world-leading fintech and financial services ecosystem.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise ABM</h3>
+              <p className="text-white/70 text-lg">Account-based marketing for Canary Wharf enterprises and Fortune 500 European HQs.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🔒</div>
+              <h3 className="text-2xl font-bold text-white mb-4">GDPR-Compliant</h3>
+              <p className="text-white/70 text-lg">Privacy-first marketing strategies meeting European regulatory requirements.</p>
+            </div>
+          </div>
         </div>
-        {agencies.map((agency, i) => {
-          const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
-          const website = agency.website || '#'
+      </section>
 
-          return (
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">Key Industries in London B2B</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">London's diverse economy creates opportunities across high-value sectors.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💳</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Fintech & Finance</h3>
+              <p className="text-white/70 text-lg">Europe's largest financial center—banks, fintechs, insurtech, and wealth management.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🛡️</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Cybersecurity</h3>
+              <p className="text-white/70 text-lg">Security software, regtech, and compliance solutions for regulated industries.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💻</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise SaaS</h3>
+              <p className="text-white/70 text-lg">B2B software companies serving European enterprise from Tech City and beyond.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">⚖️</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Professional Services</h3>
+              <p className="text-white/70 text-lg">Law firms, consultancies, and business services concentrated in the City.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black py-20">
+        <div className="max-w-7xl mx-auto px-6 mb-16">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">Top B2B Marketing Agencies in London</h2>
+          <p className="text-2xl text-white/80 leading-[1.8]">{totalAgencies} verified agencies serving London and European markets.</p>
+        </div>
+        <div className="w-full">
+          {agencies.map((agency, i) => (
             <AgencyCard
               key={agency.slug}
               rank={i + 1}
               name={agency.name}
-              tagline={agency.description}
-              description={[agency.description]}
+              tagline={(agency as any).b2b_description || agency.description}
+              description={[(agency as any).b2b_description || agency.description]}
               bestFor={agency.specializations || []}
-              keyServices={[]}
-              website={website}
+              keyServices={(agency as any).key_services || agency.specializations || []}
+              website={agency.website || '#'}
               primaryColor={(agency as any).primary_color || '#8B5CF6'}
-                logoUrl={(agency as any).logo_url}
-                backdropUrl={(agency as any).backdrop_url}
-              isTopRanked={isTopRanked}
+              logoUrl={(agency as any).logo_url}
+              backdropUrl={(agency as any).backdrop_url}
+              isTopRanked={!!(agency.global_rank && agency.global_rank <= 3)}
               internalLink={agency.slug === 'gtmquest' ? '/planner' : undefined}
+              serviceAreas={agency.service_areas || []}
             />
-          )
-        })}
+          ))}
+        </div>
       </section>
 
-      {/* FAQ Section */}
       <section className="bg-zinc-950 border-t border-white/10 py-24">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-white mb-16">London B2B Marketing FAQs</h2>
-
-          <div className="space-y-12">
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                What is the typical cost of a B2B marketing agency in London?
-              </h3>
-              <p className="text-lg text-white/70 leading-relaxed">
-                London B2B marketing agencies typically charge £{Math.round(avgMinBudget / 1000)}K+ per month for retainer engagements including strategy, execution, and reporting. Specialized projects like ABM program design or European market entry strategies range from £20K-£100K depending on scope. Enterprise demand generation programs can exceed £150K monthly for comprehensive multi-market execution across Europe.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Do London agencies serve companies outside the UK?
-              </h3>
-              <p className="text-lg text-white/70 leading-relaxed">
-                Yes, most London B2B marketing agencies serve global markets, particularly companies expanding from UK into Europe or entering the UK market from US or other regions. London agencies bring valuable expertise on European market entry, GDPR compliance, localization, and cross-border marketing strategies. Many have experience launching products across multiple European markets simultaneously.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                How do London agencies compare to US agencies?
-              </h3>
-              <p className="text-lg text-white/70 leading-relaxed">
-                London agencies typically have stronger European market expertise and cross-border marketing experience, while US agencies often lead in cutting-edge B2B tactics and marketing technology innovation. London agencies excel at navigating regulatory complexity and multi-country campaigns. For European expansion, London agencies provide advantages US-based agencies cannot match. For purely UK or global strategies, both can work effectively.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                What industries do London B2B marketing agencies specialize in?
-              </h3>
-              <p className="text-lg text-white/70 leading-relaxed">
-                Top specializations include {topSpecializations.slice(0, 3).join(', ')}. London agencies have particular depth in fintech, financial services technology, cybersecurity, regtech, enterprise SaaS, and professional services given London's position as Europe's financial and business hub. Many agencies develop deep vertical expertise within these sectors.
-              </p>
-            </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-12 leading-tight">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {faqSchema.mainEntity.map((faq, i) => (
+              <div key={i} className="bg-black border border-white/10 p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold text-white mb-4">{faq.name}</h3>
+                <p className="text-white/70 text-lg leading-relaxed">{faq.acceptedAnswer.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Related Locations */}
       <section className="bg-black border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-white mb-12">Other Locations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Link
-              href="/b2b-marketing-agency-uk"
-              className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
-            >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
-                United Kingdom →
-              </h3>
-              <p className="text-white/60">
-                Find B2B marketing agencies across the UK.
-              </p>
+          <h2 className="text-4xl font-black text-white mb-12">Explore Related Markets</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <Link href="/b2b-marketing-agency-new-york" className="bg-zinc-900 border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🗽</span>
+              <span className="text-white font-semibold">New York</span>
             </Link>
-
-            <Link
-              href="/b2b-marketing-agency-us"
-              className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
-            >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
-                United States →
-              </h3>
-              <p className="text-white/60">
-                Explore B2B marketing agencies serving the US market.
-              </p>
+            <Link href="/b2b-marketing-agency-berlin" className="bg-zinc-900 border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇩🇪</span>
+              <span className="text-white font-semibold">Berlin</span>
             </Link>
-
-            <Link
-              href="/gtm-agencies-london"
-              className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
-            >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
-                GTM Agencies London →
-              </h3>
-              <p className="text-white/60">
-                Discover go-to-market agencies in London.
-              </p>
+            <Link href="/b2b-marketing-agency-paris" className="bg-zinc-900 border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇫🇷</span>
+              <span className="text-white font-semibold">Paris</span>
+            </Link>
+            <Link href="/b2b-marketing-agency-amsterdam" className="bg-zinc-900 border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇳🇱</span>
+              <span className="text-white font-semibold">Amsterdam</span>
+            </Link>
+            <Link href="/b2b-marketing-agency-san-francisco" className="bg-zinc-900 border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🌉</span>
+              <span className="text-white font-semibold">San Francisco</span>
+            </Link>
+            <Link href="/gtm-agencies-london" className="bg-zinc-900 border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🚀</span>
+              <span className="text-white font-semibold">GTM London</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-gradient-to-r from-blue-500 to-blue-500 py-20">
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">B2B Marketing Resources</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link href="/planner" className="bg-black border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Planner</h3>
+              <p className="text-white/60">Build your go-to-market strategy with our AI-powered planning tool.</p>
+            </Link>
+            <Link href="/best-gtm-agencies" className="bg-black border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">All Agencies</h3>
+              <p className="text-white/60">Browse our complete directory of verified agencies worldwide.</p>
+            </Link>
+            <Link href="/best-b2b-marketing-agency-uk-top-b2b-marketing-agencies-uk" className="bg-black border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">B2B Marketing UK</h3>
+              <p className="text-white/60">Explore B2B marketing agencies across the United Kingdom.</p>
+            </Link>
+            <Link href="/b2b-gtm-strategy" className="bg-black border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">B2B GTM Strategy</h3>
+              <p className="text-white/60">Learn about B2B go-to-market strategy frameworks.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-gradient-to-r from-blue-600 to-blue-500 py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-            Build Your B2B Marketing Strategy
-          </h2>
-          <p className="text-xl text-white/90 mb-10">
-            Create a comprehensive go-to-market strategy tailored to the London market in minutes.
-          </p>
-          <Link
-            href="/planner"
-            className="inline-flex items-center justify-center px-12 py-6 text-xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl"
-          >
-            Start Free →
-          </Link>
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">Build Your London B2B Strategy</h2>
+          <p className="text-2xl text-white/95 mb-12">Create a comprehensive B2B marketing strategy for London and European markets.</p>
+          <Link href="/planner" className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl">Start Free →</Link>
         </div>
       </section>
     </div>

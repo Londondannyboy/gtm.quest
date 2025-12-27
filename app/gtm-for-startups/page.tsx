@@ -4,155 +4,310 @@ import Link from 'next/link'
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Go-to-Market Strategy for Startups | GTM Guide | GTM Quest',
+  title: 'GTM Strategy for Startups 2025 | Lean Go-to-Market Guide | GTM Quest',
   description: 'GTM strategy guide for startups. Learn how to launch with limited resources, find your first customers, and build sustainable growth from day one.',
-  keywords: 'gtm for startups, startup go-to-market, startup launch strategy, early stage gtm, lean gtm',
+  keywords: 'gtm for startups, startup go-to-market, startup launch strategy, early stage gtm, lean gtm, startup marketing',
   alternates: { canonical: 'https://gtm.quest/gtm-for-startups' },
   openGraph: {
     title: 'GTM for Startups | Launch Strategy Guide',
     description: 'Build your go-to-market strategy with limited resources and unlimited ambition.',
-    type: 'website'
+    type: 'website',
+    url: 'https://gtm.quest/gtm-for-startups'
   }
+}
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a startup go-to-market strategy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A startup GTM strategy is a lean, focused plan for acquiring your first customers with limited resources. Unlike enterprise GTM, startup GTM emphasizes rapid experimentation, founder-led sales, community building, and product-led growth tactics that don't require large marketing budgets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do startups get their first 100 customers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Startups get their first 100 customers through: 1) Personal networks and warm introductions, 2) Founder-led sales with direct outreach, 3) Community engagement where target customers gather, 4) Free trials and product-led growth, 5) Content marketing targeting specific pain points, and 6) Strategic partnerships with complementary products."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much should a startup spend on go-to-market?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Early-stage startups should focus on time over money, leveraging founder-led sales and organic channels before spending on paid acquisition. A typical pre-seed/seed startup might spend $5K-$20K/month on GTM tools and limited paid experiments, scaling only after finding repeatable acquisition channels with positive unit economics."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should startups hire a GTM team?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hire GTM team members after founders have closed 10-20 customers and can document a repeatable sales process. First hires typically include: 1) A marketing lead for content and demand gen at $1-2M ARR, 2) First sales rep at $500K-$1M ARR with proven founder-sales playbook, and 3) Growth/RevOps at $2-3M ARR to systematize processes."
+      }
+    }
+  ]
+}
+
+const collectionSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Startup Go-to-Market Strategy Guide",
+  "description": "Comprehensive guide to startup GTM strategy including lean tactics, first customer acquisition, and scaling approaches.",
+  "url": "https://gtm.quest/gtm-for-startups"
 }
 
 export default function GTMForStartupsPage() {
   return (
     <div className="min-h-screen bg-white">
-      <section className="bg-gradient-to-br from-blue-900 to-blue-800 text-white py-20 md:py-32">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Link href="/" className="inline-flex items-center text-blue-200 hover:text-white mb-8 transition-colors text-sm"><span className="mr-2">←</span> Back to Home</Link>
-          <div className="max-w-4xl">
-            <span className="inline-block bg-blue-400 text-blue-900 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Startup Guide</span>
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Go-to-Market<br /><span className="text-blue-300">For Startups</span></h1>
-            <p className="text-xl text-blue-100 leading-relaxed max-w-2xl">Launch with limited resources and find your first customers. Build a GTM strategy that scales from zero to product-market fit.</p>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(collectionSchema)}} />
+
+      {/* Hero Section with Stats */}
+      <section className="bg-gradient-to-br from-emerald-900 via-teal-800 to-slate-900 text-white py-20 md:py-32">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <Link href="/" className="inline-flex items-center text-emerald-200 hover:text-white mb-8 transition-colors text-sm">
+            <span className="mr-2">&larr;</span> Back to Home
+          </Link>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <span className="inline-block bg-emerald-400 text-emerald-900 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] mb-6">Startup Guide</span>
+              <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[0.9]">Go-to-Market<br /><span className="text-emerald-300">For Startups</span></h1>
+              <p className="text-xl text-emerald-100 leading-relaxed max-w-xl mb-10">Launch with limited resources and find your first customers. Build a GTM strategy that scales from zero to product-market fit without breaking the bank.</p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6">
+                <div>
+                  <div className="text-4xl font-black text-white">90%</div>
+                  <div className="text-emerald-200 text-sm">Fail Without GTM</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-black text-white">100</div>
+                  <div className="text-emerald-200 text-sm">First Customers Goal</div>
+                </div>
+                <div>
+                  <div className="text-4xl font-black text-white">8-12wk</div>
+                  <div className="text-emerald-200 text-sm">To First Revenue</div>
+                </div>
+              </div>
+            </div>
+            <div className="relative hidden lg:block">
+              <div className="aspect-square bg-gradient-to-br from-emerald-400/20 to-teal-600/20 rounded-3xl flex items-center justify-center border border-emerald-400/30">
+                <div className="text-center p-8">
+                  <div className="text-8xl mb-4">STARTUP</div>
+                  <div className="text-2xl text-emerald-200">Launch Smart, Scale Fast</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* The Startup GTM Challenge */}
-      <section className="py-20 bg-gray-50">
+      {/* Understanding Startup GTM - 3 paragraphs with external links */}
+      <section className="py-20 bg-zinc-950 text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-8">The Startup GTM Challenge</h2>
+          <h2 className="text-4xl md:text-5xl font-black mb-10">Why Startup GTM is Different</h2>
+          <div className="space-y-8 text-xl text-white/90 leading-relaxed">
+            <p>
+              Startup go-to-market fundamentally differs from established company GTM because you're operating with extreme constraints and uncertainty. According to <a href="https://www.cbinsights.com/research/startup-failure-reasons-top/" className="text-emerald-400 hover:text-emerald-300 underline" target="_blank" rel="noopener">CB Insights research</a>, 35% of startups fail because there's no market need, and another 20% get outcompeted. Both failures stem from GTM problems: either not validating the market before building or executing poorly against competitors who understand the customer better.
+            </p>
+            <p>
+              The lean startup methodology, popularized by <a href="https://theleanstartup.com/" className="text-emerald-400 hover:text-emerald-300 underline" target="_blank" rel="noopener">Eric Ries</a> and <a href="https://steveblank.com/2010/01/25/whats-a-startup-first-principles/" className="text-emerald-400 hover:text-emerald-300 underline" target="_blank" rel="noopener">Steve Blank's customer development framework</a>, provides the foundation for startup GTM. The core principle: validate your assumptions with real customers before investing heavily in go-to-market. This means founder-led sales, rapid iteration, and proving demand with 10-20 paying customers before building scalable GTM infrastructure.
+            </p>
+            <p>
+              Modern startup GTM has evolved with the rise of product-led growth. Companies like <a href="https://www.openviewpartners.com/product-led-growth/" className="text-emerald-400 hover:text-emerald-300 underline" target="_blank" rel="noopener">Slack, Figma, and Notion</a> demonstrated that great products can acquire customers with minimal sales teams. This shifts startup GTM focus from outbound sales to product experience, onboarding optimization, and community building. The most successful startups combine product-led acquisition with strategic sales engagement, meeting customers where they are rather than forcing them through traditional funnels.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Components - 4 Cards */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Core Elements of Startup GTM</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl">Every successful startup GTM requires these four foundational elements.</p>
+
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                challenge: 'Limited Budget',
-                description: 'You can\'t outspend larger competitors. You need smart, creative strategies that work with minimal marketing spend.',
-                icon: '💸'
+                title: 'Laser-Focused ICP',
+                description: 'Define one specific customer segment to dominate before expanding. Start with a niche you can own. Be specific about company size, industry, pain point, and buying trigger. Validate with 20+ conversations.',
+                icon: '01'
               },
               {
-                challenge: 'Unknown Brand',
-                description: 'Nobody knows who you are. You need to build credibility and trust from scratch through authentic engagement.',
-                icon: '🤷'
+                title: 'Founder-Led Sales',
+                description: 'Founders must sell the first 10-20 customers personally. This builds deep customer understanding, validates positioning, and creates the playbook for future sales hires. No one sells your vision better than you.',
+                icon: '02'
               },
               {
-                challenge: 'Limited Team',
-                description: 'You probably have 1-2 people on GTM. Everything needs to be leveraged - you can\'t do everything.',
-                icon: '👥'
+                title: 'Community & Content',
+                description: 'Build audience before you need customers. Share your journey, help people solve problems, establish expertise. Communities and content compound over time and reduce CAC as you scale.',
+                icon: '03'
               },
               {
-                challenge: 'Uncertain Product-Market Fit',
-                description: 'You\'re still figuring out what customers want. Your GTM needs to be flexible and data-driven.',
-                icon: '🔍'
-              },
-              {
-                challenge: 'Long Sales Cycles',
-                description: 'B2B sales can take months. You need revenue fast but can\'t wait for slow deals.',
-                icon: '📅'
-              },
-              {
-                challenge: 'Skepticism',
-                description: 'Enterprise customers are cautious about unproven startups. You need to prove viability and build confidence.',
-                icon: '⚠️'
-              },
+                title: 'Product-Led Motion',
+                description: 'Make your product the primary acquisition channel. Free tiers, trials, and self-serve onboarding let customers experience value before talking to sales. Focus on activation and retention metrics.',
+                icon: '04'
+              }
             ].map((item, i) => (
-              <div key={i} className="bg-white p-6 rounded-lg border border-gray-200">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2">{item.challenge}</h3>
-                <p className="text-gray-700 text-sm">{item.description}</p>
+              <div key={i} className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
+                <div className="text-5xl font-black text-emerald-100 mb-4">{item.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Startup GTM Principles */}
+      {/* GTM Channels for Startups - 4 Cards */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-12">Core Principles for Startup GTM</h2>
-          <div className="space-y-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Best GTM Channels for Startups</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl">Focus your limited resources on channels that work best for early-stage companies.</p>
+
+          <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                principle: '1. Focus, Focus, Focus',
-                description: 'You can\'t do everything. Pick ONE target customer segment and dominate it. Once you own that segment, expand to the next. Example: Slack started with tech teams, not enterprises.',
-                tactics: [
-                  'Define your Ideal Customer Profile (ICP) precisely',
-                  'Focus 80% of effort on that one segment',
-                  'Build products and messaging specifically for them',
-                  'Only expand after achieving traction'
-                ]
+                channel: 'Direct Outreach & Networks',
+                description: 'Personal connections, warm intros from investors/advisors, LinkedIn outreach. Highest conversion, lowest cost.',
+                bestFor: 'B2B, Services, High-ACV products',
+                investment: 'Time only - $0 direct cost',
+                color: 'emerald'
               },
               {
-                principle: '2. Lean on Community',
-                description: 'Communities are cheaper than ads and more effective than cold outreach. Find where your customers hang out and provide genuine value.',
-                tactics: [
-                  'Join relevant communities (Reddit, Discord, forums, Slack groups)',
-                  'Provide helpful answers without promoting',
-                  'Share your learnings transparently',
-                  'Let community members become your advocates'
-                ]
+                channel: 'Product-Led Growth',
+                description: 'Free tier or trial drives acquisition. Users self-onboard and convert to paid based on value received.',
+                bestFor: 'SaaS, Developer tools, SMB products',
+                investment: 'Engineering time for onboarding optimization',
+                color: 'blue'
               },
               {
-                principle: '3. Content First, Promotion Second',
-                description: 'Instead of ads, create content your customers want to read. Blog posts, videos, guides, and resources attract customers while building authority.',
-                tactics: [
-                  'Start a blog targeting your customers\' pain points',
-                  'Optimize for search terms they\'re already searching',
-                  'Create free tools and templates',
-                  'Share knowledge freely (it builds credibility)'
-                ]
+                channel: 'Community & Content',
+                description: 'Build audience through helpful content, community engagement, and authentic presence in relevant spaces.',
+                bestFor: 'All startups with 6+ month horizon',
+                investment: 'Founder time + $500-2K/mo for tools',
+                color: 'purple'
               },
               {
-                principle: '4. Product is Your Best Marketing',
-                description: 'Make your product so good that people want to tell others about it. Free tiers, trials, and demos let people experience value risk-free.',
-                tactics: [
-                  'Offer a generous free tier or trial',
-                  'Make onboarding so good people succeed in minutes',
-                  'Implement referral mechanics (make sharing easy)',
-                  'Focus on WOW moments in the product'
-                ]
-              },
-              {
-                principle: '5. Sales to Early Customers',
-                description: 'Get out and talk to customers directly. Early revenue comes from direct relationships, not inbound marketing.',
-                tactics: [
-                  'Talk to 20-30 prospective customers before launch',
-                  'Use these conversations to refine messaging',
-                  'Build relationships with key influencers',
-                  'Ask customers for introductions (warm outreach beats cold)'
-                ]
-              },
-              {
-                principle: '6. Data-Driven Iteration',
-                description: 'Test everything. What works for one startup won\'t work for another. Measure, learn, and adjust quickly.',
-                tactics: [
-                  'Set up analytics immediately',
-                  'Track which channels drive highest quality customers',
-                  'Run small tests before big investments',
-                  'Kill things that don\'t work (fast fail)'
-                ]
-              },
+                channel: 'Strategic Partnerships',
+                description: 'Partner with complementary products, integrations, and co-marketing. Leverage their audience.',
+                bestFor: 'Platforms, integrations, ecosystem plays',
+                investment: 'Business development time',
+                color: 'orange'
+              }
             ].map((item, i) => (
-              <div key={i} className="p-8 bg-gradient-to-br from-blue-50 to-white border border-blue-200 rounded-lg">
-                <h3 className="text-xl font-black text-gray-900 mb-3">{item.principle}</h3>
-                <p className="text-gray-700 mb-6">{item.description}</p>
+              <div key={i} className={`p-8 rounded-xl border-l-4 ${
+                item.color === 'emerald' ? 'border-emerald-500 bg-emerald-50' :
+                item.color === 'blue' ? 'border-blue-500 bg-blue-50' :
+                item.color === 'purple' ? 'border-purple-500 bg-purple-50' :
+                'border-orange-500 bg-orange-50'
+              }`}>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.channel}</h3>
+                <p className="text-gray-700 mb-4">{item.description}</p>
+                <div className="space-y-2 text-sm">
+                  <p><strong className="text-gray-900">Best for:</strong> <span className="text-gray-600">{item.bestFor}</span></p>
+                  <p><strong className="text-gray-900">Investment:</strong> <span className="text-gray-600">{item.investment}</span></p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How to Implement - Numbered Steps */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">The Startup GTM Roadmap</h2>
+          <p className="text-xl text-gray-600 mb-12">Follow this proven path from idea to first 100 customers.</p>
+
+          <div className="space-y-12">
+            <div className="flex gap-8">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black">01</div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Validate Problem & Market (Weeks 1-4)</h3>
+                <p className="text-gray-700 mb-4">Talk to 30+ potential customers before building. Confirm they have the problem, understand their current solutions, and gauge willingness to pay. Don't build until you have strong signals of demand.</p>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <p className="text-sm text-gray-600"><strong>Success criteria:</strong> 70%+ validate the problem, 10+ would pay, clear ICP definition, documented buying process</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-8">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black">02</div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Build MVP & Land First Customers (Weeks 5-12)</h3>
+                <p className="text-gray-700 mb-4">Build the minimum product that solves the core problem. Launch to beta users from your validation interviews. Get 10-20 paying customers through founder-led sales. Document every interaction.</p>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <p className="text-sm text-gray-600"><strong>Success criteria:</strong> Working MVP, 10-20 paying customers, 80%+ retention, clear value proposition validated</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-8">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 bg-emerald-600 text-white rounded-2xl flex items-center justify-center text-2xl font-black">03</div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Find Repeatable Channels (Months 4-6)</h3>
+                <p className="text-gray-700 mb-4">Test 2-3 acquisition channels. Double down on what works, kill what doesn't. Build the playbook for each channel. Start content and community building for long-term leverage.</p>
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <p className="text-sm text-gray-600"><strong>Success criteria:</strong> 1-2 working channels, documented playbooks, 100+ customers, first hire plan</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries/Use Cases - 4 Cards */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Startup GTM by Stage</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl">Adjust your GTM approach based on your startup stage and traction.</p>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                stage: 'Pre-Seed / Idea Stage',
+                approach: 'Customer development focus. Talk to 50+ potential customers. Validate problem and willingness to pay before building.',
+                keyTactics: ['Customer discovery interviews', 'Landing page tests', 'Wait list building']
+              },
+              {
+                stage: 'Seed / MVP Stage',
+                approach: 'Founder-led sales exclusively. Close 10-20 customers personally. Document every objection and success pattern.',
+                keyTactics: ['Personal network activation', 'Direct outreach', 'Beta user programs']
+              },
+              {
+                stage: 'Series A / Product-Market Fit',
+                approach: 'Repeatable acquisition proven. First GTM hires. Scale what works and experiment with new channels.',
+                keyTactics: ['Channel playbook documentation', 'First marketing hire', 'Content scaling']
+              },
+              {
+                stage: 'Growth Stage',
+                approach: 'Full GTM team building. Multi-channel strategy. Marketing and sales alignment. Customer success focus.',
+                keyTactics: ['Team building', 'Revenue operations', 'Expansion revenue programs']
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.stage}</h3>
+                <p className="text-gray-700 mb-4">{item.approach}</p>
                 <div>
-                  <p className="text-xs font-bold text-blue-600 uppercase mb-3">Tactical Actions:</p>
-                  <ul className="space-y-2">
-                    {item.tactics.map((tactic, j) => (
-                      <li key={j} className="flex gap-3">
-                        <span className="text-blue-500 font-bold">→</span>
-                        <span className="text-gray-700 text-sm">{tactic}</span>
+                  <p className="text-sm font-bold text-gray-900 mb-2">Key tactics:</p>
+                  <ul className="space-y-1">
+                    {item.keyTactics.map((tactic, j) => (
+                      <li key={j} className="text-sm text-gray-600 flex items-center gap-2">
+                        <span className="text-emerald-500">-</span> {tactic}
                       </li>
                     ))}
                   </ul>
@@ -163,211 +318,89 @@ export default function GTMForStartupsPage() {
         </div>
       </section>
 
-      {/* Go-to-Market Channels for Startups */}
+      {/* FAQ Section - Rendered */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-12">GTM Channels for Startups (Ranked by ROI)</h2>
-          <div className="space-y-6">
-            {[
-              {
-                rank: '🥇',
-                channel: 'Direct Sales (Warm Introductions)',
-                investment: '⏱️ Time',
-                roi: '⭐⭐⭐⭐⭐',
-                description: 'Get introduced to prospective customers by advisors, investors, or early customers. Warm intros have 10x higher conversion than cold outreach.',
-                best_for: 'B2B SaaS, Enterprise, High-value deals',
-                how_to: 'Ask advisors, investors, and early customers for introductions. Build a list of 50 target companies.'
-              },
-              {
-                rank: '🥈',
-                channel: 'Product-Led Growth (Free Tier)',
-                investment: '💰 Product Development',
-                roi: '⭐⭐⭐⭐⭐',
-                description: 'Let users try your product free. If it\'s good, they\'ll upgrade. This is how Slack, Figma, and Notion grew without sales teams.',
-                best_for: 'B2B SaaS, Developer Tools, Collaboration Software',
-                how_to: 'Create a generous free tier with real value. Track how many free users convert to paid.'
-              },
-              {
-                rank: '3️⃣',
-                channel: 'Community & Engagement',
-                investment: '⏱️ Time',
-                roi: '⭐⭐⭐⭐',
-                description: 'Participate authentically in communities where your customers hang out. Share knowledge, help people, and build relationships.',
-                best_for: 'All startups, especially Developer Tools',
-                how_to: 'Join Reddit communities, Slack groups, Discord servers. Help people solve problems (don\'t sell).'
-              },
-              {
-                rank: '4️⃣',
-                channel: 'Content Marketing',
-                investment: '⏱️ Time + 💰 Tools',
-                roi: '⭐⭐⭐⭐',
-                description: 'Write blog posts and create content for problems your customers search for. This drives organic traffic and demonstrates expertise.',
-                best_for: 'All startups with 6+ month horizon',
-                how_to: 'Start a blog. Target keywords your customers search. Write helpful, honest content.'
-              },
-              {
-                rank: '5️⃣',
-                channel: 'Email & Partnerships',
-                investment: '⏱️ Time',
-                roi: '⭐⭐⭐',
-                description: 'Build strategic partnerships with complementary companies. Co-market, share customer lists, and grow together.',
-                best_for: 'Tools, SaaS, Services',
-                how_to: 'Identify 20 complementary companies. Propose partnership ideas that benefit both parties.'
-              },
-              {
-                rank: '6️⃣',
-                channel: 'Founder Networks & Events',
-                investment: '⏱️ Time',
-                roi: '⭐⭐⭐',
-                description: 'Get out to networking events, pitch competitions, and founder communities. Meet potential customers and partners.',
-                best_for: 'All startups, especially early stage',
-                how_to: 'Go to startup events, pitch competitions, investor events. Build genuine relationships.'
-              },
-              {
-                rank: '7️⃣',
-                channel: 'Paid Ads (Last)',
-                investment: '💰💰 Budget',
-                roi: '⭐⭐',
-                description: 'Only after organic channels are working well. Ads are expensive for startups and won\'t fix broken product or positioning.',
-                best_for: 'Startups with product-market fit and profitable CAC',
-                how_to: 'Test small budgets first. Only scale if CAC < LTV/3.'
-              },
-            ].map((item, i) => (
-              <div key={i} className="bg-white p-8 rounded-lg border-l-4 border-blue-500">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{item.rank}</span>
-                    <div>
-                      <h3 className="font-bold text-gray-900 text-lg">{item.channel}</h3>
-                      <p className="text-xs text-gray-600">{item.investment}</p>
-                    </div>
-                  </div>
-                  <span className="text-sm font-bold text-blue-600">{item.roi}</span>
-                </div>
-                <p className="text-gray-700 mb-4">{item.description}</p>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="font-bold text-gray-900 mb-1">Best for:</p>
-                    <p className="text-gray-600">{item.best_for}</p>
-                  </div>
-                  <div>
-                    <p className="font-bold text-gray-900 mb-1">How to do it:</p>
-                    <p className="text-gray-600">{item.how_to}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-12">Startup GTM FAQs</h2>
 
-      {/* Lean Startup GTM Framework */}
-      <section className="py-20 bg-blue-50">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-8">The Lean Startup GTM Framework</h2>
-          <div className="bg-white p-8 rounded-lg border-2 border-blue-500">
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-black text-gray-900 mb-4">Week 1-2: Validate Customer Problem</h3>
-                <p className="text-gray-700 mb-4">Before building, talk to 20-30 prospective customers. Confirm they have the problem and would pay to solve it.</p>
-                <div className="bg-gray-50 p-4 rounded space-y-2 text-sm">
-                  <p><strong>Actions:</strong> Schedule calls, ask about their current solution, understand their pain, gauge willingness to pay</p>
-                  <p><strong>Success:</strong> 70%+ of interviewees validate the problem exists</p>
-                </div>
-              </div>
+          <div className="space-y-8">
+            <div className="bg-white p-8 rounded-xl border border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">What is a startup go-to-market strategy?</h3>
+              <p className="text-gray-700">A startup GTM strategy is a lean, focused plan for acquiring your first customers with limited resources. Unlike enterprise GTM, startup GTM emphasizes rapid experimentation, founder-led sales, community building, and product-led growth tactics that don't require large marketing budgets.</p>
+            </div>
 
-              <div>
-                <h3 className="text-xl font-black text-gray-900 mb-4">Week 3-4: Build MVP (Minimum Viable Product)</h3>
-                <p className="text-gray-700 mb-4">Build the simplest version that solves the core problem. Perfection is the enemy of shipping.</p>
-                <div className="bg-gray-50 p-4 rounded space-y-2 text-sm">
-                  <p><strong>Actions:</strong> Build ONE core feature, get it working, prepare for feedback</p>
-                  <p><strong>Success:</strong> People can use it to solve their problem within 5 minutes</p>
-                </div>
-              </div>
+            <div className="bg-white p-8 rounded-xl border border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">How do startups get their first 100 customers?</h3>
+              <p className="text-gray-700">Startups get their first 100 customers through: 1) Personal networks and warm introductions, 2) Founder-led sales with direct outreach, 3) Community engagement where target customers gather, 4) Free trials and product-led growth, 5) Content marketing targeting specific pain points, and 6) Strategic partnerships with complementary products.</p>
+            </div>
 
-              <div>
-                <h3 className="text-xl font-black text-gray-900 mb-4">Week 5-6: Beta Launch to 50-100 Users</h3>
-                <p className="text-gray-700 mb-4">Release to friendly beta users. Get feedback. These should be warm intros from your network.</p>
-                <div className="bg-gray-50 p-4 rounded space-y-2 text-sm">
-                  <p><strong>Actions:</strong> Email your network, gather feedback, fix critical issues, iterate rapidly</p>
-                  <p><strong>Success:</strong> Users love it and start inviting others</p>
-                </div>
-              </div>
+            <div className="bg-white p-8 rounded-xl border border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">How much should a startup spend on go-to-market?</h3>
+              <p className="text-gray-700">Early-stage startups should focus on time over money, leveraging founder-led sales and organic channels before spending on paid acquisition. A typical pre-seed/seed startup might spend $5K-$20K/month on GTM tools and limited paid experiments, scaling only after finding repeatable acquisition channels with positive unit economics.</p>
+            </div>
 
-              <div>
-                <h3 className="text-xl font-black text-gray-900 mb-4">Week 7-8: Product Launch & Go Public</h3>
-                <p className="text-gray-700 mb-4">Launch publicly. Share your story on Product Hunt, Twitter, relevant communities. Let word spread.</p>
-                <div className="bg-gray-50 p-4 rounded space-y-2 text-sm">
-                  <p><strong>Actions:</strong> Launch on Product Hunt, tweet your journey, post in communities, start your blog</p>
-                  <p><strong>Success:</strong> 100+ users from organic channels in first week</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-black text-gray-900 mb-4">Month 2+: Iterate on Product & GTM</h3>
-                <p className="text-gray-700 mb-4">Based on user behavior, double down on what works. Kill what doesn\'t. Improve retention and CAC.</p>
-                <div className="bg-gray-50 p-4 rounded space-y-2 text-sm">
-                  <p><strong>Actions:</strong> Analyze usage, improve onboarding, build features users ask for, optimize CAC</p>
-                  <p><strong>Success:</strong> Week-over-week user growth, improve retention</p>
-                </div>
-              </div>
+            <div className="bg-white p-8 rounded-xl border border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">When should startups hire a GTM team?</h3>
+              <p className="text-gray-700">Hire GTM team members after founders have closed 10-20 customers and can document a repeatable sales process. First hires typically include: 1) A marketing lead for content and demand gen at $1-2M ARR, 2) First sales rep at $500K-$1M ARR with proven founder-sales playbook, and 3) Growth/RevOps at $2-3M ARR to systematize processes.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Startup GTM Template */}
+      {/* Related Resources - 6 Links */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <h2 className="text-3xl font-black text-gray-900 mb-12">Your Startup GTM One-Pager</h2>
-          <div className="bg-gray-50 p-8 rounded-lg border border-gray-200 space-y-6">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">Related Resources</h2>
+          <p className="text-xl text-gray-600 mb-12">Explore more GTM guides for startup success.</p>
+
+          <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                q: 'Who is your ideal customer?',
-                tips: 'Be specific. Job title, company size, industry, challenges. Start with ONE segment.'
-              },
-              {
-                q: 'What problem do you solve better than anyone?',
-                tips: 'What is your unfair advantage? Why you, not competitors?'
-              },
-              {
-                q: 'How will you reach them?',
-                tips: 'List your top 3 channels. Where do they hang out? Who can introduce you?'
-              },
-              {
-                q: 'What\'s your positioning statement?',
-                tips: 'Fill in: "For [customer], [product] is the [category] that [solves problem] unlike [competitor]."'
-              },
-              {
-                q: 'How will you get first 100 customers?',
-                tips: 'Specific channels. Personal outreach, community, product-led growth, partnerships?'
-              },
-              {
-                q: 'What\'s your pricing?',
-                tips: 'How much will customers pay? What\'s your revenue goal for year 1?'
-              },
-              {
-                q: 'How will you measure success?',
-                tips: 'Key metrics: Users, MRR, retention, CAC, LTV. What are your month 1, 3, 6 targets?'
-              },
+              { title: 'B2B GTM Strategy', href: '/b2b-gtm-strategy', desc: 'Comprehensive B2B go-to-market fundamentals' },
+              { title: 'SaaS GTM Playbook', href: '/saas-gtm-plan', desc: 'Complete guide to SaaS go-to-market' },
+              { title: 'GTM Strategy Template', href: '/gtm-strategy-template', desc: 'Download our startup GTM planning template' },
+              { title: 'Product Launch Guide', href: '/product-launch', desc: 'Step-by-step product launch checklist' },
+              { title: 'GTM Strategy Examples', href: '/gtm-strategy-examples', desc: 'Real startup GTM case studies' },
+              { title: 'What is GTM?', href: '/what-is-gtm', desc: 'Complete GTM fundamentals' }
             ].map((item, i) => (
-              <div key={i} className="border-l-4 border-blue-500 pl-6">
-                <h4 className="font-bold text-gray-900 mb-2">{item.q}</h4>
-                <p className="text-gray-600 text-sm italic">{item.tips}</p>
-              </div>
+              <Link key={i} href={item.href} className="group p-6 bg-gray-50 rounded-xl border border-gray-200 hover:border-emerald-300 hover:shadow-lg transition-all">
+                <h3 className="font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">{item.title}</h3>
+                <p className="text-gray-600 text-sm mb-3">{item.desc}</p>
+                <span className="text-emerald-600 text-sm font-semibold">Learn more &rarr;</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Section - 4 Internal Links */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-12">GTM Resources</h2>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { title: 'GTM Planner', href: '/planner', desc: 'AI-powered GTM strategy generator' },
+              { title: 'GTM Agencies', href: '/best-gtm-agencies', desc: 'Find startup GTM partners' },
+              { title: 'GTM Consultant', href: '/go-to-market-consultant', desc: 'Work with startup experts' },
+              { title: 'GTM Tools', href: '/gtm-tools-comparison', desc: 'Technology stack for startups' }
+            ].map((item, i) => (
+              <Link key={i} href={item.href} className="p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow text-center">
+                <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-sm">{item.desc}</p>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-black mb-6">Ready to Launch Your Startup?</h2>
-          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">Download our GTM framework and get expert guidance on validating your market and acquiring your first customers.</p>
+          <h2 className="text-3xl md:text-4xl font-black mb-6">Ready to Launch Your Startup?</h2>
+          <p className="text-xl text-emerald-100 mb-10 max-w-2xl mx-auto">Build your GTM strategy and start acquiring customers today. Use our free planner to create a tailored go-to-market plan for your startup.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/gtm-strategy-template" className="px-10 py-5 bg-white text-blue-600 font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors">Get GTM Template</Link>
-            <Link href="/go-to-market-consultant" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-blue-600 transition-colors">Talk to Expert</Link>
+            <Link href="/planner" className="px-10 py-5 bg-white text-emerald-600 font-bold uppercase tracking-wider hover:bg-gray-100 transition-colors rounded-lg">Create GTM Strategy</Link>
+            <Link href="/go-to-market-consultant" className="px-10 py-5 border-2 border-white text-white font-bold uppercase tracking-wider hover:bg-white hover:text-emerald-600 transition-colors rounded-lg">Talk to Expert</Link>
           </div>
         </div>
       </section>
