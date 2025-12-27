@@ -14,6 +14,45 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes the US unique for GTM strategy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The US offers unparalleled GTM advantages: the world's largest economy ($28+ trillion GDP), the most mature enterprise software market ($221.5B SaaS revenue in 2025), and the global center for GTM innovation. Silicon Valley, New York, Boston, and Austin have launched thousands of B2B technology companies, creating battle-tested playbooks for every GTM motion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do GTM agencies in the US typically charge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "US GTM agencies typically charge $15,000-$50,000 per month for comprehensive programs, with project-based engagements ranging $30,000-$150,000. Comprehensive launch programs with full execution can exceed $200,000 for enterprise products. US pricing reflects the market's sophistication and the agencies' proven track records."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do US GTM agencies work with international companies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, leading US GTM agencies frequently work with international companies entering the American market. They bring critical expertise in US buyer behavior, competitive dynamics, pricing expectations, and go-to-market channels that differ significantly from European, Asian, or other markets. US market entry is their specialty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries do US GTM agencies specialize in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "US GTM agencies cover every B2B software category: enterprise SaaS and infrastructure, fintech and payments, cybersecurity, healthcare technology, vertical SaaS, AI and developer tools, and more. The US market's depth means you can find agencies with deep expertise in almost any technology vertical."
+      }
+    }
+  ]
+}
+
 export default async function GTMAgencyUSPage() {
   const agencies = await getAgenciesByCategory('GTM Agency', 'US')
 
@@ -38,31 +77,8 @@ export default async function GTMAgencyUSPage() {
 
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Best GTM Agencies US",
-            "description": "Top go-to-market agencies serving the United States market",
-            "url": "https://gtm.quest/best-gtm-agency-us-top-gtm-agencies-us",
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": agencies.map((agency, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                  "@type": "Organization",
-                  "name": agency.name,
-                  "url": `https://gtm.quest/agency/${agency.slug}`
-                }
-              }))
-            }
-          })
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"CollectionPage","name":"Best GTM Agencies US","url":"https://gtm.quest/best-gtm-agency-us-top-gtm-agencies-us"})}} />
 
       {/* Breadcrumb */}
       <div className="border-b border-white/10 py-6">
@@ -172,7 +188,64 @@ export default async function GTMAgencyUSPage() {
         </div>
       </section>
 
-      {/* Agency Cards */}
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">GTM Services for US Markets</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">World-class go-to-market capabilities for the most competitive technology market globally.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Product-Led Growth</h3>
+              <p className="text-white/70 text-lg">Self-serve acquisition funnels, viral loops, and freemium-to-paid conversion optimization strategies.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🏢</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise Sales</h3>
+              <p className="text-white/70 text-lg">Account-based marketing, 7-15 stakeholder buying committee navigation, and complex deal orchestration.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Category Creation</h3>
+              <p className="text-white/70 text-lg">New market positioning, competitive differentiation, and thought leadership for emerging categories.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🌍</div>
+              <h3 className="text-2xl font-bold text-white mb-4">US Market Entry</h3>
+              <p className="text-white/70 text-lg">International company positioning, US buyer behavior adaptation, and cross-border expansion strategies.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">Key Industries for GTM in the US</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">The world's most sophisticated B2B technology market creates opportunities across every vertical.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💻</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise SaaS</h3>
+              <p className="text-white/70 text-lg">Cloud software, infrastructure, and B2B platforms—the US hosts the world's largest enterprise software market.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💳</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Fintech & Payments</h3>
+              <p className="text-white/70 text-lg">Digital banking, payments, and wealth tech—the US fintech ecosystem leads global innovation.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🛡️</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Cybersecurity</h3>
+              <p className="text-white/70 text-lg">Security software, identity management, and compliance—massive enterprise demand and rapid growth.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🤖</div>
+              <h3 className="text-2xl font-bold text-white mb-4">AI & Developer Tools</h3>
+              <p className="text-white/70 text-lg">Artificial intelligence, machine learning, and developer platforms—capturing 46% of US VC funding.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
@@ -250,21 +323,81 @@ export default async function GTMAgencyUSPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-12 leading-tight">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {faqSchema.mainEntity.map((faq, i) => (
+              <div key={i} className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold text-white mb-4">{faq.name}</h3>
+                <p className="text-white/70 text-lg leading-relaxed">{faq.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">Explore GTM Agencies in Related Markets</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <Link href="/best-gtm-agency-uk-top-gtm-agencies-uk" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇬🇧</span>
+              <span className="text-white font-semibold">UK</span>
+            </Link>
+            <Link href="/best-gtm-agency-canada-top-gtm-agencies-canada" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇨🇦</span>
+              <span className="text-white font-semibold">Canada</span>
+            </Link>
+            <Link href="/best-gtm-agency-germany-top-gtm-agencies-germany" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇩🇪</span>
+              <span className="text-white font-semibold">Germany</span>
+            </Link>
+            <Link href="/best-gtm-agency-australia-top-gtm-agencies-australia" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇦🇺</span>
+              <span className="text-white font-semibold">Australia</span>
+            </Link>
+            <Link href="/best-gtm-agency-france-top-gtm-agencies-france" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇫🇷</span>
+              <span className="text-white font-semibold">France</span>
+            </Link>
+            <Link href="/best-gtm-agency-singapore-top-gtm-agencies-singapore" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇸🇬</span>
+              <span className="text-white font-semibold">Singapore</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">GTM Resources</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link href="/planner" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Planner</h3>
+              <p className="text-white/60">Build your go-to-market strategy with our AI-powered planning tool.</p>
+            </Link>
+            <Link href="/best-gtm-agencies" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">All GTM Agencies</h3>
+              <p className="text-white/60">Browse our complete directory of verified GTM agencies worldwide.</p>
+            </Link>
+            <Link href="/best-b2b-marketing-agency-us-top-b2b-marketing-agencies-us" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">B2B Marketing US</h3>
+              <p className="text-white/60">Explore B2B marketing agencies serving US markets.</p>
+            </Link>
+            <Link href="/gtm-consulting" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Consulting</h3>
+              <p className="text-white/60">Learn about go-to-market consulting services and methodologies.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-r from-blue-600 to-blue-500 py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
-            Build Your GTM Strategy
-          </h2>
-          <p className="text-2xl text-white/95 mb-12">
-            Create a comprehensive go-to-market strategy tailored to the US market in minutes.
-          </p>
-          <Link
-            href="/planner"
-            className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl"
-          >
-            Start Free →
-          </Link>
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">Build Your GTM Strategy</h2>
+          <p className="text-2xl text-white/95 mb-12">Create a comprehensive go-to-market strategy tailored to the US market.</p>
+          <Link href="/planner" className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl">Start Free →</Link>
         </div>
       </section>
     </div>

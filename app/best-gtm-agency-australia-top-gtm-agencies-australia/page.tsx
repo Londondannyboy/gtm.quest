@@ -14,6 +14,45 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes Australia unique for GTM strategy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Australia offers unique GTM advantages: the world's highest capital efficiency ratio (1.22 unicorns per billion VC invested), English-language market with Western business culture, strategic APAC gateway position, and concentrated enterprise landscape in Sydney/Melbourne enabling efficient account-based strategies. Australia's 26M population forces sophisticated targeting that scales globally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do GTM agencies in Australia typically charge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Australian GTM agencies typically charge A$10,000-A$30,000 per month for comprehensive programs, with project-based engagements ranging A$25,000-A$100,000. Full launch programs can range A$50,000-A$200,000. Australia offers cost advantages compared to US agencies—typically 20-30% lower while providing exceptional APAC expansion capabilities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Australian GTM agencies help with APAC expansion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, APAC expansion is Australia's core strength. Sydney and Melbourne agencies excel at using Australia as a beachhead for Southeast Asia, India, and New Zealand expansion—leveraging English-language operations, Western business practices, and timezone overlap with Asian markets without the cultural complexity of launching directly into Asia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries do Australian GTM agencies specialize in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Australian GTM agencies specialize in fintech (Australia's open banking and neobank ecosystem), healthtech and aged care technology (strong government investment), mining and resources technology (Australia's mining sector drives innovation), and enterprise SaaS serving the concentrated banking, retail, and telco sectors that dominate Australian enterprise buying."
+      }
+    }
+  ]
+}
+
 export default async function GTMAgencyAustraliaPage() {
   const agencies = await getAgenciesByCategory('GTM Agency', 'Australia')
 
@@ -38,31 +77,8 @@ export default async function GTMAgencyAustraliaPage() {
 
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Best GTM Agencies Australia",
-            "description": "Top go-to-market agencies serving the Australian market",
-            "url": "https://gtm.quest/best-gtm-agency-australia-top-gtm-agencies-australia",
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": agencies.map((agency, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                  "@type": "Organization",
-                  "name": agency.name,
-                  "url": `https://gtm.quest/agency/${agency.slug}`
-                }
-              }))
-            }
-          })
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"CollectionPage","name":"Best GTM Agencies Australia","url":"https://gtm.quest/best-gtm-agency-australia-top-gtm-agencies-australia"})}} />
 
       {/* Breadcrumb */}
       <div className="border-b border-white/10 py-6">
@@ -172,7 +188,64 @@ export default async function GTMAgencyAustraliaPage() {
         </div>
       </section>
 
-      {/* Agency Cards */}
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">GTM Services for Australian Markets</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">Specialized go-to-market capabilities for Australia's capital-efficient technology ecosystem.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🌏</div>
+              <h3 className="text-2xl font-bold text-white mb-4">APAC Expansion</h3>
+              <p className="text-white/70 text-lg">Regional market entry using Australia as beachhead for Southeast Asia, India, and New Zealand expansion.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🎯</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Account-Based GTM</h3>
+              <p className="text-white/70 text-lg">Precision targeting for Australia's concentrated enterprise landscape—major banks, retailers, and telcos.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💰</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Capital-Efficient Launch</h3>
+              <p className="text-white/70 text-lg">GTM execution maximizing impact with limited resources—Australia's specialty and global best practice.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🏢</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise Sales</h3>
+              <p className="text-white/70 text-lg">Relationship-driven B2B strategies for Australian enterprise buyers expecting local presence and references.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">Key Industries for GTM in Australia</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">Australia's diverse economy creates exceptional GTM opportunities across high-growth sectors.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💳</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Fintech & Banking</h3>
+              <p className="text-white/70 text-lg">Open banking, neobanks, and payments—Australia's big four banks drive fintech innovation and enterprise adoption.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🏥</div>
+              <h3 className="text-2xl font-bold text-white mb-4">HealthTech & Aged Care</h3>
+              <p className="text-white/70 text-lg">Digital health and aged care technology—strong government investment and aging population driving innovation.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">⛏️</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Mining & Resources Tech</h3>
+              <p className="text-white/70 text-lg">Mining automation, sustainability tech, and resources innovation—Australia's mining sector leads global adoption.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💻</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise SaaS</h3>
+              <p className="text-white/70 text-lg">B2B software serving concentrated enterprise—banking, retail, and telco sectors dominate Australian buying.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
@@ -250,21 +323,81 @@ export default async function GTMAgencyAustraliaPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-12 leading-tight">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {faqSchema.mainEntity.map((faq, i) => (
+              <div key={i} className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold text-white mb-4">{faq.name}</h3>
+                <p className="text-white/70 text-lg leading-relaxed">{faq.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">Explore GTM Agencies in Related Markets</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <Link href="/best-gtm-agency-singapore-top-gtm-agencies-singapore" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇸🇬</span>
+              <span className="text-white font-semibold">Singapore</span>
+            </Link>
+            <Link href="/best-gtm-agency-uk-top-gtm-agencies-uk" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇬🇧</span>
+              <span className="text-white font-semibold">UK</span>
+            </Link>
+            <Link href="/best-gtm-agency-us-top-gtm-agencies-us" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇺🇸</span>
+              <span className="text-white font-semibold">United States</span>
+            </Link>
+            <Link href="/best-gtm-agency-canada-top-gtm-agencies-canada" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇨🇦</span>
+              <span className="text-white font-semibold">Canada</span>
+            </Link>
+            <Link href="/best-gtm-agency-ireland-top-gtm-agencies-ireland" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇮🇪</span>
+              <span className="text-white font-semibold">Ireland</span>
+            </Link>
+            <Link href="/best-gtm-agency-uae-top-gtm-agencies-uae" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇦🇪</span>
+              <span className="text-white font-semibold">UAE</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">GTM Resources</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link href="/planner" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Planner</h3>
+              <p className="text-white/60">Build your go-to-market strategy with our AI-powered planning tool.</p>
+            </Link>
+            <Link href="/best-gtm-agencies" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">All GTM Agencies</h3>
+              <p className="text-white/60">Browse our complete directory of verified GTM agencies worldwide.</p>
+            </Link>
+            <Link href="/best-b2b-marketing-agency-australia-top-b2b-marketing-agencies-australia" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">B2B Marketing Australia</h3>
+              <p className="text-white/60">Explore B2B marketing agencies serving Australian markets.</p>
+            </Link>
+            <Link href="/gtm-consulting" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Consulting</h3>
+              <p className="text-white/60">Learn about go-to-market consulting services and methodologies.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-r from-blue-600 to-blue-500 py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
-            Build Your GTM Strategy
-          </h2>
-          <p className="text-2xl text-white/95 mb-12">
-            Create a comprehensive go-to-market strategy tailored to the Australian market in minutes.
-          </p>
-          <Link
-            href="/planner"
-            className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl"
-          >
-            Start Free →
-          </Link>
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">Build Your GTM Strategy</h2>
+          <p className="text-2xl text-white/95 mb-12">Create a comprehensive go-to-market strategy tailored to the Australian market.</p>
+          <Link href="/planner" className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl">Start Free →</Link>
         </div>
       </section>
     </div>

@@ -14,6 +14,45 @@ export const metadata: Metadata = {
 
 export const revalidate = 3600
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes Canada unique for GTM strategy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canada offers unique GTM advantages: proximity to the US market (10x larger and adjacent), bilingual capabilities spanning English and French-speaking buyers, world-leading AI ecosystem (especially Montreal), and significant government innovation programs (SR&ED tax credits, Strategic Innovation Fund). Canada is the ideal proving ground before US expansion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do GTM agencies in Canada typically charge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canadian GTM agencies typically charge CA$10,000-CA$30,000 per month for comprehensive programs, with project-based engagements ranging CA$25,000-CA$100,000. Canada offers significant cost advantages—typically 25-35% lower than comparable US agencies while providing excellent cross-border expansion capabilities."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Canadian GTM agencies help with US market entry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, US expansion is Canada's core strength. Most Canadian GTM agencies have extensive experience supporting companies expanding from Canada into US markets. Canada's proximity, timezone alignment, cultural similarities, and shared business practices make Canadian agencies ideal partners for North American expansion strategies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What industries do Canadian GTM agencies specialize in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Canadian GTM agencies specialize in AI and machine learning (Montreal's world-leading cluster), fintech and enterprise SaaS (Toronto hub), gaming and digital media (Vancouver), and cleantech/sustainability (national strength). They also excel in enterprise software serving North American markets from Canadian headquarters."
+      }
+    }
+  ]
+}
+
 export default async function GTMAgencyCanadaPage() {
   const agencies = await getAgenciesByCategory('GTM Agency', 'Canada')
 
@@ -38,31 +77,8 @@ export default async function GTMAgencyCanadaPage() {
 
   return (
     <div className="bg-black text-white min-h-screen">
-      {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Best GTM Agencies Canada",
-            "description": "Top go-to-market agencies serving the Canadian market",
-            "url": "https://gtm.quest/best-gtm-agency-canada-top-gtm-agencies-canada",
-            "mainEntity": {
-              "@type": "ItemList",
-              "itemListElement": agencies.map((agency, index) => ({
-                "@type": "ListItem",
-                "position": index + 1,
-                "item": {
-                  "@type": "Organization",
-                  "name": agency.name,
-                  "url": `https://gtm.quest/agency/${agency.slug}`
-                }
-              }))
-            }
-          })
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(faqSchema)}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({"@context":"https://schema.org","@type":"CollectionPage","name":"Best GTM Agencies Canada","url":"https://gtm.quest/best-gtm-agency-canada-top-gtm-agencies-canada"})}} />
 
       {/* Breadcrumb */}
       <div className="border-b border-white/10 py-6">
@@ -172,7 +188,64 @@ export default async function GTMAgencyCanadaPage() {
         </div>
       </section>
 
-      {/* Agency Cards */}
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">GTM Services for Canadian Markets</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">Specialized go-to-market capabilities for Canada's North American technology ecosystem.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🇺🇸</div>
+              <h3 className="text-2xl font-bold text-white mb-4">US Market Entry</h3>
+              <p className="text-white/70 text-lg">Cross-border expansion using Canada as proving ground for the 10x-larger US market.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🌐</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Bilingual GTM</h3>
+              <p className="text-white/70 text-lg">English and French positioning for Quebec enterprise markets and federal government buyers.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🏛️</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Innovation Programs</h3>
+              <p className="text-white/70 text-lg">GTM strategies leveraging SR&ED credits, Strategic Innovation Fund, and government incentives.</p>
+            </div>
+            <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🏢</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Enterprise Sales</h3>
+              <p className="text-white/70 text-lg">B2B strategies for Canada's concentrated enterprise landscape and government procurement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">Key Industries for GTM in Canada</h2>
+          <p className="text-2xl text-white/70 mb-16 max-w-4xl">Canada's diverse economy creates exceptional GTM opportunities across high-growth sectors.</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🤖</div>
+              <h3 className="text-2xl font-bold text-white mb-4">AI & Machine Learning</h3>
+              <p className="text-white/70 text-lg">World-leading AI research—Montreal's ecosystem includes Mila, Element AI alumni, and hundreds of AI startups.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">💳</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Fintech & Banking</h3>
+              <p className="text-white/70 text-lg">Open banking innovation and enterprise SaaS—Toronto's financial district drives fintech adoption.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🎮</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Gaming & Digital Media</h3>
+              <p className="text-white/70 text-lg">Gaming studios and digital media—Vancouver's cluster includes EA, Activision, and indie studios.</p>
+            </div>
+            <div className="bg-black border border-white/10 p-8 rounded-2xl">
+              <div className="text-4xl mb-4">🌱</div>
+              <h3 className="text-2xl font-bold text-white mb-4">CleanTech & Sustainability</h3>
+              <p className="text-white/70 text-lg">Renewable energy and sustainability tech—national strength with government support and investment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
@@ -250,21 +323,81 @@ export default async function GTMAgencyCanadaPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-12 leading-tight">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {faqSchema.mainEntity.map((faq, i) => (
+              <div key={i} className="bg-zinc-900 border border-white/10 p-8 rounded-2xl">
+                <h3 className="text-2xl font-bold text-white mb-4">{faq.name}</h3>
+                <p className="text-white/70 text-lg leading-relaxed">{faq.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-zinc-950 border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">Explore GTM Agencies in Related Markets</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <Link href="/best-gtm-agency-us-top-gtm-agencies-us" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇺🇸</span>
+              <span className="text-white font-semibold">United States</span>
+            </Link>
+            <Link href="/best-gtm-agency-uk-top-gtm-agencies-uk" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇬🇧</span>
+              <span className="text-white font-semibold">UK</span>
+            </Link>
+            <Link href="/best-gtm-agency-australia-top-gtm-agencies-australia" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇦🇺</span>
+              <span className="text-white font-semibold">Australia</span>
+            </Link>
+            <Link href="/best-gtm-agency-ireland-top-gtm-agencies-ireland" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇮🇪</span>
+              <span className="text-white font-semibold">Ireland</span>
+            </Link>
+            <Link href="/best-gtm-agency-germany-top-gtm-agencies-germany" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇩🇪</span>
+              <span className="text-white font-semibold">Germany</span>
+            </Link>
+            <Link href="/best-gtm-agency-france-top-gtm-agencies-france" className="bg-black border border-white/10 p-6 rounded-xl text-center hover:border-white/30 transition-all">
+              <span className="text-3xl mb-2 block">🇫🇷</span>
+              <span className="text-white font-semibold">France</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-black border-t border-white/10 py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl font-black text-white mb-12">GTM Resources</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link href="/planner" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Planner</h3>
+              <p className="text-white/60">Build your go-to-market strategy with our AI-powered planning tool.</p>
+            </Link>
+            <Link href="/best-gtm-agencies" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">All GTM Agencies</h3>
+              <p className="text-white/60">Browse our complete directory of verified GTM agencies worldwide.</p>
+            </Link>
+            <Link href="/best-b2b-marketing-agency-canada-top-b2b-marketing-agencies-canada" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">B2B Marketing Canada</h3>
+              <p className="text-white/60">Explore B2B marketing agencies serving Canadian markets.</p>
+            </Link>
+            <Link href="/gtm-consulting" className="bg-zinc-900 border border-white/10 p-6 rounded-xl hover:border-white/30 transition-all">
+              <h3 className="text-xl font-bold text-white mb-2">GTM Consulting</h3>
+              <p className="text-white/60">Learn about go-to-market consulting services and methodologies.</p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="bg-gradient-to-r from-blue-600 to-blue-500 py-24">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
-            Build Your GTM Strategy
-          </h2>
-          <p className="text-2xl text-white/95 mb-12">
-            Create a comprehensive go-to-market strategy tailored to the Canadian market in minutes.
-          </p>
-          <Link
-            href="/planner"
-            className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl"
-          >
-            Start Free →
-          </Link>
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">Build Your GTM Strategy</h2>
+          <p className="text-2xl text-white/95 mb-12">Create a comprehensive go-to-market strategy tailored to the Canadian market.</p>
+          <Link href="/planner" className="inline-flex items-center justify-center px-14 py-7 text-2xl font-black rounded-xl bg-black text-white hover:bg-gray-900 transition-all shadow-2xl">Start Free →</Link>
         </div>
       </section>
     </div>
