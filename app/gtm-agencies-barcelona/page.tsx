@@ -150,7 +150,9 @@ export default async function GTMAgenciesBarcelonaPage() {
           <div className="space-y-8 text-lg text-white/80 leading-relaxed">
             <p>
               Barcelona has emerged as one of Europe's most dynamic tech hubs, consistently ranked among
-              the top startup ecosystems globally. According to{' '}
+              the top startup ecosystems globally by{' '}
+              <a href="https://startupgenome.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Startup Genome</a>.
+              According to{' '}
               <a href="https://en.wikipedia.org/wiki/Barcelona" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Wikipedia</a>,
               the city is home to over 1,900 startups and has attracted more than EUR 4 billion in venture
               capital funding in recent years.
@@ -159,20 +161,26 @@ export default async function GTMAgenciesBarcelonaPage() {
             <p>
               The{' '}
               <a href="https://www.barcelona.cat/en/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Barcelona City Council</a>{' '}
-              has invested heavily in the 22@ innovation district, transforming the former industrial
-              Poblenou neighborhood into a thriving tech hub with cutting-edge GTM strategies.
+              has invested heavily in the{' '}
+              <a href="https://www.22barcelona.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">22@ innovation district</a>,
+              transforming the former industrial Poblenou neighborhood into a thriving tech hub. The{' '}
+              <a href="https://tech.barcelona/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Tech Barcelona</a>{' '}
+              association connects over 1,200 companies in the local ecosystem.
             </p>
 
             <p>
               Barcelona's status as the permanent host of{' '}
               <a href="https://www.mwcbarcelona.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Mobile World Congress</a>{' '}
-              gives local agencies unparalleled access to mobile technology trends and telecommunications
-              industry insights for mobile-first GTM strategies.
+              gives local agencies unparalleled access to mobile technology trends. The{' '}
+              <a href="https://www.iese.edu/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">IESE Business School</a>{' '}
+              and other institutions provide a steady stream of business talent for GTM execution.
             </p>
 
             <p>
               The city's unique position as a bridge between Europe and Latin America makes Barcelona
-              agencies particularly valuable for LATAM market entry with cultural proximity and language advantages.
+              agencies particularly valuable for LATAM market entry. Organizations like{' '}
+              <a href="https://www.investinspain.org/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Invest in Spain</a>{' '}
+              support international companies entering the Spanish market with cultural proximity and language advantages.
             </p>
           </div>
         </div>

@@ -147,26 +147,31 @@ export default async function GTMAgenciesMilanPage() {
               Milan is Italy's economic powerhouse and one of Europe's most important business centers.
               According to{' '}
               <a href="https://en.wikipedia.org/wiki/Milan" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Wikipedia</a>,
-              the city generates approximately 10% of Italy's GDP and hosts the Italian stock exchange,
-              making it the natural base for companies entering the Italian market.
+              the city generates approximately 10% of Italy's GDP and hosts the{' '}
+              <a href="https://www.borsaitaliana.it/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Borsa Italiana</a>{' '}
+              stock exchange, making it the natural base for companies entering the Italian market.
             </p>
 
             <p>
               The city's role as a global{' '}
               <a href="https://en.wikipedia.org/wiki/Milan_Fashion_Week" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">fashion capital</a>{' '}
-              has cultivated agencies with exceptional brand positioning and premium market expertise,
-              valuable for any B2B company seeking sophisticated market positioning.
+              has cultivated agencies with exceptional brand positioning. The{' '}
+              <a href="https://www.camera.it/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Camera Nazionale della Moda</a>{' '}
+              coordinates the fashion industry, providing agencies with premium market expertise.
             </p>
 
             <p>
               Milan's{' '}
               <a href="https://en.wikipedia.org/wiki/Salone_del_Mobile" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Salone del Mobile</a>{' '}
-              and design week attract global attention, and local agencies understand how to leverage
-              events and design thinking in go-to-market strategies.
+              and design week attract global attention. The{' '}
+              <a href="https://www.polimi.it/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Politecnico di Milano</a>{' '}
+              provides engineering talent, and local agencies understand how to leverage events and design thinking in GTM strategies.
             </p>
 
             <p>
-              The city's strong industrial base in Lombardy provides agencies with deep expertise in
+              The city's strong industrial base in{' '}
+              <a href="https://en.wikipedia.org/wiki/Lombardy" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Lombardy</a>{' '}
+              provides agencies with deep expertise in
               manufacturing, industrial automation, and B2B technology markets throughout Northern Italy.
             </p>
           </div>

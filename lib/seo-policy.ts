@@ -14,14 +14,19 @@ export const NON_SEO_DIRECTORIES = [
   'fonts',
   'images',
   'public',
+  'agency', // Dynamic route handled separately
+  'articles', // Hub page only, articles from DB
 ]
 
-// Specific pages to exclude from sitemap
+// Specific pages to exclude from sitemap (low value or utility pages)
 export const EXCLUDED_PAGES = [
   'voice',
   'chat',
   'test',
   'debug',
+  'preview',
+  'draft',
+  'admin',
 ]
 
 // Static page slugs that exist as actual page.tsx files

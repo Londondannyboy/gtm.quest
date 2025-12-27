@@ -147,27 +147,32 @@ export default async function GTMAgenciesSydneyPage() {
               Sydney is Australia's largest city and the financial capital of the Asia-Pacific region.
               According to{' '}
               <a href="https://en.wikipedia.org/wiki/Sydney" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Wikipedia</a>,
-              the city hosts the headquarters of nearly half of Australia's top 500 companies and the
-              Australian Securities Exchange, making it the natural base for B2B technology GTM.
+              the city hosts the headquarters of nearly half of Australia's top 500 companies and the{' '}
+              <a href="https://www.asx.com.au/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Australian Securities Exchange</a>,
+              making it the natural base for B2B technology GTM.
             </p>
 
             <p>
-              The city's position as an APAC hub is strengthened by timezone advantages—Sydney operates
-              during the Asian business day while overlapping with US West Coast hours. The{' '}
+              The city's position as an APAC hub is strengthened by timezone advantages. The{' '}
               <a href="https://www.business.nsw.gov.au/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">NSW Government</a>{' '}
-              has invested heavily in making Sydney a tech destination, with programs supporting innovation.
+              and{' '}
+              <a href="https://www.austrade.gov.au/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Austrade</a>{' '}
+              have invested heavily in making Sydney a tech destination, with programs supporting innovation and market entry.
             </p>
 
             <p>
               Sydney's{' '}
-              <a href="https://en.wikipedia.org/wiki/Silicon_Harbour" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">tech ecosystem</a>{' '}
-              has produced successful companies like Atlassian, Canva, and Afterpay. Local GTM agencies
+              <a href="https://www.sydneystartups.co/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">startup ecosystem</a>{' '}
+              has produced successful companies like{' '}
+              <a href="https://www.atlassian.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Atlassian</a>,{' '}
+              <a href="https://www.canva.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Canva</a>, and Afterpay. Local GTM agencies
               have hands-on experience scaling Australian companies to global markets.
             </p>
 
             <p>
-              The strong financial services sector, with all major Australian banks headquartered here,
-              provides agencies with exceptional fintech and insurtech go-to-market expertise.
+              The strong financial services sector, with major banks and the{' '}
+              <a href="https://www.finsia.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Financial Services Institute of Australasia</a>{' '}
+              headquartered here, provides agencies with exceptional fintech and insurtech go-to-market expertise.
             </p>
           </div>
         </div>
