@@ -167,41 +167,111 @@ export default async function AgenciesPage() {
           <h2 className="text-5xl font-black text-white mb-12 text-center">
             Find Agencies by Location
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          {/* Major Regions */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
             <Link
               href="/gtm-agencies-uk"
-              className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
+              className="group p-6 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
             >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
-                UK Agencies →
+              <h3 className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                UK →
               </h3>
-              <p className="text-white/60">
-                Find GTM agencies serving the UK market, including London and major cities.
-              </p>
+              <p className="text-white/60 text-sm">London and major UK cities</p>
             </Link>
 
             <Link
               href="/gtm-agencies-us"
-              className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
+              className="group p-6 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
             >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
-                US Agencies →
+              <h3 className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                US →
               </h3>
-              <p className="text-white/60">
-                Discover GTM agencies across the United States, from NYC to SF.
-              </p>
+              <p className="text-white/60 text-sm">NYC, SF, and across America</p>
+            </Link>
+
+            <Link
+              href="/gtm-agencies-europe"
+              className="group p-6 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
+            >
+              <h3 className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                Europe →
+              </h3>
+              <p className="text-white/60 text-sm">All European markets</p>
             </Link>
 
             <Link
               href="/gtm-agencies-australia"
-              className="group p-8 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
+              className="group p-6 bg-white/5 hover:bg-white/10 rounded-2xl border border-white/10 hover:border-white/20 transition-all"
             >
-              <h3 className="text-3xl font-black text-white mb-3 group-hover:text-blue-400 transition-colors">
-                Australia Agencies →
+              <h3 className="text-2xl font-black text-white mb-2 group-hover:text-blue-400 transition-colors">
+                Australia →
               </h3>
-              <p className="text-white/60">
-                Explore GTM agencies serving Australia, including Sydney and Melbourne.
-              </p>
+              <p className="text-white/60 text-sm">Sydney, Melbourne, APAC</p>
+            </Link>
+          </div>
+
+          {/* European Cities */}
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">European Cities</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-12">
+            <Link href="/gtm-agencies-london" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">London</span>
+            </Link>
+            <Link href="/gtm-agencies-berlin" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Berlin</span>
+            </Link>
+            <Link href="/gtm-agencies-paris" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Paris</span>
+            </Link>
+            <Link href="/gtm-agencies-amsterdam" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Amsterdam</span>
+            </Link>
+            <Link href="/gtm-agencies-munich" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Munich</span>
+            </Link>
+            <Link href="/gtm-agencies-stockholm" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Stockholm</span>
+            </Link>
+            <Link href="/gtm-agencies-barcelona" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Barcelona</span>
+            </Link>
+            <Link href="/gtm-agencies-madrid" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Madrid</span>
+            </Link>
+            <Link href="/gtm-agencies-milan" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Milan</span>
+            </Link>
+            <Link href="/gtm-agencies-rome" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Rome</span>
+            </Link>
+          </div>
+
+          {/* US Cities */}
+          <h3 className="text-2xl font-bold text-white mb-6 text-center">US Cities</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
+            <Link href="/gtm-agencies-new-york" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">New York</span>
+            </Link>
+            <Link href="/gtm-agencies-san-francisco" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">San Francisco</span>
+            </Link>
+            <Link href="/gtm-agencies-boston" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Boston</span>
+            </Link>
+            <Link href="/gtm-agencies-chicago" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Chicago</span>
+            </Link>
+            <Link href="/gtm-agencies-austin" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Austin</span>
+            </Link>
+            <Link href="/gtm-agencies-los-angeles" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Los Angeles</span>
+            </Link>
+            <Link href="/gtm-agencies-seattle" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Seattle</span>
+            </Link>
+            <Link href="/gtm-agencies-sydney" className="group p-4 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 text-center">
+              <span className="text-white group-hover:text-blue-400 font-bold">Sydney</span>
             </Link>
           </div>
         </div>

@@ -57,11 +57,28 @@ export default async function GTMAgenciesSydneyPage() {
     }))
   }
 
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'GTM Agencies in Sydney',
+    description: 'Directory of top go-to-market agencies serving Sydney and APAC markets',
+    url: 'https://gtm.quest/gtm-agencies-sydney',
+    numberOfItems: stats.totalAgencies,
+    provider: {
+      '@type': 'Organization',
+      name: 'GTM.quest'
+    }
+  }
+
   return (
     <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
 
       <div className="border-b border-white/10 py-6">

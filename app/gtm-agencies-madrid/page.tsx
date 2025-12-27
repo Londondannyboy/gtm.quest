@@ -57,11 +57,28 @@ export default async function GTMAgenciesMadridPage() {
     }))
   }
 
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'GTM Agencies in Madrid',
+    description: 'Directory of top go-to-market agencies serving Madrid and the Spanish enterprise market',
+    url: 'https://gtm.quest/gtm-agencies-madrid',
+    numberOfItems: stats.totalAgencies,
+    provider: {
+      '@type': 'Organization',
+      name: 'GTM.quest'
+    }
+  }
+
   return (
     <div className="bg-black text-white min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
 
       {/* Breadcrumb */}
