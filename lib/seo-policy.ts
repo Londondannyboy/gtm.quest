@@ -51,3 +51,4 @@ export const STATIC_PAGE_SLUGS = [
   'privacy',
   'terms',
 ]
+// Sitemap rebuild Sat 27 Dec 2025 20:15:08 GMT
