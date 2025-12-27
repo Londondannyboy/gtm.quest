@@ -4,7 +4,7 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best GTM Agency Spain 2025 | Top Go-To-Market Agencies Spain',
+  title: 'Best GTM Agency Spain 2025 | GTM Quest',
   description: 'Discover the best go-to-market agencies serving Spain. Compare top Spanish GTM consultancies for Madrid, Barcelona and European expansion.',
   keywords: 'best GTM agency Spain, top go-to-market agencies Madrid, GTM consultants Barcelona, Spain GTM strategy',
   alternates: {
@@ -60,7 +60,7 @@ export default async function GTMAgencySpainPage() {
         <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1920&q=80"
-            alt="Best GTM agencies Spain - Barcelona Sagrada Familia"
+            alt="Best GTM agency Spain - Barcelona Sagrada Familia"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
@@ -69,7 +69,7 @@ export default async function GTMAgencySpainPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Spain</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best GTM<br/>Agencies Spain
+            Best GTM Agency Spain 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
             Discover the top {totalAgencies} go-to-market agencies Spain has to offer.

@@ -4,7 +4,7 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best GTM Agency UAE 2025 | Top Go-To-Market Agencies UAE',
+  title: 'Best GTM Agency UAE 2025 | GTM Quest',
   description: 'Discover the best go-to-market agencies serving UAE markets. Compare top GTM consultancies for Dubai, Abu Dhabi and Middle East expansion.',
   keywords: 'best GTM agency UAE, top go-to-market agencies Dubai, GTM consultants UAE, product launch Dubai',
   alternates: {
@@ -35,12 +35,12 @@ export default async function GTMAgencyUAEPage() {
 
       <section className="relative py-24 md:py-32 bg-black overflow-hidden">
         <div className="absolute inset-0 opacity-40">
-          <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1920&q=80" alt="Best GTM agencies UAE - Dubai Marina skyline at sunset" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1920&q=80" alt="Best GTM agency UAE - Dubai Marina skyline at sunset" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">United Arab Emirates</span>
-          <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight:900}}>Best GTM<br/>Agencies UAE</h1>
+          <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight:900}}>Best GTM Agency UAE 2025</h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
             Discover the top {totalAgencies} go-to-market agencies serving UAE markets—verified experts in Middle East product launches.
           </p>

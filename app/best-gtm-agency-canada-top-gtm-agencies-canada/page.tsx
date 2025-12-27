@@ -4,7 +4,7 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best GTM Agency Canada 2025 | Top Go-To-Market Agencies Canada',
+  title: 'Best GTM Agency Canada 2025 | GTM Quest',
   description: 'Discover the best go-to-market agencies Canada has to offer. Compare top Canadian GTM consultancies with verified credentials, proven strategies, and specialized expertise.',
   keywords: 'best GTM agency Canada, top go-to-market agencies Canada, GTM consultants Toronto, product launch agency Vancouver, B2B GTM strategy Canada',
   alternates: {
@@ -92,7 +92,7 @@ export default async function GTMAgencyCanadaPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Canada</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best GTM<br />Agencies Canada
+            Best GTM Agency Canada 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
             Discover the top {totalAgencies} go-to-market agencies Canada has to offer—verified experts in product launches, GTM strategy, and revenue growth.

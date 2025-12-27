@@ -4,8 +4,8 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best B2B Marketing Agency Switzerland 2025 | Top B2B Marketing Agencies Switzerland',
-  description: 'Discover the best B2B marketing agencies Switzerland has to offer. Compare top Swiss B2B marketing consultancies for Zurich, Geneva and precision industries.',
+  title: 'Best B2B Marketing Agency Switzerland 2025 | GTM Quest',
+  description: 'Find the best B2B marketing agency Switzerland has for your business. Compare top B2B marketing agencies in Switzerland for Zurich, Geneva, and DACH markets.',
   keywords: 'best B2B marketing agency Switzerland, top B2B marketing agencies Zurich, B2B marketing Geneva, Swiss B2B agencies',
   alternates: {
     canonical: 'https://gtm.quest/best-b2b-marketing-agency-switzerland-top-b2b-marketing-agencies-switzerland'
@@ -60,7 +60,7 @@ export default async function B2BMarketingAgencySwitzerlandPage() {
         <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=1920&q=80"
-            alt="Best B2B marketing agencies Switzerland - Zurich financial district"
+            alt="Best B2B marketing agency Switzerland - Zurich financial district"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
@@ -69,10 +69,10 @@ export default async function B2BMarketingAgencySwitzerlandPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Switzerland</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best B2B Marketing<br/>Agencies Switzerland
+            Best B2B Marketing Agency Switzerland 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
-            Discover the top {totalAgencies} B2B marketing agencies Switzerland has to offer.
+            Discover the top {totalAgencies} B2B marketing agencies Switzerland has to offer. Find the right B2B marketing agency Switzerland businesses trust for growth.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-4xl">
@@ -99,7 +99,7 @@ export default async function B2BMarketingAgencySwitzerlandPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            B2B Marketing Agencies Switzerland: Precision & Discretion
+            Why Choose a B2B Marketing Agency Switzerland for Your Business?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
@@ -118,7 +118,7 @@ export default async function B2BMarketingAgencySwitzerlandPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            B2B Marketing Agencies Serving Switzerland
+            Top B2B Marketing Agency Switzerland Directory
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">{totalAgencies} verified agencies.</p>
         </div>

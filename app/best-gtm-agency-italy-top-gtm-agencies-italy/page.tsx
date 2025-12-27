@@ -4,7 +4,7 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best GTM Agency Italy 2025 | Top Go-To-Market Agencies Italy',
+  title: 'Best GTM Agency Italy 2025 | GTM Quest',
   description: 'Discover the best go-to-market agencies serving Italy. Compare top Italian GTM consultancies for Milan, Rome and European expansion.',
   keywords: 'best GTM agency Italy, top go-to-market agencies Milan, GTM consultants Rome, Italy GTM strategy',
   alternates: {
@@ -29,10 +29,10 @@ export default async function GTMAgencyItalyPage() {
       <div className="border-b border-white/10 py-6"><div className="max-w-7xl mx-auto px-6"><nav className="text-white/60 text-sm"><Link href="/">Home</Link> / <Link href="/best-gtm-agencies">Agencies</Link> / <span className="text-white">GTM Italy</span></nav></div></div>
 
       <section className="relative py-24 md:py-32 bg-black overflow-hidden">
-        <div className="absolute inset-0 opacity-40"><img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1920&q=80" alt="Best GTM agencies Italy - Milan cityscape" className="w-full h-full object-cover"/><div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div></div>
+        <div className="absolute inset-0 opacity-40"><img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1920&q=80" alt="Best GTM agency Italy - Milan cityscape" className="w-full h-full object-cover"/><div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div></div>
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Italy</span>
-          <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>Best GTM<br/>Agencies Italy</h1>
+          <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>Best GTM Agency Italy 2025</h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">Discover the top {totalAgencies} go-to-market agencies Italy has to offer.</p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-4xl">
             <div><div className="text-6xl font-black text-white mb-3">{totalAgencies}</div><div className="text-white/70 text-lg">Top Agencies</div></div>

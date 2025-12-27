@@ -4,8 +4,8 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best B2B Marketing Agency UK 2025 | Top B2B Marketing Agencies UK',
-  description: 'Discover the best B2B marketing agencies UK has to offer. Compare top UK B2B marketing consultancies with verified credentials, proven results, and specialized expertise.',
+  title: 'Best B2B Marketing Agency UK 2025 | GTM Quest',
+  description: 'Find the best B2B marketing agency UK has for your business. Compare top B2B marketing agencies in the UK for London and European markets.',
   keywords: 'best B2B marketing agency UK, top B2B marketing agencies UK, B2B digital marketing UK, demand generation UK, B2B lead generation UK',
   alternates: {
     canonical: 'https://gtm.quest/best-b2b-marketing-agency-uk-top-b2b-marketing-agencies-uk'
@@ -85,7 +85,7 @@ export default async function B2BMarketingAgencyUKPage() {
         <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1920&q=80"
-            alt="Best B2B marketing agencies UK - London cityscape with Thames River and iconic landmarks"
+            alt="Best B2B marketing agency UK - London cityscape with Thames River and iconic landmarks"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
@@ -94,10 +94,10 @@ export default async function B2BMarketingAgencyUKPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">United Kingdom</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best B2B Marketing<br />Agencies UK
+            Best B2B Marketing Agency UK 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
-            Discover the top {totalAgencies} B2B marketing agencies the UK has to offer—verified experts in demand generation, ABM, and revenue growth.
+            Discover the top {totalAgencies} B2B marketing agencies the UK has to offer. Find the right B2B marketing agency UK businesses trust for growth.
           </p>
 
           {/* Quick Stats */}
@@ -126,7 +126,7 @@ export default async function B2BMarketingAgencyUKPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            B2B Marketing Agencies UK Guide: Why Choose UK-Based Experts?
+            Why Choose a B2B Marketing Agency UK for Your Business?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
@@ -178,7 +178,7 @@ export default async function B2BMarketingAgencyUKPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            The Best B2B Marketing Agencies UK Has to Offer
+            Top B2B Marketing Agency UK Directory
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">
             {totalAgencies} verified B2B marketing agencies serving UK businesses with proven expertise and results.

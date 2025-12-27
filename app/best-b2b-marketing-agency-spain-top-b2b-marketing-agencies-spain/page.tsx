@@ -4,8 +4,8 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best B2B Marketing Agency Spain 2025 | Top B2B Marketing Agencies Spain',
-  description: 'Discover the best B2B marketing agencies Spain has to offer. Compare top Spanish B2B marketing consultancies serving Madrid, Barcelona and European markets.',
+  title: 'Best B2B Marketing Agency Spain 2025 | GTM Quest',
+  description: 'Find the best B2B marketing agency Spain has for your business. Compare top B2B marketing agencies in Spain for Madrid, Barcelona, and European markets.',
   keywords: 'best B2B marketing agency Spain, top B2B marketing agencies Madrid, B2B marketing Barcelona',
   alternates: {
     canonical: 'https://gtm.quest/best-b2b-marketing-agency-spain-top-b2b-marketing-agencies-spain'
@@ -60,7 +60,7 @@ export default async function B2BMarketingAgencySpainPage() {
         <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=1920&q=80"
-            alt="Best B2B marketing agencies Spain - Barcelona cityscape"
+            alt="Best B2B marketing agency Spain - Barcelona cityscape"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
@@ -69,10 +69,10 @@ export default async function B2BMarketingAgencySpainPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Spain</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best B2B Marketing<br/>Agencies Spain
+            Best B2B Marketing Agency Spain 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
-            Discover the top {totalAgencies} B2B marketing agencies Spain has to offer.
+            Discover the top {totalAgencies} B2B marketing agencies Spain has to offer. Find the right B2B marketing agency Spain businesses trust for growth.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 max-w-4xl">
@@ -99,7 +99,7 @@ export default async function B2BMarketingAgencySpainPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            B2B Marketing Agencies Spain: Southern European Innovation Hub
+            Why Choose a B2B Marketing Agency Spain for Your Business?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>Spain operates as <a href="https://en.wikipedia.org/wiki/Economy_of_Spain" className="text-blue-400 hover:text-blue-300 underline" target="_blank" rel="noopener">the Eurozone's fourth-largest economy</a> and serves as Europe's bridge to Latin America's 650 million Spanish-speaking consumers, with Barcelona emerging as Southern Europe's startup capital and Madrid hosting multinational regional headquarters. Spain's unique position connecting European sophistication with Latin American market access, combined with lower operating costs than Northern Europe and government incentives for technology companies, creates opportunities for B2B firms targeting both Spanish domestic markets and using Spain as the cultural gateway to $8 trillion LATAM economies where Spanish language, business culture, and historical relationships provide advantages French or German competitors cannot replicate.</p>
@@ -112,7 +112,7 @@ export default async function B2BMarketingAgencySpainPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            B2B Marketing Agencies Serving Spain
+            Top B2B Marketing Agency Spain Directory
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">{totalAgencies} verified agencies.</p>
         </div>

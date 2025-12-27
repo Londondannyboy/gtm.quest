@@ -4,8 +4,8 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best B2B Marketing Agency Canada 2025 | Top B2B Marketing Agencies Canada',
-  description: 'Discover the best B2B marketing agencies Canada has to offer. Compare top Canadian B2B marketing consultancies with verified credentials, proven results, and specialized expertise.',
+  title: 'Best B2B Marketing Agency Canada 2025 | GTM Quest',
+  description: 'Find the best B2B marketing agency Canada has for your business. Compare top B2B marketing agencies in Canada for Toronto, Vancouver, and North American markets.',
   keywords: 'best B2B marketing agency Canada, top B2B marketing agencies Canada, B2B digital marketing Toronto, demand generation Vancouver, B2B lead generation Canada',
   alternates: {
     canonical: 'https://gtm.quest/best-b2b-marketing-agency-canada-top-b2b-marketing-agencies-canada'
@@ -83,7 +83,7 @@ export default async function B2BMarketingAgencyCanadaPage() {
         <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1920&q=80"
-            alt="Best B2B marketing agencies Canada - Toronto skyline with CN Tower"
+            alt="Best B2B marketing agency Canada - Toronto skyline with CN Tower"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
@@ -92,10 +92,10 @@ export default async function B2BMarketingAgencyCanadaPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Canada</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best B2B Marketing<br />Agencies Canada
+            Best B2B Marketing Agency Canada 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
-            Discover the top {totalAgencies} B2B marketing agencies Canada has to offer—verified experts in demand generation, ABM, and revenue growth.
+            Discover the top {totalAgencies} B2B marketing agencies Canada has to offer. Find the right B2B marketing agency Canada businesses trust for growth.
           </p>
 
           {/* Quick Stats */}
@@ -124,7 +124,7 @@ export default async function B2BMarketingAgencyCanadaPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            B2B Marketing Agencies Canada Guide: Why Choose Canadian Experts?
+            Why Choose a B2B Marketing Agency Canada for Your Business?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
@@ -176,7 +176,7 @@ export default async function B2BMarketingAgencyCanadaPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            The Best B2B Marketing Agencies Canada Has to Offer
+            Top B2B Marketing Agency Canada Directory
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">
             {totalAgencies} verified B2B marketing agencies serving Canadian businesses with proven expertise and results.

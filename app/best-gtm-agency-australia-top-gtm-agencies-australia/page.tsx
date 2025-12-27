@@ -4,7 +4,7 @@ import { getAgenciesByCategory } from '@/lib/location-agencies'
 import { AgencyCard } from '@/components/AgencyCard'
 
 export const metadata: Metadata = {
-  title: 'Best GTM Agency Australia 2025 | Top Go-To-Market Agencies Australia',
+  title: 'Best GTM Agency Australia 2025 | GTM Quest',
   description: 'Discover the best go-to-market agencies Australia has to offer. Compare top Australian GTM consultancies with verified credentials, proven strategies, and specialized expertise.',
   keywords: 'best GTM agency Australia, top go-to-market agencies Australia, GTM consultants Sydney, product launch agency Melbourne, B2B GTM strategy Australia',
   alternates: {
@@ -83,7 +83,7 @@ export default async function GTMAgencyAustraliaPage() {
         <div className="absolute inset-0 opacity-40">
           <img
             src="https://images.unsplash.com/photo-1624138784614-87fd1b6528f8?w=1920&q=80"
-            alt="Best GTM agencies Australia - Melbourne city skyline and Yarra River"
+            alt="Best GTM agency Australia - Melbourne city skyline and Yarra River"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
@@ -92,7 +92,7 @@ export default async function GTMAgencyAustraliaPage() {
         <div className="relative max-w-7xl mx-auto px-6">
           <span className="text-white/70 text-base uppercase tracking-wider font-semibold">Australia</span>
           <h1 className="text-7xl md:text-9xl font-black text-white mb-8 leading-[0.95] tracking-tight" style={{fontWeight: 900}}>
-            Best GTM<br />Agencies Australia
+            Best GTM Agency Australia 2025
           </h1>
           <p className="text-2xl md:text-4xl text-gray-200 mb-16 max-w-5xl leading-relaxed font-medium">
             Discover the top {totalAgencies} go-to-market agencies Australia has to offer—verified experts in product launches, GTM strategy, and revenue growth.
@@ -124,7 +124,7 @@ export default async function GTMAgencyAustraliaPage() {
       <section className="bg-zinc-950 border-t border-white/10 py-24">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-            GTM Agencies Australia Guide: Why Choose Australian GTM Experts?
+            Why Choose a GTM Agency Australia for Your Business?
           </h2>
           <div className="space-y-8 text-2xl text-white/90 leading-[1.8] font-normal max-w-6xl">
             <p>
@@ -176,7 +176,7 @@ export default async function GTMAgencyAustraliaPage() {
       <section className="bg-black py-20">
         <div className="max-w-7xl mx-auto px-6 mb-16">
           <h2 className="text-5xl md:text-6xl font-black text-white mb-6 leading-tight">
-            The Best GTM Agencies Australia Has to Offer
+            Top GTM Agency Australia Directory
           </h2>
           <p className="text-2xl text-white/80 leading-[1.8]">
             {totalAgencies} verified go-to-market agencies serving Australian businesses with proven launch expertise and results.
