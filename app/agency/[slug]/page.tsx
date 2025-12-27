@@ -1,7 +1,62 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { createDbQuery } from '@/lib/db'
 import { AgencyCard } from '@/components/AgencyCard'
+
+// Map headquarters to city page slugs
+function getLocationLinks(headquarters: string): { city?: string; country?: string; b2b?: string } {
+  const hq = headquarters?.toLowerCase() || ''
+
+  const cityMap: Record<string, { city: string; country: string; b2b: string }> = {
+    // UK
+    'london': { city: 'gtm-agencies-london', country: 'gtm-agencies-uk', b2b: 'b2b-marketing-agency-london' },
+    // US Major Cities
+    'new york': { city: 'gtm-agencies-new-york', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-new-york' },
+    'san francisco': { city: 'gtm-agencies-san-francisco', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-san-francisco' },
+    'boston': { city: 'gtm-agencies-boston', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-boston' },
+    'chicago': { city: 'gtm-agencies-chicago', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-chicago' },
+    'austin': { city: 'gtm-agencies-austin', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-austin' },
+    'los angeles': { city: 'gtm-agencies-los-angeles', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-los-angeles' },
+    'seattle': { city: 'gtm-agencies-seattle', country: 'gtm-agencies-us', b2b: 'b2b-marketing-agency-seattle' },
+    // Europe
+    'berlin': { city: 'gtm-agencies-berlin', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-berlin' },
+    'munich': { city: 'gtm-agencies-munich', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-munich' },
+    'paris': { city: 'gtm-agencies-paris', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-paris' },
+    'amsterdam': { city: 'gtm-agencies-amsterdam', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-amsterdam' },
+    'barcelona': { city: 'gtm-agencies-barcelona', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-barcelona' },
+    'madrid': { city: 'gtm-agencies-madrid', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-madrid' },
+    'milan': { city: 'gtm-agencies-milan', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-milan' },
+    'rome': { city: 'gtm-agencies-rome', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-rome' },
+    'stockholm': { city: 'gtm-agencies-stockholm', country: 'gtm-agencies-europe', b2b: 'b2b-marketing-agency-stockholm' },
+    // Australia
+    'sydney': { city: 'gtm-agencies-sydney', country: 'gtm-agencies-australia', b2b: 'b2b-marketing-agency-sydney' },
+  }
+
+  // First check for city matches (more specific)
+  for (const [key, value] of Object.entries(cityMap)) {
+    if (hq.includes(key)) return value
+  }
+
+  // US state abbreviations map to country-level (fallback for non-major cities)
+  const usStates = ['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'de', 'fl', 'ga', 'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'me', 'md', 'ma', 'mi', 'mn', 'ms', 'mo', 'mt', 'ne', 'nv', 'nh', 'nj', 'nm', 'ny', 'nc', 'nd', 'oh', 'ok', 'or', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut', 'vt', 'va', 'wa', 'wv', 'wi', 'wy']
+  if (usStates.some(state => hq.includes(`, ${state}`) || hq.endsWith(` ${state}`))) {
+    return { country: 'gtm-agencies-us' }
+  }
+
+  // Fallback to country detection
+  if (hq.includes('uk') || hq.includes('united kingdom') || hq.includes('england')) {
+    return { country: 'gtm-agencies-uk' }
+  }
+  if (hq.includes('us') || hq.includes('usa') || hq.includes('united states') || hq.includes('america')) {
+    return { country: 'gtm-agencies-us' }
+  }
+  if (hq.includes('australia')) {
+    return { country: 'gtm-agencies-australia' }
+  }
+
+  return {}
+}
 
 interface AgencyPageProps {
   params: Promise<{ slug: string }>
@@ -85,6 +140,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
   // Brand assets now stored in database - no API calls!
   const website = agency.website || '#'
   const isTopRanked = !!(agency.global_rank && agency.global_rank <= 3)
+  const locationLinks = getLocationLinks(agency.headquarters || '')
 
   return (
     <div className="bg-black min-h-screen">
@@ -161,6 +217,43 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
           )}
         </div>
       </div>
+
+      {/* Location-Based Links for SEO */}
+      {(locationLinks.city || locationLinks.country || locationLinks.b2b) && (
+        <div className="border-t border-white/10 py-16">
+          <div className="max-w-7xl mx-auto px-6">
+            <h3 className="text-2xl font-bold text-white mb-6">
+              Find More Agencies in {agency.headquarters}
+            </h3>
+            <div className="flex flex-wrap gap-4">
+              {locationLinks.city && (
+                <Link
+                  href={`/${locationLinks.city}`}
+                  className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                >
+                  GTM Agencies in {agency.headquarters.split(',')[0]}
+                </Link>
+              )}
+              {locationLinks.b2b && (
+                <Link
+                  href={`/${locationLinks.b2b}`}
+                  className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                >
+                  B2B Marketing Agencies in {agency.headquarters.split(',')[0]}
+                </Link>
+              )}
+              {locationLinks.country && (
+                <Link
+                  href={`/${locationLinks.country}`}
+                  className="px-6 py-3 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 rounded-lg transition-colors"
+                >
+                  All {locationLinks.country.includes('uk') ? 'UK' : locationLinks.country.includes('us') ? 'US' : locationLinks.country.includes('europe') ? 'European' : 'Australian'} Agencies
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Related Agencies CTA */}
       <div className="border-t border-white/10 py-20">
